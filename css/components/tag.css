@@ -2,7 +2,8 @@
    --button for a tag you can press (the filter's buttons).
    <span class="tag">Editorial</span>
    <span class="tag tag--solid">Featured</span>
-   <button class="tag tag--button" type="button" aria-pressed="false">Travel</button> */
+   <button class="tag tag--button" type="button" aria-pressed="false">Travel</button>
+   <a class="tag" href="/tags/travel/">Travel</a>          link; aria-current="page" fills it */
 
 .tag {
   display: inline-flex;
@@ -22,8 +23,19 @@
   border-color: transparent;
 }
 
+/* Linked tag. No underline: the pill is the affordance. It needs its own
+   hover, because this layer's colour outranks the base a:hover. */
+a.tag { text-decoration: none; }
+a.tag:hover { color: var(--text-default); border-color: currentColor; }
+a.tag[aria-current="page"] {
+  color: var(--text-inverse);
+  background: var(--text-default);
+  border-color: transparent;
+}
+
 /* Pressable tag. aria-pressed="true" fills it, like --solid. */
 button.tag { background: transparent; cursor: pointer; }
+a.tag,
 .tag--button {
   transition:
     color var(--duration-fast) var(--ease-standard),
