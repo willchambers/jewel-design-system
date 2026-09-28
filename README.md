@@ -17,6 +17,7 @@ css/
     knockout.css  meta-list.css  panel.css  quote.css  section-head.css  tag.css  video.css
     field.css  input.css  choice.css  tag-input.css  dropzone.css      forms
     fab.css  sheet.css                                                 posting flow
+    lightbox.css  filter.css                                           photos and filtering
 js/
   jewel.js              core: Jewel.theme + component registry
   components/
@@ -25,7 +26,9 @@ js/
     video.js
     form.js             validation, counters, busy state, Jewel.field helpers (load first)
     tag-input.js  dropzone.js  sheet.js  post-form.js
+    lightbox.js  filter.js
 index.html              specimen page / usage reference
+media/                  small SVG artworks for the specimen's lightbox
 ```
 
 ## Setup
@@ -120,6 +123,16 @@ dropzone.jewelDropzone.setFile(blob, 'photo.webp')  // show and submit a process
 tagInput.jewelTags.setSuggestions(['Pond', 'Dayton'])  // also .get(), .set([...]), .add(t), .remove(t)
 dialog.jewelSheet.open(opener)                // also .close({ force }), .requestClose()
 ```
+
+## Photos and filtering
+
+Both came from the portfolio site and are also used by Photostream, its photo app.
+
+| Component | Markup | Notes |
+|---|---|---|
+| Lightbox | `[data-component="lightbox"]` around `a[data-lightbox-item]` links | A full-screen viewer on a native `<dialog>`. Each link points at the full image, so it still works without JS. `data-caption` is the first line; `data-description` adds a quieter second line. Arrow keys and swipes move between photos, Esc closes, and focus goes back to the photo that opened it. Photos that are hidden, or inside a hidden parent (e.g. filtered out), are skipped. |
+| Filter | `.filter.cluster[data-component="filter"]` with `button.tag.tag--button[data-filter]` | `data-filter-target` is a selector for the container; items inside it carry `data-tags="slug other-slug"`. `data-filter="*"` shows everything. A live region (`.filter__status`) announces the count, worded with `data-filter-noun`. Opening the page at `#tag=<slug>`, or following a `#tag=<slug>` link later, applies that tag. Buttons are looked up on every change, so a filter rendered by script works too. |
+| Tag button | `button.tag.tag--button[aria-pressed]` | A pressable tag; pressed fills like `.tag--solid`. |
 
 ## Attributes
 

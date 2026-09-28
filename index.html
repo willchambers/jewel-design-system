@@ -14,6 +14,8 @@
 
   <script src="js/jewel.js" defer></script>
   <script src="js/components/video.js" defer></script>
+  <script src="js/components/lightbox.js" defer></script>
+  <script src="js/components/filter.js" defer></script>
   <script src="js/components/form.js" defer></script>  <!-- load before other form components -->
   <script src="js/components/tag-input.js" defer></script>
   <script src="js/components/dropzone.js" defer></script>
@@ -156,11 +158,17 @@
           </div>
 
           <div class="stack">
-            <p class="label">Project index</p>
-            <ol class="index">
-              <li><a class="index__row" href="#"><span class="label">01</span><span class="index__title">Northlight Quarterly</span><span class="label">Editorial · 2026</span></a></li>
-              <li><a class="index__row" href="#"><span class="label">02</span><span class="index__title">Field Notes Identity</span><span class="label">Brand · 2025</span></a></li>
-              <li><a class="index__row" href="#"><span class="label">03</span><span class="index__title">Tidal, a type specimen</span><span class="label">Type · 2025</span></a></li>
+            <p class="label">Project index · filter</p>
+            <div class="filter cluster" data-component="filter" data-filter-target="#index-demo" data-filter-noun="projects" role="group" aria-label="Filter by tag">
+              <button class="tag tag--button" type="button" data-filter="*" aria-pressed="true">All</button>
+              <button class="tag tag--button" type="button" data-filter="editorial" aria-pressed="false">Editorial</button>
+              <button class="tag tag--button" type="button" data-filter="type" aria-pressed="false">Type</button>
+              <span class="filter__status visually-hidden" aria-live="polite"></span>
+            </div>
+            <ol class="index" id="index-demo">
+              <li data-tags="editorial"><a class="index__row" href="#"><span class="label">01</span><span class="index__title">Northlight Quarterly</span><span class="label">Editorial · 2026</span></a></li>
+              <li data-tags="brand"><a class="index__row" href="#"><span class="label">02</span><span class="index__title">Field Notes Identity</span><span class="label">Brand · 2025</span></a></li>
+              <li data-tags="type editorial"><a class="index__row" href="#"><span class="label">03</span><span class="index__title">Tidal, a type specimen</span><span class="label">Type · 2025</span></a></li>
             </ol>
           </div>
 
@@ -204,6 +212,16 @@
           </div>
           <figcaption class="figure__caption"><span><strong>Tidal</strong> — motion reel, 0:42.</span><span class="label">Fig. 3</span></figcaption>
         </figure>
+
+        <!-- Lightbox: any container of [data-lightbox-item] links. Tap a thumbnail; arrows, swipe and Esc work. -->
+        <div class="span-12 stack">
+          <p class="label">Lightbox</p>
+          <div data-component="lightbox" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3); align-items: start">
+            <a class="figure__media" href="media/art-a.svg" data-lightbox-item data-caption="Northlight Quarterly — cover" data-description="An optional second line from data-description."><img src="media/art-a.svg" alt="Violet and teal gradient artwork" loading="lazy"></a>
+            <a class="figure__media" href="media/art-b.svg" data-lightbox-item data-caption="Field Notes — mark study" style="--ratio: 4 / 5"><img src="media/art-b.svg" alt="A red circle on a pale ground" loading="lazy"></a>
+            <a class="figure__media" href="media/art-c.svg" data-lightbox-item data-caption="Tidal — still"><img src="media/art-c.svg" alt="Orange and magenta gradient artwork" loading="lazy"></a>
+          </div>
+        </div>
       </section>
 
       <!-- Forms -->
