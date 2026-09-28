@@ -159,6 +159,11 @@
               <!-- Linked tags: no underline; hover brightens. These #tag= links drive the filter below. -->
               <a class="tag" href="#tag=editorial">Editorial</a><a class="tag" href="#tag=type">Type</a><a class="tag" href="#components" aria-current="page">Current page</a>
             </div>
+            <div class="cluster" style="--cluster-gap: var(--space-3) var(--space-2)">
+              <!-- Touch size: 32px pill, 44px tap area. Linked and button tags get this
+                   automatically on touch screens; .tag--touch forces it anywhere. -->
+              <a class="tag tag--touch" href="#tag=editorial">Touch size</a><button class="tag tag--button tag--touch" type="button" aria-pressed="true">All</button><button class="tag tag--button tag--touch" type="button" aria-pressed="false">Night</button>
+            </div>
           </div>
 
           <div class="stack">
