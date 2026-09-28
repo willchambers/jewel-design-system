@@ -56,6 +56,24 @@ media/                  small SVG artworks for the specimen's lightbox
 
 Include only the component scripts a page uses.
 
+## iPhone home-screen apps
+
+Jewel works as a full-screen home-screen app that draws under the status bar:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+```
+
+- `--sticky-offset` adds `env(safe-area-inset-top)`, so the header sits below the status bar and `.jewel-cap` fills the status bar with the gradient.
+- `.page` keeps clear of the notch in landscape, and the lightbox pads all four sides for the status bar, notch and home indicator.
+- `.fab` and `.sheet` already respect the safe areas, and the sheet shrinks above the on-screen keyboard.
+
+Without `viewport-fit=cover`, the insets are 0 and nothing changes.
+
+**Hiding things.** `[hidden]` always hides, even on components that set their own `display` (`utilities.css` sits in the last layer). Unlayered page CSS that sets `display` on a hidden element still wins, so avoid that. `hidden="until-found"` is left to the browser.
+
 ## Page structure and panel shapes
 
 The page is a floating glass header over a column of content panels, with the gradient showing between them.
@@ -79,7 +97,7 @@ The page is a floating glass header over a column of content panels, with the gr
 --knockout-offset: 6px;         /* corner → first line */
 --knockout-width: 1px;          /* line thickness */
 --knockout-gap: 2px;            /* space between the lines */
---sticky-offset: 1rem;          /* gap above the sticky header */
+--sticky-offset: calc(1rem + env(safe-area-inset-top));  /* gap above the sticky header */
 ```
 
 To change the shape for one panel only, set a token inline, for example `style="--knockout-offset: 16px"`.
@@ -112,7 +130,7 @@ Style: **hairline box**, option B of the three explored. Each field is a 1px box
 | `jewel:filechange` | drop zone | `{ file, source: 'user' \| 'api' \| 'clear' }` |
 | `jewel:sheetopen` / `jewel:sheetclose` | dialog | none |
 
-Call `waitUntil(promise)` to keep the form busy while you work. The submit button shows `data-busy-label` with a spinner. If the promise resolves, the form shows its `data-success` message and resets. If it rejects, the error's message is shown and the draft stays.
+Call `waitUntil(promise)` to keep the form busy while you work. The submit button shows `data-busy-label` with a spinner. If the promise resolves, the form shows its `data-success` message and resets. If it rejects, the error's message is shown and the draft stays. When the form stops being busy, the button gets its old label back only if it still shows the busy text. If you changed the text while busy (to "Retry", say), your text stays. Set `data-idle-label` while busy to choose the label that comes back.
 
 **JS API**
 

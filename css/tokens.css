@@ -91,7 +91,10 @@
   --page-max: 80rem;
   --page-margin: clamp(1rem, 0.25rem + 3.5vw, 3.5rem);
   --panel-padding: clamp(var(--space-5), 3vw, var(--space-7));
-  --sticky-offset: var(--space-4);  /* gap above the sticky header; .jewel-cap fills it */
+  /* Gap above the sticky header; .jewel-cap fills it. It includes the iPhone
+     status bar when a home-screen app draws under it (viewport-fit=cover +
+     black-translucent), so the gradient fills the status bar too. */
+  --sticky-offset: calc(var(--space-4) + env(safe-area-inset-top, 0px));
   /* ---- Radius ---------------------------------------------------------- */
   --radius-0: 0;
   --radius-1: 2px;

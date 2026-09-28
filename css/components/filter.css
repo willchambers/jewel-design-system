@@ -17,6 +17,5 @@
   .filter { --cluster-gap: var(--space-3) var(--space-2); }
 }
 
-/* Filtered-out items. Author styles like `display: grid` would otherwise
-   beat the browser's own [hidden] rule. */
-[data-tags][hidden] { display: none; }
+/* Filtered-out items are hidden with [hidden]; utilities.css makes that
+   win over any component's display rule. */

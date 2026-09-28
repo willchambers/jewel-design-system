@@ -87,7 +87,6 @@
 
 /* ---- Suggestions ------------------------------------------------------- */
 .tag-input__suggest { display: flex; flex-wrap: wrap; align-items: center; column-gap: var(--space-3); }
-.tag-input__suggest[hidden] { display: none; }
 .tag-input__suggestions {
   display: flex;
   flex-wrap: wrap;
@@ -96,7 +95,6 @@
   padding: 0;
   list-style: none;
 }
-.tag-input__suggestions[hidden] { display: none; }
 .chip--suggest {
   min-height: 2.75rem;          /* tap target; the pill stays visually small */
   height: auto;

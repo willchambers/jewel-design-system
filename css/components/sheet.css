@@ -75,7 +75,6 @@
   border-bottom: var(--hairline) solid var(--panel-border);
   font-size: var(--text-sm);
 }
-.sheet__confirm[hidden] { display: none; }
 
 /* ---- Bottom sheet (tearsheet) ------------------------------------------ */
 .sheet--bottom {

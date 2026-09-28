@@ -155,9 +155,17 @@
         form.querySelectorAll('button[type="submit"], .btn[data-submit]').forEach((b) => {
           b.setAttribute('aria-busy', String(busy));
           b.disabled = busy;
-          if (b.dataset.busyLabel) {
-            if (busy) { b.dataset.idleLabel = b.textContent; b.textContent = b.dataset.busyLabel; }
-            else if (b.dataset.idleLabel) b.textContent = b.dataset.idleLabel;
+          if (!b.dataset.busyLabel) return;
+          if (busy) {
+            b.dataset.idleLabel = b.textContent;
+            b.textContent = b.dataset.busyLabel;
+          } else {
+            // Put the label back only if it still shows the busy text. If the
+            // app changed the text while busy ("Retry", "Uploading 2 of 3"),
+            // keep the app's text. The app can also set data-idle-label while
+            // busy to choose what comes back.
+            if (b.textContent === b.dataset.busyLabel && b.dataset.idleLabel != null) b.textContent = b.dataset.idleLabel;
+            delete b.dataset.idleLabel;
           }
         });
       },

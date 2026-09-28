@@ -116,7 +116,10 @@ hr, .rule {
   width: 100%;
   max-width: var(--page-max);
   margin-inline: auto;
-  padding-inline: var(--page-margin);
+  /* Landscape iPhones: keep content clear of the notch. */
+  padding-inline:
+    max(var(--page-margin), env(safe-area-inset-left, 0px))
+    max(var(--page-margin), env(safe-area-inset-right, 0px));
 }
 
 .grid {

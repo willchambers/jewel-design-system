@@ -44,7 +44,6 @@
   border: var(--hairline) solid var(--panel-border);
   border-radius: var(--radius-pill);
 }
-.badge[hidden] { display: none; }     /* display above would otherwise beat [hidden] */
 .badge svg { width: 0.875rem; height: 0.875rem; flex: none; }
 
 /* ---- Tones -------------------------------------------------------------- */

@@ -14,7 +14,12 @@
   max-width: none;
   max-height: none;
   margin: 0;
-  padding: var(--space-4);
+  /* Clear of the status bar, notch and home indicator on iPhone. */
+  padding:
+    max(var(--space-4), env(safe-area-inset-top, 0px))
+    max(var(--space-4), env(safe-area-inset-right, 0px))
+    max(var(--space-4), env(safe-area-inset-bottom, 0px))
+    max(var(--space-4), env(safe-area-inset-left, 0px));
   border: 0;
   color: var(--text-default);
   background: var(--panel-bg);
