@@ -68,9 +68,9 @@ The page is a floating glass header over a column of content panels, with the gr
 --panel-radius: 0;              /* every panel */
 --panel-radius-top-right: 2px;  /* content panels: knockout corner */
 --panel-radius-bottom: 10px;    /* content panels: bottom corners */
---knockout-offset: 10px;        /* corner → first line */
+--knockout-offset: 6px;         /* corner → first line */
 --knockout-width: 1px;          /* line thickness */
---knockout-gap: 3px;            /* space between the lines */
+--knockout-gap: 2px;            /* space between the lines */
 --sticky-offset: 1rem;          /* gap above the sticky header */
 ```
 

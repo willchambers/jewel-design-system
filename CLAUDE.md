@@ -7,7 +7,7 @@ A personal design system for portfolio sites. Vanilla HTML, CSS and a little JS.
 - **Dark-only.** The light theme is parked in `css/parked/light-theme.css` and is not imported. A future light theme is planned as a *different* direction, with no knockout lines and no rounded corners. Don't re-enable light unless asked.
 - **Background:** a full-viewport animated gradient of the five Jewel colours (`.jewel-bg`). It is the only expressive element. `.jewel-cap` sits right after it and hides content in the gap above the sticky header.
 - **Panels:** glass by default (86% fill, 24px blur). Square corners.
-- **Content panels** (any `.panel` directly in `.panel-stack`, or `.panel--content`) have the signature shape: square top-left, 2px top-right with two knockout hairlines (1px, 3px apart, 10px from the corner), and 10px bottom corners. `.no-knockout` opts one out.
+- **Content panels** (any `.panel` directly in `.panel-stack`, or `.panel--content`) have the signature shape: square top-left, 2px top-right with two knockout hairlines (1px, 2px apart, 6px from the corner), and 10px bottom corners. `.no-knockout` opts one out.
 - **Section heads:** a numbered `.label` in `.section-head` opens each content panel, with a full-width (edge-to-edge) 1px rule under it. The content follows in `span-9 start-4`.
 - **Header:** a sticky glass bar with square corners and no knockout. There is no theme toggle.
 - **Type:** Inter only. Hierarchy comes from size, weight and spacing: tight display headings, 1.6 body, small tracked uppercase `.label`s.
