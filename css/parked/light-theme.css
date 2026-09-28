@@ -1,0 +1,51 @@
+/* ==========================================================================
+   PARKED — Light theme. Not imported by css/jewel.css.
+
+   Set aside while the system focuses on the dark theme. The plan is a
+   separate light direction WITHOUT the dark theme's signature details:
+   no knockout lines and no rounded content-panel corners.
+
+   To revive it:
+   1. Import it after tokens.css in css/jewel.css:
+        @import url("parked/light-theme.css") layer(tokens);
+   2. Switch off the dark-theme shape for light panels, e.g.:
+        [data-theme="light"] { --panel-radius-top-right: 0; --panel-radius-bottom: 0; }
+      and exclude [data-theme="light"] panels from the knockout selector in
+      css/components/knockout.css.
+   3. Add a toggle again: js/components/theme-toggle.js still works. Put
+      this in <head> so the saved choice applies before first paint:
+        <script>
+          try {
+            var t = localStorage.getItem('jewel-theme');
+            if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+          } catch (e) {}
+        </script>
+      and the button in the header:
+        <button class="btn btn--ghost btn--icon toggle" type="button"
+                data-component="theme-toggle" aria-pressed="false">
+          <svg class="toggle__off">…moon…</svg><svg class="toggle__on">…sun…</svg>
+        </button>
+
+   All values below passed WCAG AA (see README "Contrast"), including glass
+   at 0.86 over near-black and over every Jewel colour.
+   ========================================================================== */
+
+[data-theme="light"] {
+  --color-surface:        #FAFAFA;
+  --color-surface-muted:  #F4F4F5;
+  --color-border:         #E4E4E7;
+  --color-text:           #18181B;
+  --color-text-muted:     #52525B;
+  --color-text-accent:    #6D28D9;
+  --color-text-inverse:   #FAFAFA;
+
+  --glass-fill:           rgb(250 250 250 / 0.86);
+  --glass-border:         rgb(24 24 27 / 0.10);
+  --glass-text-muted:     #4B4B53;
+  --glass-text-accent:    #5B21B6;
+
+  /* Darkens the Jewel background so light panels stand out against it. */
+  --bg-dim:               0.4;
+
+  color-scheme: light;
+}
