@@ -10,6 +10,7 @@ A personal design system for portfolio sites. Vanilla HTML, CSS and a little JS.
 - **Content panels** (any `.panel` directly in `.panel-stack`, or `.panel--content`) have the signature shape: square top-left, 2px top-right with two knockout hairlines (1px, 2px apart, 6px from the corner), and 10px bottom corners. `.no-knockout` opts one out.
 - **Section heads:** a numbered `.label` in `.section-head` opens each content panel, with a full-width (edge-to-edge) 1px rule under it. The content follows in `span-9 start-4`.
 - **Forms:** the hairline-box style. Fields are 1px square boxes in `--field-border` (40% white), which turn to a 2px accent box on focus and red (`--field-error`) on error, with uppercase `.field__label`s above. Field edges never use the 10% `--panel-border`, which is only 1.27:1; input edges need 3:1. Touch targets are at least 44px. The post flow is `.fab` → `dialog.sheet` → `post-form`, which fires `jewel:post` with no backend.
+- **Badges:** status and counts over photos use `.badge` with `data-place`, never a one-off pill. Its own `--panel-bg` surface keeps it readable on any image.
 - **Header:** a sticky glass bar with square corners and no knockout. There is no theme toggle.
 - **Type:** Inter only. Hierarchy comes from size, weight and spacing: tight display headings, 1.6 body, small tracked uppercase `.label`s.
 - **Restraint:** hairline rules, almost no shadow, understated hovers (the underline shifts, the colour moves to accent).

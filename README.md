@@ -15,6 +15,7 @@ css/
     _template.css       starting point for a new component
     button.css  figure.css  footer.css  header.css  index-list.css
     knockout.css  meta-list.css  panel.css  quote.css  section-head.css  tag.css  video.css
+    badge.css
     field.css  input.css  choice.css  tag-input.css  dropzone.css      forms
     fab.css  sheet.css                                                 posting flow
     lightbox.css  filter.css                                           photos and filtering
@@ -131,6 +132,7 @@ Both came from the portfolio site and are also used by Photostream, its photo ap
 | Component | Markup | Notes |
 |---|---|---|
 | Lightbox | `[data-component="lightbox"]` around `a[data-lightbox-item]` links | A full-screen viewer on a native `<dialog>`. Each link points at the full image, so it still works without JS. `data-caption` is the first line; `data-description` adds a quieter second line. Arrow keys and swipes move between photos, Esc closes, and focus goes back to the photo that opened it. Photos that are hidden, or inside a hidden parent (e.g. filtered out), are skipped. |
+| Badge | `.badge` (tones `--accent`, `--error`, `--solid`; `.badge__dot`, `.badge--busy`) | A small uppercase label on its own `--panel-bg` pill, for a status ("Private", "Publishing…", "Failed") or a count ("1 / 3"). Over media, add `data-place="top-left|top-right|bottom-left|bottom-right"` to the badge, or to a `.badges` group when one corner needs several. The parent must be positioned (`.figure__media` is). Badges ignore taps, so the photo or link underneath still works. Hide a count with `aria-hidden="true"` if it repeats a label; wrap a status that changes in `role="status"`. |
 | Filter | `.filter.cluster[data-component="filter"]` with `button.tag.tag--button[data-filter]` | `data-filter-target` is a selector for the container; items inside it carry `data-tags="slug other-slug"`. `data-filter="*"` shows everything. A live region (`.filter__status`) announces the count, worded with `data-filter-noun`. Opening the page at `#tag=<slug>`, or following a `#tag=<slug>` link later, applies that tag. Buttons are looked up on every change, so a filter rendered by script works too. |
 | Tag button | `button.tag.tag--button[aria-pressed]` | A pressable tag; pressed fills like `.tag--solid`. |
 | Touch-size tag | `.tag--touch`, or automatic for `a.tag` and `button.tag` on touch screens | A 32px pill with an invisible 44px tap area, and at least 44px wide. Wrapped rows need a 12px row gap (`--cluster-gap: var(--space-3) var(--space-2)`) so the tap areas don't overlap; the filter does this itself. Plain `span.tag` labels stay 24px. Tune one instance with `--tag-height`, `--tag-pad` or `--tag-hit`. |
@@ -247,6 +249,8 @@ These values are exposed as `--glass-fill`, `--glass-text-muted` and `--glass-te
 | `--field-placeholder` | = `--text-muted` | 6.32:1 | 4.5:1 |
 
 The 10% panel hairline (`--panel-border`) measures only 1.27:1. That is fine for decorative rules, but too faint to show where a field is, so fields never use it for their edges. Disabled fields keep muted text (6.32:1) with a dashed edge, so they stay readable.
+
+**Badges over photos.** A badge sits on its own 86% `--panel-bg`, not on the panel, so it was checked over a pure-white photo, the worst case: default text 11.58:1, accent 6.89:1, error 6.70:1, and `.badge--solid` 16.12:1. Over darker photos the numbers only go up. Badges aren't interactive, so their pill edge needs no minimum contrast.
 
 The background's `--bg-base` (#7A2E9E) sits inside the Jewel luminance range. Lowering `--bg-intensity` therefore never produces a backdrop worse than the cases tested above.
 
