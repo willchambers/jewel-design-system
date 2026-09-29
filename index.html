@@ -189,6 +189,37 @@
               <dt class="label">Year</dt><dd>2026</dd>
             </dl>
           </div>
+
+          <div class="stack">
+            <p class="label">Notices</p>
+            <div class="notices" id="notice-demo" tabindex="-1" aria-label="Notices">
+              <!-- Info, no action -->
+              <div class="notice">
+                <p class="notice__text">You're offline. Showing what's saved on this phone.</p>
+              </div>
+              <!-- Info with an action -->
+              <div class="notice">
+                <p class="notice__text">Showing published photos only. Connect GitHub to see your private library too.</p>
+                <div class="notice__actions"><button class="btn btn--ghost" type="button">Connect GitHub</button></div>
+              </div>
+              <!-- Accent: an update or good news -->
+              <div class="notice notice--accent" role="status">
+                <p class="notice__text">Photostream has been updated.</p>
+                <div class="notice__actions"><button class="btn btn--ghost" type="button">Reload</button></div>
+              </div>
+              <!-- Error with a title and actions -->
+              <div class="notice notice--error" role="alert">
+                <div class="notice__body">
+                  <p class="notice__title">Couldn't load your photos</p>
+                  <p class="notice__text">willchambers.github.io didn't answer. Check your connection and try again.</p>
+                </div>
+                <div class="notice__actions">
+                  <button class="btn btn--text" type="button" data-notice-demo="dismiss">Dismiss</button>
+                  <button class="btn btn--ghost" type="button">Retry</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -482,6 +513,12 @@
       const sheet = document.getElementById('post-sheet');
       const form = document.getElementById('post-form');
       const log = document.getElementById('post-log');
+
+      // Notices: dismiss by hiding, then move focus to the group so it isn't lost.
+      document.querySelectorAll('[data-notice-demo="dismiss"]').forEach((b) => b.addEventListener('click', () => {
+        b.closest('.notice').hidden = true;
+        document.getElementById('notice-demo').focus();
+      }));
 
       document.querySelectorAll('[data-open-variant]').forEach((b) => b.addEventListener('click', () => {
         sheet.classList.toggle('sheet--bottom', b.dataset.openVariant === 'bottom');
