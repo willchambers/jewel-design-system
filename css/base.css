@@ -28,7 +28,9 @@ body {
 
 img, video, svg, canvas { display: block; max-width: 100%; height: auto; }
 button, input, select, textarea { font: inherit; color: inherit; letter-spacing: inherit; }
-p, h1, h2, h3, h4, figure, blockquote, ul, ol { margin: 0; }
+/* List and figure margins are reset here, in the base layer, not in
+   components: a component-layer margin would beat .stack's spacing. */
+p, h1, h2, h3, h4, figure, blockquote, ul, ol, dl, dd { margin: 0; }
 
 :focus-visible {
   outline: 2px solid var(--text-accent);

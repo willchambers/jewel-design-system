@@ -6,7 +6,6 @@
 .meta {
   display: grid;
   grid-template-columns: minmax(7rem, max-content) 1fr;
-  margin: 0;
   border-top: var(--hairline) solid var(--panel-border);
 }
 .meta dt,

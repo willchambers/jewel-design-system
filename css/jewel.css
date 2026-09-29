@@ -36,6 +36,7 @@
 @import url("components/quote.css") layer(components);
 @import url("components/section-head.css") layer(components);
 @import url("components/sheet.css") layer(components);
+@import url("components/stat.css") layer(components);
 @import url("components/tag.css") layer(components);
 @import url("components/tag-input.css") layer(components);
 @import url("components/video.css") layer(components);
