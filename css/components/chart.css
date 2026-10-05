@@ -133,6 +133,7 @@
 }
 .chart__tip-row strong { font-weight: var(--weight-semibold); font-variant-numeric: tabular-nums; }
 .chart__tip-row span:last-child { color: var(--text-muted); }
+.chart__tip-row.is-plain { grid-template-columns: auto minmax(0, 1fr); }
 .chart__tip-row.is-total { padding-top: var(--space-1); border-top: var(--hairline) solid var(--panel-border); }
 .chart__key { width: 0.875rem; height: 2px; border-radius: 1px; background: var(--c, transparent); }
 

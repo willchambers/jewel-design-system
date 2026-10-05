@@ -95,16 +95,23 @@
     tip.append(htmlEl('p', 'chart__tip-title', title));
     const list = htmlEl('ul', 'chart__tip-rows');
     for (const row of rows) {
-      const li = htmlEl('li', 'chart__tip-row' + (row.total ? ' is-total' : ''));
-      const key = htmlEl('span', 'chart__key');
-      if (row.slot) key.dataset.series = row.slot;
-      li.append(key, htmlEl('strong', null, row.value), htmlEl('span', null, row.name));
+      // plain: one value with nothing to key (sparklines), so no key column.
+      const li = htmlEl('li', 'chart__tip-row' + (row.total ? ' is-total' : '') + (row.plain ? ' is-plain' : ''));
+      if (!row.plain) {
+        const key = htmlEl('span', 'chart__key');
+        if (row.slot) key.dataset.series = row.slot;
+        li.append(key);
+      }
+      li.append(htmlEl('strong', null, row.value), htmlEl('span', null, row.name));
       list.append(li);
     }
     tip.append(list);
   }
 
-  function placeTip(tip, plot, x, y) {
+  // above: always open upward. Sparklines use it: they sit low in a stat,
+  // often near a panel's bottom edge, and the panel's mask (the knockout
+  // corner) clips anything that hangs below the panel.
+  function placeTip(tip, plot, x, y, { above = false } = {}) {
     tip.hidden = false;
     const w = tip.offsetWidth;
     const h = tip.offsetHeight;
@@ -113,7 +120,7 @@
     if (left + w > pw) left = x - 16 - w;
     left = Math.max(0, Math.min(left, pw - w));
     let top = y - h - 12;
-    if (top < 0) top = y + 18;
+    if (top < 0 && !above) top = y + 18;
     tip.style.transform = `translate(${Math.round(left)}px, ${Math.round(top)}px)`;
   }
 
@@ -643,8 +650,8 @@
       let best = -1;
       pts.forEach((p, i) => { if (p && (best < 0 || Math.abs(p[0] - px) < Math.abs(pts[best][0] - px))) best = i; });
       if (best < 0) return;
-      fillTip(tip, labels[best] || '', [{ value: new Intl.NumberFormat().format(values[best]), name: el.dataset.name || '' }]);
-      placeTip(tip, el, (pts[best][0] / lastW) * b.width, (pts[best][1] / (el.clientHeight || 32)) * b.height);
+      fillTip(tip, labels[best] || '', [{ value: new Intl.NumberFormat().format(values[best]), name: el.dataset.name || '', plain: true }]);
+      placeTip(tip, el, (pts[best][0] / lastW) * b.width, (pts[best][1] / (el.clientHeight || 32)) * b.height, { above: true });
     });
     el.addEventListener('pointerleave', () => { tip.hidden = true; });
 
