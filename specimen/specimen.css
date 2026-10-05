@@ -139,7 +139,7 @@
 .spec-type p { max-width: none; }
 .spec-typeface { font-size: clamp(4rem, 2rem + 10vw, 10rem); font-weight: var(--weight-bold); line-height: var(--leading-display); letter-spacing: var(--tracking-display); }
 .spec-weights { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr)); }
-.spec-weights p { font-size: var(--text-2xl); line-height: var(--leading-heading); letter-spacing: var(--tracking-heading); }
+.spec-weights p:not(.label) { font-size: var(--text-2xl); line-height: var(--leading-heading); letter-spacing: var(--tracking-heading); }
 
 /* Swatches read the tokens, so they always show the real colour. */
 .spec-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(9rem, 100%), 1fr)); gap: var(--space-5) var(--space-4); }
