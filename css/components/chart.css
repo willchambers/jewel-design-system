@@ -18,9 +18,6 @@
 
    data-type     line | area | bar | pie | donut | sparkline
    data-stacked  stack area or bar series on top of each other
-   data-palette  jewel (default) | emphasis — on the chart or any ancestor
-   data-highlight  the series (or slice) the emphasis palette picks out;
-                 defaults to the first
    data-prefix / data-suffix  for axis ticks: "$", "%", "h"…
    data-height   plot height in px (default 260)
 
@@ -35,18 +32,13 @@
   min-width: 0;
 }
 
-/* ---- Series colours: fixed order, by entity; switched by palette ------- */
+/* ---- Series colours: fixed order, by entity (never by rank or value) --- */
 .chart [data-series="1"] { --c: var(--chart-1); }
 .chart [data-series="2"] { --c: var(--chart-2); }
 .chart [data-series="3"] { --c: var(--chart-3); }
 .chart [data-series="4"] { --c: var(--chart-4); }
 .chart [data-series="5"] { --c: var(--chart-5); }
 .chart [data-series="x"] { --c: var(--chart-context); }   /* beyond 5: folded, never a 6th hue */
-
-[data-palette="emphasis"] .chart [data-series],
-.chart[data-palette="emphasis"] [data-series] { --c: var(--chart-context); }
-[data-palette="emphasis"] .chart [data-series][data-highlight],
-.chart[data-palette="emphasis"] [data-series][data-highlight] { --c: var(--chart-accent); }
 
 /* ---- Head --------------------------------------------------------------- */
 .chart figcaption { display: grid; gap: var(--space-1); }

@@ -481,16 +481,10 @@
       </section>
 
       <!-- Charts -->
-      <section id="charts" class="panel panel--pad grid" data-palette="jewel">
+      <section id="charts" class="panel panel--pad grid">
         <header class="section-head"><p class="label">07 — Charts</p></header>
         <div class="span-9 start-4 stack" style="--stack-gap: var(--space-8)">
-          <div class="stack" style="--stack-gap: var(--space-4)">
-            <p class="caption">Sample data. Hover or tap a point for its card; focus a chart and use the arrow keys. Charts animate once as they scroll into view.</p>
-            <div class="filter cluster" role="group" aria-label="Chart palette">
-              <button class="tag tag--button" type="button" data-palette-choice="jewel" aria-pressed="true">Jewel colours</button>
-              <button class="tag tag--button" type="button" data-palette-choice="emphasis" aria-pressed="false">Accent + greys</button>
-            </div>
-          </div>
+          <p class="caption">Sample data. Hover or tap a point for its card; focus a chart and use the arrow keys. Charts animate once as they scroll into view.</p>
 
           <figure class="chart" data-component="chart" data-type="line">
             <figcaption>
@@ -515,7 +509,7 @@
             </table>
           </figure>
 
-          <figure class="chart" data-component="chart" data-type="area" data-stacked data-suffix="h" data-highlight="Development">
+          <figure class="chart" data-component="chart" data-type="area" data-stacked data-suffix="h">
             <figcaption>
               <span class="chart__title">Hours by discipline</span>
               <span class="chart__subtitle">Stacked, per quarter</span>
@@ -553,7 +547,7 @@
             </table>
           </figure>
 
-          <figure class="chart" data-component="chart" data-type="bar" data-highlight="2025">
+          <figure class="chart" data-component="chart" data-type="bar">
             <figcaption>
               <span class="chart__title">Clients by type</span>
               <span class="chart__subtitle">2024 and 2025, grouped</span>
@@ -570,7 +564,7 @@
           </figure>
 
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr)); gap: var(--space-7) var(--grid-gutter)">
-            <figure class="chart" data-component="chart" data-type="pie" data-highlight="Design">
+            <figure class="chart" data-component="chart" data-type="pie">
               <figcaption>
                 <span class="chart__title">Time by discipline</span>
                 <span class="chart__subtitle">Share of 2026</span>
@@ -586,7 +580,7 @@
               </tbody>
             </table>
             </figure>
-            <figure class="chart" data-component="chart" data-type="donut" data-center-label="Projects" data-highlight="Publishers">
+            <figure class="chart" data-component="chart" data-type="donut" data-center-label="Projects">
               <figcaption>
                 <span class="chart__title">Projects by client</span>
                 <span class="chart__subtitle">2016–2026</span>
@@ -716,11 +710,6 @@
       const form = document.getElementById('post-form');
       const log = document.getElementById('post-log');
 
-      // Charts: compare the two palettes. Colours are CSS-only, so no redraw.
-      document.querySelectorAll('[data-palette-choice]').forEach((b) => b.addEventListener('click', () => {
-        document.getElementById('charts').dataset.palette = b.dataset.paletteChoice;
-        document.querySelectorAll('[data-palette-choice]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-      }));
 
       // Notices: dismiss by hiding, then move focus to the group so it isn't lost.
       document.querySelectorAll('[data-notice-demo="dismiss"]').forEach((b) => b.addEventListener('click', () => {

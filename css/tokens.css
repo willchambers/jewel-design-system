@@ -170,8 +170,8 @@
   --color-chart-3:        #EF4444;   /* red */
   --color-chart-4:        #D946EF;   /* magenta */
   --color-chart-5:        #EA580C;   /* orange */
-  /* Emphasis palette: the highlighted series in the accent, the rest in
-     this grey (ΔE 24.4 from the accent, 3.06:1 on the lightest glass). */
+  /* Context grey: sparkline lines, and any series past the fifth (colours
+     never cycle). ΔE 24.4 from the accent, 3.06:1 on the lightest glass. */
   --color-chart-context:  #7A7A84;
 
   --bg-dim:               0;     /* 0–1 dark scrim over the background */

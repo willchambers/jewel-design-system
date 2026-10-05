@@ -8,8 +8,8 @@
    - Keyboard: the plot is focusable; arrow keys move between points (or
      slices), Home/End jump, Esc hides. A live region reads the values.
    - The table moves into a "Show data" disclosure: the accessible view.
-   - Colours come from CSS (data-series + palette), so switching palette
-     needs no redraw. Labels are inserted with textContent only.
+   - Colours come from CSS: data-series picks one of the --chart-1…5
+     tokens, in a fixed order. Labels are inserted with textContent only.
    - Redraws on resize; no library. */
 
 (() => {
@@ -88,7 +88,7 @@
     return tip;
   }
 
-  // rows: [{ slot, highlight, value, name, total }]
+  // rows: [{ slot, value, name, total }]
   function fillTip(tip, title, rows) {
     tip.replaceChildren();
     tip.append(htmlEl('p', 'chart__tip-title', title));
@@ -96,7 +96,7 @@
     for (const row of rows) {
       const li = htmlEl('li', 'chart__tip-row' + (row.total ? ' is-total' : ''));
       const key = htmlEl('span', 'chart__key');
-      if (row.slot) { key.dataset.series = row.slot; if (row.highlight) key.dataset.highlight = ''; }
+      if (row.slot) key.dataset.series = row.slot;
       li.append(key, htmlEl('strong', null, row.value), htmlEl('span', null, row.name));
       list.append(li);
     }
@@ -164,12 +164,9 @@
     });
   }
 
-  // Draw highlighted series last, so it sits on top.
-  const drawOrder = (data, hiName) => [...data.series].sort((a, b) => (a.name === hiName) - (b.name === hiName));
-
   /* ---- Line & area -------------------------------------------------------- */
   function drawLine(ctx, { area = false } = {}) {
-    const { svg, W, H, data, fig, fmt, hiName } = ctx;
+    const { svg, W, H, data, fig, fmt } = ctx;
     const stacked = area && fig.hasAttribute('data-stacked');
     const multi = data.series.length > 1;
     // Direct labels at the line ends: series names (2–4 series) or the end value (1).
@@ -193,9 +190,9 @@
     const marks = svgEl('g', {}, svg);
     const dots = [];
     const ends = [];
-    const order = stacked ? plotted : drawOrder(data, hiName).map((s) => plotted[s.index]);
+    const order = plotted;
     order.forEach(({ s, top, bottom }, k) => {
-      const attrs = { 'data-series': s.slot, 'data-highlight': s.name === hiName ? '' : null };
+      const attrs = { 'data-series': s.slot };
       // Split into runs where the value exists (gaps for empty cells).
       const runs = [];
       let run = [];
@@ -250,14 +247,14 @@
         cross.setAttribute('x2', x);
         cross.setAttribute('visibility', 'visible');
       },
-      describe: (i) => describeCategory(data, i, hiName, stacked),
+      describe: (i) => describeCategory(data, i, stacked),
     };
   }
 
-  function describeCategory(data, i, hiName, total) {
+  function describeCategory(data, i, total) {
     const rows = data.series
       .filter((s) => s.values[i] != null)
-      .map((s) => ({ slot: s.slot, highlight: s.name === hiName, value: s.texts[i], name: s.name }));
+      .map((s) => ({ slot: s.slot, value: s.texts[i], name: s.name }));
     if (total && rows.length > 1) {
       const sum = data.series.reduce((a, s) => a + (s.values[i] ?? 0), 0);
       rows.push({ value: new Intl.NumberFormat().format(sum), name: 'Total', total: true });
@@ -267,7 +264,7 @@
 
   /* ---- Bars --------------------------------------------------------------- */
   function drawBars(ctx) {
-    const { svg, W, H, data, fig, fmt, hiName } = ctx;
+    const { svg, W, H, data, fig, fmt } = ctx;
     const stacked = fig.hasAttribute('data-stacked');
     const f = frame(svg, W, H, data, { stacked, fmt });
     const band = f.iw / f.n;
@@ -296,7 +293,7 @@
       data.series.forEach((s, k) => {
         const v = s.values[i];
         if (v == null || v <= 0) return;
-        const attrs = { 'data-series': s.slot, 'data-highlight': s.name === hiName ? '' : null };
+        const attrs = { 'data-series': s.slot };
         let x;
         let yTop;
         let yBot;
@@ -332,13 +329,13 @@
         return { x: xAt(i), y: f.y(top) };
       },
       activate: (i) => bands.forEach((b, k) => b.toggleAttribute('data-active', k === i)),
-      describe: (i) => describeCategory(data, i, hiName, stacked),
+      describe: (i) => describeCategory(data, i, stacked),
     };
   }
 
   /* ---- Pie & donut -------------------------------------------------------- */
   function drawRound(ctx, { donut }) {
-    const { svg, W, data, fig, hiName } = ctx;
+    const { svg, W, data, fig } = ctx;
     const s0 = data.series[0];
     let slices = data.categories
       .map((name, i) => ({ name, value: s0.values[i], text: s0.texts[i] }))
@@ -359,7 +356,6 @@
     const cy = size / 2;
     const R = size / 2 - 6;
     const r = donut ? R * 0.62 : 0;
-    const hi = hiName && slices.some((d) => d.name === hiName) ? hiName : slices[0]?.name;
 
     // Sweep reveal: a mask circle whose stroke draws round once.
     const id = `jewel-chart-${++uid}`;
@@ -377,7 +373,6 @@
         class: 'chart__slice',
         d: wedge(cx, cy, R, r, a0, a1, slices.length > 1 ? 2 : 0),
         'data-series': d.other ? 'x' : (i < MAX_SERIES ? String(i + 1) : 'x'),
-        'data-highlight': d.name === hi ? '' : null,
         style: `--lift-x:${r1(Math.cos(mid) * 4)}px;--lift-y:${r1(Math.sin(mid) * 4)}px`,
       }, g);
       paths.push({ p, d, frac, mid });
@@ -407,9 +402,9 @@
       describe: (i) => {
         const { d, frac } = paths[i];
         const slot = paths[i].p.dataset.series;
-        return { title: d.name, rows: [{ slot, highlight: d.name === hi, value: d.text, name: isPct(d.text) ? s0.name : `${pct(frac)} of total` }] };
+        return { title: d.name, rows: [{ slot, value: d.text, name: isPct(d.text) ? s0.name : `${pct(frac)} of total` }] };
       },
-      legend: () => paths.map(({ d, frac, p }) => ({ name: d.name, slot: p.dataset.series, highlight: d.name === hi, value: d.text, pct: isPct(d.text) ? '' : pct(frac) })),
+      legend: () => paths.map(({ d, frac, p }) => ({ name: d.name, slot: p.dataset.series, value: d.text, pct: isPct(d.text) ? '' : pct(frac) })),
     };
   }
 
@@ -437,7 +432,7 @@
   }
 
   /* ---- Legend ------------------------------------------------------------- */
-  function renderLegend(list, data, type, hiName, round) {
+  function renderLegend(list, data, type, round) {
     list.replaceChildren();
     if (round) {
       for (const it of round.legend()) {
@@ -445,7 +440,6 @@
         const left = htmlEl('span');
         const sw = htmlEl('span', 'chart__swatch');
         sw.dataset.series = it.slot;
-        if (it.highlight) sw.dataset.highlight = '';
         left.append(sw, document.createTextNode(it.name));
         const right = htmlEl('span');
         right.append(htmlEl('b', null, it.value));
@@ -462,7 +456,6 @@
       const li = htmlEl('li');
       const sw = htmlEl('span', 'chart__swatch' + (type === 'line' ? ' chart__swatch--line' : ''));
       sw.dataset.series = s.slot;
-      if (s.name === hiName) sw.dataset.highlight = '';
       li.append(sw, document.createTextNode(s.name));
       list.append(li);
     }
@@ -478,7 +471,6 @@
     const data = readTable(table);
     if (data.series.length > MAX_SERIES) console.warn(`[jewel] chart: ${data.series.length} series; series after ${MAX_SERIES} share the context grey. Fold them into "Other" or split the chart.`);
     const round = type === 'pie' || type === 'donut';
-    const hiName = fig.dataset.highlight || (round ? null : data.series[0]?.name);
     const fmt = formatter(fig);
     const title = fig.querySelector('.chart__title')?.textContent.trim() || fig.querySelector('figcaption')?.textContent.trim() || 'Chart';
     if (round) fig.classList.add('chart--round');
@@ -517,13 +509,13 @@
       const H = Number(fig.dataset.height) || 260;
       const svg = svgEl('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, 'aria-hidden': 'true', focusable: 'false' });
       plot.prepend(svg);
-      const ctx = { svg, W, H, data, fig, fmt, hiName };
+      const ctx = { svg, W, H, data, fig, fmt };
       view = type === 'bar' ? drawBars(ctx)
         : type === 'area' ? drawLine(ctx, { area: true })
         : round ? drawRound(ctx, { donut: type === 'donut' })
         : drawLine(ctx);
       if (round) plot.style.maxWidth = `${svg.getAttribute('width')}px`;
-      renderLegend(legend, data, type, hiName, round ? view : null);
+      renderLegend(legend, data, type, round ? view : null);
       hide();
     }
 

@@ -184,8 +184,6 @@ The first column is the categories: the x axis, or the pie slices. Each further 
 |---|---|
 | `data-type` | `line`, `area`, `bar`, `pie`, `donut`, `sparkline` |
 | `data-stacked` | Stack area or bar series |
-| `data-palette` | `jewel` (default) or `emphasis`, on the chart or any ancestor |
-| `data-highlight` | The series (or slice) the emphasis palette picks out; defaults to the first |
 | `data-prefix`, `data-suffix` | For axis ticks: `# Jewel Design System
 
 A minimal, editorial design system in plain HTML, CSS and a little JavaScript. There is no build step.
@@ -363,12 +361,7 @@ Both came from the portfolio site and are also used by Photostream, its photo ap
 
 **Marks** follow the dataviz specs: 2px lines; bars at most 24px with a 4px rounded end and square base; area washes at 12%; solid hairline gridlines; 2px gaps between touching bars, segments and slices (cut out, never outlined); ticks in whole numbers for whole-number data; text in text colours, never series colours. Pie charts fold past 6 slices into "Other"; past 5 series, colours never cycle (the extra series turn grey and the console warns).
 
-**Palettes**
-
-| Palette | Use it when | Colours |
-|---|---|---|
-| `jewel` | Several series matter equally | Teal `#0D9488`, purple `#8B5CF6`, red `#EF4444`, magenta `#D946EF`, orange `#EA580C`, in that fixed order. Jewel's hues, stepped for the dark surface and ordered by the dataviz validator out of 384 passing combinations: worst adjacent colour-blind ΔE 18.9 (target 8), normal-vision ΔE 25.0 (floor 15), at least 4.45:1 on solid panels and 3.07:1 on the lightest glass. |
-| `emphasis` | One series is the story | The highlighted series in the accent `#C4B5FD`; everything else in grey `#7A7A84` (ΔE 24.4 from the accent, 3.06:1 on the lightest glass). Greys can't be told apart from each other (ΔE 7.2), so grey series are identified by the end labels, the legend and the card. |
+**Colours.** One palette, Jewel's hues stepped for the dark surface, in a fixed order: teal `#0D9488`, purple `#8B5CF6`, red `#EF4444`, magenta `#D946EF`, orange `#EA580C` (`--chart-1` to `--chart-5`). A series keeps its colour by its column position, never by rank. The dataviz validator chose the order out of 384 passing combinations: worst adjacent colour-blind ΔE 18.9 (target 8), normal-vision ΔE 25.0 (floor 15), at least 4.45:1 on solid panels and 3.07:1 on the lightest glass. A sixth series or more takes the context grey `#7A7A84` instead of a new hue; fold extras into "Other" or split the chart. Sparklines draw in the grey, with the latest point in the accent.
 
 ## Attributes
 
