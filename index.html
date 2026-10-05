@@ -24,6 +24,8 @@
   <script src="js/components/chart.js" defer></script>
 
   <style>
+    /* Screenshot mode (?static): no load animations. */
+    .jewel-static [data-anim] { transition: none !important; }
     /* Specimen-page only — not part of the system. */
     .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr)); gap: var(--space-4); }
     .swatch { display: grid; gap: var(--space-2); font-size: var(--text-xs); }
@@ -706,7 +708,23 @@
   <!-- Specimen-only wiring: variant buttons, a fake upload, a fake alt-text
        suggestion, and the event log. An app would do this part itself. -->
   <script>
+    // Screenshot mode, used for the README's images:
+    //   ?static            charts and sparklines appear finished (no animation)
+    //   ?section=charts    show only that section (by id), at the top
+    {
+      const params = new URLSearchParams(location.search);
+      if (params.has('static')) document.documentElement.classList.add('jewel-static');
+      const only = params.get('section');
+      if (only) {
+        document.querySelectorAll('.panel-stack > section, .panel-stack > footer')
+          .forEach((el) => { if (el.id !== only) el.hidden = true; });
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
+      if (document.documentElement.classList.contains('jewel-static')) {
+        document.querySelectorAll('.chart, .sparkline').forEach((el) => el.classList.add('is-in'));
+      }
       const sheet = document.getElementById('post-sheet');
       const form = document.getElementById('post-form');
       const log = document.getElementById('post-log');
