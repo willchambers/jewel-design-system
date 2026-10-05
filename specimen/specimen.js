@@ -149,7 +149,8 @@
   };
   document.querySelectorAll('.spec-example').forEach((example) => {
     if (example.dataset.code === 'none') return;
-    const source = example.querySelector(':scope > .spec-source') || example;
+    // A backdrop demo shows only the panels, not the specimen's backdrop.
+    const source = example.querySelector(':scope > .spec-source, :scope > .spec-backdrop > .spec-cols') || example;
     const code = dedent(source.innerHTML)
       .replace(/=""/g, '');                       // boolean attributes: hidden="" → hidden
     example.insertAdjacentHTML('afterend', `

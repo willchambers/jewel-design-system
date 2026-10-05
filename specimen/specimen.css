@@ -191,10 +191,10 @@
 }
 .is-playing .spec-motion__dot { left: calc(100% - var(--space-5)); }
 
-/* Surfaces: wide bands of vivid colour so glass (which lets them glow
-   through) and solid (which hides them) differ visibly. */
-.spec-backdrop { padding: var(--space-6); background:
-  repeating-linear-gradient(115deg, var(--jewel-purple) 0 6rem, var(--jewel-orange) 6rem 12rem, var(--jewel-teal) 12rem 18rem, var(--jewel-magenta) 18rem 24rem); }
+/* Surfaces: a window of the Jewel background itself (a scoped .jewel-bg),
+   so glass (which lets it glow through) and solid (which hides it) differ. */
+.spec-backdrop { position: relative; isolation: isolate; overflow: hidden; padding: var(--space-6); }
+.spec-backdrop > .jewel-bg { position: absolute; z-index: -1; background-size: 100% 100%; }
 .spec-backdrop .panel { min-height: 8rem; }
 
 /* ---- CSS "artwork" standing in for photos (the specimen's own) ---------- */
