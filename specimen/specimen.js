@@ -71,11 +71,11 @@
     ] },
     { heading: 'Patterns', items: [
       ['patterns/index', 'All patterns'],
+      ['patterns/data', 'Data'],
       ['patterns/forms', 'Forms'],
+      ['patterns/media', 'Media'],
       ['patterns/posting-a-photo', 'Posting a photo'],
       ['patterns/tags-and-photos', 'Tags and photos'],
-      ['patterns/data', 'Data'],
-      ['patterns/media', 'Media'],
     ] },
   ];
 
