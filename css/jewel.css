@@ -18,6 +18,7 @@
 /* ---- Components (alphabetical; order doesn't matter within the layer) --- */
 @import url("components/badge.css") layer(components);
 @import url("components/button.css") layer(components);
+@import url("components/chart.css") layer(components);
 @import url("components/choice.css") layer(components);
 @import url("components/dropzone.css") layer(components);
 @import url("components/fab.css") layer(components);

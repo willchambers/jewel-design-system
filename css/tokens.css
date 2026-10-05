@@ -161,6 +161,19 @@
   --color-field-fill:         rgb(244 244 245 / 0.03); /* texture only */
   --color-error:              #FCA5A5;                 /* 6.86:1 text and edge */
 
+  /* Charts — categorical series, in this fixed order (never cycled).
+     Jewel's hues, stepped for the dark surface and ordered by the dataviz
+     validator: worst adjacent colour-blind ΔE 18.9 (target 8), normal-vision
+     ΔE 25.0 (floor 15), ≥ 3.07:1 on the lightest glass. See README "Charts". */
+  --color-chart-1:        #0D9488;   /* teal */
+  --color-chart-2:        #8B5CF6;   /* purple */
+  --color-chart-3:        #EF4444;   /* red */
+  --color-chart-4:        #D946EF;   /* magenta */
+  --color-chart-5:        #EA580C;   /* orange */
+  /* Emphasis palette: the highlighted series in the accent, the rest in
+     this grey (ΔE 24.4 from the accent, 3.06:1 on the lightest glass). */
+  --color-chart-context:  #7A7A84;
+
   --bg-dim:               0;     /* 0–1 dark scrim over the background */
 
   color-scheme: dark;
@@ -191,6 +204,16 @@
   --field-focus:        var(--text-accent);
   --field-error:        var(--color-error);
   --field-placeholder:  var(--text-muted);
+
+  --chart-1:            var(--color-chart-1);
+  --chart-2:            var(--color-chart-2);
+  --chart-3:            var(--color-chart-3);
+  --chart-4:            var(--color-chart-4);
+  --chart-5:            var(--color-chart-5);
+  --chart-accent:       var(--text-accent);
+  --chart-context:      var(--color-chart-context);
+  --chart-grid:         var(--panel-border);    /* hairline gridlines, recessive */
+  --chart-ring:         var(--surface-solid);   /* the 2px gap/ring between marks */
 }
 
 /* Opt-out: an opaque surface for places glass doesn't suit

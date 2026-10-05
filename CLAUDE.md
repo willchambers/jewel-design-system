@@ -13,6 +13,7 @@ A personal design system for portfolio sites. Vanilla HTML, CSS and a little JS.
 - **Badges:** status and counts over photos use `.badge` with `data-place`, never a one-off pill. Its own `--panel-bg` surface keeps it readable on any image.
 - **Notices:** messages in the flow (offline, updated, errors, form messages) use `.notice`: a hairline box with a 2px tone edge on the left. No coloured backgrounds, no icons.
 - **Data:** highlighted numbers use `.stat` in a `dl.stats`: a small uppercase label and a large semibold value in the same Inter, with no colour on the number. There is at most one `.stat--hero` per page.
+- **Charts:** `figure.chart` drawn from its own HTML table by `chart.js`, with no chart library. Use the validated palettes only: `jewel` (5 fixed slots, never cycled) or `emphasis` (accent plus one grey). Marks are thin (2px lines, bars of 24px or less), gridlines are solid hairlines, text never takes a series colour, and every chart keeps its table view.
 - **Header:** a sticky glass bar with square corners and no knockout. There is no theme toggle.
 - **Type:** Inter only. Hierarchy comes from size, weight and spacing: tight display headings, 1.6 body, small tracked uppercase `.label`s.
 - **Restraint:** hairline rules, almost no shadow, understated hovers (the underline shifts, the colour moves to accent).
@@ -20,7 +21,7 @@ A personal design system for portfolio sites. Vanilla HTML, CSS and a little JS.
 ## Rules for changes
 
 - Link only `css/jewel.css`. It imports everything in cascade layers: `tokens → base → background → components → utilities`.
-- **Colour:** components use only the resolved tokens: `--panel-bg`, `--panel-border`, `--panel-backdrop`, `--media-bg`, `--surface-solid`, `--text-default|muted|accent|inverse`, `--field-border|border-hover|fill|focus|error|placeholder`. Never use hex values or `--color-*` primitives in components.
+- **Colour:** components use only the resolved tokens: `--panel-bg`, `--panel-border`, `--panel-backdrop`, `--media-bg`, `--surface-solid`, `--text-default|muted|accent|inverse`, `--field-border|border-hover|fill|focus|error|placeholder`, `--chart-1…5|accent|context|grid|ring`. Never use hex values or `--color-*` primitives in components.
 - **Size and motion:** use `--space-*`, `--text-*`, `--radius-*`, `--hairline`, `--duration-*` and `--ease-*`.
 - **New component:** copy `css/components/_template.css`, then add one `@import … layer(components)` line to `jewel.css`. If it needs JS, copy `js/components/_template.js`, register it with `Jewel.register('name', el => …)`, and put `data-component="name"` on the element. Add an example to `index.html`.
 - **Contrast:** every text token must meet WCAG AA (4.5:1) on solid and on glass. Glass is tested alpha-blended over each Jewel colour and over near-white and near-black backdrops. If you change a colour or the glass alpha, recheck it and update the README "Contrast" tables.

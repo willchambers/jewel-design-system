@@ -15,7 +15,7 @@ css/
     _template.css       starting point for a new component
     button.css  figure.css  footer.css  header.css  index-list.css
     knockout.css  meta-list.css  panel.css  quote.css  section-head.css  tag.css  video.css
-    badge.css  notice.css  stat.css
+    badge.css  notice.css  stat.css  chart.css
     field.css  input.css  choice.css  tag-input.css  dropzone.css      forms
     fab.css  sheet.css                                                 posting flow
     lightbox.css  filter.css                                           photos and filtering
@@ -27,6 +27,7 @@ js/
     video.js
     form.js             validation, counters, busy state, Jewel.field helpers (load first)
     tag-input.js  dropzone.js  sheet.js  post-form.js
+    chart.js            line, area, bar, pie/donut and sparkline charts as SVG
     lightbox.js  filter.js
 index.html              specimen page / usage reference
 media/                  small SVG artworks for the specimen's lightbox
@@ -158,6 +159,216 @@ Both came from the portfolio site and are also used by Photostream, its photo ap
 | Tag button | `button.tag.tag--button[aria-pressed]` | A pressable tag; pressed fills like `.tag--solid`. |
 | Touch-size tag | `.tag--touch`, or automatic for `a.tag` and `button.tag` on touch screens | A 32px pill with an invisible 44px tap area, and at least 44px wide. Wrapped rows need a 12px row gap (`--cluster-gap: var(--space-3) var(--space-2)`) so the tap areas don't overlap; the filter does this itself. Plain `span.tag` labels stay 24px. Tune one instance with `--tag-height`, `--tag-pad` or `--tag-hit`. |
 | Tag link | `a.tag` | No underline; the pill is the affordance. Hover brightens the text and edge. `aria-current="page"` fills it, for the tag page you're on. A `#tag=<slug>` link also drives a filter on the same page. |
+
+## Charts
+
+Hand-built SVG, no library. Each chart is drawn from a plain HTML table, which stays on the page as the chart's data view (behind "Show data"). If scripts don't run, the table is all that shows.
+
+```html
+<figure class="chart" data-component="chart" data-type="line">
+  <figcaption>
+    <span class="chart__title">Projects per year</span>
+    <span class="chart__subtitle">By discipline, 2016–2026</span>
+  </figcaption>
+  <table>
+    <thead><tr><th>Year</th><th>Editorial</th><th>Brand</th></tr></thead>
+    <tbody><tr><th>2016</th><td>3</td><td>1</td></tr> …</tbody>
+  </table>
+</figure>
+<script src="js/components/chart.js" defer></script>
+```
+
+The first column is the categories: the x axis, or the pie slices. Each further column is a series, and cells are written as they should read ("42%", "$4.2M"). Empty cells leave a gap in a line.
+
+| Option | Values |
+|---|---|
+| `data-type` | `line`, `area`, `bar`, `pie`, `donut`, `sparkline` |
+| `data-stacked` | Stack area or bar series |
+| `data-palette` | `jewel` (default) or `emphasis`, on the chart or any ancestor |
+| `data-highlight` | The series (or slice) the emphasis palette picks out; defaults to the first |
+| `data-prefix`, `data-suffix` | For axis ticks: `# Jewel Design System
+
+A minimal, editorial design system in plain HTML, CSS and a little JavaScript. There is no build step.
+
+```
+css/
+  jewel.css             entry point — the only stylesheet you link
+  tokens.css            primitives → theme colours → resolved tokens
+  base.css              reset, type scale, links, rules, 12-col grid
+  background.css        animated Jewel gradient
+  utilities.css         data-text variants, .visually-hidden
+  parked/
+    light-theme.css     light theme, set aside (not imported)
+  components/
+    _template.css       starting point for a new component
+    button.css  figure.css  footer.css  header.css  index-list.css
+    knockout.css  meta-list.css  panel.css  quote.css  section-head.css  tag.css  video.css
+    badge.css  notice.css  stat.css  chart.css
+    field.css  input.css  choice.css  tag-input.css  dropzone.css      forms
+    fab.css  sheet.css                                                 posting flow
+    lightbox.css  filter.css                                           photos and filtering
+js/
+  jewel.js              core: Jewel.theme + component registry
+  components/
+    _template.js        starting point for component behaviour
+    theme-toggle.js     (unused while the system is dark-only)
+    video.js
+    form.js             validation, counters, busy state, Jewel.field helpers (load first)
+    tag-input.js  dropzone.js  sheet.js  post-form.js
+    chart.js            line, area, bar, pie/donut and sparkline charts as SVG
+    lightbox.js  filter.js
+index.html              specimen page / usage reference
+media/                  small SVG artworks for the specimen's lightbox
+```
+
+## Setup
+
+```html
+<html lang="en" data-theme="dark">
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+  <link rel="stylesheet" href="css/jewel.css">
+  <script src="js/jewel.js" defer></script>
+</head>
+<body>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>  <!-- hides content in the gap above the header -->
+  <div class="page">
+    <header class="site-header"><div class="panel site-header__inner">…</div></header>
+    <main class="panel-stack">
+      <section class="panel panel--pad">…</section>
+      <section class="panel panel--pad">…</section>
+    </main>
+  </div>
+</body>
+```
+
+Include only the component scripts a page uses.
+
+## iPhone home-screen apps
+
+Jewel works as a full-screen home-screen app that draws under the status bar:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+```
+
+- `--sticky-offset` adds `env(safe-area-inset-top)`, so the header sits below the status bar and `.jewel-cap` fills the status bar with the gradient.
+- `.page` keeps clear of the notch in landscape, and the lightbox pads all four sides for the status bar, notch and home indicator.
+- `.fab` and `.sheet` already respect the safe areas, and the sheet shrinks above the on-screen keyboard.
+
+Without `viewport-fit=cover`, the insets are 0 and nothing changes.
+
+**Hiding things.** `[hidden]` always hides, even on components that set their own `display` (`utilities.css` sits in the last layer). Unlayered page CSS that sets `display` on a hidden element still wins, so avoid that. `hidden="until-found"` is left to the browser.
+
+## Page structure and panel shapes
+
+The page is a floating glass header over a column of content panels, with the gradient showing between them.
+
+| Piece | Class | Shape |
+|---|---|---|
+| Header | `.site-header` > `.panel.site-header__inner` | Square corners. Sticky; `.jewel-cap` hides content in the gap above it. |
+| Panel column | `.panel-stack` | A grid of panels with a `--panel-stack-gap` (16px) gap. |
+| Content panel | any `.panel` directly inside `.panel-stack`, or `.panel--content` anywhere | Square top left, 2px top right with the knockout lines, 10px bottom left and right. |
+| Section head | `.section-head` as the first child of a content panel | The numbered label (`01 — Typography`) with a 1px rule under it that runs the full width of the panel, edge to edge. Content below sits in `span-9 start-4`. |
+| Other panels | `.panel` | Square on all sides (cards, nested panels). |
+
+**Knockout lines.** Two parallel 45° hairlines are cut through the top-right corner of every content panel, and the background shows through them. They are real holes, made with a CSS mask, so they cut the fill, the border and the blur. Add them to any other element with `.knockout`. Remove them from a content panel with `.no-knockout`.
+
+**Shape tokens** (in `tokens.css`):
+
+```css
+--panel-radius: 0;              /* every panel */
+--panel-radius-top-right: 2px;  /* content panels: knockout corner */
+--panel-radius-bottom: 10px;    /* content panels: bottom corners */
+--knockout-offset: 6px;         /* corner → first line */
+--knockout-width: 1px;          /* line thickness */
+--knockout-gap: 2px;            /* space between the lines */
+--sticky-offset: calc(1rem + env(safe-area-inset-top));  /* gap above the sticky header */
+```
+
+To change the shape for one panel only, set a token inline, for example `style="--knockout-offset: 16px"`.
+
+## Forms
+
+Style: **hairline box**, option B of the three explored. Each field is a 1px box with square corners in `--field-border` and a faint `--field-fill`. On focus the box turns accent and doubles to 2px; errors do the same in `--field-error`. Labels are small uppercase text above the field. Load `js/components/form.js` before the other form scripts.
+
+| Component | Markup | Notes |
+|---|---|---|
+| Form | `form.form[data-component="form"][novalidate]` | Layout: `.form__group` (fieldset with a hairline above), `.form__legend`, `.form__row--2` (two columns from 48rem), `.form__actions`. Messages: `.form__error` (role alert) and `.form__status` (role status). |
+| Field | `.field` > `.field__label` + control + `.field__meta` (`.field__hint`, `.field__counter`) + `.field__error` | `.field__req` marks required. `.field__optional` for "(optional)". `.field__badge` shows "Suggested". |
+| Input | `input.input`, `textarea.input`, `.select > select.input` | The textarea grows with its content. The select is native, restyled with a hairline chevron. |
+| Choice | `label.choice > input[type=checkbox\|radio]` | Add `role="switch"` to a checkbox for a switch. The whole row is the label, at least 44px tall. |
+| Tag input | `.tag-input[data-component="tag-input"]` | Enter or comma adds; Backspace removes; duplicates are rejected. `data-max`, `data-required`, `data-suggestions` (JSON). Submits a JSON array in its hidden input. |
+| Drop zone | `.dropzone.knockout[data-component="dropzone"]` | One image. Drag-and-drop or the native picker (no `capture`, so phones offer the library and the camera). Preview with name, size and dimensions; Replace and Remove. `data-max-size` in MB. |
+| Floating button | `button.fab[data-sheet-open="<id>"]` | Fixed bottom-right, clear of iPhone safe areas (needs `viewport-fit=cover`). `.fab--extended` + `.fab__label` for text. Put `.has-fab` on `<body>` so it never covers the last content. |
+| Sheet | `dialog.sheet.sheet--bottom` or `.sheet--center`, `[data-component="sheet"]` | Bottom tearsheet (full height on phones) or centred modal, same insides. Focus stays inside; Esc and backdrop clicks close; an unsaved draft asks first; focus returns to the opener; the page can't scroll behind it; it shrinks above the on-screen keyboard. |
+| Post form | `form[data-component="form post-form"]` | Photo, title, description, location, alt, tags, publish. Dispatches `jewel:post`. |
+
+`data-component` can list several names; they run in order. Buttons grow to 44px tall on touch screens.
+
+**Events**
+
+| Event | On | Detail |
+|---|---|---|
+| `jewel:submit` | form | `{ form, formData, waitUntil(promise) }`. Fires on a valid submit. |
+| `jewel:post` | post form | `{ file, title, description, location, alt, tags: string[], publish, formData, form, waitUntil(promise) }` |
+| `jewel:tagschange` | tag input | `{ tags }` |
+| `jewel:filechange` | drop zone | `{ file, source: 'user' \| 'api' \| 'clear' }` |
+| `jewel:sheetopen` / `jewel:sheetclose` | dialog | none |
+
+Call `waitUntil(promise)` to keep the form busy while you work. The submit button shows `data-busy-label` with a spinner. If the promise resolves, the form shows its `data-success` message and resets. If it rejects, the error's message is shown and the draft stays. When the form stops being busy, the button gets its old label back only if it still shows the busy text. If you changed the text while busy (to "Retry", say), your text stays. Set `data-idle-label` while busy to choose the label that comes back.
+
+**JS API**
+
+```js
+form.jewelForm.setBusy(true)                  // also .setError(name, msg), .setFormError(msg),
+                                              // .setStatus(msg), .clearErrors(), .isDirty(), .reset(), .validate()
+Jewel.field.suggest(textarea, 'A mural…')     // fills only if the person hasn't typed; marked "Suggested" until edited
+dropzone.jewelDropzone.setFile(blob, 'photo.webp')  // show and submit a processed file; also .getFile(), .clear()
+tagInput.jewelTags.setSuggestions(['Pond', 'Dayton'])  // also .get(), .set([...]), .add(t), .remove(t)
+dialog.jewelSheet.open(opener)                // also .close({ force }), .requestClose()
+```
+
+## Photos and filtering
+
+Both came from the portfolio site and are also used by Photostream, its photo app.
+
+| Component | Markup | Notes |
+|---|---|---|
+| Lightbox | `[data-component="lightbox"]` around `a[data-lightbox-item]` links | A full-screen viewer on a native `<dialog>`. Each link points at the full image, so it still works without JS. `data-caption` is the first line; `data-description` adds a quieter second line. Arrow keys and swipes move between photos, Esc closes, and focus goes back to the photo that opened it. Photos that are hidden, or inside a hidden parent (e.g. filtered out), are skipped. |
+| Badge | `.badge` (tones `--accent`, `--error`, `--solid`; `.badge__dot`, `.badge--busy`) | A small uppercase label on its own `--panel-bg` pill, for a status ("Private", "Publishing…", "Failed") or a count ("1 / 3"). Over media, add `data-place="top-left|top-right|bottom-left|bottom-right"` to the badge, or to a `.badges` group when one corner needs several. The parent must be positioned (`.figure__media` is). Badges ignore taps, so the photo or link underneath still works. Hide a count with `aria-hidden="true"` if it repeats a label; wrap a status that changes in `role="status"`. |
+| Notice | `.notice` (tones `--accent`, `--error`) > `.notice__text` or `.notice__body` (`.notice__title` + `.notice__text`), optional `.notice__actions` | A short message in the page's flow: info ("You're offline"), updates or success ("Updated · Reload"), and errors. It's a hairline box whose 2px left edge carries the tone; actions sit to the right and wrap below on narrow screens. Group several in `.notices`, which takes no space when empty. Use `role="alert"` for an error caused by something the person did, and `role="status"` for background news. To dismiss one, set `[hidden]` and move focus somewhere sensible. The form's `.form__error` and `.form__status` get the same look automatically. |
+| Stat | `dl.stats` > `div.stat` > `dt.stat__label` + `dd.stat__value` (+ optional `dd.stat__note`) | A property/value pair for résumé and case-study numbers: the property in small uppercase text, the value large and semibold. Layouts: stacked (default, label above), `.stat--inline` (value first, label beside it, bottom-aligned), `.stat--hero` (one headline figure per page, at least 48px). `.stat__unit` sets a smaller, quieter suffix or prefix: +, %, M. The `.stats` row wraps: four across on desktop and two on phones by default (`--stats-min`, 8rem), with a hairline above each stat. Values in the same row line up even when a label wraps (subgrid). Write values as they should be read ("40+", "3.2M"); nothing is counted by script. Big numbers keep proportional figures. |
+| Filter | `.filter.cluster[data-component="filter"]` with `button.tag.tag--button[data-filter]` | `data-filter-target` is a selector for the container; items inside it carry `data-tags="slug other-slug"`. `data-filter="*"` shows everything. A live region (`.filter__status`) announces the count, worded with `data-filter-noun`. Opening the page at `#tag=<slug>`, or following a `#tag=<slug>` link later, applies that tag. Buttons are looked up on every change, so a filter rendered by script works too. |
+| Scrolling filter | `.filter.filter--scroll` | One row that scrolls sideways instead of wrapping, for long tag lists (e.g. a phone feed). It runs out to the panel's edges and fades there; set `--filter-bleed: 0` outside a padded panel. Its width never widens its parents (`contain: inline-size`), so grid parents don't need `minmax(0, 1fr)`. Touch-size tap areas aren't clipped. The scrollbar is hidden on touch screens and thin with a mouse. When a `#tag=` link picks a tag that's scrolled out of view, the row scrolls to it (the page doesn't move). |
+| Tag button | `button.tag.tag--button[aria-pressed]` | A pressable tag; pressed fills like `.tag--solid`. |
+| Touch-size tag | `.tag--touch`, or automatic for `a.tag` and `button.tag` on touch screens | A 32px pill with an invisible 44px tap area, and at least 44px wide. Wrapped rows need a 12px row gap (`--cluster-gap: var(--space-3) var(--space-2)`) so the tap areas don't overlap; the filter does this itself. Plain `span.tag` labels stay 24px. Tune one instance with `--tag-height`, `--tag-pad` or `--tag-hit`. |
+| Tag link | `a.tag` | No underline; the pill is the affordance. Hover brightens the text and edge. `aria-current="page"` fills it, for the tag page you're on. A `#tag=<slug>` link also drives a filter on the same page. |
+
+, `%`, `h` |
+| `data-height` | Plot height in px (default 260) |
+| `data-center-label`, `data-center-value` | The donut's centre (default: "Total" and the sum) |
+
+**Sparkline:** `<span class="sparkline" data-component="chart" data-type="sparkline" data-values="3,5,8" data-labels="2024,2025,2026" aria-label="…">`. It sits inside a `.stat`, and it's the one chart that takes its data from attributes. Write an `aria-label` that says the trend.
+
+**Behaviour**
+- **Load animation**, once, when a third of the chart is on screen: lines draw in, bars grow from the baseline, and pie/donut slices sweep round. With reduced motion, charts appear finished.
+- **Hover card** near the cursor, listing every series at that point: the value first, then a short line key and the series name, plus a total on stacked charts. Line and area charts snap to the nearest x with a crosshair and light the dots; a bar chart's whole column band is the target; pie slices lift. Tap on touch screens.
+- **Keyboard:** each chart can be tabbed to. The arrow keys step through points or slices, Home/End jump, Esc hides. A live region reads "2017: Editorial 4, Brand 2".
+- **Legend** for two or more series; one series is named by its title. Line charts also label each line's end when the labels don't collide.
+- Redraws on resize. Labels are inserted as text only.
+
+**Marks** follow the dataviz specs: 2px lines; bars at most 24px with a 4px rounded end and square base; area washes at 12%; solid hairline gridlines; 2px gaps between touching bars, segments and slices (cut out, never outlined); ticks in whole numbers for whole-number data; text in text colours, never series colours. Pie charts fold past 6 slices into "Other"; past 5 series, colours never cycle (the extra series turn grey and the console warns).
+
+**Palettes**
+
+| Palette | Use it when | Colours |
+|---|---|---|
+| `jewel` | Several series matter equally | Teal `#0D9488`, purple `#8B5CF6`, red `#EF4444`, magenta `#D946EF`, orange `#EA580C`, in that fixed order. Jewel's hues, stepped for the dark surface and ordered by the dataviz validator out of 384 passing combinations: worst adjacent colour-blind ΔE 18.9 (target 8), normal-vision ΔE 25.0 (floor 15), at least 4.45:1 on solid panels and 3.07:1 on the lightest glass. |
+| `emphasis` | One series is the story | The highlighted series in the accent `#C4B5FD`; everything else in grey `#7A7A84` (ΔE 24.4 from the accent, 3.06:1 on the lightest glass). Greys can't be told apart from each other (ΔE 7.2), so grey series are identified by the end labels, the legend and the card. |
 
 ## Attributes
 
