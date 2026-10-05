@@ -1,10 +1,10 @@
 # Tokens
 
-A *token* is a named setting, written as a CSS custom property such as `--space-4` or `--bg-speed`. Every Jewel component reads its colours, sizes and timings from tokens, so changing a token changes everything that uses it. All of them live in [`css/tokens.css`](../css/tokens.css).
+A *token* is a named setting, written as a CSS custom property such as `--space-4` or `--bg-speed`. Every Jewel component reads its colors, sizes and timings from tokens, so changing a token changes everything that uses it. All of them live in [`css/tokens.css`](../css/tokens.css).
 
 - [How to change a token](#how-to-change-a-token)
 - [The three tiers](#the-three-tiers)
-- [Colour](#colour)
+- [Color](#color)
 - [Type](#type)
 - [Space and layout](#space-and-layout)
 - [Panel shape and knockout lines](#panel-shape-and-knockout-lines)
@@ -34,12 +34,12 @@ To change it for one element only, set it on that element: `style="--knockout-of
 | Tier | Where | What it holds |
 |---|---|---|
 | 1. Primitives | `:root` | Raw values: the Jewel palette, the type scale, spacing, radii, motion |
-| 2. Theme | `[data-theme="dark"]` | The theme's colours (`--color-*`, `--glass-*`) |
+| 2. Theme | `[data-theme="dark"]` | The theme's colors (`--color-*`, `--glass-*`) |
 | 3. Resolved | `:root, [data-theme]` | What components actually read (`--panel-*`, `--text-*`, `--field-*`, `--chart-*`) |
 
-Components only use tier 3 (plus scale tokens like `--space-*`). That's what lets a theme or a solid panel change their colours without touching the components.
+Components only use tier 3 (plus scale tokens like `--space-*`). That's what lets a theme or a solid panel change their colors without touching the components.
 
-## Colour
+## Color
 
 Use these resolved tokens in components and page CSS.
 
@@ -59,10 +59,10 @@ Use these resolved tokens in components and page CSS.
 | `--field-fill` | A faint fill inside fields. |
 | `--field-focus` | Field focus rings (the accent). |
 | `--field-error` | Error text and edges. |
-| `--field-placeholder` | Placeholder text (the muted colour). |
-| `--chart-1` … `--chart-5` | Chart series, in a fixed order. See [charts.md](charts.md#colours). |
+| `--field-placeholder` | Placeholder text (the muted color). |
+| `--chart-1` … `--chart-5` | Chart series, in a fixed order. See [charts.md](charts.md#colors). |
 | `--chart-accent`, `--chart-context` | The sparkline's end dot and line; the grey for a 6th series or more. |
-| `--chart-grid`, `--chart-ring` | Chart gridlines; the gap colour between marks. |
+| `--chart-grid`, `--chart-ring` | Chart gridlines; the gap color between marks. |
 
 The values behind them, in the dark theme:
 
@@ -191,8 +191,8 @@ Every component takes its hover, pressed, selected and disabled looks from these
 
 | Token | Value | Used for |
 |---|---|---|
-| `--state-hover-fill` | 6% of the text colour | Rows, menu items and icon buttons under the pointer |
-| `--state-pressed-fill` | 12% of the text colour | The same while pressed (`:active`) |
+| `--state-hover-fill` | 6% of the text color | Rows, menu items and icon buttons under the pointer |
+| `--state-pressed-fill` | 12% of the text color | The same while pressed (`:active`) |
 | `--state-selected-fill` | 14% of the accent | Selected rows, the current side nav item, the open tab |
 | `--state-pressed-solid` | the accent, 22% toward the inverse | Filled buttons and filled tags while pressed |
 | `--state-disabled-opacity` | 0.55 | Disabled controls (they also go dashed and show `not-allowed`) |
@@ -219,12 +219,12 @@ Every component takes its hover, pressed, selected and disabled looks from these
 [data-theme="dark"] { --bg-dim: 0; }  /* 0–1 dark scrim over the gradient, per theme */
 ```
 
-- `--bg-base` (`#7A2E9E`) is the colour under the gradient. It sits inside the Jewel colours' lightness range, so lowering `--bg-intensity` never makes a backdrop worse for contrast than the cases already tested.
+- `--bg-base` (`#7A2E9E`) is the color under the gradient. It sits inside the Jewel colors' lightness range, so lowering `--bg-intensity` never makes a backdrop worse for contrast than the cases already tested.
 - `--bg-dim` exists for themes whose panels need a darker backdrop to stand out. The parked light theme uses 0.4.
 - With `prefers-reduced-motion: reduce`, the animation stops and the background holds a still composition.
 - `data-bg="paused"` on `<html>` stops it on purpose.
 
 ## Performance notes
 
-- The background is a single fixed layer (`contain: strict`, its own compositing layer). Only registered custom properties animate, and no layout runs. The gradient is repainted each frame, but only inside that isolated layer. This is the cost of interpolating gradient colours.
+- The background is a single fixed layer (`contain: strict`, its own compositing layer). Only registered custom properties animate, and no layout runs. The gradient is repainted each frame, but only inside that isolated layer. This is the cost of interpolating gradient colors.
 - In glass mode, `backdrop-filter` has to re-sample the moving background on every frame. That is the most expensive part of the system. If a low-end device struggles, use `data-bg="paused"`, or keep large surfaces `solid` and use glass on small ones such as the header.

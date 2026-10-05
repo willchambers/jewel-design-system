@@ -1,6 +1,6 @@
 /* ==========================================================================
    Animated Jewel background
-   One fixed element, layered asymmetric radial gradients. Colours and
+   One fixed element, layered asymmetric radial gradients. Colors and
    origins are @property-registered (see tokens.css) so they interpolate.
    Tune with --bg-speed and --bg-intensity.
 
@@ -30,12 +30,12 @@
   background-repeat: no-repeat;
   filter: blur(var(--bg-blur));
 
-  /* Each colour is mixed toward transparent by intensity so the base shows
+  /* Each color is mixed toward transparent by intensity so the base shows
      through as intensity drops. Ellipse sizes and origins are deliberately
      uneven. */
   --i: calc(var(--bg-intensity) * 100%);
   background-image:
-    /* Dim: a flat scrim over the colour layers, set per theme (--bg-dim). */
+    /* Dim: a flat scrim over the color layers, set per theme (--bg-dim). */
     linear-gradient(color-mix(in srgb, var(--color-scrim) calc(var(--bg-dim) * 100%), transparent) 0 0),
     radial-gradient(ellipse 58% 72% at var(--bg-x1) var(--bg-y1),
       color-mix(in oklab, var(--bg-c1) var(--i), transparent) 0%, transparent 68%),
@@ -70,7 +70,7 @@
   background-position: top left;
 }
 
-/* Colour cycles: each slot walks the five Jewel colours, offset by one step. */
+/* Color cycles: each slot walks the five Jewel colors, offset by one step. */
 @keyframes jewel-hue-1 {
   0%, 100% { --bg-c1: var(--jewel-purple); }
   20% { --bg-c1: var(--jewel-magenta); }

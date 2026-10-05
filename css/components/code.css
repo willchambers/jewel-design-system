@@ -14,7 +14,7 @@
    - tabindex="0" on the <pre> lets keyboard users scroll a long line.
    - .code--wrap wraps long lines instead of scrolling.
    - .code--tall caps the height (scrolls past ~20 lines).
-   - Syntax colours: none by default (restraint). If you add a
+   - Syntax colors: none by default (restraint). If you add a
      highlighter, map its classes to --text-default / --text-muted /
      --text-accent only, so contrast holds on glass. */
 

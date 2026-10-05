@@ -51,7 +51,7 @@
 .badge--error  { color: var(--field-error); border-color: currentColor; }
 .badge--solid  { color: var(--text-inverse); background: var(--text-default); border-color: transparent; }
 
-/* Status dot, in the badge's own colour. .badge--busy pulses it. */
+/* Status dot, in the badge's own color. .badge--busy pulses it. */
 .badge__dot {
   flex: none;
   width: 0.375rem;

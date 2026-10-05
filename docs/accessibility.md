@@ -1,6 +1,6 @@
 # Accessibility
 
-What Jewel does for you, what's left to you, and every contrast measurement behind the colours.
+What Jewel does for you, what's left to you, and every contrast measurement behind the colors.
 
 - [Built in](#built-in)
 - [Your part](#your-part)
@@ -9,7 +9,7 @@ What Jewel does for you, what's left to you, and every contrast measurement behi
 
 ## Built in
 
-- **Contrast.** Every text colour meets WCAG AA (4.5:1) on glass and solid panels, measured over every part of the moving gradient. Form field edges meet 3:1.
+- **Contrast.** Every text color meets WCAG AA (4.5:1) on glass and solid panels, measured over every part of the moving gradient. Form field edges meet 3:1.
 - **Focus.** Everything interactive shows a visible 2px focus ring when reached by keyboard.
 - **Reduced motion.** With "reduce motion" turned on in the system settings, the background stops, charts appear finished, sheets appear without sliding, and videos don't autoplay.
 - **Touch targets.** Buttons, tags, checkboxes, switches and the charts' "Show data" links are at least 44px tall on touch screens.
@@ -27,7 +27,7 @@ What Jewel does for you, what's left to you, and every contrast measurement behi
 - **Sparklines:** give each one an `aria-label` that says the trend ("Up from 9,100 to 12,400").
 - **Badges:** hide a count with `aria-hidden="true"` if it repeats a label; wrap a status that changes in `role="status"`.
 - **Notices:** use `role="alert"` for an error caused by something the person did and `role="status"` for background news. After dismissing one, move focus somewhere sensible.
-- **Colours:** if you change a colour token, recheck it as described [below](#contrast).
+- **Colors:** if you change a color token, recheck it as described [below](#contrast).
 
 ## Keyboard and screen readers
 
@@ -43,7 +43,7 @@ What Jewel does for you, what's left to you, and every contrast measurement behi
 
 ## Contrast
 
-**How it was measured.** Each pairing was computed with the WCAG relative-luminance formula. Glass was tested as its fill blended over the worst-case backdrop. That covers each of the five Jewel colours, a near-white page (`#F4F4F5`) and a near-black page (`#0B0B0E`). The near-white and near-black backdrops matter because a panel's theme can differ from the page's, which puts a dark glass card over a light page or the reverse.
+**How it was measured.** Each pairing was computed with the WCAG relative-luminance formula. Glass was tested as its fill blended over the worst-case backdrop. That covers each of the five Jewel colors, a near-white page (`#F4F4F5`) and a near-black page (`#0B0B0E`). The near-white and near-black backdrops matter because a panel's theme can differ from the page's, which puts a dark glass card over a light page or the reverse.
 
 The tables cover both themes. The light rows apply to the parked light theme.
 
@@ -80,7 +80,7 @@ The tables cover both themes. The light rows apply to the parked light theme.
 
 These values are exposed as `--glass-fill`, `--glass-text-muted` and `--glass-text-accent`. They are the defaults. Under `data-panel="solid"`, the specified solid values apply instead.
 
-**Form fields.** Checked the same way, on dark glass over every Jewel colour, near-white and near-black, and on solid panels:
+**Form fields.** Checked the same way, on dark glass over every Jewel color, near-white and near-black, and on solid panels:
 
 | Token | Value | Worst case | Needs |
 |---|---|---|---|
@@ -96,8 +96,8 @@ The 10% panel hairline (`--panel-border`) measures only 1.27:1. That is fine for
 
 **Notices.** A notice adds a 3% white fill on top of the panel. Worst case, on glass over near-white: text 10.86:1, accent title 6.46:1, error title 6.29:1.
 
-**Charts.** Series colours were checked for colour-blind and normal-vision separation as well as contrast. See [charts.md](charts.md#colours).
+**Charts.** Series colors were checked for color-blind and normal-vision separation as well as contrast. See [charts.md](charts.md#colors).
 
 **The background.** `--bg-base` (`#7A2E9E`) sits inside the Jewel luminance range. Lowering `--bg-intensity` therefore never produces a backdrop worse than the cases tested above.
 
-**Rechecking a colour you change.** Blend the glass fill (`rgb(17 17 20)` at 86%) over each of the backdrops listed at the top of this section. Then measure your text colour against each result with any WCAG contrast checker. The lowest ratio must be at least 4.5:1 for text and 3:1 for field edges.
+**Rechecking a color you change.** Blend the glass fill (`rgb(17 17 20)` at 86%) over each of the backdrops listed at the top of this section. Then measure your text color against each result with any WCAG contrast checker. The lowest ratio must be at least 4.5:1 for text and 3:1 for field edges.

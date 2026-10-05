@@ -75,15 +75,15 @@ Marks follow established data-visualisation specs:
 - 2px lines; bars at most 24px wide with a 4px rounded end and a square base; area washes at 12%.
 - Solid hairline gridlines.
 - 2px gaps between touching bars, segments and slices, cut out, never outlined.
-- Text in text colours, never series colours.
+- Text in text colors, never series colors.
 - Pie charts fold past 6 slices into "Other".
-- Past 5 series, colours never cycle: the extra series turn grey and the console warns. Fold extras into "Other" or split the chart.
+- Past 5 series, colors never cycle: the extra series turn grey and the console warns. Fold extras into "Other" or split the chart.
 
-## Colours
+## Colors
 
 One palette: Jewel's hues, stepped for the dark surface, in a fixed order.
 
-| Slot | Token | Colour |
+| Slot | Token | Color |
 |---|---|---|
 | 1 | `--chart-1` | Teal `#0D9488` |
 | 2 | `--chart-2` | Purple `#8B5CF6` |
@@ -92,13 +92,13 @@ One palette: Jewel's hues, stepped for the dark surface, in a fixed order.
 | 5 | `--chart-5` | Orange `#EA580C` |
 | 6+ | `--chart-context` | Grey `#7A7A84` |
 
-A series keeps its colour by its column position, never by rank, so filtering never repaints the survivors.
+A series keeps its color by its column position, never by rank, so filtering never repaints the survivors.
 
-**How the palette was chosen.** A palette validator searched every combination of shades (the Tailwind 400, 500 and 600 steps of each hue) and every order of the five hues. It kept the 384 combinations that pass every check, and chose the one with the best separation between neighbouring colours:
+**How the palette was chosen.** A palette validator searched every combination of shades (the Tailwind 400, 500 and 600 steps of each hue) and every order of the five hues. It kept the 384 combinations that pass every check, and chose the one with the best separation between neighbouring colors:
 
-- **Colour-blind separation:** worst adjacent pair ΔE 18.9 under simulated protanopia and deuteranopia (target 8, floor 6). ΔE is the distance between two colours in OKLab, ×100.
+- **Color-blind separation:** worst adjacent pair ΔE 18.9 under simulated protanopia and deuteranopia (target 8, floor 6). ΔE is the distance between two colors in OKLab, ×100.
 - **Normal-vision separation:** worst adjacent pair ΔE 25.0 (floor 15).
 - **Contrast against the surface:** at least 4.45:1 on solid panels and 3.07:1 on the lightest glass (marks need 3:1).
-- **Lightness and colourfulness:** every slot sits in the dark-mode lightness band and above the chroma floor, so no colour reads as grey.
+- **Lightness and colorfulness:** every slot sits in the dark-mode lightness band and above the chroma floor, so no color reads as grey.
 
 The context grey is ΔE 24.4 from the accent and 3.06:1 on the lightest glass.

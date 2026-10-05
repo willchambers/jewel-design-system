@@ -8,7 +8,7 @@
    <nav class="side-nav" aria-label="Sections" data-component="side-nav">
      <p class="side-nav__heading">Foundations</p>
      <ul class="side-nav__list">
-       <li><a class="side-nav__link" href="/colour/" aria-current="page">Colour</a></li>
+       <li><a class="side-nav__link" href="/color/" aria-current="page">Color</a></li>
        <li>
          <details class="side-nav__group" open>
            <summary class="side-nav__link">Components</summary>
@@ -84,7 +84,7 @@
 .side-nav__link:hover { color: var(--text-default); background: var(--state-hover-fill); }
 .side-nav__link:active { background: var(--state-pressed-fill); }
 
-/* Current page: default colour, a 2px accent edge on the left. */
+/* Current page: default color, a 2px accent edge on the left. */
 .side-nav__link[aria-current="page"] {
   color: var(--text-default);
   background: var(--state-selected-fill);

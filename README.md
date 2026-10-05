@@ -10,9 +10,9 @@ A dark, editorial design system for websites and web apps, made from plain HTML,
 
 - **A look, ready to use.** Glass panels float over a slowly moving jewel-tone gradient. The type is Inter, with clear sizes and thin rules.
 - **33 components and 5 patterns.** Navigation, forms, tabs, menus, dialogs, tables, charts, a chat shell and more, each one a class name you add to normal HTML.
-- **Accessibility built in.** Every colour pair is checked for contrast. Everything works with a keyboard and respects "reduce motion".
+- **Accessibility built in.** Every color pair is checked for contrast. Everything works with a keyboard and respects "reduce motion".
 - **No tooling.** It's plain files. It even works when you open the page straight from a folder on your computer.
-- **Easy to change.** Colours, spacing, corners and motion are all *tokens* (named settings) that you can override in one place.
+- **Easy to change.** Colors, spacing, corners and motion are all *tokens* (named settings) that you can override in one place.
 
 ## Quick start (5 minutes)
 
@@ -247,7 +247,7 @@ Each component's page lists its events, and [docs/components.md](docs/components
 
 ## Customising
 
-Jewel's settings are *tokens*: named values like `--bg-speed` or `--panel-radius-bottom`. Every component reads its colours, sizes and timings from them, so changing a token changes everything that uses it.
+Jewel's settings are *tokens*: named values like `--bg-speed` or `--panel-radius-bottom`. Every component reads its colors, sizes and timings from them, so changing a token changes everything that uses it.
 
 To change one, don't edit Jewel's files. Add your own stylesheet *after* `jewel.css` and set the token there:
 
@@ -267,7 +267,7 @@ To change one, don't edit Jewel's files. Add your own stylesheet *after* `jewel.
 
 Your stylesheet always wins over Jewel's, because Jewel puts its own styles in *cascade layers* (named groups of CSS that rank below anything outside them). You never need `!important`.
 
-**Be careful with colours.** Every text and edge colour has been checked for contrast against the glass, over every part of the gradient. If you change one, recheck it the way [docs/accessibility.md](docs/accessibility.md) describes. The full list of tokens is in [docs/tokens.md](docs/tokens.md).
+**Be careful with colors.** Every text and edge color has been checked for contrast against the glass, over every part of the gradient. If you change one, recheck it the way [docs/accessibility.md](docs/accessibility.md) describes. The full list of tokens is in [docs/tokens.md](docs/tokens.md).
 
 ## Adding your own component
 
@@ -279,13 +279,13 @@ Your stylesheet always wins over Jewel's, because Jewel puts its own styles in *
 3. If it needs behaviour, copy `js/components/_template.js` the same way and load it after `jewel.js`.
 4. Show it on the specimen: copy a page in `components/`, and add one line to the `NAV` list in `specimen/specimen.js`.
 
-Use tokens, not raw colours or pixel values, so your component fits in automatically. The full rules are in [docs/components.md](docs/components.md#adding-a-component).
+Use tokens, not raw colors or pixel values, so your component fits in automatically. The full rules are in [docs/components.md](docs/components.md#adding-a-component).
 
 ## Accessibility
 
 **Built in:**
 
-- Every text colour meets WCAG AA contrast on glass and solid panels.
+- Every text color meets WCAG AA contrast on glass and solid panels.
 - Everything can be used with a keyboard, with a visible focus ring.
 - Motion stops when someone turns on "reduce motion" in their system settings.
 - Touch targets are at least 44px on phones.
@@ -321,7 +321,7 @@ Details and the contrast measurements are in [docs/accessibility.md](docs/access
 ## Learn more
 
 - [docs/components.md](docs/components.md): every component's markup, options, events and scripting
-- [docs/charts.md](docs/charts.md): chart types, options, behaviour and the colour palette
+- [docs/charts.md](docs/charts.md): chart types, options, behaviour and the color palette
 - [docs/tokens.md](docs/tokens.md): every token, what it does, and performance notes
 - [docs/accessibility.md](docs/accessibility.md): what's built in, keyboard behaviour and all contrast measurements
 - [The live specimen](https://willchambers.github.io/jewel-design-system/): a page for every foundation, component and pattern, with live examples and copy-paste code. Open `index.html` from the download to browse it offline.
@@ -333,7 +333,7 @@ css/            the system: link css/jewel.css
 js/             jewel.js and one script per component that needs one
 docs/           the full reference
 index.html      the specimen site's home page
-foundations/    specimen pages: type, colour, spacing, layout, surfaces, motion
+foundations/    specimen pages: type, color, spacing, layout, surfaces, motion
 components/     specimen pages: one per component
 patterns/       specimen pages: components working together
 specimen/       styles and scripts for the specimen site only (not part of the system)

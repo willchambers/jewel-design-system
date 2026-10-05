@@ -3,7 +3,7 @@
 
    Three tiers:
    1. Primitives   raw values (palette, type scale, spacing…)        :root
-   2. Theme        colour set (dark)                                 [data-theme]
+   2. Theme        color set (dark)                                 [data-theme]
    3. Resolved     what components read: --panel-*, --text-*          :root, [data-theme]
 
    Components only ever use tier 3 (plus scale tokens like --space-*),
@@ -39,7 +39,7 @@
   --jewel-orange:  #EA580C;
 
   /* ---- Background motion (tune these) ---------------------------------- */
-  --bg-speed: 32s;          /* one full colour/position cycle; 20–40s reads as "slow" */
+  --bg-speed: 32s;          /* one full color/position cycle; 20–40s reads as "slow" */
   --bg-intensity: 1;        /* 0–1: opacity of the gradient layers over the base */
   --bg-blur: 0px;           /* optional extra softening; 0 keeps it cheapest */
   /* The base sits inside the jewel luminance range so glass contrast holds. */
@@ -196,7 +196,7 @@
 }
 
 /* ==========================================================================
-   2. Theme colour set — dark is the only active theme.
+   2. Theme color set — dark is the only active theme.
    The light theme is parked in css/parked/light-theme.css (not loaded).
    The [data-theme] attribute mechanism stays in place, so another theme
    can be added later and scoped to a page or a single element.
@@ -227,14 +227,14 @@
 
   /* Charts — categorical series, in this fixed order (never cycled).
      Jewel's hues, stepped for the dark surface and ordered by the dataviz
-     validator: worst adjacent colour-blind ΔE 18.9 (target 8), normal-vision
-     ΔE 25.0 (floor 15), ≥ 3.07:1 on the lightest glass. See docs/charts.md "Colours". */
+     validator: worst adjacent color-blind ΔE 18.9 (target 8), normal-vision
+     ΔE 25.0 (floor 15), ≥ 3.07:1 on the lightest glass. See docs/charts.md "Colors". */
   --color-chart-1:        #0D9488;   /* teal */
   --color-chart-2:        #8B5CF6;   /* purple */
   --color-chart-3:        #EF4444;   /* red */
   --color-chart-4:        #D946EF;   /* magenta */
   --color-chart-5:        #EA580C;   /* orange */
-  /* Context grey: sparkline lines, and any series past the fifth (colours
+  /* Context grey: sparkline lines, and any series past the fifth (colors
      never cycle). ΔE 24.4 from the accent, 3.06:1 on the lightest glass. */
   --color-chart-context:  #7A7A84;
 
@@ -245,7 +245,7 @@
 }
 
 /* ==========================================================================
-   3. Resolved tokens — the only colour tokens components should use.
+   3. Resolved tokens — the only color tokens components should use.
    Re-declared on every [data-theme] so a scoped theme resolves against
    its own palette.
    ========================================================================== */

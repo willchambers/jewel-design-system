@@ -23,7 +23,7 @@
 
    Marks follow the dataviz specs: 2px lines, bars ≤ 24px with a 4px rounded
    end, area washes at ~12%, hairline solid gridlines, a 2px gap/ring in the
-   surface colour between marks. Text never wears a series colour. */
+   surface color between marks. Text never wears a series color. */
 
 .chart {
   --chart-height: 260px;
@@ -32,7 +32,7 @@
   min-width: 0;
 }
 
-/* ---- Series colours: fixed order, by entity (never by rank or value) --- */
+/* ---- Series colors: fixed order, by entity (never by rank or value) --- */
 .chart [data-series="1"] { --c: var(--chart-1); }
 .chart [data-series="2"] { --c: var(--chart-2); }
 .chart [data-series="3"] { --c: var(--chart-3); }

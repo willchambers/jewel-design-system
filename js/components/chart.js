@@ -8,14 +8,14 @@
    - Keyboard: the plot is focusable; arrow keys move between points (or
      slices), Home/End jump, Esc hides. A live region reads the values.
    - The table moves into a "Show data" disclosure: the accessible view.
-   - Colours come from CSS: data-series picks one of the --chart-1…5
+   - Colors come from CSS: data-series picks one of the --chart-1…5
      tokens, in a fixed order. Labels are inserted with textContent only.
    - Redraws on resize; no library. */
 
 (() => {
   const SVG = 'http://www.w3.org/2000/svg';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const MAX_SERIES = 5;     // colours never cycle; series 6+ fold to the context grey
+  const MAX_SERIES = 5;     // colors never cycle; series 6+ fold to the context grey
   const MAX_SLICES = 6;     // more pie slices fold into "Other"
   let uid = 0;
 

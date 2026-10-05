@@ -18,7 +18,7 @@ Every Jewel component: its markup, options, events and scripting. For a quick in
 ```
 css/
   jewel.css             entry point — the only stylesheet you link
-  tokens.css            primitives → theme colours → resolved tokens
+  tokens.css            primitives → theme colors → resolved tokens
   base.css              reset, type scale, links, rules, 12-col grid
   background.css        animated Jewel gradient
   utilities.css         data-text variants, [hidden], .visually-hidden
@@ -198,7 +198,7 @@ A block of code with its language and a copy button.
 
 - `code.js` copies the text, shows "Copied" for two seconds and announces it. It falls back to a selection copy on plain-http pages. Event: `jewel:copy`.
 - `.code--wrap` wraps long lines; `.code--tall` scrolls past `--region-h`.
-- No syntax colours by default. If you add a highlighter, map its classes to `--text-default`, `--text-muted` and `--text-accent` only.
+- No syntax colors by default. If you add a highlighter, map its classes to `--text-default`, `--text-muted` and `--text-accent` only.
 - Inline `<code>` and `<kbd>` are styled in `base.css`.
 
 ### Date picker
@@ -421,7 +421,7 @@ A vertical list of links in labelled groups, with collapsible groups. The same m
 <nav class="side-nav" aria-label="Sections" data-component="side-nav">
   <p class="side-nav__heading">Foundations</p>
   <ul class="side-nav__list">
-    <li><a class="side-nav__link" href="/colour/" aria-current="page">Colour</a></li>
+    <li><a class="side-nav__link" href="/color/" aria-current="page">Color</a></li>
     <li>
       <details class="side-nav__group" open>
         <summary class="side-nav__link">Components</summary>
@@ -615,7 +615,7 @@ dialog.jewelSheet.open(opener)                // also .close({ force }), .reques
 
 Rules that keep every component working with every theme and panel style:
 
-- **Colour:** use only the resolved tokens: `--panel-bg`, `--panel-border`, `--panel-backdrop`, `--media-bg`, `--surface-solid`, `--text-default|muted|accent|inverse`, `--field-*` and `--chart-*`. Don't use hex values or `--color-*` primitives. Those don't switch between glass and solid, so they would skip the contrast adjustments. See [tokens.md](tokens.md).
+- **Color:** use only the resolved tokens: `--panel-bg`, `--panel-border`, `--panel-backdrop`, `--media-bg`, `--surface-solid`, `--text-default|muted|accent|inverse`, `--field-*` and `--chart-*`. Don't use hex values or `--color-*` primitives. Those don't switch between glass and solid, so they would skip the contrast adjustments. See [tokens.md](tokens.md).
 - **Size and motion:** use `--space-*`, `--text-*`, `--radius-*`, `--hairline`, `--duration-*` and `--ease-*`.
 - **Naming:** block `.name`, part `.name__part`, variant `.name--variant`.
 - **Variants:** give each variant local custom properties rather than new rules. `button.css` works this way: a variant only sets `--btn-bg`, `--btn-fg` and so on.
@@ -641,9 +641,9 @@ Jewel.reducedMotion.matches;
 
 The system is **dark-only** for now. The knockout lines and rounded content-panel corners belong to the dark theme's look.
 
-The light theme is parked in `css/parked/light-theme.css`, which is not imported. It keeps its AA-verified colours. The plan is for it to become a separate direction that has no knockout lines and no rounded corners. The file's header lists the steps to bring it back: import it, switch the dark shape off for light panels, and re-add the toggle.
+The light theme is parked in `css/parked/light-theme.css`, which is not imported. It keeps its AA-verified colors. The plan is for it to become a separate direction that has no knockout lines and no rounded corners. The file's header lists the steps to bring it back: import it, switch the dark shape off for light panels, and re-add the toggle.
 
-To add a theme, create a block of `--color-*`, `--glass-*` and `--bg-dim` values under `[data-theme="<name>"]`. Copy the dark block in `tokens.css` as a starting point. Before using it, run its colours through the checks in [accessibility.md](accessibility.md#contrast).
+To add a theme, create a block of `--color-*`, `--glass-*` and `--bg-dim` values under `[data-theme="<name>"]`. Copy the dark block in `tokens.css` as a starting point. Before using it, run its colors through the checks in [accessibility.md](accessibility.md#contrast).
 
 ## iPhone home-screen apps
 

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Colour · Jewel Design System</title>
-  <meta name="description" content="Near-black glass, light text and one violet accent. The five Jewel colours live in the background, where they do all the talking.">
+  <title>Color · Jewel Design System</title>
+  <meta name="description" content="Near-black glass, light text and one violet accent. The five Jewel colors live in the background, where they do all the talking.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,7 @@
   <script src="../js/components/code.js" defer></script>
   <script src="../specimen/specimen.js" defer></script>
 </head>
-<body data-page="foundations/colour">
+<body data-page="foundations/color">
   <a class="spec-skip" href="#main">Skip to content</a>
   <div class="jewel-bg" aria-hidden="true"></div>
   <div class="jewel-cap" aria-hidden="true"></div>
@@ -48,17 +48,17 @@
       <main class="panel-stack" id="main" tabindex="-1">
         <section class="panel panel--pad spec-head">
           <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../foundations/index.html">Foundations</a></li><li><span aria-current="page">Colour</span></li></ol>
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../foundations/index.html">Foundations</a></li><li><span aria-current="page">Color</span></li></ol>
           </nav>
-          <h1>Colour</h1>
-          <p class="lede">Near-black glass, light text and one violet accent. The five Jewel colours live in the background, where they do all the talking.</p>
+          <h1>Color</h1>
+          <p class="lede">Near-black glass, light text and one violet accent. The five Jewel colors live in the background, where they do all the talking.</p>
           <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/tokens.css</code></dd></div><div><dt>Contrast</dt><dd><code>docs/accessibility.md</code></dd></div></dl>
         </section>
         <section class="panel panel--pad grid" id="jewel-palette">
           <header class="section-head"><p class="label">01 — Jewel palette</p></header>
           <div class="span-12 spec-body">
             <div class="spec-block">
-              <h3>The five Jewel colours</h3>
+              <h3>The five Jewel colors</h3>
               <p>They make up the animated background. Components never use them directly; charts use versions stepped for contrast.</p>
               <div class="spec-example" data-code="none">
                 <div class="spec-swatches">
@@ -72,12 +72,12 @@
             </div>
           </div>
         </section>
-        <section class="panel panel--pad grid" id="colour-tokens">
-          <header class="section-head"><p class="label">02 — Colour tokens</p></header>
+        <section class="panel panel--pad grid" id="color-tokens">
+          <header class="section-head"><p class="label">02 — Color tokens</p></header>
           <div class="span-12 spec-body">
             <div class="spec-block">
               <h3>Text</h3>
-              <p>Every text colour meets WCAG AA (4.5:1) on glass over any part of the background, and on solid panels.</p>
+              <p>Every text color meets WCAG AA (4.5:1) on glass over any part of the background, and on solid panels.</p>
               <div class="spec-example" data-code="none">
                 <div class="spec-swatches">
                   <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--text-default)"></div><strong>Default</strong><code>--text-default</code><span data-token="--text-default"></span></div>
@@ -128,7 +128,7 @@
             </div>
             <div class="spec-block">
               <h3>Charts</h3>
-              <p>One validated palette in a fixed order. A sixth series turns grey; colours never repeat.</p>
+              <p>One validated palette in a fixed order. A sixth series turns grey; colors never repeat.</p>
               <div class="spec-example" data-code="none">
                 <div class="spec-swatches">
                   <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--chart-1)"></div><strong>Series 1</strong><code>--chart-1</code><span data-token="--chart-1"></span></div>
@@ -147,7 +147,7 @@
           <div class="span-12 spec-body">
             <div class="spec-block">
               <h3>How the tokens fit together</h3>
-              <p>Primitives hold raw values. The theme maps them to colours. Components read only the resolved tier, which is what lets a solid panel or a future theme change their colours without touching a component.</p>
+              <p>Primitives hold raw values. The theme maps them to colors. Components read only the resolved tier, which is what lets a solid panel or a future theme change their colors without touching a component.</p>
               <div class="table-wrap">
                 <table class="table table--compact">
                   <thead><tr><th scope="col">Tier</th><th scope="col">Where</th><th scope="col">Holds</th></tr></thead>
@@ -178,9 +178,9 @@
                 <h3>Avoid</h3>
                 <ul class="spec-list">
                   <li>Hex values or <code>--color-*</code> primitives in a component. They skip the glass and solid adjustments.</li>
-                  <li>Coloured backgrounds on notices, tags or buttons. Tone lives in a 2px edge.</li>
-                  <li>A second accent colour.</li>
-                  <li>Changing a colour without rechecking contrast in <code>docs/accessibility.md</code>.</li>
+                  <li>Colored backgrounds on notices, tags or buttons. Tone lives in a 2px edge.</li>
+                  <li>A second accent color.</li>
+                  <li>Changing a color without rechecking contrast in <code>docs/accessibility.md</code>.</li>
                 </ul>
               </div>
             </div>

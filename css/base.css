@@ -23,7 +23,7 @@ body {
   background: var(--bg-base); /* shows only if the background layer is absent */
 }
 
-/* Any scoped theme re-establishes its own text colour. */
+/* Any scoped theme re-establishes its own text color. */
 [data-theme] { color: var(--text-default); }
 
 img, video, svg, canvas { display: block; max-width: 100%; height: auto; }

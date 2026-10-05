@@ -27,7 +27,7 @@
     { heading: 'Foundations', items: [
       ['foundations/index', 'All foundations'],
       ['foundations/typography', 'Typography'],
-      ['foundations/colour', 'Colour'],
+      ['foundations/color', 'Color'],
       ['foundations/spacing', 'Spacing and sizing'],
       ['foundations/layout', 'Layout and grid'],
       ['foundations/surfaces', 'Panels and surfaces'],

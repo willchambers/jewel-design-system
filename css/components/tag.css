@@ -63,7 +63,7 @@
 }
 
 /* Linked tag. No underline: the pill is the affordance. It needs its own
-   hover, because this layer's colour outranks the base a:hover. */
+   hover, because this layer's color outranks the base a:hover. */
 a.tag { text-decoration: none; }
 a.tag:hover { color: var(--text-default); border-color: currentColor; }
 a.tag[aria-current="page"] {

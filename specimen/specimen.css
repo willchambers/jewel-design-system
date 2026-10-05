@@ -141,7 +141,7 @@
 .spec-weights { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr)); }
 .spec-weights p:not(.label) { font-size: var(--text-2xl); line-height: var(--leading-heading); letter-spacing: var(--tracking-heading); }
 
-/* Swatches read the tokens, so they always show the real colour. */
+/* Swatches read the tokens, so they always show the real color. */
 .spec-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(9rem, 100%), 1fr)); gap: var(--space-5) var(--space-4); }
 .spec-swatch { display: grid; gap: var(--space-2); font-size: var(--text-sm); line-height: var(--leading-compact); }
 .spec-swatch__chip { aspect-ratio: 3 / 2; border: var(--hairline) solid var(--panel-border); background: var(--chip); }
