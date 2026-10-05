@@ -1,6 +1,6 @@
 # Jewel Design System
 
-A dark, editorial design system for websites and web apps. Vanilla HTML, CSS and a little JS. No framework and no build step. `README.md` is the full reference, and `index.html` is the live specimen page. Keep all three in sync when anything changes.
+A dark, editorial design system for websites and web apps. Vanilla HTML, CSS and a little JS. No framework and no build step. `README.md` is the beginner's guide (quick start, examples, troubleshooting); `docs/` is the full reference (`components.md`, `tokens.md`, `accessibility.md`, `charts.md`); `index.html` is the live specimen, published at https://willchambers.github.io/jewel-design-system/ by GitHub Pages from `main`. Keep all of them in sync when anything changes, and keep README snippets copy-paste correct.
 
 ## The look (don't drift from it)
 
@@ -24,7 +24,7 @@ A dark, editorial design system for websites and web apps. Vanilla HTML, CSS and
 - **Colour:** components use only the resolved tokens: `--panel-bg`, `--panel-border`, `--panel-backdrop`, `--media-bg`, `--surface-solid`, `--text-default|muted|accent|inverse`, `--field-border|border-hover|fill|focus|error|placeholder`, `--chart-1…5|accent|context|grid|ring`. Never use hex values or `--color-*` primitives in components.
 - **Size and motion:** use `--space-*`, `--text-*`, `--radius-*`, `--hairline`, `--duration-*` and `--ease-*`.
 - **New component:** copy `css/components/_template.css`, then add one `@import … layer(components)` line to `jewel.css`. If it needs JS, copy `js/components/_template.js`, register it with `Jewel.register('name', el => …)`, and put `data-component="name"` on the element. Add an example to `index.html`.
-- **Contrast:** every text token must meet WCAG AA (4.5:1) on solid and on glass. Glass is tested alpha-blended over each Jewel colour and over near-white and near-black backdrops. If you change a colour or the glass alpha, recheck it and update the README "Contrast" tables.
+- **Contrast:** every text token must meet WCAG AA (4.5:1) on solid and on glass. Glass is tested alpha-blended over each Jewel colour and over near-white and near-black backdrops. If you change a colour or the glass alpha, recheck it and update docs/accessibility.md "Contrast" tables.
 - Respect `prefers-reduced-motion`. The background freezes, and video doesn't autoplay.
 
 ## Previewing

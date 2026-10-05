@@ -148,13 +148,13 @@
   --color-text-accent:    #C4B5FD;
   --color-text-inverse:   #18181B;
 
-  /* Glass variants — see README "Contrast" for why these differ */
+  /* Glass variants — see docs/accessibility.md "Contrast" for why these differ */
   --glass-fill:           rgb(17 17 20 / 0.86);
   --glass-border:         rgb(244 244 245 / 0.10);
   --glass-text-muted:     #B4B4BD;
   --glass-text-accent:    #C4B5FD;
 
-  /* Form fields — see README "Contrast". The 10% panel hairline is only
+  /* Form fields — see docs/accessibility.md "Contrast". The 10% panel hairline is only
      1.27:1, below the 3:1 that input edges need, so fields get their own. */
   --color-field-border:       rgb(244 244 245 / 0.40); /* 3.25:1 */
   --color-field-border-hover: rgb(244 244 245 / 0.60); /* 5.35:1 */
@@ -164,7 +164,7 @@
   /* Charts — categorical series, in this fixed order (never cycled).
      Jewel's hues, stepped for the dark surface and ordered by the dataviz
      validator: worst adjacent colour-blind ΔE 18.9 (target 8), normal-vision
-     ΔE 25.0 (floor 15), ≥ 3.07:1 on the lightest glass. See README "Charts". */
+     ΔE 25.0 (floor 15), ≥ 3.07:1 on the lightest glass. See docs/charts.md "Colours". */
   --color-chart-1:        #0D9488;   /* teal */
   --color-chart-2:        #8B5CF6;   /* purple */
   --color-chart-3:        #EF4444;   /* red */

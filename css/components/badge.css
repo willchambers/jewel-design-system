@@ -1,7 +1,7 @@
 /* Badge — a small uppercase label on its own pill, for status and counts.
    Most often it sits over a photo ("Private", "Publishing…", "1 / 3"),
    so it carries its own --panel-bg surface: at 86% it keeps text readable
-   over any image, light or dark (see README "Contrast").
+   over any image, light or dark (see docs/accessibility.md "Contrast").
 
    <span class="badge">Private</span>
    <span class="badge badge--accent"><span class="badge__dot"></span>Publishing…</span>
