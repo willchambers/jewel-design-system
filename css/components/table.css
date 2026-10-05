@@ -1,6 +1,6 @@
 /* Data table — rows of records you can scan, sort and select. Hairline
    rows, small uppercase headers, numbers right-aligned in tabular figures.
-   Behaviour (optional): js/components/table.js adds sorting, row
+   Behavior (optional): js/components/table.js adds sorting, row
    selection and phone labels. (Charts keep their own table: chart.css.)
 
    <div class="table-wrap" data-component="table">

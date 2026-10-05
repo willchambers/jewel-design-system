@@ -1,5 +1,5 @@
 /* Dropdown — a button that opens a short menu of actions or choices.
-   Behaviour: js/components/dropdown.js (menu-button pattern: arrow keys,
+   Behavior: js/components/dropdown.js (menu-button pattern: arrow keys,
    Home/End, type-ahead, Esc returns focus, closes on outside click).
    For picking a value in a form, prefer the native .select (input.css).
 

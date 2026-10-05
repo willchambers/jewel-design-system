@@ -40,7 +40,7 @@ css/
 js/
   jewel.js              core: Jewel.theme + component registry
   components/
-    _template.js        starting point for component behaviour
+    _template.js        starting point for component behavior
     theme-toggle.js     (unused while the system is dark-only)
     video.js  chart.js  lightbox.js  filter.js
     form.js             validation, counters, busy state, Jewel.field helpers (load first)
@@ -78,7 +78,7 @@ These live in `css/base.css`.
 
 | Class | What it does |
 |---|---|
-| `.page` | Centres the page at up to 80rem, with side margins that clear an iPhone notch in landscape. |
+| `.page` | Centers the page at up to 80rem, with side margins that clear an iPhone notch in landscape. |
 | `.grid` | A 12-column grid. Children are full width on phones. |
 | `.span-1` … `.span-12` | How many columns a grid child spans (from 48rem up). |
 | `.start-1` … `.start-12` | Which column a grid child starts in. Combine with a span: `span-9 start-4`. |
@@ -415,7 +415,7 @@ The rule under the label runs the full width of the panel, edge to edge.
 
 ### Side nav
 
-A vertical list of links in labelled groups, with collapsible groups. The same markup works as a sticky column on wide screens and as a drawer on phones. The full markup is at the top of `css/components/side-nav.css`.
+A vertical list of links in labeled groups, with collapsible groups. The same markup works as a sticky column on wide screens and as a drawer on phones. The full markup is at the top of `css/components/side-nav.css`.
 
 ```html
 <nav class="side-nav" aria-label="Sections" data-component="side-nav">
@@ -545,7 +545,7 @@ Style: **hairline box**. Each field is a 1px box with square corners in `--field
 | Tag input | `.tag-input[data-component="tag-input"]` | Enter or comma adds; Backspace removes; duplicates are rejected. `data-max`, `data-required`, `data-suggestions` (JSON). Submits a JSON array in its hidden input. Script: `tag-input.js`. |
 | Drop zone | `.dropzone.knockout[data-component="dropzone"]` | One image. Drag-and-drop or the native picker (no `capture`, so phones offer the library and the camera). Preview with name, size and dimensions; Replace and Remove. `data-max-size` in MB. Script: `dropzone.js`. |
 | Floating button | `button.fab[data-sheet-open="<id>"]` | Fixed bottom-right, clear of iPhone safe areas (needs `viewport-fit=cover`). `.fab--extended` + `.fab__label` for text. Put `.has-fab` on `<body>` so it never covers the last content. |
-| Sheet | `dialog.sheet.sheet--bottom` or `.sheet--center`, `[data-component="sheet"]` | Bottom tearsheet (full height on phones) or centred modal, same insides. Focus stays inside; Esc and backdrop clicks close; an unsaved draft asks first; focus returns to the opener; the page can't scroll behind it; it shrinks above the on-screen keyboard. Script: `sheet.js`. |
+| Sheet | `dialog.sheet.sheet--bottom` or `.sheet--center`, `[data-component="sheet"]` | Bottom tearsheet (full height on phones) or centered modal, same insides. Focus stays inside; Esc and backdrop clicks close; an unsaved draft asks first; focus returns to the opener; the page can't scroll behind it; it shrinks above the on-screen keyboard. Script: `sheet.js`. |
 | Post form | `form[data-component="form post-form"]` | Photo, title, description, location, alt, tags, publish. Dispatches `jewel:post`. Script: `post-form.js`. |
 
 `data-component` can list several names; they run in order. Buttons grow to 44px tall on touch screens. A complete working form, sheet and post flow is in the specimen's [Forms](https://willchambers.github.io/jewel-design-system/patterns/forms.html) and [Posting a photo](https://willchambers.github.io/jewel-design-system/patterns/posting-a-photo.html) patterns.
@@ -600,7 +600,7 @@ dialog.jewelSheet.open(opener)                // also .close({ force }), .reques
 | `data-theme` | `dark` | `<html>`. Dark is the only active theme and is also the default, so this is optional. The attribute stays so that future themes can be scoped to a page or element. |
 | `data-panel` | `solid` | Any element. Panels are glass by default. This gives an opaque surface instead, for example over photography. |
 | `data-text` | `default`, `muted`, `accent`, `inverse` | Any element. |
-| `data-component` | a registered name | Wires up JS behaviour (see below). |
+| `data-component` | a registered name | Wires up JS behavior (see below). |
 | `data-bg` | `paused` | `<html>`. Stops the background animation. |
 | `hidden` | | Any element. Always hides it, even on components that set their own `display` (`utilities.css` sits in the last layer). Unlayered page CSS that sets `display` on a hidden element still wins, so avoid that. `hidden="until-found"` is left to the browser. |
 
@@ -610,7 +610,7 @@ dialog.jewelSheet.open(opener)                // also .close({ force }), .reques
    ```css
    @import url("components/<name>.css") layer(components);
    ```
-2. **Behaviour (only if CSS can't do it).** Copy `js/components/_template.js` to `js/components/<name>.js`. Put `data-component="<name>"` on the root element, and add `<script src="js/components/<name>.js" defer></script>` after `jewel.js`.
+2. **Behavior (only if CSS can't do it).** Copy `js/components/_template.js` to `js/components/<name>.js`. Put `data-component="<name>"` on the root element, and add `<script src="js/components/<name>.js" defer></script>` after `jewel.js`.
 3. **Show it.** Copy a page in `components/`, and add it to the `NAV` list in `specimen/specimen.js`, so the specimen stays the reference.
 
 Rules that keep every component working with every theme and panel style:

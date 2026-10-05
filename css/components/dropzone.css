@@ -1,5 +1,5 @@
 /* Drop zone — one image, by drag-and-drop or the native picker, with a
-   preview you can replace or remove. Behaviour: js/components/dropzone.js.
+   preview you can replace or remove. Behavior: js/components/dropzone.js.
    The corner carries the knockout lines instead of a heavy dashed border.
 
    <div class="dropzone knockout" data-component="dropzone" data-max-size="20">

@@ -1,6 +1,6 @@
 /* Accordion — stacked sections that open in place. Native <details>, so
    it works without JS, find-in-page opens the right section, and the
-   keyboard behaviour comes free.
+   keyboard behavior comes free.
 
    <div class="accordion">
      <details class="accordion__item" name="faq" open>

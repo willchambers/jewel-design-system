@@ -61,7 +61,7 @@ Use these resolved tokens in components and page CSS.
 | `--field-error` | Error text and edges. |
 | `--field-placeholder` | Placeholder text (the muted color). |
 | `--chart-1` … `--chart-5` | Chart series, in a fixed order. See [charts.md](charts.md#colors). |
-| `--chart-accent`, `--chart-context` | The sparkline's end dot and line; the grey for a 6th series or more. |
+| `--chart-accent`, `--chart-context` | The sparkline's end dot and line; the gray for a 6th series or more. |
 | `--chart-grid`, `--chart-ring` | Chart gridlines; the gap color between marks. |
 
 The values behind them, in the dark theme:

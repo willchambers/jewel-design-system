@@ -1,6 +1,6 @@
 /* Search — a search box in the hairline-box style with a clear button,
    an optional "/" shortcut hint and optional suggestions.
-   Behaviour: js/components/search.js.
+   Behavior: js/components/search.js.
 
    <form class="search" role="search" data-component="search"
          data-suggestions='["Dayton","Night","Street"]'>

@@ -15,7 +15,7 @@
 (() => {
   const SVG = 'http://www.w3.org/2000/svg';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const MAX_SERIES = 5;     // colors never cycle; series 6+ fold to the context grey
+  const MAX_SERIES = 5;     // colors never cycle; series 6+ fold to the context gray
   const MAX_SLICES = 6;     // more pie slices fold into "Other"
   let uid = 0;
 
@@ -479,7 +479,7 @@
     if (!table?.tHead || !table.tBodies.length) return;
 
     const data = readTable(table);
-    if (data.series.length > MAX_SERIES) console.warn(`[jewel] chart: ${data.series.length} series; series after ${MAX_SERIES} share the context grey. Fold them into "Other" or split the chart.`);
+    if (data.series.length > MAX_SERIES) console.warn(`[jewel] chart: ${data.series.length} series; series after ${MAX_SERIES} share the context gray. Fold them into "Other" or split the chart.`);
     const round = type === 'pie' || type === 'donut';
     const fmt = formatter(fig);
     const title = fig.querySelector('.chart__title')?.textContent.trim() || fig.querySelector('figcaption')?.textContent.trim() || 'Chart';

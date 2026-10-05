@@ -1,5 +1,5 @@
 /* Sheet — a <dialog> that slides up from the bottom (tearsheet), or a
-   centred modal with the same insides. Behaviour: js/components/sheet.js
+   centered modal with the same insides. Behavior: js/components/sheet.js
    (open/close, unsaved-changes guard, scroll lock, keyboard-aware height).
 
    <dialog class="sheet sheet--bottom" id="post-sheet" data-component="sheet"
@@ -91,7 +91,7 @@
 }
 .sheet--bottom .sheet__panel { height: 100%; }
 
-/* ---- Centred modal ------------------------------------------------------ */
+/* ---- Centered modal ------------------------------------------------------ */
 .sheet--center {
   width: min(calc(100% - 2 * var(--space-4)), var(--sheet-max-w));
   max-height: calc(var(--sheet-vh) - 2 * var(--space-6));

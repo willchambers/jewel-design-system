@@ -234,7 +234,7 @@
   --color-chart-3:        #EF4444;   /* red */
   --color-chart-4:        #D946EF;   /* magenta */
   --color-chart-5:        #EA580C;   /* orange */
-  /* Context grey: sparkline lines, and any series past the fifth (colors
+  /* Context gray: sparkline lines, and any series past the fifth (colors
      never cycle). ΔE 24.4 from the accent, 3.06:1 on the lightest glass. */
   --color-chart-context:  #7A7A84;
 

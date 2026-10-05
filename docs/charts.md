@@ -2,7 +2,7 @@
 
 Line, area, bar, pie, donut and sparkline charts. They're hand-built SVG with no charting library. You can see them all in the [live specimen](https://willchambers.github.io/jewel-design-system/components/chart.html).
 
-![Jewel's line chart of monthly rides by bike type, with labelled lines and a legend](images/jewel-charts.png)
+![Jewel's line chart of monthly rides by bike type, with labeled lines and a legend](images/jewel-charts.png)
 
 ## How it works
 
@@ -36,7 +36,7 @@ Each chart is drawn from a plain HTML table. The table stays on the page as the 
 | `data-stacked` | Stack area or bar series |
 | `data-prefix`, `data-suffix` | For axis ticks: `$`, `%`, `h` |
 | `data-height` | Plot height in px (default 260) |
-| `data-center-label`, `data-center-value` | The donut's centre (default: "Total" and the sum) |
+| `data-center-label`, `data-center-value` | The donut's center (default: "Total" and the sum) |
 
 Axis ticks use one number style per axis: compact (`50K`) when any tick reaches 10,000, plain otherwise. Whole-number data gets whole-number ticks.
 
@@ -57,9 +57,9 @@ A tiny trend line for inside a [stat](components.md#stat). It's the one chart th
 - `data-name`: the label beside the value in the card.
 - `aria-label`: say the trend in words; a screen reader hears this instead of the line.
 
-Sparklines draw in the context grey, with the latest point in the accent. Their hover card always opens upward, so it stays inside its panel.
+Sparklines draw in the context gray, with the latest point in the accent. Their hover card always opens upward, so it stays inside its panel.
 
-## Behaviour
+## Behavior
 
 - **Load animation**, once, when a third of the chart is on screen: lines draw in, bars grow from the baseline, and pie/donut slices sweep round. With reduced motion, charts appear finished.
 - **Hover card** near the cursor, listing every series at that point: the value first, then a short line key and the series name, plus a total on stacked charts. Line and area charts snap to the nearest x with a crosshair and light the dots; a bar chart's whole column band is the target; pie slices lift. Tap on touch screens.
@@ -70,14 +70,14 @@ Sparklines draw in the context grey, with the latest point in the accent. Their 
 
 ## Marks
 
-Marks follow established data-visualisation specs:
+Marks follow established data-visualization specs:
 
 - 2px lines; bars at most 24px wide with a 4px rounded end and a square base; area washes at 12%.
 - Solid hairline gridlines.
 - 2px gaps between touching bars, segments and slices, cut out, never outlined.
 - Text in text colors, never series colors.
 - Pie charts fold past 6 slices into "Other".
-- Past 5 series, colors never cycle: the extra series turn grey and the console warns. Fold extras into "Other" or split the chart.
+- Past 5 series, colors never cycle: the extra series turn gray and the console warns. Fold extras into "Other" or split the chart.
 
 ## Colors
 
@@ -90,15 +90,15 @@ One palette: Jewel's hues, stepped for the dark surface, in a fixed order.
 | 3 | `--chart-3` | Red `#EF4444` |
 | 4 | `--chart-4` | Magenta `#D946EF` |
 | 5 | `--chart-5` | Orange `#EA580C` |
-| 6+ | `--chart-context` | Grey `#7A7A84` |
+| 6+ | `--chart-context` | Gray `#7A7A84` |
 
 A series keeps its color by its column position, never by rank, so filtering never repaints the survivors.
 
-**How the palette was chosen.** A palette validator searched every combination of shades (the Tailwind 400, 500 and 600 steps of each hue) and every order of the five hues. It kept the 384 combinations that pass every check, and chose the one with the best separation between neighbouring colors:
+**How the palette was chosen.** A palette validator searched every combination of shades (the Tailwind 400, 500 and 600 steps of each hue) and every order of the five hues. It kept the 384 combinations that pass every check, and chose the one with the best separation between neighboring colors:
 
 - **Color-blind separation:** worst adjacent pair ΔE 18.9 under simulated protanopia and deuteranopia (target 8, floor 6). ΔE is the distance between two colors in OKLab, ×100.
 - **Normal-vision separation:** worst adjacent pair ΔE 25.0 (floor 15).
 - **Contrast against the surface:** at least 4.45:1 on solid panels and 3.07:1 on the lightest glass (marks need 3:1).
-- **Lightness and colorfulness:** every slot sits in the dark-mode lightness band and above the chroma floor, so no color reads as grey.
+- **Lightness and colorfulness:** every slot sits in the dark-mode lightness band and above the chroma floor, so no color reads as gray.
 
-The context grey is ΔE 24.4 from the accent and 3.06:1 on the lightest glass.
+The context gray is ΔE 24.4 from the accent and 3.06:1 on the lightest glass.

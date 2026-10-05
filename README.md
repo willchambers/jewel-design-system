@@ -172,7 +172,7 @@ Each stat is a label (`dt`) and a value (`dd`). Write the value exactly as you w
 
 ### Example: a chart from a table
 
-![Jewel's line chart of monthly rides by bike type, with labelled lines and a legend](docs/images/jewel-charts.png)
+![Jewel's line chart of monthly rides by bike type, with labeled lines and a legend](docs/images/jewel-charts.png)
 
 You write a normal table. The first column becomes the x axis and each other column becomes a line:
 
@@ -228,7 +228,7 @@ Leave out `notice--error` for general information, or use `notice--accent` for g
 
 Jewel is plain HTML and CSS, so it works with any framework (React, Vue, Svelte) or none. Link `css/jewel.css` once, then use the class names in your templates.
 
-Components with behaviour (tabs, dropdowns, forms, charts…) are wired up when the page loads. If your app adds markup later, call `Jewel.mount()` on the new part:
+Components with behavior (tabs, dropdowns, forms, charts…) are wired up when the page loads. If your app adds markup later, call `Jewel.mount()` on the new part:
 
 ```js
 container.innerHTML = renderPhotos(photos);   // your code
@@ -245,7 +245,7 @@ document.querySelector('#post-form').addEventListener('jewel:post', (e) => {
 
 Each component's page lists its events, and [docs/components.md](docs/components.md) has the full list.
 
-## Customising
+## Customizing
 
 Jewel's settings are *tokens*: named values like `--bg-speed` or `--panel-radius-bottom`. Every component reads its colors, sizes and timings from them, so changing a token changes everything that uses it.
 
@@ -276,7 +276,7 @@ Your stylesheet always wins over Jewel's, because Jewel puts its own styles in *
    ```css
    @import url("components/your-name.css") layer(components);
    ```
-3. If it needs behaviour, copy `js/components/_template.js` the same way and load it after `jewel.js`.
+3. If it needs behavior, copy `js/components/_template.js` the same way and load it after `jewel.js`.
 4. Show it on the specimen: copy a page in `components/`, and add one line to the `NAV` list in `specimen/specimen.js`.
 
 Use tokens, not raw colors or pixel values, so your component fits in automatically. The full rules are in [docs/components.md](docs/components.md#adding-a-component).
@@ -321,9 +321,9 @@ Details and the contrast measurements are in [docs/accessibility.md](docs/access
 ## Learn more
 
 - [docs/components.md](docs/components.md): every component's markup, options, events and scripting
-- [docs/charts.md](docs/charts.md): chart types, options, behaviour and the color palette
+- [docs/charts.md](docs/charts.md): chart types, options, behavior and the color palette
 - [docs/tokens.md](docs/tokens.md): every token, what it does, and performance notes
-- [docs/accessibility.md](docs/accessibility.md): what's built in, keyboard behaviour and all contrast measurements
+- [docs/accessibility.md](docs/accessibility.md): what's built in, keyboard behavior and all contrast measurements
 - [The live specimen](https://willchambers.github.io/jewel-design-system/): a page for every foundation, component and pattern, with live examples and copy-paste code. Open `index.html` from the download to browse it offline.
 
 ## What's in the folder

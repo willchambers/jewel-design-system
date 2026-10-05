@@ -1,5 +1,5 @@
 /* Date picker — a text field you can type a date into, with a calendar
-   button. Behaviour: js/components/datepicker.js (typing in the local
+   button. Behavior: js/components/datepicker.js (typing in the local
    order, a keyboard-driven month grid, min/max, form validation).
 
    <div class="field">

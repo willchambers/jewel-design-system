@@ -1,5 +1,5 @@
 /* Tabs — switch between views of the same thing, in place.
-   Behaviour: js/components/tabs.js (click, arrow keys, Home/End, optional
+   Behavior: js/components/tabs.js (click, arrow keys, Home/End, optional
    #hash). Tabs sit side by side in one hairline box; the selected tab is
    filled and carries a 2px accent rule along its bottom edge.
 

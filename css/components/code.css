@@ -1,5 +1,5 @@
 /* Code snippet — a block of code with its language and a copy button.
-   Behaviour: js/components/code.js (copy, with a "Copied" confirmation
+   Behavior: js/components/code.js (copy, with a "Copied" confirmation
    that screen readers hear too). Inline code and <kbd> are styled in base.css.
 
    <figure class="code" data-component="code">

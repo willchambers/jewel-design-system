@@ -1,5 +1,5 @@
 /* Tag input — chips plus a text box, in the hairline-box style.
-   Behaviour: js/components/tag-input.js (Enter or comma adds, Backspace
+   Behavior: js/components/tag-input.js (Enter or comma adds, Backspace
    removes, duplicates rejected, max count, suggestions).
 
    <div class="tag-input" data-component="tag-input" data-max="10"

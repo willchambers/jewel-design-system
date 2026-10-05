@@ -13,7 +13,7 @@ A dark, editorial design system for websites and web apps. Vanilla HTML, CSS and
 - **Badges:** status and counts over photos use `.badge` with `data-place`, never a one-off pill. Its own `--panel-bg` surface keeps it readable on any image.
 - **Notices:** messages in the flow (offline, updated, errors, form messages) use `.notice`: a hairline box with a 2px tone edge on the left. No colored backgrounds, no icons.
 - **Data:** highlighted numbers use `.stat` in a `dl.stats`: a small uppercase label and a large semibold value in the same Inter, with no color on the number. There is at most one `.stat--hero` per page.
-- **Charts:** `figure.chart` drawn from its own HTML table by `chart.js`, with no chart library. Use the one validated palette, `--chart-1` to `--chart-5` (Jewel hues in a fixed order, never cycled; a 6th series or more goes grey). Marks are thin (2px lines, bars of 24px or less), gridlines are solid hairlines, text never takes a series color, and every chart keeps its table view.
+- **Charts:** `figure.chart` drawn from its own HTML table by `chart.js`, with no chart library. Use the one validated palette, `--chart-1` to `--chart-5` (Jewel hues in a fixed order, never cycled; a 6th series or more goes gray). Marks are thin (2px lines, bars of 24px or less), gridlines are solid hairlines, text never takes a series color, and every chart keeps its table view.
 - **Header:** a sticky glass bar with square corners and no knockout. There is no theme toggle.
 - **Type:** Inter only. Hierarchy comes from size, weight and spacing: tight display headings, 1.6 body, small tracked uppercase `.label`s.
 - **Restraint:** hairline rules, almost no shadow, understated hovers (the underline shifts, the color moves to accent).
