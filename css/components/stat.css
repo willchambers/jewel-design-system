@@ -1,16 +1,16 @@
 /* Stat — a property/value pair: the property in small uppercase text, the
-   value large. For highlighting numbers from a résumé or case study.
+   value large. For the key numbers in a report, dashboard or landing page.
    Real <dl> markup, so a screen reader reads each pair as one fact.
 
    <dl class="stats">
      <div class="stat">
-       <dt class="stat__label">Years in design</dt>
-       <dd class="stat__value">12</dd>
+       <dt class="stat__label">Stations</dt>
+       <dd class="stat__value">148</dd>
      </div>
      <div class="stat">
-       <dt class="stat__label">Projects shipped</dt>
-       <dd class="stat__value">40<span class="stat__unit">+</span></dd>
-       <dd class="stat__note">Across print, web and product</dd>
+       <dt class="stat__label">Members</dt>
+       <dd class="stat__value">12.4<span class="stat__unit">K</span></dd>
+       <dd class="stat__note">Up a third since January</dd>
      </div>
    </dl>
 

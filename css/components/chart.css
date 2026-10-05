@@ -3,12 +3,12 @@
 
    <figure class="chart" data-component="chart" data-type="line">
      <figcaption>
-       <span class="chart__title">Projects per year</span>
-       <span class="chart__subtitle">By discipline, 2016–2026</span>
+       <span class="chart__title">Monthly rides</span>
+       <span class="chart__subtitle">By bike type, 2026</span>
      </figcaption>
      <table>
-       <thead><tr><th>Year</th><th>Editorial</th><th>Brand</th></tr></thead>
-       <tbody><tr><th>2016</th><td>3</td><td>1</td></tr>…</tbody>
+       <thead><tr><th>Month</th><th>Classic</th><th>Electric</th></tr></thead>
+       <tbody><tr><th>Jan</th><td>120,400</td><td>61,200</td></tr>…</tbody>
      </table>
    </figure>
 
@@ -199,7 +199,9 @@
 .chart table td:first-child { text-align: left; }
 .chart table thead th { color: var(--text-muted); font-weight: var(--weight-medium); }
 
-/* ---- Sparkline (inside a .stat, or inline) ------------------------------ */
+/* ---- Sparkline (inside a .stat, or inline) ------------------------------
+   data-values, data-labels (one per value), data-name (the card's label),
+   and an aria-label that says the trend. */
 .sparkline {
   position: relative;
   display: block;

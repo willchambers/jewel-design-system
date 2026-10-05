@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Jewel Design System</title>
-  <meta name="description" content="A minimal, editorial design system for a personal portfolio.">
+  <meta name="description" content="A minimal, editorial design system: dark glass over an animated jewel-tone gradient.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,7 +72,7 @@
       <section class="panel panel--pad grid">
         <p class="label span-12">Design system · v1.0 · 2026</p>
         <h1 class="display span-12">Quiet type,<br>one loud sky.</h1>
-        <p class="lede span-6">A small, token-driven system for an editorial portfolio. Restraint in the components; the gradient behind them does the talking.</p>
+        <p class="lede span-6">A small, token-driven system for editorial sites and web apps. Restraint in the components; the gradient behind them does the talking.</p>
         <div class="span-6 cluster" style="align-self:end; justify-content:flex-end">
           <a class="btn" href="#components">View components</a>
           <a class="btn btn--text" href="#color">Colour tokens</a>
@@ -427,14 +427,14 @@
       <section id="data" class="panel panel--pad grid">
         <header class="section-head"><p class="label">06 — Data</p></header>
         <div class="span-9 start-4 stack" style="--stack-gap: var(--space-8)">
-          <p class="caption">Sample figures. Swap in the numbers from your résumé.</p>
+          <p class="caption">Sample figures for a city bike-share.</p>
 
           <!-- Hero: one per page -->
           <dl class="stats">
             <div class="stat stat--hero">
-              <dt class="stat__label">Readers reached</dt>
-              <dd class="stat__value">3.2<span class="stat__unit">M</span></dd>
-              <dd class="stat__note">Across Northlight's print and digital editions, 2019–2026</dd>
+              <dt class="stat__label">Rides this year</dt>
+              <dd class="stat__value">2.1<span class="stat__unit">M</span></dd>
+              <dd class="stat__note">Across 148 stations, January to September 2026</dd>
             </div>
           </dl>
 
@@ -443,21 +443,21 @@
             <p class="label" style="margin-bottom: var(--space-4)">Stacked</p>
             <dl class="stats">
               <div class="stat">
-                <dt class="stat__label">Years in design</dt>
-                <dd class="stat__value">12</dd>
+                <dt class="stat__label">Stations</dt>
+                <dd class="stat__value">148</dd>
               </div>
               <div class="stat">
-                <dt class="stat__label">Projects shipped</dt>
-                <dd class="stat__value">40<span class="stat__unit">+</span></dd>
+                <dt class="stat__label">Bikes in the fleet</dt>
+                <dd class="stat__value">1,000</dd>
               </div>
               <div class="stat">
-                <dt class="stat__label">Clients</dt>
-                <dd class="stat__value">14</dd>
-                <dd class="stat__note">From studios to publishers</dd>
+                <dt class="stat__label">Members</dt>
+                <dd class="stat__value">12.4<span class="stat__unit">K</span></dd>
+                <dd class="stat__note">Up a third since January</dd>
               </div>
               <div class="stat">
-                <dt class="stat__label">On-time delivery</dt>
-                <dd class="stat__value">98<span class="stat__unit">%</span></dd>
+                <dt class="stat__label">Average trip</dt>
+                <dd class="stat__value">14<span class="stat__unit">min</span></dd>
               </div>
             </dl>
           </div>
@@ -467,13 +467,13 @@
             <p class="label" style="margin-bottom: var(--space-4)">Inline</p>
             <dl class="stats" style="--stats-min: 16rem">
               <div class="stat stat--inline">
-                <dt class="stat__label">Years leading design teams</dt>
-                <dd class="stat__value">6</dd>
+                <dt class="stat__label">Bikes available at peak hours</dt>
+                <dd class="stat__value">96<span class="stat__unit">%</span></dd>
               </div>
               <div class="stat stat--inline">
-                <dt class="stat__label">Design systems built</dt>
-                <dd class="stat__value">3</dd>
-                <dd class="stat__note">Including this one</dd>
+                <dt class="stat__label">Neighbourhoods added this year</dt>
+                <dd class="stat__value">6</dd>
+                <dd class="stat__note">Including the waterfront</dd>
               </div>
             </dl>
           </div>
@@ -484,81 +484,85 @@
       <section id="charts" class="panel panel--pad grid">
         <header class="section-head"><p class="label">07 — Charts</p></header>
         <div class="span-9 start-4 stack" style="--stack-gap: var(--space-8)">
-          <p class="caption">Sample data. Hover or tap a point for its card; focus a chart and use the arrow keys. Charts animate once as they scroll into view.</p>
+          <p class="caption">Sample data for a city bike-share. Hover or tap a point for its card; focus a chart and use the arrow keys. Charts animate once as they scroll into view.</p>
 
           <figure class="chart" data-component="chart" data-type="line">
             <figcaption>
-              <span class="chart__title">Projects per year</span>
-              <span class="chart__subtitle">By discipline, 2016–2026</span>
+              <span class="chart__title">Monthly rides</span>
+              <span class="chart__subtitle">By bike type, January to September 2026</span>
             </figcaption>
             <table>
-              <thead><tr><th>Year</th><th>Editorial</th><th>Brand</th><th>Product</th></tr></thead>
+              <thead><tr><th>Month</th><th>Classic</th><th>Electric</th><th>Cargo</th></tr></thead>
               <tbody>
-                <tr><th>2016</th><td>3</td><td>1</td><td>0</td></tr>
-                <tr><th>2017</th><td>4</td><td>2</td><td>0</td></tr>
-                <tr><th>2018</th><td>4</td><td>3</td><td>1</td></tr>
-                <tr><th>2019</th><td>5</td><td>3</td><td>1</td></tr>
-                <tr><th>2020</th><td>6</td><td>2</td><td>2</td></tr>
-                <tr><th>2021</th><td>5</td><td>4</td><td>3</td></tr>
-                <tr><th>2022</th><td>6</td><td>5</td><td>3</td></tr>
-                <tr><th>2023</th><td>7</td><td>4</td><td>5</td></tr>
-                <tr><th>2024</th><td>6</td><td>6</td><td>6</td></tr>
-                <tr><th>2025</th><td>7</td><td>6</td><td>8</td></tr>
-                <tr><th>2026</th><td>8</td><td>7</td><td>9</td></tr>
+                <tr><th>Jan</th><td>120,400</td><td>61,200</td><td>3,100</td></tr>
+                <tr><th>Feb</th><td>118,200</td><td>63,900</td><td>3,300</td></tr>
+                <tr><th>Mar</th><td>141,900</td><td>78,400</td><td>4,200</td></tr>
+                <tr><th>Apr</th><td>152,300</td><td>92,100</td><td>5,600</td></tr>
+                <tr><th>May</th><td>168,700</td><td>108,600</td><td>6,900</td></tr>
+                <tr><th>Jun</th><td>171,200</td><td>117,300</td><td>7,400</td></tr>
+                <tr><th>Jul</th><td>176,500</td><td>124,900</td><td>7,900</td></tr>
+                <tr><th>Aug</th><td>169,800</td><td>121,400</td><td>7,600</td></tr>
+                <tr><th>Sep</th><td>158,300</td><td>116,800</td><td>7,100</td></tr>
               </tbody>
             </table>
           </figure>
 
-          <figure class="chart" data-component="chart" data-type="area" data-stacked data-suffix="h">
+          <figure class="chart" data-component="chart" data-type="area" data-stacked>
             <figcaption>
-              <span class="chart__title">Hours by discipline</span>
-              <span class="chart__subtitle">Stacked, per quarter</span>
+              <span class="chart__title">Rides through the day</span>
+              <span class="chart__subtitle">Average weekday, stacked by ticket type</span>
             </figcaption>
             <table>
-              <thead><tr><th>Quarter</th><th>Design</th><th>Research</th><th>Development</th><th>Management</th></tr></thead>
+              <thead><tr><th>Time</th><th>Members</th><th>Day passes</th><th>Single rides</th></tr></thead>
               <tbody>
-                <tr><th>Q1 2025</th><td>120</td><td>40</td><td>60</td><td>20</td></tr>
-                <tr><th>Q2 2025</th><td>135</td><td>52</td><td>58</td><td>22</td></tr>
-                <tr><th>Q3 2025</th><td>128</td><td>60</td><td>70</td><td>25</td></tr>
-                <tr><th>Q4 2025</th><td>140</td><td>48</td><td>82</td><td>30</td></tr>
-                <tr><th>Q1 2026</th><td>150</td><td>55</td><td>90</td><td>28</td></tr>
-                <tr><th>Q2 2026</th><td>146</td><td>62</td><td>96</td><td>34</td></tr>
+                <tr><th>6 am</th><td>420</td><td>40</td><td>60</td></tr>
+                <tr><th>8 am</th><td>1,380</td><td>90</td><td>180</td></tr>
+                <tr><th>10 am</th><td>610</td><td>210</td><td>160</td></tr>
+                <tr><th>12 pm</th><td>720</td><td>380</td><td>240</td></tr>
+                <tr><th>2 pm</th><td>680</td><td>420</td><td>230</td></tr>
+                <tr><th>4 pm</th><td>1,120</td><td>360</td><td>260</td></tr>
+                <tr><th>6 pm</th><td>1,450</td><td>290</td><td>310</td></tr>
+                <tr><th>8 pm</th><td>640</td><td>210</td><td>220</td></tr>
+                <tr><th>10 pm</th><td>260</td><td>80</td><td>120</td></tr>
               </tbody>
             </table>
           </figure>
 
           <figure class="chart" data-component="chart" data-type="bar">
             <figcaption>
-              <span class="chart__title">Projects shipped</span>
+              <span class="chart__title">Stations opened</span>
               <span class="chart__subtitle">Per year</span>
             </figcaption>
             <table>
-              <thead><tr><th>Year</th><th>Projects</th></tr></thead>
+              <thead><tr><th>Year</th><th>Stations</th></tr></thead>
               <tbody>
-                <tr><th>2019</th><td>4</td></tr>
-                <tr><th>2020</th><td>6</td></tr>
-                <tr><th>2021</th><td>5</td></tr>
-                <tr><th>2022</th><td>8</td></tr>
-                <tr><th>2023</th><td>9</td></tr>
+                <tr><th>2019</th><td>6</td></tr>
+                <tr><th>2020</th><td>9</td></tr>
+                <tr><th>2021</th><td>4</td></tr>
+                <tr><th>2022</th><td>12</td></tr>
+                <tr><th>2023</th><td>15</td></tr>
                 <tr><th>2024</th><td>11</td></tr>
-                <tr><th>2025</th><td>12</td></tr>
-                <tr><th>2026</th><td>14</td></tr>
+                <tr><th>2025</th><td>18</td></tr>
+                <tr><th>2026</th><td>21</td></tr>
               </tbody>
             </table>
           </figure>
 
           <figure class="chart" data-component="chart" data-type="bar">
             <figcaption>
-              <span class="chart__title">Clients by type</span>
-              <span class="chart__subtitle">2024 and 2025, grouped</span>
+              <span class="chart__title">Average daily rides</span>
+              <span class="chart__subtitle">By day of the week, 2025 and 2026</span>
             </figcaption>
             <table>
-              <thead><tr><th>Client type</th><th>2024</th><th>2025</th></tr></thead>
+              <thead><tr><th>Day</th><th>2025</th><th>2026</th></tr></thead>
               <tbody>
-                <tr><th>Publishers</th><td>6</td><td>8</td></tr>
-                <tr><th>Studios</th><td>5</td><td>4</td></tr>
-                <tr><th>Startups</th><td>3</td><td>6</td></tr>
-                <tr><th>Nonprofits</th><td>2</td><td>3</td></tr>
+                <tr><th>Mon</th><td>7,820</td><td>8,640</td></tr>
+                <tr><th>Tue</th><td>8,110</td><td>8,920</td></tr>
+                <tr><th>Wed</th><td>8,240</td><td>9,180</td></tr>
+                <tr><th>Thu</th><td>8,050</td><td>8,970</td></tr>
+                <tr><th>Fri</th><td>7,630</td><td>8,410</td></tr>
+                <tr><th>Sat</th><td>6,120</td><td>7,050</td></tr>
+                <tr><th>Sun</th><td>5,480</td><td>6,230</td></tr>
               </tbody>
             </table>
           </figure>
@@ -566,35 +570,32 @@
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr)); gap: var(--space-7) var(--grid-gutter)">
             <figure class="chart" data-component="chart" data-type="pie">
               <figcaption>
-                <span class="chart__title">Time by discipline</span>
-                <span class="chart__subtitle">Share of 2026</span>
+                <span class="chart__title">Why people ride</span>
+                <span class="chart__subtitle">Rider survey, 2026</span>
               </figcaption>
               <table>
-              <thead><tr><th>Discipline</th><th>Share of time</th></tr></thead>
-              <tbody>
-                <tr><th>Design</th><td>42%</td></tr>
-                <tr><th>Development</th><td>22%</td></tr>
-                <tr><th>Research</th><td>18%</td></tr>
-                <tr><th>Management</th><td>10%</td></tr>
-                <tr><th>Teaching</th><td>8%</td></tr>
-              </tbody>
-            </table>
+                <thead><tr><th>Purpose</th><th>Share of trips</th></tr></thead>
+                <tbody>
+                  <tr><th>Commuting</th><td>46%</td></tr>
+                  <tr><th>Leisure</th><td>24%</td></tr>
+                  <tr><th>Errands</th><td>18%</td></tr>
+                  <tr><th>Exercise</th><td>12%</td></tr>
+                </tbody>
+              </table>
             </figure>
-            <figure class="chart" data-component="chart" data-type="donut" data-center-label="Projects">
+            <figure class="chart" data-component="chart" data-type="donut" data-center-label="Bikes">
               <figcaption>
-                <span class="chart__title">Projects by client</span>
-                <span class="chart__subtitle">2016–2026</span>
+                <span class="chart__title">The fleet</span>
+                <span class="chart__subtitle">By bike type, September 2026</span>
               </figcaption>
               <table>
-              <thead><tr><th>Client</th><th>Projects</th></tr></thead>
-              <tbody>
-                <tr><th>Publishers</th><td>14</td></tr>
-                <tr><th>Startups</th><td>11</td></tr>
-                <tr><th>Studios</th><td>9</td></tr>
-                <tr><th>Agencies</th><td>6</td></tr>
-                <tr><th>Nonprofits</th><td>4</td></tr>
-              </tbody>
-            </table>
+                <thead><tr><th>Bike type</th><th>Bikes</th></tr></thead>
+                <tbody>
+                  <tr><th>Classic</th><td>620</td></tr>
+                  <tr><th>Electric</th><td>340</td></tr>
+                  <tr><th>Cargo</th><td>40</td></tr>
+                </tbody>
+              </table>
             </figure>
           </div>
 
@@ -602,14 +603,14 @@
             <p class="label" style="margin-bottom: var(--space-4)">Sparkline in a stat</p>
             <dl class="stats">
               <div class="stat">
-                <dt class="stat__label">Projects shipped</dt>
-                <dd class="stat__value">40<span class="stat__unit">+</span></dd>
-                <dd><span class="sparkline" data-component="chart" data-type="sparkline" data-values="3,4,5,6,8,9,10,12,13,15,17" data-labels="2016,2017,2018,2019,2020,2021,2022,2023,2024,2025,2026" aria-label="Projects per year, 2016 to 2026: up from 3 to 17"></span></dd>
+                <dt class="stat__label">Members</dt>
+                <dd class="stat__value">12.4<span class="stat__unit">K</span></dd>
+                <dd><span class="sparkline" data-component="chart" data-type="sparkline" data-name="Members" data-values="9100,9400,9900,10400,10900,11300,11800,12100,12400" data-labels="Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep" aria-label="Members, January to September 2026: up from 9,100 to 12,400"></span></dd>
               </div>
               <div class="stat">
-                <dt class="stat__label">Talks given</dt>
-                <dd class="stat__value">23</dd>
-                <dd><span class="sparkline" data-component="chart" data-type="sparkline" data-values="0,1,1,2,1,3,2,4,4,5" data-labels="2017,2018,2019,2020,2021,2022,2023,2024,2025,2026" aria-label="Talks per year, 2017 to 2026: up from 0 to 5"></span></dd>
+                <dt class="stat__label">CO₂ avoided</dt>
+                <dd class="stat__value">198<span class="stat__unit">t</span></dd>
+                <dd><span class="sparkline" data-component="chart" data-type="sparkline" data-name="Tonnes" data-values="14,15,19,22,25,26,27,26,24" data-labels="Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep" aria-label="CO2 avoided per month, January to September 2026: from 14 to 24 tonnes, peaking at 27 in July"></span></dd>
               </div>
             </dl>
           </div>

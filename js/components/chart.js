@@ -76,7 +76,8 @@
     const suf = fig.dataset.suffix || '';
     const plain = new Intl.NumberFormat(undefined, { maximumFractionDigits: 1 });
     const compact = new Intl.NumberFormat(undefined, { notation: 'compact', maximumFractionDigits: 1 });
-    return (v) => pre + (Math.abs(v) >= 10000 ? compact : plain).format(v) + suf;
+    // One style per axis: pass compact = true when any tick reaches 10,000.
+    return (v, useCompact = Math.abs(v) >= 10000) => pre + (useCompact ? compact : plain).format(v) + suf;
   }
 
   /* ---- Hover card --------------------------------------------------------- */
@@ -139,7 +140,9 @@
     if (minZero) lo = Math.min(0, lo);
     const integers = data.series.every((s) => s.values.every((v) => v == null || Number.isInteger(v)));
     const sc = niceScale(lo, hi, 4, integers);
-    const left = Math.max(...sc.ticks.map((t) => textW(fmt(t)))) + 12;
+    const big = Math.max(...sc.ticks.map(Math.abs)) >= 10000;
+    const tickText = (t) => fmt(t, big);
+    const left = Math.max(...sc.ticks.map((t) => textW(tickText(t)))) + 12;
     const m = { top: 14, right: rightPad, bottom: 30, left };
     const iw = Math.max(10, W - m.left - m.right);
     const ih = Math.max(10, H - m.top - m.bottom);
@@ -149,7 +152,7 @@
     for (const t of sc.ticks) {
       const yy = Math.round(y(t)) + 0.5;
       svgEl('line', { class: t === 0 ? 'chart__axis' : 'chart__grid', x1: m.left, x2: W - m.right, y1: yy, y2: yy }, grid);
-      svgEl('text', { class: 'chart__tick', x: m.left - 10, y: yy, 'text-anchor': 'end', 'dominant-baseline': 'middle' }, grid).textContent = fmt(t);
+      svgEl('text', { class: 'chart__tick', x: m.left - 10, y: yy, 'text-anchor': 'end', 'dominant-baseline': 'middle' }, grid).textContent = tickText(t);
     }
     return { m, iw, ih, y, sc, grid, n };
   }
@@ -598,8 +601,8 @@
 
   /* ---- Sparkline ---------------------------------------------------------- */
   // <span class="sparkline" data-component="chart" data-type="sparkline"
-  //       data-values="3,5,4,8,9,12" data-labels="2021,2022,…"
-  //       aria-label="Projects per year, 2021–2026: up from 3 to 12"></span>
+  //       data-values="9100,9400,9900,10400" data-labels="Jan,Feb,Mar,Apr"
+  //       data-name="Members" aria-label="Members, January to April: up from 9,100 to 10,400"></span>
   function sparkline(el) {
     const values = (el.dataset.values || '').split(',').map(num);
     const labels = (el.dataset.labels || '').split(',').map((s) => s.trim());
@@ -640,7 +643,7 @@
       let best = -1;
       pts.forEach((p, i) => { if (p && (best < 0 || Math.abs(p[0] - px) < Math.abs(pts[best][0] - px))) best = i; });
       if (best < 0) return;
-      fillTip(tip, labels[best] || '', [{ value: String(values[best]), name: '' }]);
+      fillTip(tip, labels[best] || '', [{ value: new Intl.NumberFormat().format(values[best]), name: el.dataset.name || '' }]);
       placeTip(tip, el, (pts[best][0] / lastW) * b.width, (pts[best][1] / (el.clientHeight || 32)) * b.height);
     });
     el.addEventListener('pointerleave', () => { tip.hidden = true; });

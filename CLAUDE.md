@@ -1,6 +1,6 @@
 # Jewel Design System
 
-A personal design system for portfolio sites. Vanilla HTML, CSS and a little JS. No framework and no build step. `README.md` is the full reference, and `index.html` is the live specimen page. Keep all three in sync when anything changes.
+A dark, editorial design system for websites and web apps. Vanilla HTML, CSS and a little JS. No framework and no build step. `README.md` is the full reference, and `index.html` is the live specimen page. Keep all three in sync when anything changes.
 
 ## The look (don't drift from it)
 
