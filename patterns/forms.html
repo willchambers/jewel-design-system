@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Forms · Jewel Design System</title>
+  <meta name="description" content="A form asks for a few things, in a sensible order, and tells people straight away what’s wrong and how to fix it. Jewel forms are one column of hairline fields, grouped under small labels.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../js/components/form.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="patterns/forms">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html">Components</a>
+            <a href="../patterns/index.html" aria-current="page">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><span aria-current="page">Forms</span></li></ol>
+          </nav>
+          <h1>Forms</h1>
+          <p class="lede">A form asks for a few things, in a sensible order, and tells people straight away what’s wrong and how to fix it. Jewel forms are one column of hairline fields, grouped under small labels.</p>
+          <dl class="spec-files"><div><dt>JS</dt><dd><code>js/components/form.js</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="example">
+          <header class="section-head"><p class="label">01 — Example</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Contact form</h3>
+              <p>Press Send with the required fields empty to see validation; fill them in to see the busy state and the success message. Nothing is sent.</p>
+              <div class="spec-example">
+                <form class="form" data-component="form" novalidate data-success="Thanks. Your message is on its way. (Demo only, nothing was sent.)" aria-label="Contact">
+                  <fieldset class="form__group">
+                    <legend class="form__legend label">About you</legend>
+                    <div class="form__row form__row--2">
+                      <div class="field">
+                        <label class="field__label" for="f-name">Name<span class="field__req" aria-hidden="true">*</span></label>
+                        <input class="input" id="f-name" name="name" type="text" required autocomplete="name" placeholder="Your name">
+                      </div>
+                      <div class="field">
+                        <label class="field__label" for="f-email">Email<span class="field__req" aria-hidden="true">*</span></label>
+                        <input class="input" id="f-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+                      </div>
+                    </div>
+                  </fieldset>
+                  <fieldset class="form__group">
+                    <legend class="form__legend label">Your message</legend>
+                    <div class="field">
+                      <label class="field__label" for="f-topic">Topic</label>
+                      <div class="select">
+                        <select class="input" id="f-topic" name="topic">
+                          <option>Commission</option><option>Collaboration</option><option>Just saying hello</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="field__label" for="f-message">Message<span class="field__req" aria-hidden="true">*</span></label>
+                      <textarea class="input" id="f-message" name="message" rows="4" required maxlength="500" data-counter aria-describedby="f-message-count" placeholder="A few lines about what you have in mind"></textarea>
+                      <div class="field__meta"><p class="field__counter" id="f-message-count"></p></div>
+                    </div>
+                    <div class="field__options field__options--inline" role="radiogroup" aria-label="Budget">
+                      <label class="choice"><input type="radio" name="budget" value="small" checked> Small</label>
+                      <label class="choice"><input type="radio" name="budget" value="medium"> Medium</label>
+                      <label class="choice"><input type="radio" name="budget" value="large"> Large</label>
+                    </div>
+                    <label class="choice"><input type="checkbox" name="copy"> Email me a copy</label>
+                  </fieldset>
+                  <p class="form__error" role="alert" hidden></p>
+                  <p class="form__status" role="status" hidden></p>
+                  <div class="form__actions">
+                    <button class="btn btn--text" type="reset">Clear</button>
+                    <button class="btn" type="submit" data-busy-label="Sending…">Send</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="anatomy">
+          <header class="section-head"><p class="label">02 — Anatomy</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>The parts</h3>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">Part</th><th scope="col">What it does</th></tr></thead>
+                  <tbody>
+                    <tr><td><code>form.form[data-component="form"][novalidate]</code></td><td>The form. <code>novalidate</code> hands validation to <code>form.js</code>, which shows Jewel’s own messages.</td></tr>
+                    <tr><td><code>.form__group</code> and <code>.form__legend</code></td><td>A fieldset with a hairline above and a small label, for each group of related fields.</td></tr>
+                    <tr><td><code>.form__row--2</code></td><td>Two short fields side by side from 48rem; one column on phones.</td></tr>
+                    <tr><td><code>.form__error</code>, <code>.form__status</code></td><td>The form’s own messages, styled as <a href="../components/notice.html">notices</a>.</td></tr>
+                    <tr><td><code>.form__actions</code></td><td>Buttons, right-aligned, with the main action last.</td></tr>
+                    <tr><td><code>jewel:submit</code></td><td>Fires on a valid submit with <code>{ form, formData, waitUntil(promise) }</code>. The button shows <code>data-busy-label</code> until the promise settles, then the form shows <code>data-success</code> or the error.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="built-from">
+          <header class="section-head"><p class="label">03 — Built from</p></header>
+          <div class="span-12 spec-body">
+            <ul class="spec-cards">
+              <li><a class="spec-card" href="../components/text-field.html"><span class="spec-card__title">Text field</span><span class="spec-card__text">Inputs, text areas, selects, hints, counters and errors.</span></a></li>
+              <li><a class="spec-card" href="../components/choice.html"><span class="spec-card__title">Checkbox, radio and switch</span><span class="spec-card__text">Choices in a group.</span></a></li>
+              <li><a class="spec-card" href="../components/button.html"><span class="spec-card__title">Button</span><span class="spec-card__text">Send, Clear and the busy state.</span></a></li>
+              <li><a class="spec-card" href="../components/notice.html"><span class="spec-card__title">Notice</span><span class="spec-card__text">The form’s overall error and success.</span></a></li>
+            </ul>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="guidelines">
+          <header class="section-head"><p class="label">04 — Guidelines</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>One column, in the order people think of the answers.</li>
+                  <li>Labels above fields; mark either the required or the optional ones, whichever is fewer.</li>
+                  <li>Validate on submit, then as people fix each field.</li>
+                  <li>A button label that says what happens: Send, Post, Save changes.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Asking for anything you don’t need.</li>
+                  <li>Disabling the submit button until the form is valid. People can’t tell why.</li>
+                  <li>Clearing what people typed after an error.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+  <script>
+    // Specimen only: pretend to send for a second, then succeed.
+    document.addEventListener('jewel:submit', (e) => e.detail.waitUntil(new Promise((r) => setTimeout(r, 1000))));
+  </script>
+</body>
+</html>

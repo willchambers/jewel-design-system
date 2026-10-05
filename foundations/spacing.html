@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Spacing and sizing · Jewel Design System</title>
+  <meta name="description" content="A 4px spacing scale, a handful of control heights and icon sizes, and two line weights. Use the tokens and every gap on a page agrees.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="foundations/spacing">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html" aria-current="page">Foundations</a>
+            <a href="../components/index.html">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../foundations/index.html">Foundations</a></li><li><span aria-current="page">Spacing and sizing</span></li></ol>
+          </nav>
+          <h1>Spacing and sizing</h1>
+          <p class="lede">A 4px spacing scale, a handful of control heights and icon sizes, and two line weights. Use the tokens and every gap on a page agrees.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/tokens.css</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="spacing">
+          <header class="section-head"><p class="label">01 — Spacing</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>The scale</h3>
+              <p>A 4px base. Gaps inside a component use 1 to 4, gaps between components 5 to 7, and gaps between sections 8 to 10.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-scale">
+                  <div class="spec-scale__row"><code>--space-1</code><span data-token="--space-1"></span><span class="spec-bar" style="--w: var(--space-1)"></span></div>
+                  <div class="spec-scale__row"><code>--space-2</code><span data-token="--space-2"></span><span class="spec-bar" style="--w: var(--space-2)"></span></div>
+                  <div class="spec-scale__row"><code>--space-3</code><span data-token="--space-3"></span><span class="spec-bar" style="--w: var(--space-3)"></span></div>
+                  <div class="spec-scale__row"><code>--space-4</code><span data-token="--space-4"></span><span class="spec-bar" style="--w: var(--space-4)"></span></div>
+                  <div class="spec-scale__row"><code>--space-5</code><span data-token="--space-5"></span><span class="spec-bar" style="--w: var(--space-5)"></span></div>
+                  <div class="spec-scale__row"><code>--space-6</code><span data-token="--space-6"></span><span class="spec-bar" style="--w: var(--space-6)"></span></div>
+                  <div class="spec-scale__row"><code>--space-7</code><span data-token="--space-7"></span><span class="spec-bar" style="--w: var(--space-7)"></span></div>
+                  <div class="spec-scale__row"><code>--space-8</code><span data-token="--space-8"></span><span class="spec-bar" style="--w: var(--space-8)"></span></div>
+                  <div class="spec-scale__row"><code>--space-9</code><span data-token="--space-9"></span><span class="spec-bar" style="--w: var(--space-9)"></span></div>
+                  <div class="spec-scale__row"><code>--space-10</code><span data-token="--space-10"></span><span class="spec-bar" style="--w: var(--space-10)"></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Stack and cluster</h3>
+              <p>Spacing between elements comes from the parent, never from margins on the children. <code>.stack</code> spaces a column; <code>.cluster</code> spaces a row that wraps. Set the gap with <code>--stack-gap</code> or <code>--cluster-gap</code>.</p>
+              <div class="spec-example">
+                <div class="spec-cols">
+                  <div class="stack" style="--stack-gap: var(--space-3)">
+                    <p class="label">.stack · --space-3</p>
+                    <p>First paragraph.</p>
+                    <p>Second paragraph.</p>
+                  </div>
+                  <div class="stack">
+                    <p class="label">.cluster · --space-2</p>
+                    <div class="cluster" style="--cluster-gap: var(--space-2)">
+                      <span class="tag">Identity</span><span class="tag">Editorial</span><span class="tag">Motion</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="control-heights">
+          <header class="section-head"><p class="label">02 — Control heights</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Heights</h3>
+              <p>Controls share five heights. On touch screens, buttons, tabs and menu items grow to 44px, and every control keeps a tap area of at least <code>--hit-min</code>.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-scale">
+                  <div class="spec-scale__row"><code>--control-h-xs</code><span data-token="--control-h-xs"></span><span class="spec-box" style="--h: var(--control-h-xs)"></span></div>
+                  <div class="spec-scale__row"><code>--control-h-sm</code><span data-token="--control-h-sm"></span><span class="spec-box" style="--h: var(--control-h-sm)"></span></div>
+                  <div class="spec-scale__row"><code>--control-h</code><span data-token="--control-h"></span><span class="spec-box" style="--h: var(--control-h)"></span></div>
+                  <div class="spec-scale__row"><code>--control-h-touch</code><span data-token="--control-h-touch"></span><span class="spec-box" style="--h: var(--control-h-touch)"></span></div>
+                  <div class="spec-scale__row"><code>--control-h-lg</code><span data-token="--control-h-lg"></span><span class="spec-box" style="--h: var(--control-h-lg)"></span></div>
+                  <div class="spec-scale__row"><code>--hit-min</code><span data-token="--hit-min"></span><span class="spec-box" style="--h: var(--hit-min)"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="icon-sizes">
+          <header class="section-head"><p class="label">03 — Icon sizes</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Icons</h3>
+              <p>Icons are hairline outlines (<code>--icon-stroke</code>, 1.25) in the text colour. 16px inside buttons and fields, 22px in the header and the floating button, 28px in drop zones and empty states.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-scale">
+                  <div class="spec-scale__row"><code>--icon-xs</code><span data-token="--icon-xs"></span><svg class="spec-icon" style="--s: var(--icon-xs)" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg></div>
+                  <div class="spec-scale__row"><code>--icon-sm</code><span data-token="--icon-sm"></span><svg class="spec-icon" style="--s: var(--icon-sm)" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg></div>
+                  <div class="spec-scale__row"><code>--icon-md</code><span data-token="--icon-md"></span><svg class="spec-icon" style="--s: var(--icon-md)" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg></div>
+                  <div class="spec-scale__row"><code>--icon-lg</code><span data-token="--icon-lg"></span><svg class="spec-icon" style="--s: var(--icon-lg)" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="radius">
+          <header class="section-head"><p class="label">04 — Radius</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Corners</h3>
+              <p>Mostly square. Pills are for tags, badges and the round search. Content panels have their own shape: see <a href="surfaces.html">Panels and surfaces</a>.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-radii">
+                  <div class="spec-radius"><div style="--r: var(--radius-0)"></div><code>--radius-0</code></div>
+                  <div class="spec-radius"><div style="--r: var(--radius-1)"></div><code>--radius-1</code></div>
+                  <div class="spec-radius"><div style="--r: var(--radius-2)"></div><code>--radius-2</code></div>
+                  <div class="spec-radius"><div style="--r: var(--radius-3)"></div><code>--radius-3</code></div>
+                  <div class="spec-radius"><div style="--r: var(--radius-pill)"></div><code>--radius-pill</code></div>
+                  <div class="spec-radius"><div style="--r: var(--radius-round)"></div><code>--radius-round</code></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="rules">
+          <header class="section-head"><p class="label">05 — Rules</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Lines</h3>
+              <p>A 1px hairline for edges and dividers. A 2px rule marks what’s selected or current: the open tab, the current page, a notice’s tone, a focused field.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-rules">
+                  <div><code>--hairline</code><hr></div>
+                  <div><code>--rule-strong</code><hr style="border-top: var(--rule-strong) solid var(--text-accent)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">06 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>The spacing tokens for every margin, padding and gap.</li>
+                  <li><code>.stack</code> and <code>.cluster</code> to space groups of elements.</li>
+                  <li><code>--control-h*</code> for anything a person presses, and <code>--hit-min</code> for its tap area.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Pixel values, or numbers between the steps of the scale.</li>
+                  <li>Margins on elements inside a <code>.stack</code>. The stack sets the gap.</li>
+                  <li>Controls shorter than 44px on touch screens.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="tokens">
+          <header class="section-head"><p class="label">07 — Tokens</p></header>
+          <div class="span-12 spec-body">
+            <div class="table-wrap">
+              <table class="table table--compact">
+                <caption class="visually-hidden">Tokens</caption>
+                <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">What it’s for</th></tr></thead>
+                <tbody>
+                  <tr><td><code>--space-1</code></td><td><span class="table__muted" data-token="--space-1"></span></td><td>Hairline gaps</td></tr>
+                  <tr><td><code>--space-2</code></td><td><span class="table__muted" data-token="--space-2"></span></td><td>Icon to label</td></tr>
+                  <tr><td><code>--space-3</code></td><td><span class="table__muted" data-token="--space-3"></span></td><td>Tight groups</td></tr>
+                  <tr><td><code>--space-4</code></td><td><span class="table__muted" data-token="--space-4"></span></td><td>Default gap</td></tr>
+                  <tr><td><code>--space-5</code></td><td><span class="table__muted" data-token="--space-5"></span></td><td>Between components</td></tr>
+                  <tr><td><code>--space-6</code></td><td><span class="table__muted" data-token="--space-6"></span></td><td>Between blocks</td></tr>
+                  <tr><td><code>--space-7</code></td><td><span class="table__muted" data-token="--space-7"></span></td><td>Between groups</td></tr>
+                  <tr><td><code>--space-8</code></td><td><span class="table__muted" data-token="--space-8"></span></td><td>Between sections</td></tr>
+                  <tr><td><code>--space-9</code></td><td><span class="table__muted" data-token="--space-9"></span></td><td>Large sections</td></tr>
+                  <tr><td><code>--space-10</code></td><td><span class="table__muted" data-token="--space-10"></span></td><td>Page breaks</td></tr>
+                  <tr><td><code>--control-h-xs</code></td><td><span class="table__muted" data-token="--control-h-xs"></span></td><td>Tags, chips</td></tr>
+                  <tr><td><code>--control-h-sm</code></td><td><span class="table__muted" data-token="--control-h-sm"></span></td><td>Touch tags, compact controls</td></tr>
+                  <tr><td><code>--control-h</code></td><td><span class="table__muted" data-token="--control-h"></span></td><td>Buttons, tabs, menu items</td></tr>
+                  <tr><td><code>--control-h-touch</code></td><td><span class="table__muted" data-token="--control-h-touch"></span></td><td>Fields, and every control on touch screens</td></tr>
+                  <tr><td><code>--control-h-lg</code></td><td><span class="table__muted" data-token="--control-h-lg"></span></td><td>Floating button, chat composer</td></tr>
+                  <tr><td><code>--hit-min</code></td><td><span class="table__muted" data-token="--hit-min"></span></td><td>Minimum tap area</td></tr>
+                  <tr><td><code>--icon-xs</code></td><td><span class="table__muted" data-token="--icon-xs"></span></td><td>Spinners, chevrons</td></tr>
+                  <tr><td><code>--icon-sm</code></td><td><span class="table__muted" data-token="--icon-sm"></span></td><td>Icons in buttons and fields</td></tr>
+                  <tr><td><code>--icon-md</code></td><td><span class="table__muted" data-token="--icon-md"></span></td><td>Header, floating button</td></tr>
+                  <tr><td><code>--icon-lg</code></td><td><span class="table__muted" data-token="--icon-lg"></span></td><td>Drop zone, empty states</td></tr>
+                  <tr><td><code>--icon-stroke</code></td><td><span class="table__muted" data-token="--icon-stroke"></span></td><td>Icon line weight</td></tr>
+                  <tr><td><code>--radius-0</code></td><td><span class="table__muted" data-token="--radius-0"></span></td><td>Most things</td></tr>
+                  <tr><td><code>--radius-1</code></td><td><span class="table__muted" data-token="--radius-1"></span></td><td>Small details</td></tr>
+                  <tr><td><code>--radius-2</code></td><td><span class="table__muted" data-token="--radius-2"></span></td><td>Chips</td></tr>
+                  <tr><td><code>--radius-3</code></td><td><span class="table__muted" data-token="--radius-3"></span></td><td>Larger cards</td></tr>
+                  <tr><td><code>--radius-pill</code></td><td><span class="table__muted" data-token="--radius-pill"></span></td><td>Tags, badges</td></tr>
+                  <tr><td><code>--radius-round</code></td><td><span class="table__muted" data-token="--radius-round"></span></td><td>Dots, avatars</td></tr>
+                  <tr><td><code>--hairline</code></td><td><span class="table__muted" data-token="--hairline"></span></td><td>Edges and dividers</td></tr>
+                  <tr><td><code>--rule-strong</code></td><td><span class="table__muted" data-token="--rule-strong"></span></td><td>Selected and current</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

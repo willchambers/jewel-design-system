@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Lightbox · Jewel Design System</title>
+  <meta name="description" content="A full-screen viewer for photos. Tap a thumbnail to open it; arrows, swipes and Esc work, and focus goes back to the photo that opened it.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../js/components/lightbox.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="components/lightbox">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html" aria-current="page">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Lightbox</span></li></ol>
+          </nav>
+          <h1>Lightbox</h1>
+          <p class="lede">A full-screen viewer for photos. Tap a thumbnail to open it; arrows, swipes and Esc work, and focus goes back to the photo that opened it.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/lightbox.css</code></dd></div><div><dt>JS</dt><dd><code>js/components/lightbox.js</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="example">
+          <header class="section-head"><p class="label">01 — Example</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Gallery</h3>
+              <p>Any container of <code>a[data-lightbox-item]</code> links. Each link points at the full image, so it still works without a script. <code>data-caption</code> is the first line; <code>data-description</code> adds a quieter second line.</p>
+              <div class="spec-example">
+                <div class="spec-gallery" data-component="lightbox">
+                  <a class="figure__media" href="../media/art-a.svg" data-lightbox-item data-caption="Northlight Quarterly, cover" data-description="An optional second line from data-description."><img src="../media/art-a.svg" alt="Violet and teal gradient artwork" loading="lazy"></a>
+                  <a class="figure__media" href="../media/art-b.svg" data-lightbox-item data-caption="Field Notes, mark study" style="--ratio: 4 / 5"><img src="../media/art-b.svg" alt="A red circle on a pale ground" loading="lazy"></a>
+                  <a class="figure__media" href="../media/art-c.svg" data-lightbox-item data-caption="Tidal, still"><img src="../media/art-c.svg" alt="Orange and magenta gradient artwork" loading="lazy"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="behaviour">
+          <header class="section-head"><p class="label">02 — Behaviour</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Script</h3>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">Name</th><th scope="col">Detail</th></tr></thead>
+                  <tbody>
+                    <tr><td>Keyboard</td><td>← → move between photos, Esc closes. Focus returns to the thumbnail.</td></tr>
+                    <tr><td>Touch</td><td>Swipe to move, and the viewer clears the notch and home indicator.</td></tr>
+                    <tr><td>Filtering</td><td>Photos that are hidden, or inside a hidden parent, are skipped, so it works with a <a href="filter.html">filter</a>.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">03 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>Galleries and photo walls where people want to see each photo large.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>A single image that’s already large. Let it be.</li>
+                  <li>Videos. Use the <a href="video.html">video</a> figure.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">04 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>Every thumbnail needs real <code>alt</code> text.</li>
+                <li>The viewer is a native <code>&lt;dialog&gt;</code>; the caption is read when each photo opens.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

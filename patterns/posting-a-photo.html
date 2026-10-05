@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Posting a photo · Jewel Design System</title>
+  <meta name="description" content="The whole flow for adding a photo: a floating button opens a sheet, the post form takes the photo and its details, and the page gets one event with everything in it.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../js/components/form.js" defer></script>
+  <script src="../js/components/tag-input.js" defer></script>
+  <script src="../js/components/dropzone.js" defer></script>
+  <script src="../js/components/post-form.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="patterns/posting-a-photo" class="has-fab">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html">Components</a>
+            <a href="../patterns/index.html" aria-current="page">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><span aria-current="page">Posting a photo</span></li></ol>
+          </nav>
+          <h1>Posting a photo</h1>
+          <p class="lede">The whole flow for adding a photo: a floating button opens a sheet, the post form takes the photo and its details, and the page gets one event with everything in it.</p>
+          <dl class="spec-files"><div><dt>JS</dt><dd><code>form.js, tag-input.js, dropzone.js, post-form.js, sheet.js</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="try-it">
+          <header class="section-head"><p class="label">01 — Try it</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>The flow</h3>
+              <p>Press the <span data-text="accent">+</span> button in the bottom-right corner, or open the same form as a tearsheet or a modal. Close it with unsaved changes to see the guard, or make the upload fail to see the error.</p>
+              <div class="spec-example" data-code="none">
+                <div class="stack">
+                  <div class="spec-row">
+                    <button class="btn btn--ghost" type="button" data-open-variant="bottom">Open as tearsheet</button>
+                    <button class="btn btn--ghost" type="button" data-open-variant="center">Open as modal</button>
+                    <label class="choice"><input type="checkbox" role="switch" id="demo-fail"> Make the demo upload fail</label>
+                  </div>
+                  <div class="field">
+                    <p class="field__label" id="post-log-label">Event log · jewel:post</p>
+                    <pre class="post-log" id="post-log" aria-labelledby="post-log-label" tabindex="0">Nothing posted yet.</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Markup</h3>
+              <p>The floating button, then the sheet holding the post form. Listen for <code>jewel:post</code> and call <code>waitUntil()</code> with your upload.</p>
+              <div class="spec-example spec-example--bare" data-code="none">
+                <figure class="code" data-component="code">
+                  <figcaption class="code__head"><span class="code__lang">HTML</span><button class="code__copy" type="button">Copy</button></figcaption>
+                  <pre class="code__body" tabindex="0"><code>&lt;body class="has-fab"&gt;
+  …
+  &lt;button class="fab" type="button" aria-label="New post" data-sheet-open="post-sheet"&gt;
+    &lt;svg viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;path d="M12 5v14M5 12h14"/&gt;&lt;/svg&gt;
+  &lt;/button&gt;
+
+&lt;dialog class="sheet sheet--bottom" id="post-sheet" data-component="sheet" aria-labelledby="post-sheet-title"&gt;
+  &lt;div class="sheet__panel panel panel--content"&gt;
+    &lt;header class="sheet__head"&gt;
+      &lt;h2 class="sheet__title label" id="post-sheet-title"&gt;New post&lt;/h2&gt;
+      &lt;button class="btn btn--ghost btn--icon" type="button" data-sheet-close aria-label="Close"&gt;
+        &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"&gt;&lt;path d="M6 6l12 12M18 6 6 18"/&gt;&lt;/svg&gt;
+      &lt;/button&gt;
+    &lt;/header&gt;
+    &lt;div class="sheet__body"&gt;
+      &lt;form class="form" id="post-form" data-component="form post-form" novalidate data-success="Posted." aria-labelledby="post-sheet-title"&gt;
+        &lt;div class="field"&gt;
+          &lt;label class="field__label" for="post-photo"&gt;Photo&lt;span class="field__req" aria-hidden="true"&gt;*&lt;/span&gt;&lt;/label&gt;
+          &lt;div class="dropzone knockout" data-component="dropzone" data-max-size="20"&gt;
+            &lt;input class="dropzone__input" id="post-photo" name="photo" type="file" accept="image/*" required&gt;
+            &lt;label class="dropzone__empty" for="post-photo"&gt;
+              &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"&gt;&lt;rect x="3" y="5" width="18" height="14"/&gt;&lt;path d="m3 16 5-5 4 4 3-3 6 6"/&gt;&lt;circle cx="16" cy="9" r="1.5"/&gt;&lt;/svg&gt;
+              &lt;span class="dropzone__title"&gt;Drop a photo, or &lt;u&gt;browse&lt;/u&gt;&lt;/span&gt;
+              &lt;span class="dropzone__hint"&gt;One photo · up to 20 MB&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;figure class="dropzone__preview" hidden&gt;&lt;img alt=""&gt;&lt;figcaption class="dropzone__meta"&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+            &lt;div class="dropzone__actions" hidden&gt;
+              &lt;button class="btn btn--ghost" type="button" data-dropzone-replace&gt;Replace&lt;/button&gt;
+              &lt;button class="btn btn--text" type="button" data-dropzone-remove&gt;Remove&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="field"&gt;
+          &lt;label class="field__label" for="post-title"&gt;Title&lt;span class="field__req" aria-hidden="true"&gt;*&lt;/span&gt;&lt;/label&gt;
+          &lt;input class="input" id="post-title" name="title" type="text" required maxlength="80" data-counter aria-describedby="post-title-count" placeholder="Name the photo"&gt;
+          &lt;div class="field__meta"&gt;&lt;p class="field__counter" id="post-title-count"&gt;&lt;/p&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="field"&gt;
+          &lt;label class="field__label" for="post-description"&gt;Description &lt;span class="field__optional"&gt;(optional)&lt;/span&gt;&lt;/label&gt;
+          &lt;textarea class="input" id="post-description" name="description" rows="3" maxlength="500" data-counter aria-describedby="post-description-count" placeholder="Where, when, what it means"&gt;&lt;/textarea&gt;
+          &lt;div class="field__meta"&gt;&lt;p class="field__counter" id="post-description-count"&gt;&lt;/p&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="form__row form__row--2"&gt;
+          &lt;div class="field"&gt;
+            &lt;label class="field__label" for="post-location"&gt;Location &lt;span class="field__optional"&gt;(optional)&lt;/span&gt;&lt;/label&gt;
+            &lt;input class="input" id="post-location" name="location" type="text" autocomplete="off" placeholder="Dayton, Ohio"&gt;
+          &lt;/div&gt;
+          &lt;div class="field"&gt;
+            &lt;label class="field__label" for="post-tags"&gt;Tags &lt;span class="field__optional"&gt;(up to 10)&lt;/span&gt;&lt;/label&gt;
+            &lt;div class="tag-input" data-component="tag-input" data-max="10" data-suggestions='["Dayton","Graffiti","Pond","Towers"]'&gt;
+              &lt;ul class="tag-input__list" aria-label="Tags"&gt;&lt;/ul&gt;
+              &lt;input class="tag-input__text" id="post-tags" type="text" placeholder="Add a tag"&gt;
+              &lt;input type="hidden" name="tags"&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="field"&gt;
+          &lt;label class="field__label" for="post-alt"&gt;Alt text &lt;span class="field__optional"&gt;(optional)&lt;/span&gt; &lt;span class="field__badge" hidden&gt;Suggested&lt;/span&gt;&lt;/label&gt;
+          &lt;textarea class="input" id="post-alt" name="alt" rows="2" aria-describedby="post-alt-hint" placeholder="Describe the photo for people who can’t see it"&gt;&lt;/textarea&gt;
+          &lt;p class="field__hint" id="post-alt-hint"&gt;Never blocks posting. A suggestion may appear here after you pick a photo; edit or clear it.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;label class="choice"&gt;&lt;input type="checkbox" role="switch" name="publish" checked&gt; Publish to site&lt;/label&gt;
+        &lt;p class="form__error" role="alert" hidden&gt;&lt;/p&gt;
+        &lt;p class="form__status" role="status" hidden&gt;&lt;/p&gt;
+        &lt;div class="form__actions"&gt;
+          &lt;button class="btn btn--text" type="button" data-sheet-close&gt;Cancel&lt;/button&gt;
+          &lt;button class="btn" type="submit" data-busy-label="Posting…"&gt;Post&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;
+
+  &lt;script&gt;
+    document.getElementById('post-form').addEventListener('jewel:post', (e) =&gt; {
+      e.detail.waitUntil(upload(e.detail.formData));   // your code
+    });
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="the-event">
+          <header class="section-head"><p class="label">02 — The event</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>jewel:post</h3>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">Detail</th><th scope="col">What it holds</th></tr></thead>
+                  <tbody>
+                    <tr><td><code>file</code></td><td>The photo, as a File.</td></tr>
+                    <tr><td><code>title</code>, <code>description</code>, <code>location</code>, <code>alt</code></td><td>Strings.</td></tr>
+                    <tr><td><code>tags</code></td><td>An array of strings.</td></tr>
+                    <tr><td><code>publish</code></td><td>True or false, from the switch.</td></tr>
+                    <tr><td><code>formData</code>, <code>form</code></td><td>For sending as is.</td></tr>
+                    <tr><td><code>waitUntil(promise)</code></td><td>Keeps the form busy. Resolve to show “Posted.” and reset; reject to show the error and keep the draft.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="built-from">
+          <header class="section-head"><p class="label">03 — Built from</p></header>
+          <div class="span-12 spec-body">
+            <ul class="spec-cards">
+              <li><a class="spec-card" href="../components/fab.html"><span class="spec-card__title">Floating action button</span><span class="spec-card__text">Opens the sheet from anywhere on the page.</span></a></li>
+              <li><a class="spec-card" href="../components/sheet.html"><span class="spec-card__title">Sheet</span><span class="spec-card__text">Tearsheet on phones, modal on wide screens; guards unsaved drafts.</span></a></li>
+              <li><a class="spec-card" href="../components/dropzone.html"><span class="spec-card__title">Drop zone</span><span class="spec-card__text">The photo, with a preview.</span></a></li>
+              <li><a class="spec-card" href="../components/text-field.html"><span class="spec-card__title">Text field</span><span class="spec-card__text">Title, description, location and alt text.</span></a></li>
+              <li><a class="spec-card" href="../components/tag-input.html"><span class="spec-card__title">Tag input</span><span class="spec-card__text">Tags, with suggestions.</span></a></li>
+              <li><a class="spec-card" href="../components/choice.html"><span class="spec-card__title">Checkbox, radio and switch</span><span class="spec-card__text">Publish to site.</span></a></li>
+            </ul>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="guidelines">
+          <header class="section-head"><p class="label">04 — Guidelines</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>Ask for the photo first; everything else follows from it.</li>
+                  <li>Make alt text easy: suggest a draft, never block posting on it.</li>
+                  <li>Keep the draft when an upload fails, and say how to retry.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Required fields beyond the photo and a title.</li>
+                  <li>Closing the sheet on a failed upload.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+  <button class="fab" type="button" aria-label="New post" data-sheet-open="post-sheet">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+  </button>
+
+  <dialog class="sheet sheet--bottom" id="post-sheet" data-component="sheet" aria-labelledby="post-sheet-title">
+    <div class="sheet__panel panel panel--content">
+      <header class="sheet__head">
+        <h2 class="sheet__title label" id="post-sheet-title">New post</h2>
+        <button class="btn btn--ghost btn--icon" type="button" data-sheet-close aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </header>
+      <div class="sheet__body">
+        <form class="form" id="post-form" data-component="form post-form" novalidate data-success="Posted." aria-labelledby="post-sheet-title">
+          <div class="field">
+            <label class="field__label" for="post-photo">Photo<span class="field__req" aria-hidden="true">*</span></label>
+            <div class="dropzone knockout" data-component="dropzone" data-max-size="20">
+              <input class="dropzone__input" id="post-photo" name="photo" type="file" accept="image/*" required>
+              <label class="dropzone__empty" for="post-photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="16" cy="9" r="1.5"/></svg>
+                <span class="dropzone__title">Drop a photo, or <u>browse</u></span>
+                <span class="dropzone__hint">One photo · up to 20 MB</span>
+              </label>
+              <figure class="dropzone__preview" hidden><img alt=""><figcaption class="dropzone__meta"></figcaption></figure>
+              <div class="dropzone__actions" hidden>
+                <button class="btn btn--ghost" type="button" data-dropzone-replace>Replace</button>
+                <button class="btn btn--text" type="button" data-dropzone-remove>Remove</button>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label class="field__label" for="post-title">Title<span class="field__req" aria-hidden="true">*</span></label>
+            <input class="input" id="post-title" name="title" type="text" required maxlength="80" data-counter aria-describedby="post-title-count" placeholder="Name the photo">
+            <div class="field__meta"><p class="field__counter" id="post-title-count"></p></div>
+          </div>
+          <div class="field">
+            <label class="field__label" for="post-description">Description <span class="field__optional">(optional)</span></label>
+            <textarea class="input" id="post-description" name="description" rows="3" maxlength="500" data-counter aria-describedby="post-description-count" placeholder="Where, when, what it means"></textarea>
+            <div class="field__meta"><p class="field__counter" id="post-description-count"></p></div>
+          </div>
+          <div class="form__row form__row--2">
+            <div class="field">
+              <label class="field__label" for="post-location">Location <span class="field__optional">(optional)</span></label>
+              <input class="input" id="post-location" name="location" type="text" autocomplete="off" placeholder="Dayton, Ohio">
+            </div>
+            <div class="field">
+              <label class="field__label" for="post-tags">Tags <span class="field__optional">(up to 10)</span></label>
+              <div class="tag-input" data-component="tag-input" data-max="10" data-suggestions='["Dayton","Graffiti","Pond","Towers"]'>
+                <ul class="tag-input__list" aria-label="Tags"></ul>
+                <input class="tag-input__text" id="post-tags" type="text" placeholder="Add a tag">
+                <input type="hidden" name="tags">
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label class="field__label" for="post-alt">Alt text <span class="field__optional">(optional)</span> <span class="field__badge" hidden>Suggested</span></label>
+            <textarea class="input" id="post-alt" name="alt" rows="2" aria-describedby="post-alt-hint" placeholder="Describe the photo for people who can’t see it"></textarea>
+            <p class="field__hint" id="post-alt-hint">Never blocks posting. A suggestion may appear here after you pick a photo; edit or clear it.</p>
+          </div>
+          <label class="choice"><input type="checkbox" role="switch" name="publish" checked> Publish to site</label>
+          <p class="form__error" role="alert" hidden></p>
+          <p class="form__status" role="status" hidden></p>
+          <div class="form__actions">
+            <button class="btn btn--text" type="button" data-sheet-close>Cancel</button>
+            <button class="btn" type="submit" data-busy-label="Posting…">Post</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Specimen-only wiring: the variant buttons, a pretend upload, a pretend
+       alt-text suggestion and the event log. An app does this part itself. -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sheet = document.getElementById('post-sheet');
+      const form = document.getElementById('post-form');
+      const log = document.getElementById('post-log');
+
+      document.querySelectorAll('[data-open-variant]').forEach((b) => b.addEventListener('click', () => {
+        sheet.classList.toggle('sheet--bottom', b.dataset.openVariant === 'bottom');
+        sheet.classList.toggle('sheet--center', b.dataset.openVariant === 'center');
+        sheet.jewelSheet.open(b);
+      }));
+      // The floating button always opens the tearsheet.
+      document.querySelector('.fab').addEventListener('click', () => {
+        sheet.classList.add('sheet--bottom'); sheet.classList.remove('sheet--center');
+      }, { capture: true });
+
+      // Pretend an assistant drafts alt text shortly after a photo is picked.
+      form.addEventListener('jewel:filechange', (e) => {
+        if (e.detail.source !== 'user' || !e.detail.file) return;
+        setTimeout(() => Jewel.field.suggest(form.elements.alt, `Photo: ${e.detail.file.name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ')}`), 900);
+      });
+
+      // Pretend to upload: busy for 1.5s, then succeed or fail.
+      form.addEventListener('jewel:post', (e) => {
+        const { file, formData, form: _f, waitUntil, ...rest } = e.detail;
+        log.textContent = JSON.stringify({ ...rest, file: file ? { name: file.name, type: file.type, size: file.size } : null }, null, 2);
+        waitUntil(new Promise((resolve, reject) => setTimeout(() =>
+          document.getElementById('demo-fail').checked ? reject(new Error('Upload failed (demo). Your draft is still here.')) : resolve(), 1500)));
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Colour · Jewel Design System</title>
+  <meta name="description" content="Near-black glass, light text and one violet accent. The five Jewel colours live in the background, where they do all the talking.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="foundations/colour">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html" aria-current="page">Foundations</a>
+            <a href="../components/index.html">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../foundations/index.html">Foundations</a></li><li><span aria-current="page">Colour</span></li></ol>
+          </nav>
+          <h1>Colour</h1>
+          <p class="lede">Near-black glass, light text and one violet accent. The five Jewel colours live in the background, where they do all the talking.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/tokens.css</code></dd></div><div><dt>Contrast</dt><dd><code>docs/accessibility.md</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="jewel-palette">
+          <header class="section-head"><p class="label">01 — Jewel palette</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>The five Jewel colours</h3>
+              <p>They make up the animated background. Components never use them directly; charts use versions stepped for contrast.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-swatches">
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--jewel-purple)"></div><strong>Purple</strong><code>--jewel-purple</code><span data-token="--jewel-purple"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--jewel-magenta)"></div><strong>Magenta</strong><code>--jewel-magenta</code><span data-token="--jewel-magenta"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--jewel-teal)"></div><strong>Teal</strong><code>--jewel-teal</code><span data-token="--jewel-teal"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--jewel-red)"></div><strong>Red</strong><code>--jewel-red</code><span data-token="--jewel-red"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--jewel-orange)"></div><strong>Orange</strong><code>--jewel-orange</code><span data-token="--jewel-orange"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="colour-tokens">
+          <header class="section-head"><p class="label">02 — Colour tokens</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Text</h3>
+              <p>Every text colour meets WCAG AA (4.5:1) on glass over any part of the background, and on solid panels.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-swatches">
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--text-default)"></div><strong>Default</strong><code>--text-default</code><span data-token="--text-default"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--text-muted)"></div><strong>Muted</strong><code>--text-muted</code><span data-token="--text-muted"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--text-accent)"></div><strong>Accent</strong><code>--text-accent</code><span data-token="--text-accent"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--text-inverse)"></div><strong>Inverse</strong><code>--text-inverse</code><span data-token="--text-inverse"></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Surfaces and edges</h3>
+              <p>Glass fill, the hairline, and the opaque surfaces behind images and pop-ups. The checks show what’s see-through.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-swatches">
+                  <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--panel-bg)"></div><strong>Panel</strong><code>--panel-bg</code><span data-token="--panel-bg"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--panel-border)"></div><strong>Hairline</strong><code>--panel-border</code><span data-token="--panel-border"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--surface-solid)"></div><strong>Solid surface</strong><code>--surface-solid</code><span data-token="--surface-solid"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--media-bg)"></div><strong>Media backdrop</strong><code>--media-bg</code><span data-token="--media-bg"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--scrim)"></div><strong>Scrim</strong><code>--scrim</code><span data-token="--scrim"></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Form fields</h3>
+              <p>Field edges are brighter than the hairline so they reach 3:1. Errors use one red, for text and edges.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-swatches">
+                  <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--field-border)"></div><strong>Edge</strong><code>--field-border</code><span data-token="--field-border"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--field-border-hover)"></div><strong>Edge, hover</strong><code>--field-border-hover</code><span data-token="--field-border-hover"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--field-fill)"></div><strong>Fill</strong><code>--field-fill</code><span data-token="--field-fill"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--field-focus)"></div><strong>Focus</strong><code>--field-focus</code><span data-token="--field-focus"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--field-error)"></div><strong>Error</strong><code>--field-error</code><span data-token="--field-error"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--field-placeholder)"></div><strong>Placeholder</strong><code>--field-placeholder</code><span data-token="--field-placeholder"></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Interaction states</h3>
+              <p>Shared by every component, so hover, pressed and selected feel the same everywhere.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-swatches">
+                  <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--state-hover-fill)"></div><strong>Hover</strong><code>--state-hover-fill</code><span data-token="--state-hover-fill"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--state-pressed-fill)"></div><strong>Pressed</strong><code>--state-pressed-fill</code><span data-token="--state-pressed-fill"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--state-selected-fill)"></div><strong>Selected</strong><code>--state-selected-fill</code><span data-token="--state-selected-fill"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--state-pressed-solid)"></div><strong>Pressed, filled</strong><code>--state-pressed-solid</code><span data-token="--state-pressed-solid"></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Charts</h3>
+              <p>One validated palette in a fixed order. A sixth series turns grey; colours never repeat.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-swatches">
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--chart-1)"></div><strong>Series 1</strong><code>--chart-1</code><span data-token="--chart-1"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--chart-2)"></div><strong>Series 2</strong><code>--chart-2</code><span data-token="--chart-2"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--chart-3)"></div><strong>Series 3</strong><code>--chart-3</code><span data-token="--chart-3"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--chart-4)"></div><strong>Series 4</strong><code>--chart-4</code><span data-token="--chart-4"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--chart-5)"></div><strong>Series 5</strong><code>--chart-5</code><span data-token="--chart-5"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--chart-context)"></div><strong>Context</strong><code>--chart-context</code><span data-token="--chart-context"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="three-tiers">
+          <header class="section-head"><p class="label">03 — Three tiers</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>How the tokens fit together</h3>
+              <p>Primitives hold raw values. The theme maps them to colours. Components read only the resolved tier, which is what lets a solid panel or a future theme change their colours without touching a component.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">Tier</th><th scope="col">Where</th><th scope="col">Holds</th></tr></thead>
+                  <tbody>
+                    <tr><td>1. Primitives</td><td><code>:root</code></td><td>The Jewel palette, type scale, spacing, radii, motion</td></tr>
+                    <tr><td>2. Theme</td><td><code>[data-theme="dark"]</code></td><td><code>--color-*</code> and <code>--glass-*</code></td></tr>
+                    <tr><td>3. Resolved</td><td><code>:root, [data-theme]</code></td><td><code>--panel-*</code>, <code>--text-*</code>, <code>--field-*</code>, <code>--state-*</code>, <code>--chart-*</code></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">04 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>Resolved tokens only, in components and page CSS: <code>--text-*</code>, <code>--panel-*</code>, <code>--field-*</code>, <code>--state-*</code>, <code>--chart-*</code>.</li>
+                  <li>The accent for links on hover, focus rings, the current item and selected states.</li>
+                  <li>The error red for errors only, on text and edges.</li>
+                  <li>Overriding a token in your own stylesheet, loaded after <code>jewel.css</code>.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Hex values or <code>--color-*</code> primitives in a component. They skip the glass and solid adjustments.</li>
+                  <li>Coloured backgrounds on notices, tags or buttons. Tone lives in a 2px edge.</li>
+                  <li>A second accent colour.</li>
+                  <li>Changing a colour without rechecking contrast in <code>docs/accessibility.md</code>.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Drop zone · Jewel Design System</title>
+  <meta name="description" content="Pick one photo by dragging it in or tapping to browse. It shows a preview with the file’s name, size and dimensions, and offers Replace and Remove.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../js/components/form.js" defer></script>
+  <script src="../js/components/dropzone.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="components/dropzone">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html" aria-current="page">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Drop zone</span></li></ol>
+          </nav>
+          <h1>Drop zone</h1>
+          <p class="lede">Pick one photo by dragging it in or tapping to browse. It shows a preview with the file’s name, size and dimensions, and offers Replace and Remove.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/dropzone.css</code></dd></div><div><dt>JS</dt><dd><code>js/components/dropzone.js (after form.js)</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="example">
+          <header class="section-head"><p class="label">01 — Example</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>One photo</h3>
+              <p>Drop an image here or browse. On phones the native picker offers the library and the camera.</p>
+              <div class="spec-example">
+                <div class="form" data-component="form">
+                  <div class="field">
+                    <label class="field__label" for="dz-photo">Photo</label>
+                    <div class="dropzone knockout" data-component="dropzone" data-max-size="20">
+                      <input class="dropzone__input" id="dz-photo" name="photo" type="file" accept="image/*">
+                      <label class="dropzone__empty" for="dz-photo">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="16" cy="9" r="1.5"/></svg>
+                        <span class="dropzone__title">Drop a photo, or <u>browse</u></span>
+                        <span class="dropzone__hint">JPG, PNG, HEIC or WebP · up to 20 MB</span>
+                      </label>
+                      <figure class="dropzone__preview" hidden><img alt=""><figcaption class="dropzone__meta"></figcaption></figure>
+                      <div class="dropzone__actions" hidden>
+                        <button class="btn btn--ghost" type="button" data-dropzone-replace>Replace</button>
+                        <button class="btn btn--text" type="button" data-dropzone-remove>Remove</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="behaviour">
+          <header class="section-head"><p class="label">02 — Behaviour</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Script</h3>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">Name</th><th scope="col">Detail</th></tr></thead>
+                  <tbody>
+                    <tr><td><code>data-max-size</code></td><td>The largest file, in MB. Bigger files show an error.</td></tr>
+                    <tr><td><code>jewel:filechange</code></td><td>Detail <code>{ file, source }</code>, where source is user, api or clear.</td></tr>
+                    <tr><td><code>el.jewelDropzone</code></td><td><code>.setFile(blob, name)</code>, <code>.getFile()</code>, <code>.clear()</code>.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">03 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>Uploading one photo, as in the <a href="../patterns/posting-a-photo.html">post form</a>.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Several files at once. It takes one.</li>
+                  <li>Documents. It’s built around image previews.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">04 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>It’s a real file input with a label, so keyboard and screen reader users browse as normal.</li>
+                <li>The preview’s name, size and dimensions are text, and errors are announced like any field error.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

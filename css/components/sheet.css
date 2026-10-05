@@ -12,7 +12,8 @@
        <div class="sheet__body">…form…</div>
      </div>
    </dialog>
-   Swap .sheet--bottom for .sheet--center to get the modal. */
+   Swap .sheet--bottom for .sheet--center to get the modal, or .sheet--start
+   for a drawer from the left edge (the side nav on phones, side-nav.css). */
 
 .sheet {
   --sheet-max-w: 40rem;
@@ -84,7 +85,7 @@
   margin: auto auto 0;              /* pinned to the bottom edge */
   inset: auto 0 0;
 }
-@media (max-width: 40rem) {
+@media (max-width: 40rem) {   /* below --bp-sm */
   /* Phones: full height, so the keyboard never crowds the form. */
   .sheet--bottom { height: calc(var(--sheet-vh) - var(--sheet-gap) - env(safe-area-inset-top, 0px)); }
 }
@@ -98,6 +99,23 @@
 }
 .sheet--center .sheet__panel { max-height: calc(var(--sheet-vh) - 2 * var(--space-6)); }
 
+/* ---- Start drawer (side nav on phones) ---------------------------------- */
+.sheet--start {
+  --sheet-max-w: var(--layer-w-md);
+  width: min(calc(100% - var(--hit-min)), var(--sheet-max-w));  /* leave a strip to tap out */
+  height: 100dvh;
+  max-height: none;
+  margin: 0 auto 0 0;
+  inset: 0 auto 0 0;
+}
+.sheet--start .sheet__panel {
+  height: 100%;
+  border-radius: var(--radius-0) var(--panel-radius-bottom) var(--panel-radius-bottom) var(--radius-0);
+  border-left: 0;
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.sheet--start .sheet__body { padding: var(--space-3) var(--space-4); padding-left: max(var(--space-4), env(safe-area-inset-left, 0px)); }
+
 /* ---- Motion: enter and exit both animate (display/overlay discrete) ---- */
 .sheet,
 .sheet::backdrop {
@@ -109,10 +127,12 @@
 }
 .sheet--bottom:not([open]) { transform: translateY(100%); }
 .sheet--center:not([open]) { opacity: 0; transform: translateY(var(--space-4)); }
+.sheet--start:not([open]) { transform: translateX(-100%); }
 .sheet:not([open])::backdrop { opacity: 0; }
 @starting-style {
   .sheet--bottom[open] { transform: translateY(100%); }
   .sheet--center[open] { opacity: 0; transform: translateY(var(--space-4)); }
+  .sheet--start[open] { transform: translateX(-100%); }
   .sheet[open]::backdrop { opacity: 0; }
 }
 

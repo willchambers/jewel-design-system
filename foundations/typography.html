@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Typography · Jewel Design System</title>
+  <meta name="description" content="One typeface, Inter, does all the work. Hierarchy comes from size, weight and space, so the page reads calmly and the background can be loud.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="foundations/typography">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html" aria-current="page">Foundations</a>
+            <a href="../components/index.html">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../foundations/index.html">Foundations</a></li><li><span aria-current="page">Typography</span></li></ol>
+          </nav>
+          <h1>Typography</h1>
+          <p class="lede">One typeface, Inter, does all the work. Hierarchy comes from size, weight and space, so the page reads calmly and the background can be loud.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/base.css</code></dd></div><div><dt>Tokens</dt><dd><code>--font-*, --text-*, --leading-*, --tracking-*</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="typeface">
+          <header class="section-head"><p class="label">01 — Typeface</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Inter</h3>
+              <p>Every heading, label and paragraph is set in Inter. Code uses the system’s monospace font.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-cols">
+                  <p class="spec-typeface" aria-hidden="true">Aa</p>
+                  <dl class="meta">
+                    <dt class="label">Family</dt><dd>Inter</dd>
+                    <dt class="label">Source</dt><dd>Google Fonts, variable: weights 400 to 700, optical sizes 14 to 32</dd>
+                    <dt class="label">Fallback</dt><dd>Helvetica Neue, Helvetica, Roboto, Arial, sans-serif</dd>
+                    <dt class="label">Code</dt><dd>ui-monospace, SF Mono, Cascadia Mono, Roboto Mono, Menlo, Consolas</dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Principles</h3>
+              <ul class="spec-list">
+                <li>Hierarchy comes from size, weight and space, never from a second typeface.</li>
+                <li>One family, many voices: Inter at four weights covers display, headings, body and labels.</li>
+                <li>Body copy is 16px with a 1.6 line height, and lines stop at 64 characters.</li>
+                <li>Links carry a hairline underline that tightens on hover. Nothing else moves.</li>
+                <li>Captions and metadata step down in size and colour, not in family.</li>
+                <li>Labels are small, uppercase and widely tracked, so they read as metadata at a glance.</li>
+              </ul>
+            </div>
+            <div class="spec-block">
+              <h3>Load the font</h3>
+              <p>Add these lines to the <code>&lt;head&gt;</code>, before <code>jewel.css</code>.</p>
+              <div class="spec-example spec-example--bare" data-code="none">
+                <figure class="code" data-component="code">
+                  <figcaption class="code__head"><span class="code__lang">HTML</span><button class="code__copy" type="button">Copy</button></figcaption>
+                  <pre class="code__body" tabindex="0"><code>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&amp;display=swap"&gt;</code></pre>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="type-scale">
+          <header class="section-head"><p class="label">02 — Type scale</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Styles</h3>
+              <p>Every text style, largest first. Sizes are fluid: the first number is a 360px phone, the second a 1280px screen.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-type">
+                  <div class="spec-type__meta"><span class="label">Display</span><code>.display</code><span class="caption">48–128px · Bold 700 · leading 0.95 · tracking −0.045em</span></div>
+                  <p class="display">Quick brown fox</p>
+                </div>
+                <div class="spec-type">
+                  <div class="spec-type__meta"><span class="label">Heading 1</span><code>h1, .h1</code><span class="caption">40–80px · Semibold 600 · leading 1.02 · tracking −0.045em</span></div>
+                  <p class="h1">The quick brown fox</p>
+                </div>
+                <div class="spec-type">
+                  <div class="spec-type__meta"><span class="label">Heading 2</span><code>h2, .h2</code><span class="caption">28–44px · Semibold 600 · leading 1.08 · tracking −0.025em</span></div>
+                  <p class="h2">The quick brown fox jumps over the lazy dog</p>
+                </div>
+                <div class="spec-type">
+                  <div class="spec-type__meta"><span class="label">Heading 3</span><code>h3, .h3</code><span class="caption">22–28px · Semibold 600 · leading 1.2 · tracking −0.025em</span></div>
+                  <p class="h3">The quick brown fox jumps over the lazy dog</p>
+                </div>
+                <div class="spec-type">
+                  <div class="spec-type__meta"><span class="label">Heading 4</span><code>h4, .h4</code><span class="caption">18–20px · Semibold 600 · leading 1.2 · tracking −0.01em</span></div>
+                  <p class="h4">The quick brown fox jumps over the lazy dog</p>
+                </div>
+                <div class="spec-type">
+                  <div class="spec-type__meta"><span class="label">Lede</span><code>.lede</code><span class="caption">18–20px · Regular 400 · leading 1.5 · muted</span></div>
+                  <p class="lede">The quick brown fox jumps over the lazy dog.</p>
+                </div>
+                <div class="spec-type">
+                  <div class="spec-type__meta"><span class="label">Body</span><code>p</code><span class="caption">16px · Regular 400 · leading 1.6 · up to 64 characters a line</span></div>
+                  <p>The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. How vexingly quick daft zebras jump. Sphinx of black quartz, judge my vow.</p>
+                </div>
+                <div class="spec-type">
+                  <div class="spec-type__meta"><span class="label">Caption</span><code>.caption, small</code><span class="caption">14px · Regular 400 · leading 1.5 · muted</span></div>
+                  <p class="caption">The quick brown fox jumps over the lazy dog.</p>
+                </div>
+                <div class="spec-type">
+                  <div class="spec-type__meta"><span class="label">Label</span><code>.label</code><span class="caption">12px · Medium 500 · uppercase · tracking 0.12em · muted</span></div>
+                  <p class="label">The quick brown fox jumps over the lazy dog</p>
+                </div>
+                <div class="spec-type">
+                  <div class="spec-type__meta"><span class="label">Code</span><code>code, kbd, pre</code><span class="caption">System monospace at 0.9em</span></div>
+                  <p><code>The quick brown fox jumps over the lazy dog</code></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="weights">
+          <header class="section-head"><p class="label">03 — Weights</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Four weights</h3>
+              <p>Bold is for the display size only. Headings are semibold; labels are medium.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-weights">
+                  <div class="stack"><p class="label">Regular 400</p><p style="font-weight: var(--weight-regular)">Quiet type</p></div>
+                  <div class="stack"><p class="label">Medium 500</p><p style="font-weight: var(--weight-medium)">Quiet type</p></div>
+                  <div class="stack"><p class="label">Semibold 600</p><p style="font-weight: var(--weight-semibold)">Quiet type</p></div>
+                  <div class="stack"><p class="label">Bold 700</p><p style="font-weight: var(--weight-bold)">Quiet type</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="text-colours">
+          <header class="section-head"><p class="label">04 — Text colours</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>On glass and on solid</h3>
+              <p>Four text colours, set with <code>data-text</code> or the <code>--text-*</code> tokens. The same names work on both surfaces: on a solid panel the muted grey steps down a little, because nothing shows through. See <a href="surfaces.html">Panels and surfaces</a> for when to use each surface.</p>
+              <div class="spec-example">
+                <div class="spec-cols">
+                  <div class="panel panel--pad stack">
+                    <p class="label">Glass panel (default)</p>
+                    <p data-text="default">Default: the reading colour.</p>
+                    <p data-text="muted">Muted: captions and metadata.</p>
+                    <p data-text="accent">Accent: links and emphasis.</p>
+                    <p><span class="tag tag--solid">Inverse</span> on a light fill</p>
+                  </div>
+                  <div class="panel panel--pad stack" data-panel="solid">
+                    <p class="label">Solid panel</p>
+                    <p data-text="default">Default: the reading colour.</p>
+                    <p data-text="muted">Muted: captions and metadata.</p>
+                    <p data-text="accent">Accent: links and emphasis.</p>
+                    <p><span class="tag tag--solid">Inverse</span> on a light fill</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="links-and-inline-text">
+          <header class="section-head"><p class="label">05 — Links and inline text</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>In running text</h3>
+              <p>Links are the text colour with a hairline underline; on hover the underline tightens and the colour moves to the accent. <code>.link-quiet</code> hides the underline until hover, for wordmarks and lists of links.</p>
+              <div class="spec-example">
+                <p>Read the <a href="#">guide to tokens</a>, or browse the <a class="link-quiet" href="#">component list</a>. Link <code>css/jewel.css</code>, then press <kbd>/</kbd> to search. Use <strong>strong</strong> for the one phrase that matters, and <em>emphasis</em> sparingly.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">06 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>One <code>h1</code> per page, then headings in order. If a heading needs to look smaller, keep the right level and add <code>.h3</code> or <code>.h4</code>.</li>
+                  <li><code>.lede</code> for the paragraph that introduces a page.</li>
+                  <li><code>.label</code> for metadata: dates, categories, numbered section heads.</li>
+                  <li><code>.caption</code> for notes under figures, tables and forms.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>A second typeface, or a weight outside 400 to 700.</li>
+                  <li>Colour for emphasis. The accent is for links and focus, not for highlighting words.</li>
+                  <li>Uppercase paragraphs. Uppercase is for short labels only.</li>
+                  <li>Picking a heading level for its size. Screen readers use the levels to navigate.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="tokens">
+          <header class="section-head"><p class="label">07 — Tokens</p></header>
+          <div class="span-12 spec-body">
+            <div class="table-wrap">
+              <table class="table table--compact">
+                <caption class="visually-hidden">Tokens</caption>
+                <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">What it’s for</th></tr></thead>
+                <tbody>
+                  <tr><td><code>--font-sans</code></td><td><span class="table__muted" data-token="--font-sans"></span></td><td>Everything except code</td></tr>
+                  <tr><td><code>--font-mono</code></td><td><span class="table__muted" data-token="--font-mono"></span></td><td>Code, keys, samples</td></tr>
+                  <tr><td><code>--weight-regular</code></td><td><span class="table__muted" data-token="--weight-regular"></span></td><td>Body</td></tr>
+                  <tr><td><code>--weight-medium</code></td><td><span class="table__muted" data-token="--weight-medium"></span></td><td>Labels</td></tr>
+                  <tr><td><code>--weight-semibold</code></td><td><span class="table__muted" data-token="--weight-semibold"></span></td><td>Headings</td></tr>
+                  <tr><td><code>--weight-bold</code></td><td><span class="table__muted" data-token="--weight-bold"></span></td><td>Display</td></tr>
+                  <tr><td><code>--text-2xs</code></td><td><span class="table__muted" data-token="--text-2xs"></span></td><td>Micro badges only</td></tr>
+                  <tr><td><code>--text-xs</code></td><td><span class="table__muted" data-token="--text-xs"></span></td><td>Labels</td></tr>
+                  <tr><td><code>--text-sm</code></td><td><span class="table__muted" data-token="--text-sm"></span></td><td>Captions</td></tr>
+                  <tr><td><code>--text-base</code></td><td><span class="table__muted" data-token="--text-base"></span></td><td>Body</td></tr>
+                  <tr><td><code>--text-lg</code></td><td><span class="table__muted" data-token="--text-lg"></span></td><td>Lede, h4</td></tr>
+                  <tr><td><code>--text-xl</code></td><td><span class="table__muted" data-token="--text-xl"></span></td><td>h3</td></tr>
+                  <tr><td><code>--text-2xl</code></td><td><span class="table__muted" data-token="--text-2xl"></span></td><td>h2</td></tr>
+                  <tr><td><code>--text-3xl</code></td><td><span class="table__muted" data-token="--text-3xl"></span></td><td>h1</td></tr>
+                  <tr><td><code>--text-display</code></td><td><span class="table__muted" data-token="--text-display"></span></td><td>Display</td></tr>
+                  <tr><td><code>--text-code</code></td><td><span class="table__muted" data-token="--text-code"></span></td><td>Monospace size</td></tr>
+                  <tr><td><code>--leading-display</code></td><td><span class="table__muted" data-token="--leading-display"></span></td><td>Display</td></tr>
+                  <tr><td><code>--leading-tight</code></td><td><span class="table__muted" data-token="--leading-tight"></span></td><td>h1</td></tr>
+                  <tr><td><code>--leading-heading</code></td><td><span class="table__muted" data-token="--leading-heading"></span></td><td>h2</td></tr>
+                  <tr><td><code>--leading-snug</code></td><td><span class="table__muted" data-token="--leading-snug"></span></td><td>h3, h4</td></tr>
+                  <tr><td><code>--leading-label</code></td><td><span class="table__muted" data-token="--leading-label"></span></td><td>Labels</td></tr>
+                  <tr><td><code>--leading-compact</code></td><td><span class="table__muted" data-token="--leading-compact"></span></td><td>Lede, captions</td></tr>
+                  <tr><td><code>--leading-body</code></td><td><span class="table__muted" data-token="--leading-body"></span></td><td>Body</td></tr>
+                  <tr><td><code>--tracking-display</code></td><td><span class="table__muted" data-token="--tracking-display"></span></td><td>Display, h1</td></tr>
+                  <tr><td><code>--tracking-heading</code></td><td><span class="table__muted" data-token="--tracking-heading"></span></td><td>h2, h3</td></tr>
+                  <tr><td><code>--tracking-subheading</code></td><td><span class="table__muted" data-token="--tracking-subheading"></span></td><td>h4</td></tr>
+                  <tr><td><code>--tracking-body</code></td><td><span class="table__muted" data-token="--tracking-body"></span></td><td>Body</td></tr>
+                  <tr><td><code>--tracking-label</code></td><td><span class="table__muted" data-token="--tracking-label"></span></td><td>Labels</td></tr>
+                  <tr><td><code>--tracking-tag</code></td><td><span class="table__muted" data-token="--tracking-tag"></span></td><td>Tags</td></tr>
+                  <tr><td><code>--measure</code></td><td><span class="table__muted" data-token="--measure"></span></td><td>Longest line of body text</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

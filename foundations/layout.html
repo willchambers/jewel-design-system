@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Layout and grid · Jewel Design System</title>
+  <meta name="description" content="A centred page, a 12-column grid and four breakpoints. Phones get one column; from tablets up, content takes the columns you give it.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="foundations/layout">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html" aria-current="page">Foundations</a>
+            <a href="../components/index.html">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../foundations/index.html">Foundations</a></li><li><span aria-current="page">Layout and grid</span></li></ol>
+          </nav>
+          <h1>Layout and grid</h1>
+          <p class="lede">A centred page, a 12-column grid and four breakpoints. Phones get one column; from tablets up, content takes the columns you give it.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/base.css, css/components/panel.css, css/components/section-head.css</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="the-grid">
+          <header class="section-head"><p class="label">01 — The grid</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Twelve columns</h3>
+              <p>Put <code>.grid</code> on a container. Each child spans all 12 columns until you say otherwise. Gutters grow from 16px on a phone to 32px on a wide screen.</p>
+              <div class="spec-example" data-code="none">
+                <div class="grid spec-grid-ruler" aria-hidden="true"><div class="spec-col">1</div><div class="spec-col">2</div><div class="spec-col">3</div><div class="spec-col">4</div><div class="spec-col">5</div><div class="spec-col">6</div><div class="spec-col">7</div><div class="spec-col">8</div><div class="spec-col">9</div><div class="spec-col">10</div><div class="spec-col">11</div><div class="spec-col">12</div></div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>How to use it</h3>
+              <ul class="spec-list">
+                <li><code>.span-1</code> to <code>.span-12</code> set how many columns a child takes.</li>
+                <li><code>.start-1</code> to <code>.start-12</code> set the column it starts in. Combine them: <code>class="span-9 start-4"</code> runs from column 4 to 12.</li>
+                <li>Below 48rem (tablets) every child is full width, so phones get one column without extra classes.</li>
+                <li>Children that don’t fill a row wrap to the next one. Rows space themselves with <code>row-gap</code> (32px).</li>
+                <li>Nest a <code>.grid</code> inside a child to divide it again.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="common-layouts">
+          <header class="section-head"><p class="label">02 — Common layouts</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Halves</h3>
+              <p>Two equal columns: a form and its help, two cards.</p>
+              <div class="spec-example">
+                <div class="grid spec-grid-demo">
+                  <div class="spec-col span-6">span-6</div>
+                  <div class="spec-col span-6">span-6</div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Thirds</h3>
+              <p>Three cards or figures.</p>
+              <div class="spec-example">
+                <div class="grid spec-grid-demo">
+                  <div class="spec-col span-4">span-4</div>
+                  <div class="spec-col span-4">span-4</div>
+                  <div class="spec-col span-4">span-4</div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Sidebar and content</h3>
+              <p>A narrow column for a title or filters, and a wide one for content.</p>
+              <div class="spec-example">
+                <div class="grid spec-grid-demo">
+                  <div class="spec-col spec-col--muted span-3">span-3</div>
+                  <div class="spec-col span-9">span-9</div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Editorial offset</h3>
+              <p>Jewel’s signature: content panels start their content at column 4, under the section head, and leave the first three columns empty.</p>
+              <div class="spec-example">
+                <div class="grid spec-grid-demo">
+                  <div class="spec-col span-9 start-4">span-9 start-4</div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Centred</h3>
+              <p>A narrow centred column for reading.</p>
+              <div class="spec-example">
+                <div class="grid spec-grid-demo">
+                  <div class="spec-col span-8 start-3">span-8 start-3</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="breakpoints">
+          <header class="section-head"><p class="label">03 — Breakpoints</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Four breakpoints, mobile first</h3>
+              <p>Style the phone first, then add <code>min-width</code> rules. Custom properties can’t be read inside <code>@media</code>, so write the value and name the token beside it: <code>@media (min-width: 48rem) { … } /* --bp-md */</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">What changes</th></tr></thead>
+                  <tbody>
+                    <tr><td><code>--bp-sm</code></td><td>40rem, 640px</td><td>Large phones. Phone-only tweaks use <code>max-width: 40rem</code>; tables stack below it.</td></tr>
+                    <tr><td><code>--bp-md</code></td><td>48rem, 768px</td><td>Tablets. The grid opens up and the header shows its links instead of the menu button.</td></tr>
+                    <tr><td><code>--bp-lg</code></td><td>64rem, 1024px</td><td>Laptops. The side nav becomes a column beside the content.</td></tr>
+                    <tr><td><code>--bp-xl</code></td><td>80rem, 1280px</td><td>The page stops growing at <code>--page-max</code>.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="page-structure">
+          <header class="section-head"><p class="label">04 — Page structure</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>The frame</h3>
+              <p>A page is the background, the cap, then <code>.page</code> holding the sticky header and a column of content panels. The gradient shows between the panels.</p>
+              <div class="spec-example spec-example--bare" data-code="none">
+                <figure class="code" data-component="code">
+                  <figcaption class="code__head"><span class="code__lang">HTML</span><button class="code__copy" type="button">Copy</button></figcaption>
+                  <pre class="code__body" tabindex="0"><code>&lt;body&gt;
+  &lt;div class="jewel-bg" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;div class="jewel-cap" aria-hidden="true"&gt;&lt;/div&gt;
+  &lt;div class="page"&gt;
+    &lt;header class="site-header"&gt;…&lt;/header&gt;
+    &lt;main class="panel-stack"&gt;
+      &lt;section class="panel panel--pad grid"&gt;
+        &lt;header class="section-head"&gt;&lt;p class="label"&gt;01 — Section&lt;/p&gt;&lt;/header&gt;
+        &lt;div class="span-9 start-4"&gt;…&lt;/div&gt;
+      &lt;/section&gt;
+    &lt;/main&gt;
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+                </figure>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Section head</h3>
+              <p>A numbered label opens each content panel. The rule under it runs to both edges of the panel. Content follows in <code>span-9 start-4</code>.</p>
+              <div class="spec-example spec-example--tight">
+                <section class="panel panel--pad panel--content grid">
+                  <header class="section-head"><p class="label">01 — Typography</p></header>
+                  <div class="span-9 start-4 stack">
+                    <h2>One family, many voices</h2>
+                    <p>Content starts at column 4, under the label.</p>
+                  </div>
+                </section>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>With a side nav</h3>
+              <p>Wrap the page in <code>.with-side-nav</code> to put a sticky nav column beside the content from 64rem. This site is built that way; see <a href="../components/side-nav.html">Side nav</a>.</p>
+              <div class="spec-example spec-example--bare" data-code="none">
+                <figure class="code" data-component="code">
+                  <figcaption class="code__head"><span class="code__lang">HTML</span><button class="code__copy" type="button">Copy</button></figcaption>
+                  <pre class="code__body" tabindex="0"><code>&lt;div class="with-side-nav"&gt;
+  &lt;aside class="with-side-nav__aside panel"&gt;&lt;nav class="side-nav"&gt;…&lt;/nav&gt;&lt;/aside&gt;
+  &lt;main class="panel-stack"&gt;…&lt;/main&gt;
+&lt;/div&gt;</code></pre>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="stacking-order">
+          <header class="section-head"><p class="label">05 — Stacking order</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Z-index</h3>
+              <p>Use the scale, never a raw number. Sheets, the lightbox and pop-up menus open in the browser’s top layer, above everything.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <caption class="visually-hidden">Tokens</caption>
+                  <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">What it’s for</th></tr></thead>
+                  <tbody>
+                    <tr><td><code>--z-below</code></td><td><span class="table__muted" data-token="--z-below"></span></td><td>The animated background</td></tr>
+                    <tr><td><code>--z-base</code></td><td><span class="table__muted" data-token="--z-base"></span></td><td>Normal flow</td></tr>
+                    <tr><td><code>--z-raised</code></td><td><span class="table__muted" data-token="--z-raised"></span></td><td>Badges over photos, sticky table headers</td></tr>
+                    <tr><td><code>--z-overlay</code></td><td><span class="table__muted" data-token="--z-overlay"></span></td><td>Hover cards inside a component</td></tr>
+                    <tr><td><code>--z-cap</code></td><td><span class="table__muted" data-token="--z-cap"></span></td><td>The cap above the header</td></tr>
+                    <tr><td><code>--z-sticky</code></td><td><span class="table__muted" data-token="--z-sticky"></span></td><td>The sticky header</td></tr>
+                    <tr><td><code>--z-fab</code></td><td><span class="table__muted" data-token="--z-fab"></span></td><td>The floating action button</td></tr>
+                    <tr><td><code>--z-dropdown</code></td><td><span class="table__muted" data-token="--z-dropdown"></span></td><td>Menus, calendars, suggestions</td></tr>
+                    <tr><td><code>--z-drawer</code></td><td><span class="table__muted" data-token="--z-drawer"></span></td><td>The side nav drawer</td></tr>
+                    <tr><td><code>--z-toast</code></td><td><span class="table__muted" data-token="--z-toast"></span></td><td>Toasts, skip links</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">06 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li><code>.grid</code> for page-level layout; <code>.stack</code> and <code>.cluster</code> inside components.</li>
+                  <li><code>span-9 start-4</code> for the content of a content panel.</li>
+                  <li>Letting phones fall back to one column.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Fixed widths in pixels. Let the grid and <code>--page-max</code> decide.</li>
+                  <li>A breakpoint value that isn’t one of the four.</li>
+                  <li>Raw z-index numbers.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="tokens">
+          <header class="section-head"><p class="label">07 — Tokens</p></header>
+          <div class="span-12 spec-body">
+            <div class="table-wrap">
+              <table class="table table--compact">
+                <caption class="visually-hidden">Tokens</caption>
+                <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">What it’s for</th></tr></thead>
+                <tbody>
+                  <tr><td><code>--grid-columns</code></td><td><span class="table__muted" data-token="--grid-columns"></span></td><td>Columns in .grid</td></tr>
+                  <tr><td><code>--grid-gutter</code></td><td><span class="table__muted" data-token="--grid-gutter"></span></td><td>Space between columns</td></tr>
+                  <tr><td><code>--page-max</code></td><td><span class="table__muted" data-token="--page-max"></span></td><td>Widest the page gets</td></tr>
+                  <tr><td><code>--page-margin</code></td><td><span class="table__muted" data-token="--page-margin"></span></td><td>Space at the page edges</td></tr>
+                  <tr><td><code>--panel-padding</code></td><td><span class="table__muted" data-token="--panel-padding"></span></td><td>Inside a padded panel</td></tr>
+                  <tr><td><code>--sticky-offset</code></td><td><span class="table__muted" data-token="--sticky-offset"></span></td><td>Gap above the header</td></tr>
+                  <tr><td><code>--header-h</code></td><td><span class="table__muted" data-token="--header-h"></span></td><td>Header height</td></tr>
+                  <tr><td><code>--side-nav-w</code></td><td><span class="table__muted" data-token="--side-nav-w"></span></td><td>Side nav column</td></tr>
+                  <tr><td><code>--bp-sm</code></td><td><span class="table__muted" data-token="--bp-sm"></span></td><td>Large phones</td></tr>
+                  <tr><td><code>--bp-md</code></td><td><span class="table__muted" data-token="--bp-md"></span></td><td>Tablets</td></tr>
+                  <tr><td><code>--bp-lg</code></td><td><span class="table__muted" data-token="--bp-lg"></span></td><td>Laptops</td></tr>
+                  <tr><td><code>--bp-xl</code></td><td><span class="table__muted" data-token="--bp-xl"></span></td><td>Wide screens</td></tr>
+                  <tr><td><code>--layer-w-sm</code></td><td><span class="table__muted" data-token="--layer-w-sm"></span></td><td>Menus: minimum width</td></tr>
+                  <tr><td><code>--layer-w-md</code></td><td><span class="table__muted" data-token="--layer-w-md"></span></td><td>Menus: maximum width, drawer</td></tr>
+                  <tr><td><code>--layer-w-lg</code></td><td><span class="table__muted" data-token="--layer-w-lg"></span></td><td>Floating chat</td></tr>
+                  <tr><td><code>--layer-h</code></td><td><span class="table__muted" data-token="--layer-h"></span></td><td>Menus scroll past this</td></tr>
+                  <tr><td><code>--region-h</code></td><td><span class="table__muted" data-token="--region-h"></span></td><td>Tall code and tables scroll past this</td></tr>
+                  <tr><td><code>--chat-h</code></td><td><span class="table__muted" data-token="--chat-h"></span></td><td>Chat in a page</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Panels and surfaces · Jewel Design System</title>
+  <meta name="description" content="Everything sits on panels of dark glass over the moving gradient. Content panels carry Jewel’s signature corner: two hairlines cut through the top right.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="foundations/surfaces">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html" aria-current="page">Foundations</a>
+            <a href="../components/index.html">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../foundations/index.html">Foundations</a></li><li><span aria-current="page">Panels and surfaces</span></li></ol>
+          </nav>
+          <h1>Panels and surfaces</h1>
+          <p class="lede">Everything sits on panels of dark glass over the moving gradient. Content panels carry Jewel’s signature corner: two hairlines cut through the top right.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/panel.css, css/components/knockout.css, css/background.css</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="glass-and-solid">
+          <header class="section-head"><p class="label">01 — Glass and solid</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Two surfaces</h3>
+              <p>Glass (the default) is 86% near-black with a 24px blur, so the colour behind it glows through. Solid is fully opaque. Same panel, same text colours; only the surface tokens change.</p>
+              <div class="spec-example">
+                <div class="spec-backdrop">
+                  <div class="spec-cols">
+                    <div class="panel panel--pad stack">
+                      <p class="label">Glass · default</p>
+                      <p>The background glows through, softly.</p>
+                    </div>
+                    <div class="panel panel--pad stack" data-panel="solid">
+                      <p class="label">Solid · data-panel="solid"</p>
+                      <p>Nothing shows through.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>When to use solid</h3>
+              <ul class="spec-list">
+                <li>Over photography, where colour showing through would compete with the photo.</li>
+                <li>For print, where blur doesn’t exist.</li>
+                <li>Where blur is too costly: very large panels on low-powered phones.</li>
+                <li>Everywhere else, use glass. Put <code>data-panel="solid"</code> on any element and everything inside it switches.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="panel-shapes">
+          <header class="section-head"><p class="label">02 — Panel shapes</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Content panel</h3>
+              <p>Any panel directly inside <code>.panel-stack</code>, or one with <code>.panel--content</code>: square top left, a 2px top right with the knockout lines, and 10px bottom corners.</p>
+              <div class="spec-example">
+                <section class="panel panel--pad panel--content">
+                  <p>Content panel.</p>
+                </section>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Plain panel</h3>
+              <p>Every other panel is square: cards, nested panels, the header.</p>
+              <div class="spec-example">
+                <div class="panel panel--pad">
+                  <p>Plain panel.</p>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Knockout on anything</h3>
+              <p><code>.knockout</code> cuts the two lines into any element. <code>.no-knockout</code> removes them from a content panel. The lines are real holes, so the background shows through.</p>
+              <div class="spec-example">
+                <div class="spec-cols">
+                  <div class="panel panel--pad knockout"><p>.knockout on a plain panel</p></div>
+                  <div class="panel panel--pad panel--content no-knockout"><p>.no-knockout on a content panel</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="background">
+          <header class="section-head"><p class="label">03 — Background</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>The gradient</h3>
+              <p>The five Jewel colours drift slowly behind every page. It’s the only expressive element in the system. It freezes for people who prefer reduced motion, and <code>data-bg="paused"</code> on <code>&lt;html&gt;</code> stops it.</p>
+              <div class="spec-example" data-code="none">
+                <div class="cluster">
+                  <button class="btn btn--ghost toggle" type="button" data-spec-bg aria-pressed="false"><span class="toggle__off">Pause the background</span><span class="toggle__on">Restart the background</span></button>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Markup</h3>
+              <p>Put the background and the cap first in <code>&lt;body&gt;</code>. The cap hides content scrolling in the gap above the sticky header.</p>
+              <div class="spec-example spec-example--bare" data-code="none">
+                <figure class="code" data-component="code">
+                  <figcaption class="code__head"><span class="code__lang">HTML</span><button class="code__copy" type="button">Copy</button></figcaption>
+                  <pre class="code__body" tabindex="0"><code>&lt;div class="jewel-bg" aria-hidden="true"&gt;&lt;/div&gt;
+&lt;div class="jewel-cap" aria-hidden="true"&gt;&lt;/div&gt;</code></pre>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="shadow">
+          <header class="section-head"><p class="label">04 — Shadow</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Almost none</h3>
+              <p>Separation comes from glass and hairlines. One soft shadow exists for things that float over content.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-cols">
+                  <div class="panel panel--pad"><p class="label">--shadow-none</p></div>
+                  <div class="panel panel--pad" style="box-shadow: var(--shadow-float)"><p class="label">--shadow-float</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">05 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>Glass panels for all content.</li>
+                  <li>Content panels in a <code>.panel-stack</code>, with the gradient showing between them.</li>
+                  <li>Solid panels over photos and in print.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Panels inside panels with their own backgrounds. Nest plain blocks, or use hairlines.</li>
+                  <li>Shadows to separate things.</li>
+                  <li>Pop-ups that hang outside a content panel. The knockout mask clips them; open them with <code>Jewel.float()</code>.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="tokens">
+          <header class="section-head"><p class="label">06 — Tokens</p></header>
+          <div class="span-12 spec-body">
+            <div class="table-wrap">
+              <table class="table table--compact">
+                <caption class="visually-hidden">Tokens</caption>
+                <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">What it’s for</th></tr></thead>
+                <tbody>
+                  <tr><td><code>--panel-radius</code></td><td><span class="table__muted" data-token="--panel-radius"></span></td><td>All panels</td></tr>
+                  <tr><td><code>--panel-radius-top-right</code></td><td><span class="table__muted" data-token="--panel-radius-top-right"></span></td><td>Content panel, knockout corner</td></tr>
+                  <tr><td><code>--panel-radius-bottom</code></td><td><span class="table__muted" data-token="--panel-radius-bottom"></span></td><td>Content panel, bottom corners</td></tr>
+                  <tr><td><code>--knockout-offset</code></td><td><span class="table__muted" data-token="--knockout-offset"></span></td><td>Corner to first line</td></tr>
+                  <tr><td><code>--knockout-width</code></td><td><span class="table__muted" data-token="--knockout-width"></span></td><td>Line thickness</td></tr>
+                  <tr><td><code>--knockout-gap</code></td><td><span class="table__muted" data-token="--knockout-gap"></span></td><td>Space between the lines</td></tr>
+                  <tr><td><code>--glass-blur</code></td><td><span class="table__muted" data-token="--glass-blur"></span></td><td>Glass blur</td></tr>
+                  <tr><td><code>--glass-saturate</code></td><td><span class="table__muted" data-token="--glass-saturate"></span></td><td>Glass saturation</td></tr>
+                  <tr><td><code>--glass-fill</code></td><td><span class="table__muted" data-token="--glass-fill"></span></td><td>Glass fill</td></tr>
+                  <tr><td><code>--bg-speed</code></td><td><span class="table__muted" data-token="--bg-speed"></span></td><td>One cycle of the gradient</td></tr>
+                  <tr><td><code>--bg-intensity</code></td><td><span class="table__muted" data-token="--bg-intensity"></span></td><td>Strength of the gradient</td></tr>
+                  <tr><td><code>--bg-blur</code></td><td><span class="table__muted" data-token="--bg-blur"></span></td><td>Extra softening</td></tr>
+                  <tr><td><code>--bg-dim</code></td><td><span class="table__muted" data-token="--bg-dim"></span></td><td>Dark scrim over the gradient</td></tr>
+                  <tr><td><code>--shadow-none</code></td><td><span class="table__muted" data-token="--shadow-none"></span></td><td>Default</td></tr>
+                  <tr><td><code>--shadow-float</code></td><td><span class="table__muted" data-token="--shadow-float"></span></td><td>Floating things</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

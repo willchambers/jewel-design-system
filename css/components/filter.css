@@ -55,3 +55,8 @@
 
 /* Filtered-out items are hidden with [hidden]; utilities.css makes that
    win over any component's display rule. */
+
+/* Disabled: aria-disabled="true" on the group dims it and stops presses
+   (filter.js ignores clicks too). Single tags use .tag--button:disabled. */
+.filter[aria-disabled="true"] { opacity: var(--state-disabled-opacity); }
+.filter[aria-disabled="true"] .tag--button { pointer-events: none; }

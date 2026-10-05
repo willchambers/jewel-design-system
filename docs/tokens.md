@@ -9,6 +9,11 @@ A *token* is a named setting, written as a CSS custom property such as `--space-
 - [Space and layout](#space-and-layout)
 - [Panel shape and knockout lines](#panel-shape-and-knockout-lines)
 - [Radius, borders, shadow, motion, glass](#radius-borders-shadow-motion-glass)
+- [Breakpoints](#breakpoints)
+- [Control and icon sizes](#control-and-icon-sizes)
+- [Z-index](#z-index)
+- [Interaction states](#interaction-states)
+- [Layer and region sizes](#layer-and-region-sizes)
 - [Background](#background)
 - [Performance notes](#performance-notes)
 
@@ -81,6 +86,8 @@ The background's own palette: `--jewel-purple` `#6D28D9`, `--jewel-magenta` `#C0
 
 ## Type
 
+New in this version: `--font-mono` (code), `--text-2xs` (10px, micro badges only), `--text-code` (0.9em), `--leading-display` / `-heading` / `-label` / `-compact` (0.95 / 1.08 / 1.4 / 1.5) beside `--leading-tight` / `-snug` / `-body`, and `--tracking-subheading` (-0.01em, h4) and `--tracking-tag` (0.04em, tags and chips).
+
 | Token | Value | Use |
 |---|---|---|
 | `--font-sans` | Inter, then Helvetica Neue, Helvetica, Roboto, Arial | Everything |
@@ -110,6 +117,7 @@ The larger sizes are fluid: they scale between the two values as the screen goes
 | `--page-margin` | 16–56px, fluid |
 | `--panel-padding` | 24–48px, fluid |
 | `--sticky-offset` | 16px plus the iPhone status bar, when there is one: the gap above the sticky header |
+| `--header-h` | 4.125rem (66px): the sticky header bar's height |
 
 ## Panel shape and knockout lines
 
@@ -127,11 +135,78 @@ The larger sizes are fluid: they scale between the two values as the screen goes
 | Token | Value |
 |---|---|
 | `--radius-0` / `-1` / `-2` / `-3` / `-pill` | 0 / 2px / 4px / 8px / 999px |
+| `--radius-round` | 50% (dots, radios, round icon buttons) |
 | `--hairline` | 1px |
+| `--rule-strong` | 2px: the selected tab's rule, the current nav item's edge, tone edges, focus rings |
 | `--shadow-none` / `--shadow-float` | none / a very soft lift, used only by pop-up cards |
 | `--ease-standard` / `--ease-out` | Easing curves |
 | `--duration-fast` / `-base` / `-slow` | 120 / 200 / 400ms |
+| `--duration-spin` / `--duration-pulse` | 800ms (one turn of a busy spinner) / 1.4s (a busy dot, the chat's typing dots) |
 | `--glass-blur` / `--glass-saturate` | 24px / 140% |
+
+## Breakpoints
+
+| Token | Value | What changes there |
+|---|---|---|
+| `--bp-sm` | 40rem (640px) | Below it, phone-only tweaks: stacked tables, breadcrumbs as a back link, full-height sheets, the index list's two columns |
+| `--bp-md` | 48rem (768px) | The 12-column grid and two-column forms open up; the header shows its links instead of the menu button |
+| `--bp-lg` | 64rem (1024px) | The persistent side nav column appears (`.with-side-nav`) |
+| `--bp-xl` | 80rem (1280px) | Same as `--page-max`: the page stops growing |
+
+CSS can't read custom properties inside `@media`, so components write the value and name the token in a comment: `@media (min-width: 48rem) { /* --bp-md */ … }`. Design mobile first: style the phone, then add `min-width` rules. Scripts can read the tokens: `getComputedStyle(document.documentElement).getPropertyValue('--bp-md')` (the side nav does this).
+
+## Control and icon sizes
+
+| Token | Value | Used by |
+|---|---|---|
+| `--control-h-xs` | 1.5rem (24px) | Tags and chips you can't press |
+| `--control-h-sm` | 2rem (32px) | Touch-size tags, compact table rows |
+| `--control-h` | 2.5rem (40px) | Buttons, tabs, menu items and side nav links with a mouse |
+| `--control-h-touch` | 2.75rem (44px) | Fields, and every control on a touch screen |
+| `--control-h-lg` | 3.5rem (56px) | The floating action button, the chat header |
+| `--hit-min` | 2.75rem (44px) | The smallest tap area. Small controls reach it with an invisible `::before` or `::after` |
+| `--icon-xs` / `-sm` / `-md` / `-lg` | 14 / 16 / 22 / 28px | Spinners and chevrons / icons in buttons and fields / the fab and header actions / empty states and the drop zone |
+| `--icon-stroke` | 1.25 | Hairline icon stroke width (SVG units) |
+
+## Z-index
+
+One scale, so layers never fight. Menus, the date picker and search suggestions also open in the browser's top layer (see `Jewel.float` in [components.md](components.md#adding-a-component)), so no panel can clip them; the numbers matter only where that isn't supported.
+
+| Token | Value | What sits there |
+|---|---|---|
+| `--z-below` | -1 | The animated background |
+| `--z-base` | 0 | Page content |
+| `--z-raised` | 1 | Badges over photos, a sticky table header |
+| `--z-overlay` | 3 | Hover cards inside a component (chart tooltips) |
+| `--z-cap` | 9 | `.jewel-cap`, just under the header |
+| `--z-sticky` | 10 | The sticky header |
+| `--z-fab` | 20 | The floating action button |
+| `--z-dropdown` | 30 | Menus, the date picker, search suggestions |
+| `--z-drawer` | 40 | The side nav drawer, the floating chat window |
+| `--z-toast` | 50 | Reserved for toasts |
+
+## Interaction states
+
+Every component takes its hover, pressed, selected and disabled looks from these, so they feel the same everywhere.
+
+| Token | Value | Used for |
+|---|---|---|
+| `--state-hover-fill` | 6% of the text colour | Rows, menu items and icon buttons under the pointer |
+| `--state-pressed-fill` | 12% of the text colour | The same while pressed (`:active`) |
+| `--state-selected-fill` | 14% of the accent | Selected rows, the current side nav item, the open tab |
+| `--state-pressed-solid` | the accent, 22% toward the inverse | Filled buttons and filled tags while pressed |
+| `--state-disabled-opacity` | 0.55 | Disabled controls (they also go dashed and show `not-allowed`) |
+| `--state-pressed-scale` | 0.98 | Icon buttons and the fab dip slightly when pressed |
+
+## Layer and region sizes
+
+| Token | Value | Used by |
+|---|---|---|
+| `--layer-w-sm` / `-md` / `-lg` | 12 / 20 / 26rem | Menus' minimum width / menus' maximum width and the side nav drawer / the floating chat window |
+| `--layer-h` | 24rem | Menus and suggestion lists scroll past this |
+| `--region-h` | 28rem | `.code--tall` and `.table-wrap--tall` scroll past this |
+| `--side-nav-w` | 15rem | The persistent side nav column |
+| `--chat-h` | 40rem | The chat shell's height in a page (capped at 80% of the screen) |
 
 ## Background
 

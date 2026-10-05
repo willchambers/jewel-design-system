@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Motion · Jewel Design System</title>
+  <meta name="description" content="Quick and quiet. Things fade, slide a little and settle; nothing bounces. The background is the only thing that moves on its own.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="foundations/motion">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html" aria-current="page">Foundations</a>
+            <a href="../components/index.html">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../foundations/index.html">Foundations</a></li><li><span aria-current="page">Motion</span></li></ol>
+          </nav>
+          <h1>Motion</h1>
+          <p class="lede">Quick and quiet. Things fade, slide a little and settle; nothing bounces. The background is the only thing that moves on its own.</p>
+          <dl class="spec-files"><div><dt>Tokens</dt><dd><code>--duration-*, --ease-*</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="durations">
+          <header class="section-head"><p class="label">01 — Durations</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Three speeds</h3>
+              <p>Fast for hovers and presses, base for most changes, slow for things entering the page. Press Play to compare.</p>
+              <div class="spec-example" data-code="none">
+                <div class="stack" id="motion-durations">
+                  <button class="btn btn--ghost" type="button" data-spec-play="motion-durations" aria-pressed="false">Play</button>
+                  <div class="spec-motion">
+                    <div class="spec-scale__row"><code>--duration-fast</code><span data-token="--duration-fast"></span><span></span></div>
+                    <div class="spec-motion__track" style="--d: var(--duration-fast)"><span class="spec-motion__dot"></span></div>
+                  </div>
+                  <div class="spec-motion">
+                    <div class="spec-scale__row"><code>--duration-base</code><span data-token="--duration-base"></span><span></span></div>
+                    <div class="spec-motion__track" style="--d: var(--duration-base)"><span class="spec-motion__dot"></span></div>
+                  </div>
+                  <div class="spec-motion">
+                    <div class="spec-scale__row"><code>--duration-slow</code><span data-token="--duration-slow"></span><span></span></div>
+                    <div class="spec-motion__track" style="--d: var(--duration-slow)"><span class="spec-motion__dot"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="easing">
+          <header class="section-head"><p class="label">02 — Easing</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Two curves</h3>
+              <p>Standard for things that move within the page. Out for things arriving: they start fast and settle.</p>
+              <div class="spec-example" data-code="none">
+                <div class="stack" id="motion-easing">
+                  <button class="btn btn--ghost" type="button" data-spec-play="motion-easing" aria-pressed="false">Play</button>
+                  <div class="spec-motion">
+                    <div class="spec-scale__row"><code>--ease-standard</code><span data-token="--ease-standard"></span><span></span></div>
+                    <div class="spec-motion__track" style="--d: var(--duration-slow); --e: var(--ease-standard)"><span class="spec-motion__dot"></span></div>
+                  </div>
+                  <div class="spec-motion">
+                    <div class="spec-scale__row"><code>--ease-out</code><span data-token="--ease-out"></span><span></span></div>
+                    <div class="spec-motion__track" style="--d: var(--duration-slow); --e: var(--ease-out)"><span class="spec-motion__dot"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="reduced-motion">
+          <header class="section-head"><p class="label">03 — Reduced motion</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Respect the setting</h3>
+              <ul class="spec-list">
+                <li>When someone asks for reduced motion, transitions drop to almost nothing, the background freezes, video never autoplays, and charts appear finished.</li>
+                <li>Components handle this themselves. In your own CSS, wrap any movement in <code>@media (prefers-reduced-motion: no-preference)</code>, or read <code>Jewel.reducedMotion.matches</code> in a script.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">04 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>Fades and short slides that explain where something came from.</li>
+                  <li>The duration tokens, and one of the two curves.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Bounces, springs and parallax.</li>
+                  <li>Motion longer than <code>--duration-slow</code>, except the background and loading indicators.</li>
+                  <li>Animating layout (width, height) when opacity or a transform will do.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="tokens">
+          <header class="section-head"><p class="label">05 — Tokens</p></header>
+          <div class="span-12 spec-body">
+            <div class="table-wrap">
+              <table class="table table--compact">
+                <caption class="visually-hidden">Tokens</caption>
+                <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">What it’s for</th></tr></thead>
+                <tbody>
+                  <tr><td><code>--duration-fast</code></td><td><span class="table__muted" data-token="--duration-fast"></span></td><td>Hover, press</td></tr>
+                  <tr><td><code>--duration-base</code></td><td><span class="table__muted" data-token="--duration-base"></span></td><td>Most changes</td></tr>
+                  <tr><td><code>--duration-slow</code></td><td><span class="table__muted" data-token="--duration-slow"></span></td><td>Entering the page</td></tr>
+                  <tr><td><code>--duration-spin</code></td><td><span class="table__muted" data-token="--duration-spin"></span></td><td>One turn of a spinner</td></tr>
+                  <tr><td><code>--duration-pulse</code></td><td><span class="table__muted" data-token="--duration-pulse"></span></td><td>Busy badge dot</td></tr>
+                  <tr><td><code>--ease-standard</code></td><td><span class="table__muted" data-token="--ease-standard"></span></td><td>Moving within the page</td></tr>
+                  <tr><td><code>--ease-out</code></td><td><span class="table__muted" data-token="--ease-out"></span></td><td>Arriving</td></tr>
+                  <tr><td><code>--state-pressed-scale</code></td><td><span class="table__muted" data-token="--state-pressed-scale"></span></td><td>Small controls dip on press</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

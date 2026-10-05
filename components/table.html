@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Data table · Jewel Design System</title>
+  <meta name="description" content="Rows of records people scan, sort and select: hairline rows, small uppercase headers, and numbers right-aligned so they line up.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../js/components/table.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="components/table">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html" aria-current="page">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Data table</span></li></ol>
+          </nav>
+          <h1>Data table</h1>
+          <p class="lede">Rows of records people scan, sort and select: hairline rows, small uppercase headers, and numbers right-aligned so they line up.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/table.css</code></dd></div><div><dt>JS</dt><dd><code>js/components/table.js (optional)</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="variants">
+          <header class="section-head"><p class="label">01 — Variants</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Sortable and selectable</h3>
+              <p>Click a header to sort. <code>data-select</code> adds checkboxes and a select-all. On phones, <code>.table--stack</code> turns each row into label and value pairs.</p>
+              <div class="spec-example">
+                <div class="table-wrap" data-component="table" data-select>
+                  <table class="table table--stack">
+                    <caption class="table__caption">Recent uploads</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col" data-sort>Title</th>
+                        <th scope="col" data-sort="date">Posted</th>
+                        <th scope="col" class="is-num" data-sort="number">Views</th>
+                        <th scope="col"><span class="visually-hidden">Actions</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><th scope="row">Night bus</th><td><time datetime="2026-09-30">30 Sep</time></td><td class="is-num">1,204</td><td class="table__actions"><a class="btn btn--text" href="#">Edit</a></td></tr>
+                      <tr><th scope="row">Dayton at dusk</th><td><time datetime="2026-09-12">12 Sep</time></td><td class="is-num" data-value="12800">12.8k</td><td class="table__actions"><a class="btn btn--text" href="#">Edit</a></td></tr>
+                      <tr><th scope="row">Studio, morning</th><td><time datetime="2026-10-02">2 Oct</time></td><td class="is-num">87</td><td class="table__actions"><a class="btn btn--text" href="#">Edit</a></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Compact, no script</h3>
+              <p><code>.table--compact</code> has 32px rows. A plain table needs no script.</p>
+              <div class="spec-example">
+                <div class="table-wrap">
+                  <table class="table table--compact">
+                    <caption class="table__caption">Control heights</caption>
+                    <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col" class="is-num">px</th></tr></thead>
+                    <tbody>
+                      <tr><td><code>--control-h</code></td><td class="table__muted">2.5rem</td><td class="is-num">40</td></tr>
+                      <tr><td><code>--control-h-touch</code></td><td class="table__muted">2.75rem</td><td class="is-num">44</td></tr>
+                      <tr><td><code>--control-h-lg</code></td><td class="table__muted">3.5rem</td><td class="is-num">56</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Empty</h3>
+              <p>No rows? Put a compact empty state in one full-width cell.</p>
+              <div class="spec-example">
+                <div class="table-wrap">
+                  <table class="table">
+                    <caption class="table__caption">Drafts</caption>
+                    <thead><tr><th scope="col">Title</th><th scope="col">Edited</th></tr></thead>
+                    <tbody>
+                      <tr><td colspan="2">
+                        <div class="empty-state empty-state--compact">
+                          <h3 class="empty-state__title">No drafts</h3>
+                          <p class="empty-state__text">Posts you start and don’t publish are kept here.</p>
+                        </div>
+                      </td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="behaviour">
+          <header class="section-head"><p class="label">02 — Behaviour</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Script</h3>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">Name</th><th scope="col">Detail</th></tr></thead>
+                  <tbody>
+                    <tr><td>Sorting</td><td><code>th[data-sort]</code> sorts as text, <code>number</code> or <code>date</code>. A cell’s <code>data-value</code> or <code>&lt;time datetime&gt;</code> sorts in place of its text. Event: <code>jewel:sort</code>.</td></tr>
+                    <tr><td>Selection</td><td><code>data-select</code> on the wrap. Selected rows get <code>aria-selected="true"</code>. Event: <code>jewel:selectionchange</code>; API <code>wrap.jewelTable.selected()</code>.</td></tr>
+                    <tr><td>Size</td><td>Wide tables scroll sideways inside <code>.table-wrap</code>. <code>.table-wrap--tall</code> fixes the height with a sticky header.</td></tr>
+                    <tr><td>Rows as links</td><td><code>.table__link</code> on a row’s main link makes the whole row clickable.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">03 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>Records people compare across several columns.</li>
+                  <li><code>.is-num</code> on number columns, so digits line up.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Layout. Use the grid.</li>
+                  <li>Two columns of facts. Use a <a href="meta-list.html">meta list</a>.</li>
+                  <li>A chart’s data. Charts keep their own table view.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">04 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>A caption names the table. Headers use <code>scope</code>.</li>
+                <li>Sortable headers are buttons that announce the sort direction (<code>aria-sort</code>).</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

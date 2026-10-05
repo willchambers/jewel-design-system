@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Filter · Jewel Design System</title>
+  <meta name="description" content="A row of tag buttons that shows only the items that match. It reads tags from the items themselves and announces how many are showing.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../js/components/filter.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="components/filter">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html" aria-current="page">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Filter</span></li></ol>
+          </nav>
+          <h1>Filter</h1>
+          <p class="lede">A row of tag buttons that shows only the items that match. It reads tags from the items themselves and announces how many are showing.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/filter.css</code></dd></div><div><dt>JS</dt><dd><code>js/components/filter.js</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="variants">
+          <header class="section-head"><p class="label">01 — Variants</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Filter a list</h3>
+              <p>Items in the target carry <code>data-tags</code>. <code>data-filter="*"</code> shows everything.</p>
+              <div class="spec-example">
+                <div class="stack">
+                  <div class="filter cluster" data-component="filter" data-filter-target="#filter-demo" data-filter-noun="projects" role="group" aria-label="Filter by tag">
+                    <button class="tag tag--button" type="button" data-filter="*" aria-pressed="true">All</button>
+                    <button class="tag tag--button" type="button" data-filter="editorial" aria-pressed="false">Editorial</button>
+                    <button class="tag tag--button" type="button" data-filter="type" aria-pressed="false">Type</button>
+                    <button class="tag tag--button" type="button" data-filter="brand" aria-pressed="false">Brand</button>
+                    <span class="filter__status visually-hidden" aria-live="polite"></span>
+                  </div>
+                  <ol class="index" id="filter-demo">
+                    <li data-tags="editorial"><a class="index__row" href="#"><span class="label">01</span><span class="index__title">Northlight Quarterly</span><span class="label">Editorial · 2026</span></a></li>
+                    <li data-tags="brand"><a class="index__row" href="#"><span class="label">02</span><span class="index__title">Field Notes Identity</span><span class="label">Brand · 2025</span></a></li>
+                    <li data-tags="type editorial"><a class="index__row" href="#"><span class="label">03</span><span class="index__title">Tidal, a type specimen</span><span class="label">Type · 2025</span></a></li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Scrolling row</h3>
+              <p><code>.filter--scroll</code> keeps long tag lists on one row that scrolls sideways, out to the panel’s edges.</p>
+              <div class="spec-example">
+                <div class="filter filter--scroll cluster" data-component="filter" data-filter-target="#filter-demo-2" data-filter-noun="photos" role="group" aria-label="Filter photos by tag">
+                  <button class="tag tag--button" type="button" data-filter="*" aria-pressed="true">All</button>
+                  <button class="tag tag--button" type="button" data-filter="violet" aria-pressed="false">Violet</button>
+                  <button class="tag tag--button" type="button" data-filter="teal" aria-pressed="false">Teal</button>
+                  <button class="tag tag--button" type="button" data-filter="magenta" aria-pressed="false">Magenta</button>
+                  <button class="tag tag--button" type="button" data-filter="orange" aria-pressed="false">Orange</button>
+                  <button class="tag tag--button" type="button" data-filter="red" aria-pressed="false">Red</button>
+                  <button class="tag tag--button" type="button" data-filter="gradient" aria-pressed="false">Gradient</button>
+                  <button class="tag tag--button" type="button" data-filter="circle" aria-pressed="false">Circle</button>
+                  <button class="tag tag--button" type="button" data-filter="cover" aria-pressed="false">Cover</button>
+                  <button class="tag tag--button" type="button" data-filter="study" aria-pressed="false">Study</button>
+                  <button class="tag tag--button" type="button" data-filter="still" aria-pressed="false">Still</button>
+                  <span class="filter__status visually-hidden" aria-live="polite"></span>
+                </div>
+                <div id="filter-demo-2" hidden></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="behaviour">
+          <header class="section-head"><p class="label">02 — Behaviour</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Script</h3>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">Name</th><th scope="col">Detail</th></tr></thead>
+                  <tbody>
+                    <tr><td><code>data-filter-target</code></td><td>A selector for the container of items.</td></tr>
+                    <tr><td><code>data-filter-noun</code></td><td>The word in the announcement: “3 projects”.</td></tr>
+                    <tr><td>Links</td><td>Opening the page at <code>#tag=slug</code>, or following such a link, applies that tag.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">03 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>Narrowing a list or gallery by a handful of categories.</li>
+                  <li>Up to about a dozen tags; scroll the row past that.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Searching. Use <a href="search.html">search</a>.</li>
+                  <li>Switching views. Use <a href="tabs.html">tabs</a>.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">04 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>Pressable tags with <code>aria-pressed</code>, in a labelled group.</li>
+                <li>A polite live region announces the count after each change.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

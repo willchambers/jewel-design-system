@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sheet · Jewel Design System</title>
+  <meta name="description" content="A sheet is a dialog. It slides up from the bottom as a tearsheet, sits in the middle as a modal, or slides in from the left as a drawer. The insides are the same in all three.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="components/sheet">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html" aria-current="page">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Sheet</span></li></ol>
+          </nav>
+          <h1>Sheet</h1>
+          <p class="lede">A sheet is a dialog. It slides up from the bottom as a tearsheet, sits in the middle as a modal, or slides in from the left as a drawer. The insides are the same in all three.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/sheet.css</code></dd></div><div><dt>JS</dt><dd><code>js/components/sheet.js</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="variants">
+          <header class="section-head"><p class="label">01 — Variants</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Tearsheet, modal and drawer</h3>
+              <p>Each button opens a real sheet. The drawer here is the site’s menu.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-row">
+                  <button class="btn btn--ghost" type="button" data-sheet-open="demo-bottom">Open tearsheet</button>
+                  <button class="btn btn--ghost" type="button" data-sheet-open="demo-center">Open modal</button>
+                  <button class="btn btn--ghost" type="button" data-sheet-open="site-nav">Open drawer</button>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Markup</h3>
+              <p>Swap <code>.sheet--bottom</code> for <code>.sheet--center</code> or <code>.sheet--start</code>. Any element with <code>data-sheet-open="id"</code> opens it; <code>data-sheet-close</code> closes it.</p>
+              <div class="spec-example spec-example--bare" data-code="none">
+                <figure class="code" data-component="code">
+                  <figcaption class="code__head"><span class="code__lang">HTML</span><button class="code__copy" type="button">Copy</button></figcaption>
+                  <pre class="code__body" tabindex="0"><code>&lt;button class="btn" type="button" data-sheet-open="edit-sheet"&gt;Edit&lt;/button&gt;
+
+&lt;dialog class="sheet sheet--bottom" id="edit-sheet" data-component="sheet" aria-labelledby="edit-sheet-title"&gt;
+  &lt;div class="sheet__panel panel panel--content"&gt;
+    &lt;header class="sheet__head"&gt;
+      &lt;h2 class="sheet__title label" id="edit-sheet-title"&gt;Edit photo&lt;/h2&gt;
+      &lt;button class="btn btn--ghost btn--icon" type="button" data-sheet-close aria-label="Close"&gt;
+        &lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"&gt;&lt;path d="M6 6l12 12M18 6 6 18"/&gt;&lt;/svg&gt;
+      &lt;/button&gt;
+    &lt;/header&gt;
+    &lt;div class="sheet__body"&gt;…&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;</code></pre>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="behaviour">
+          <header class="section-head"><p class="label">02 — Behaviour</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Script</h3>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">Name</th><th scope="col">Detail</th></tr></thead>
+                  <tbody>
+                    <tr><td>Focus</td><td>Moves into the sheet, stays there, and returns to the button that opened it.</td></tr>
+                    <tr><td>Closing</td><td>Esc, the close button, or a click on the dimmed page. A form with unsaved changes asks first.</td></tr>
+                    <tr><td>Phones</td><td>The tearsheet goes full height and shrinks above the on-screen keyboard. The page can’t scroll behind it.</td></tr>
+                    <tr><td><code>jewel:sheetopen</code>, <code>jewel:sheetclose</code></td><td>Fire on the dialog.</td></tr>
+                    <tr><td><code>dialog.jewelSheet</code></td><td><code>.open(opener)</code>, <code>.close({ force })</code>, <code>.requestClose()</code>.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">03 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>Tearsheet: a task people finish and leave, such as a post form. Best on phones.</li>
+                  <li>Modal: a short decision or a small form.</li>
+                  <li>Drawer: navigation on phones.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Content people need to read alongside the page.</li>
+                  <li>A sheet that opens another sheet.</li>
+                  <li>Warnings that block for no reason. Use a notice in the page.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">04 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>A native <code>&lt;dialog&gt;</code>, labelled by its title with <code>aria-labelledby</code>.</li>
+                <li>The close button is an icon button with <code>aria-label="Close"</code>.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+  <dialog class="sheet sheet--bottom" id="demo-bottom" data-component="sheet" aria-labelledby="demo-bottom-title">
+    <div class="sheet__panel panel panel--content">
+      <header class="sheet__head">
+        <h2 class="sheet__title label" id="demo-bottom-title">Tearsheet</h2>
+        <button class="btn btn--ghost btn--icon" type="button" data-sheet-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </header>
+      <div class="sheet__body stack">
+        <p>A tearsheet slides up from the bottom. On a phone it fills the screen.</p>
+        <div class="form__actions"><button class="btn" type="button" data-sheet-close>Done</button></div>
+      </div>
+    </div>
+  </dialog>
+  <dialog class="sheet sheet--center" id="demo-center" data-component="sheet" aria-labelledby="demo-center-title">
+    <div class="sheet__panel panel panel--content">
+      <header class="sheet__head">
+        <h2 class="sheet__title label" id="demo-center-title">Delete this photo?</h2>
+        <button class="btn btn--ghost btn--icon" type="button" data-sheet-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </header>
+      <div class="sheet__body stack">
+        <p>It’s removed from your library and from any albums. You can’t undo this.</p>
+        <div class="form__actions"><button class="btn btn--text" type="button" data-sheet-close>Cancel</button><button class="btn" type="button" data-sheet-close>Delete</button></div>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

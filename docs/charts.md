@@ -1,6 +1,6 @@
 # Charts
 
-Line, area, bar, pie, donut and sparkline charts. They're hand-built SVG with no charting library. You can see them all in the [live specimen](https://willchambers.github.io/jewel-design-system/#charts).
+Line, area, bar, pie, donut and sparkline charts. They're hand-built SVG with no charting library. You can see them all in the [live specimen](https://willchambers.github.io/jewel-design-system/components/chart.html).
 
 ![Jewel's line chart of monthly rides by bike type, with labelled lines and a legend](images/jewel-charts.png)
 

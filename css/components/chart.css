@@ -97,7 +97,7 @@
 /* ---- Hover card --------------------------------------------------------- */
 .chart__tip {
   position: absolute;
-  z-index: 3;
+  z-index: var(--z-overlay);
   top: 0;
   left: 0;
   display: grid;
@@ -170,7 +170,7 @@
 .chart__data summary {
   display: inline-flex;
   align-items: center;
-  min-height: 2.75rem;
+  min-height: var(--hit-min);
   font-size: var(--text-sm);
   color: var(--text-muted);
   text-decoration: underline;

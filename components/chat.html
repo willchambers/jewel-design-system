@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Chat · Jewel Design System</title>
+  <meta name="description" content="The shell for a chatbot or assistant: a header, a scrolling conversation, suggested prompts and a composer. It has no backend; your code answers an event.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../js/components/chat.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="components/chat">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html" aria-current="page">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Chat</span></li></ol>
+          </nav>
+          <h1>Chat</h1>
+          <p class="lede">The shell for a chatbot or assistant: a header, a scrolling conversation, suggested prompts and a composer. It has no backend; your code answers an event.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/chat.css</code></dd></div><div><dt>JS</dt><dd><code>js/components/chat.js</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="example">
+          <header class="section-head"><p class="label">01 — Example</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>In a page</h3>
+              <p>Ask anything, or press a suggestion. This demo answers with a canned reply (<code>data-chat-demo</code>).</p>
+              <div class="spec-example spec-example--tight">
+                <section class="chat panel panel--content" data-component="chat" data-chat-demo aria-labelledby="chat-title">
+                  <header class="chat__head">
+                    <h2 class="chat__title label" id="chat-title">Assistant</h2>
+                    <span class="badge"><span class="badge__dot"></span>Online</span>
+                  </header>
+                  <ol class="chat__log" role="log" aria-label="Conversation">
+                    <li class="chat__msg chat__msg--bot">
+                      <p class="chat__author">Assistant</p>
+                      <div class="chat__text"><p>Hi. Ask me about your photos.</p></div>
+                    </li>
+                  </ol>
+                  <div class="chat__prompts cluster" aria-label="Suggestions">
+                    <button class="tag tag--button tag--touch" type="button" data-chat-prompt>Most viewed this month</button>
+                    <button class="tag tag--button tag--touch" type="button" data-chat-prompt>Photos from Dayton</button>
+                  </div>
+                  <form class="chat__composer">
+                    <label class="visually-hidden" for="chat-input">Message</label>
+                    <textarea class="chat__input" id="chat-input" rows="1" placeholder="Ask anything" required></textarea>
+                    <button class="btn btn--icon chat__send" type="submit" aria-label="Send">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </button>
+                  </form>
+                  <p class="chat__note">Answers can be wrong. Check anything important.</p>
+                </section>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="connect-it">
+          <header class="section-head"><p class="label">02 — Connect it</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Answer the event</h3>
+              <p><code>respond()</code> takes a string, <code>{ html }</code>, or a promise of either. A rejected promise shows the error with a Retry button.</p>
+              <div class="spec-example spec-example--bare" data-code="none">
+                <figure class="code" data-component="code">
+                  <figcaption class="code__head"><span class="code__lang">JS</span><button class="code__copy" type="button">Copy</button></figcaption>
+                  <pre class="code__body" tabindex="0"><code>chat.addEventListener('jewel:chatsend', (e) =&gt; {
+  e.detail.respond(
+    fetch('/ask', { method: 'POST', body: e.detail.text }).then((r) =&gt; r.text())
+  );
+});</code></pre>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="behaviour">
+          <header class="section-head"><p class="label">03 — Behaviour</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Script</h3>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">Name</th><th scope="col">Detail</th></tr></thead>
+                  <tbody>
+                    <tr><td>Keys</td><td>Enter sends, Shift+Enter is a new line. On touch screens Enter is always a new line.</td></tr>
+                    <tr><td>Prompts</td><td><code>[data-chat-prompt]</code> buttons send their own text and hide once the chat starts.</td></tr>
+                    <tr><td>Placement</td><td><code>.chat--floating</code> fixes it in the bottom-right corner (full screen on phones). It also fits in a <a href="sheet.html">sheet</a>.</td></tr>
+                    <tr><td><code>el.jewelChat</code></td><td><code>.add("user" | "bot", text)</code>, <code>.typing(true)</code>, <code>.clear()</code>.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">04 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>An assistant that answers questions about the person’s own content.</li>
+                  <li>Two or three suggested prompts that show what it can do.</li>
+                  <li>A note that answers can be wrong.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Pretending a person is answering.</li>
+                  <li>Long-form writing. Answers should be short and link onward.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">05 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>The conversation is a <code>role="log"</code>, so new replies are announced.</li>
+                <li>The composer has a visually hidden label; the send button has an <code>aria-label</code>.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

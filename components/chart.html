@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Chart · Jewel Design System</title>
+  <meta name="description" content="Line, area, bar, pie, donut and sparkline charts, drawn from a plain HTML table with no chart library. The table stays as the chart’s data view, so every number is readable without the chart.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../js/components/chart.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="components/chart">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html" aria-current="page">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Chart</span></li></ol>
+          </nav>
+          <h1>Chart</h1>
+          <p class="lede">Line, area, bar, pie, donut and sparkline charts, drawn from a plain HTML table with no chart library. The table stays as the chart’s data view, so every number is readable without the chart.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/chart.css</code></dd></div><div><dt>JS</dt><dd><code>js/components/chart.js</code></dd></div><div><dt>Docs</dt><dd><code>docs/charts.md</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="chart-types">
+          <header class="section-head"><p class="label">01 — Chart types</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Line chart</h3>
+              <p>Change over time, for up to five series. Hover or tap a point for its card; focus the chart and use the arrow keys.</p>
+              <div class="spec-example">
+                <figure class="chart" data-component="chart" data-type="line">
+                  <figcaption>
+                    <span class="chart__title">Monthly rides</span>
+                    <span class="chart__subtitle">By bike type, January to September 2026</span>
+                  </figcaption>
+                  <table>
+                    <thead><tr><th>Month</th><th>Classic</th><th>Electric</th><th>Cargo</th></tr></thead>
+                    <tbody>
+                      <tr><th>Jan</th><td>120,400</td><td>61,200</td><td>3,100</td></tr>
+                      <tr><th>Feb</th><td>118,200</td><td>63,900</td><td>3,300</td></tr>
+                      <tr><th>Mar</th><td>141,900</td><td>78,400</td><td>4,200</td></tr>
+                      <tr><th>Apr</th><td>152,300</td><td>92,100</td><td>5,600</td></tr>
+                      <tr><th>May</th><td>168,700</td><td>108,600</td><td>6,900</td></tr>
+                      <tr><th>Jun</th><td>171,200</td><td>117,300</td><td>7,400</td></tr>
+                      <tr><th>Jul</th><td>176,500</td><td>124,900</td><td>7,900</td></tr>
+                      <tr><th>Aug</th><td>169,800</td><td>121,400</td><td>7,600</td></tr>
+                      <tr><th>Sep</th><td>158,300</td><td>116,800</td><td>7,100</td></tr>
+                    </tbody>
+                  </table>
+                </figure>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Stacked area chart</h3>
+              <p><code>data-type="area" data-stacked</code>: how parts add up to a total over time.</p>
+              <div class="spec-example">
+                <figure class="chart" data-component="chart" data-type="area" data-stacked>
+                  <figcaption>
+                    <span class="chart__title">Rides through the day</span>
+                    <span class="chart__subtitle">Average weekday, stacked by ticket type</span>
+                  </figcaption>
+                  <table>
+                    <thead><tr><th>Time</th><th>Members</th><th>Day passes</th><th>Single rides</th></tr></thead>
+                    <tbody>
+                      <tr><th>6 am</th><td>420</td><td>40</td><td>60</td></tr>
+                      <tr><th>8 am</th><td>1,380</td><td>90</td><td>180</td></tr>
+                      <tr><th>10 am</th><td>610</td><td>210</td><td>160</td></tr>
+                      <tr><th>12 pm</th><td>720</td><td>380</td><td>240</td></tr>
+                      <tr><th>2 pm</th><td>680</td><td>420</td><td>230</td></tr>
+                      <tr><th>4 pm</th><td>1,120</td><td>360</td><td>260</td></tr>
+                      <tr><th>6 pm</th><td>1,450</td><td>290</td><td>310</td></tr>
+                      <tr><th>8 pm</th><td>640</td><td>210</td><td>220</td></tr>
+                      <tr><th>10 pm</th><td>260</td><td>80</td><td>120</td></tr>
+                    </tbody>
+                  </table>
+                </figure>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Bar chart</h3>
+              <p>Comparing amounts across categories.</p>
+              <div class="spec-example">
+                <figure class="chart" data-component="chart" data-type="bar">
+                  <figcaption>
+                    <span class="chart__title">Stations opened</span>
+                    <span class="chart__subtitle">Per year</span>
+                  </figcaption>
+                  <table>
+                    <thead><tr><th>Year</th><th>Stations</th></tr></thead>
+                    <tbody>
+                      <tr><th>2019</th><td>6</td></tr>
+                      <tr><th>2020</th><td>9</td></tr>
+                      <tr><th>2021</th><td>4</td></tr>
+                      <tr><th>2022</th><td>12</td></tr>
+                      <tr><th>2023</th><td>15</td></tr>
+                      <tr><th>2024</th><td>11</td></tr>
+                      <tr><th>2025</th><td>18</td></tr>
+                      <tr><th>2026</th><td>21</td></tr>
+                    </tbody>
+                  </table>
+                </figure>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Grouped bar chart</h3>
+              <p>Two or more series side by side in each category.</p>
+              <div class="spec-example">
+                <figure class="chart" data-component="chart" data-type="bar">
+                  <figcaption>
+                    <span class="chart__title">Average daily rides</span>
+                    <span class="chart__subtitle">By day of the week, 2025 and 2026</span>
+                  </figcaption>
+                  <table>
+                    <thead><tr><th>Day</th><th>2025</th><th>2026</th></tr></thead>
+                    <tbody>
+                      <tr><th>Mon</th><td>7,820</td><td>8,640</td></tr>
+                      <tr><th>Tue</th><td>8,110</td><td>8,920</td></tr>
+                      <tr><th>Wed</th><td>8,240</td><td>9,180</td></tr>
+                      <tr><th>Thu</th><td>8,050</td><td>8,970</td></tr>
+                      <tr><th>Fri</th><td>7,630</td><td>8,410</td></tr>
+                      <tr><th>Sat</th><td>6,120</td><td>7,050</td></tr>
+                      <tr><th>Sun</th><td>5,480</td><td>6,230</td></tr>
+                    </tbody>
+                  </table>
+                </figure>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Pie chart</h3>
+              <p>Parts of one whole, up to six slices.</p>
+              <div class="spec-example">
+                <figure class="chart" data-component="chart" data-type="pie">
+                  <figcaption>
+                    <span class="chart__title">Why people ride</span>
+                    <span class="chart__subtitle">Rider survey, 2026</span>
+                  </figcaption>
+                  <table>
+                    <thead><tr><th>Purpose</th><th>Share of trips</th></tr></thead>
+                    <tbody>
+                      <tr><th>Commuting</th><td>46%</td></tr>
+                      <tr><th>Leisure</th><td>24%</td></tr>
+                      <tr><th>Errands</th><td>18%</td></tr>
+                      <tr><th>Exercise</th><td>12%</td></tr>
+                    </tbody>
+                  </table>
+                </figure>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Donut chart</h3>
+              <p>A pie with the total in the middle. Set the centre with <code>data-center-label</code>.</p>
+              <div class="spec-example">
+                <figure class="chart" data-component="chart" data-type="donut" data-center-label="Bikes">
+                  <figcaption>
+                    <span class="chart__title">The fleet</span>
+                    <span class="chart__subtitle">By bike type, September 2026</span>
+                  </figcaption>
+                  <table>
+                    <thead><tr><th>Bike type</th><th>Bikes</th></tr></thead>
+                    <tbody>
+                      <tr><th>Classic</th><td>620</td></tr>
+                      <tr><th>Electric</th><td>340</td></tr>
+                      <tr><th>Cargo</th><td>40</td></tr>
+                    </tbody>
+                  </table>
+                </figure>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Sparkline</h3>
+              <p>A tiny trend line for inside a <a href="stat.html">stat</a>. It takes its data from attributes and says the trend in its <code>aria-label</code>.</p>
+              <div class="spec-example">
+                <dl class="stats">
+                  <div class="stat">
+                    <dt class="stat__label">Members</dt>
+                    <dd class="stat__value">12.4<span class="stat__unit">K</span></dd>
+                    <dd><span class="sparkline" data-component="chart" data-type="sparkline" data-name="Members" data-values="9100,9400,9900,10400,10900,11300,11800,12100,12400" data-labels="Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep" aria-label="Members, January to September 2026: up from 9,100 to 12,400"></span></dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="options">
+          <header class="section-head"><p class="label">02 — Options</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Attributes</h3>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">Option</th><th scope="col">Values</th></tr></thead>
+                  <tbody>
+                    <tr><td><code>data-type</code></td><td><code>line</code>, <code>area</code>, <code>bar</code>, <code>pie</code>, <code>donut</code>, <code>sparkline</code></td></tr>
+                    <tr><td><code>data-stacked</code></td><td>Stack area or bar series.</td></tr>
+                    <tr><td><code>data-prefix</code>, <code>data-suffix</code></td><td>For axis ticks: $, %, h.</td></tr>
+                    <tr><td><code>data-height</code></td><td>Plot height in px (default 260).</td></tr>
+                    <tr><td><code>data-center-label</code>, <code>data-center-value</code></td><td>The donut’s centre (default: Total and the sum).</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">03 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>The first column for categories; each further column is a series.</li>
+                  <li>Cells written as they should read (“42%”, “120,400”). The hover card shows your text.</li>
+                  <li>A title on every chart that says what it shows.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>More than five series. The sixth turns grey; fold extras into Other or split the chart.</li>
+                  <li>Series colours on text.</li>
+                  <li>Pie charts with more than six slices.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">04 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>Every chart keeps its table behind a “Show data” link, and the table is all that shows without a script.</li>
+                <li>Charts can be tabbed to; arrows step through points and a live region reads each one.</li>
+                <li>The palette is checked for colour-blind contrast, and lines are labelled at their ends where they don’t collide.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

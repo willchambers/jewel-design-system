@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Accordion · Jewel Design System</title>
+  <meta name="description" content="Stacked sections that open in place. It’s built on native details elements, so it works without a script and find-in-page opens the right section.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../js/components/accordion.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="components/accordion">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html" aria-current="page">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Accordion</span></li></ol>
+          </nav>
+          <h1>Accordion</h1>
+          <p class="lede">Stacked sections that open in place. It’s built on native details elements, so it works without a script and find-in-page opens the right section.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/accordion.css</code></dd></div><div><dt>JS</dt><dd><code>js/components/accordion.js (optional)</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="variants">
+          <header class="section-head"><p class="label">01 — Variants</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>One open at a time</h3>
+              <p>Give every item the same <code>name</code>, and opening one closes the others. A label can sit at the right of a heading.</p>
+              <div class="spec-example">
+                <div class="accordion" data-component="accordion">
+                  <details class="accordion__item" name="faq" open>
+                    <summary class="accordion__head">What sizes can I upload?</summary>
+                    <div class="accordion__body"><p>JPG, PNG, HEIC or WebP, up to 20 MB.</p></div>
+                  </details>
+                  <details class="accordion__item" name="faq">
+                    <summary class="accordion__head">Who can see my photos? <span class="accordion__meta">Privacy</span></summary>
+                    <div class="accordion__body"><p>Anyone with the link, unless you make the post private.</p></div>
+                  </details>
+                  <details class="accordion__item" name="faq">
+                    <summary class="accordion__head" aria-disabled="true">Can I sell prints?</summary>
+                    <div class="accordion__body"><p>Not yet.</p></div>
+                  </details>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Flush</h3>
+              <p><code>.accordion--flush</code> drops the outer rules, for inside a list or against a panel’s edge. Without a shared <code>name</code>, several can be open.</p>
+              <div class="spec-example">
+                <div class="accordion accordion--flush">
+                  <details class="accordion__item">
+                    <summary class="accordion__head">Camera</summary>
+                    <div class="accordion__body"><p>Fujifilm X100V</p></div>
+                  </details>
+                  <details class="accordion__item">
+                    <summary class="accordion__head">Licence</summary>
+                    <div class="accordion__body"><p>All rights reserved.</p></div>
+                  </details>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="behaviour">
+          <header class="section-head"><p class="label">02 — Behaviour</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Script</h3>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">Name</th><th scope="col">Detail</th></tr></thead>
+                  <tbody>
+                    <tr><td>Without a script</td><td>Opening and closing, keyboard and find-in-page all work.</td></tr>
+                    <tr><td><code>aria-disabled="true"</code></td><td>On a summary, keeps that item shut (needs <code>accordion.js</code>).</td></tr>
+                    <tr><td><code>el.jewelAccordion</code></td><td><code>.openAll()</code> and <code>.closeAll()</code>.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">03 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>Questions and answers, settings groups, long details people only sometimes need.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Content everyone needs. Don’t hide it.</li>
+                  <li>A single item. Use a link or show it.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">04 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>Native <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code>: screen readers announce expanded and collapsed.</li>
+                <li>Keep headings short; the summary is read every time someone tabs past it.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

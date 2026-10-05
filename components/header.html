@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Header · Jewel Design System</title>
+  <meta name="description" content="The sticky glass bar at the top of every page: the wordmark, the main links and any actions. On phones the links fold into a menu that opens the side nav as a drawer.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../js/components/search.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="components/header">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html" aria-current="page">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Header</span></li></ol>
+          </nav>
+          <h1>Header</h1>
+          <p class="lede">The sticky glass bar at the top of every page: the wordmark, the main links and any actions. On phones the links fold into a menu that opens the side nav as a drawer.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/header.css</code></dd></div><div><dt>JS</dt><dd><code>js/components/sheet.js, js/components/side-nav.js (phone menu)</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="options">
+          <header class="section-head"><p class="label">01 — Options</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>A. Links</h3>
+              <p>The default, and what this site uses. Up to five links, with the current page underlined. Below 48rem the links fold into the menu button.</p>
+              <div class="spec-example">
+                <header class="site-header">
+                  <div class="panel site-header__inner">
+                    <a class="wordmark link-quiet" href="#">Jewel</a>
+                    <nav class="nav" aria-label="Primary">
+                      <span class="nav__links">
+                        <a href="#" aria-current="page">Work</a>
+                        <a href="#">About</a>
+                        <a href="#">Journal</a>
+                        <a href="#">Contact</a>
+                      </span>
+                      <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                      </button>
+                    </nav>
+                  </div>
+                </header>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>B. Links and an action</h3>
+              <p>For apps with one main action. The button stays visible on phones beside the menu button.</p>
+              <div class="spec-example">
+                <header class="site-header">
+                  <div class="panel site-header__inner">
+                    <a class="wordmark link-quiet" href="#">Jewel</a>
+                    <nav class="nav" aria-label="Primary">
+                      <span class="nav__links">
+                        <a href="#" aria-current="page">Feed</a>
+                        <a href="#">Library</a>
+                        <a href="#">Stats</a>
+                      </span>
+                      <a class="btn" href="#">New post</a>
+                      <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                      </button>
+                    </nav>
+                  </div>
+                </header>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>C. Search</h3>
+              <p>For sites people search more than browse. The search takes the spare width; on phones it hides, so put one in the drawer or at the top of the page.</p>
+              <div class="spec-example">
+                <header class="site-header">
+                  <div class="panel site-header__inner">
+                    <a class="wordmark link-quiet" href="#">Jewel</a>
+                    <nav class="nav" aria-label="Primary">
+                      <form class="search nav__search" role="search" data-component="search">
+                        <label class="visually-hidden" for="header-q">Search</label>
+                        <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg>
+                        <input class="search__input" id="header-q" type="search" placeholder="Search photos" autocomplete="off">
+                        <button class="search__clear" type="button" aria-label="Clear search" hidden>×</button>
+                      </form>
+                      <span class="nav__links">
+                        <a href="#">Library</a>
+                        <a href="#">About</a>
+                      </span>
+                      <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                      </button>
+                    </nav>
+                  </div>
+                </header>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>D. Menu only</h3>
+              <p><code>.nav--drawer</code> shows the menu button at every width and never the links. For apps with many sections, where a side nav does the work.</p>
+              <div class="spec-example">
+                <header class="site-header">
+                  <div class="panel site-header__inner">
+                    <a class="wordmark link-quiet" href="#">Jewel</a>
+                    <nav class="nav nav--drawer" aria-label="Primary">
+                      <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                      </button>
+                    </nav>
+                  </div>
+                </header>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="in-a-page">
+          <header class="section-head"><p class="label">02 — In a page</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Markup</h3>
+              <p>Put the header first inside <code>.page</code>, after the background and the cap. The menu button opens the side nav drawer: see <a href="side-nav.html">Side nav</a>.</p>
+              <div class="spec-example spec-example--bare" data-code="none">
+                <figure class="code" data-component="code">
+                  <figcaption class="code__head"><span class="code__lang">HTML</span><button class="code__copy" type="button">Copy</button></figcaption>
+                  <pre class="code__body" tabindex="0"><code>&lt;div class="jewel-bg" aria-hidden="true"&gt;&lt;/div&gt;
+&lt;div class="jewel-cap" aria-hidden="true"&gt;&lt;/div&gt;
+&lt;div class="page"&gt;
+  &lt;header class="site-header"&gt;
+    &lt;div class="panel site-header__inner"&gt;
+      &lt;a class="wordmark link-quiet" href="/"&gt;Jewel&lt;/a&gt;
+      &lt;nav class="nav" aria-label="Primary"&gt;
+        &lt;span class="nav__links"&gt;
+          &lt;a href="/work/" aria-current="page"&gt;Work&lt;/a&gt;
+          &lt;a href="/about/"&gt;About&lt;/a&gt;
+        &lt;/span&gt;
+        &lt;button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav"&gt;
+          &lt;svg viewBox="0 0 24 24" aria-hidden="true"&gt;&lt;path d="M4 7h16M4 12h16M4 17h16"/&gt;&lt;/svg&gt;
+        &lt;/button&gt;
+      &lt;/nav&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+  …
+&lt;/div&gt;</code></pre>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">03 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>One header per page, the same on every page.</li>
+                  <li>Short link labels, one word where possible.</li>
+                  <li><code>.nav--keep</code> instead of a menu button when there are only two or three links: they wrap on phones.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>More than five links. Move the rest into a side nav.</li>
+                  <li>A theme toggle. Jewel is dark only.</li>
+                  <li>Hiding links on phones with no menu button.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">04 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>The nav is a landmark labelled “Primary”. Mark the current page with <code>aria-current="page"</code>.</li>
+                <li>The menu button keeps <code>aria-expanded</code> in step with the drawer.</li>
+                <li>Add a skip link before the header so keyboard users can jump to the content, as this site does.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

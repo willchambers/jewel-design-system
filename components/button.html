@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Button · Jewel Design System</title>
+  <meta name="description" content="Buttons start an action: send a form, open a sheet, follow a step. One filled button per view carries the main action; ghost and text buttons carry the rest.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="components/button">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html" aria-current="page">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Button</span></li></ol>
+          </nav>
+          <h1>Button</h1>
+          <p class="lede">Buttons start an action: send a form, open a sheet, follow a step. One filled button per view carries the main action; ghost and text buttons carry the rest.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/button.css</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="variants">
+          <header class="section-head"><p class="label">01 — Variants</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Primary, ghost and text</h3>
+              <p>Primary is filled, for the main action. Ghost has a hairline edge, for the others. Text looks like a link, for low-key actions such as Cancel.</p>
+              <div class="spec-example">
+                <div class="spec-row">
+                  <button class="btn" type="button">Primary</button>
+                  <button class="btn btn--ghost" type="button">Ghost</button>
+                  <button class="btn btn--text" type="button">Text</button>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Icon button</h3>
+              <p>A square button with a hairline icon. It must have an <code>aria-label</code>.</p>
+              <div class="spec-example">
+                <div class="spec-row">
+                  <button class="btn btn--ghost btn--icon" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+                  <button class="btn btn--icon" type="button" aria-label="Add"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Toggle</h3>
+              <p>A button that stays pressed, such as Follow and Following. It swaps its label and keeps <code>aria-pressed</code> in step.</p>
+              <div class="spec-example">
+                <div class="spec-row">
+                  <button class="btn btn--ghost toggle" type="button" aria-pressed="false"><span class="toggle__on">Following</span><span class="toggle__off">Follow</span></button>
+                  <button class="btn btn--ghost toggle" type="button" aria-pressed="true"><span class="toggle__on">Following</span><span class="toggle__off">Follow</span></button>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>As a link</h3>
+              <p>Use an <code>&lt;a&gt;</code> when the button goes somewhere, and a <code>&lt;button&gt;</code> when it does something on the page.</p>
+              <div class="spec-example">
+                <div class="spec-row">
+                  <a class="btn" href="#">Read the guide</a>
+                  <a class="btn btn--ghost" href="#">View on GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="states">
+          <header class="section-head"><p class="label">02 — States</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Hover, pressed, busy and disabled</h3>
+              <p>Press and hold to see the pressed state. <code>aria-busy="true"</code> shows a hairline spinner; the form sets it while sending. Disabled buttons dim and their edge turns dashed.</p>
+              <div class="spec-example">
+                <div class="spec-row">
+                  <button class="btn" type="button">Press me</button>
+                  <button class="btn" type="button" aria-busy="true" disabled>Sending…</button>
+                  <button class="btn" type="button" disabled>Disabled</button>
+                  <button class="btn btn--ghost" type="button" disabled>Disabled</button>
+                  <button class="btn btn--text" type="button" disabled>Disabled</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">03 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>One primary button per view, for the action most people want.</li>
+                  <li>Verbs that say what happens: Post, Save changes, Delete photo.</li>
+                  <li>Text buttons for Cancel, Clear and other ways out.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Two primary buttons side by side. Make one ghost.</li>
+                  <li>Buttons for navigation between pages. Use a link.</li>
+                  <li>Icon buttons without a label, or icons nobody will recognise.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">04 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>Buttons are 40px tall with a mouse and grow to 44px on touch screens.</li>
+                <li>Every icon button needs an <code>aria-label</code>; the SVG inside gets <code>aria-hidden="true"</code>.</li>
+                <li>Toggles use <code>aria-pressed</code>, so screen readers say “pressed” or “not pressed”.</li>
+                <li>Prefer the <code>disabled</code> attribute for actions that can’t happen yet, and say why nearby.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

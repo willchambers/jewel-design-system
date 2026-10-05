@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Media · Jewel Design System</title>
+  <meta name="description" content="An editorial project page: a wide lead image, a portrait study beside a looping clip, the facts in a meta list and one line pulled out as a quote.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../js/components/video.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="patterns/media">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html">Components</a>
+            <a href="../patterns/index.html" aria-current="page">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><span aria-current="page">Media</span></li></ol>
+          </nav>
+          <h1>Media</h1>
+          <p class="lede">An editorial project page: a wide lead image, a portrait study beside a looping clip, the facts in a meta list and one line pulled out as a quote.</p>
+          <dl class="spec-files"><div><dt>JS</dt><dd><code>video.js</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="example">
+          <header class="section-head"><p class="label">01 — Example</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Project page</h3>
+              <p>Figures sit on the 12-column grid. The lead image bleeds to the panel’s edges.</p>
+              <div class="spec-example">
+                <div class="grid">
+                  <figure class="figure figure--wide span-12">
+                    <div class="figure__media">
+                      <div class="art art--a"></div>
+                      <span class="badge" data-place="top-left">Private</span>
+                    </div>
+                    <figcaption class="figure__caption"><span><strong>Northlight Quarterly</strong> — cover system, issue 12.</span><span class="label">Fig. 1</span></figcaption>
+                  </figure>
+                  <figure class="figure figure--tall span-5">
+                    <div class="figure__media"><div class="art art--b"></div></div>
+                    <figcaption class="figure__caption"><span><strong>Field Notes</strong> — mark study.</span><span class="label">Fig. 2</span></figcaption>
+                  </figure>
+                  <figure class="figure video span-7" data-component="video">
+                    <div class="figure__media" style="--ratio: 16 / 10">
+                      <div class="art art--c"></div>
+                      <video loop muted playsinline preload="metadata">
+                        <!-- <source src="media/your-clip.mp4" type="video/mp4"> -->
+                      </video>
+                      <button class="btn btn--icon video__control" type="button" data-video-toggle aria-label="Play video">
+                        <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                        <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h3v14H7zM14 5h3v14h-3z"/></svg>
+                      </button>
+                    </div>
+                    <figcaption class="figure__caption"><span><strong>Tidal</strong> — motion reel, 0:42.</span><span class="label">Fig. 3</span></figcaption>
+                  </figure>
+                  <dl class="meta span-5">
+                    <dt class="label">Role</dt><dd>Art direction, design</dd>
+                    <dt class="label">Client</dt><dd>Northlight Press</dd>
+                    <dt class="label">Year</dt><dd>2026</dd>
+                  </dl>
+                  <blockquote class="quote span-7">
+                    <p>Whitespace is the most expensive material on the page, so spend it deliberately.</p>
+                    <footer class="label">Studio note</footer>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="built-from">
+          <header class="section-head"><p class="label">02 — Built from</p></header>
+          <div class="span-12 spec-body">
+            <ul class="spec-cards">
+              <li><a class="spec-card" href="../components/figure.html"><span class="spec-card__title">Figure</span><span class="spec-card__text">Wide and tall figures with captions.</span></a></li>
+              <li><a class="spec-card" href="../components/video.html"><span class="spec-card__title">Video</span><span class="spec-card__text">The looping clip.</span></a></li>
+              <li><a class="spec-card" href="../components/badge.html"><span class="spec-card__title">Badge</span><span class="spec-card__text">Status over the lead image.</span></a></li>
+              <li><a class="spec-card" href="../components/meta-list.html"><span class="spec-card__title">Meta list</span><span class="spec-card__text">The project’s facts.</span></a></li>
+              <li><a class="spec-card" href="../components/quote.html"><span class="spec-card__title">Quote</span><span class="spec-card__text">One line pulled out.</span></a></li>
+            </ul>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="guidelines">
+          <header class="section-head"><p class="label">03 — Guidelines</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>One wide lead image, then a rhythm of smaller ones.</li>
+                  <li>Captions that add context; alt text that describes.</li>
+                  <li>Silent loops only, paused for reduced motion.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Several clips playing at once.</li>
+                  <li>Text over photos, except badges.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -9,7 +9,7 @@ A dark, editorial design system for websites and web apps, made from plain HTML,
 ## What you get
 
 - **A look, ready to use.** Glass panels float over a slowly moving jewel-tone gradient. The type is Inter, with clear sizes and thin rules.
-- **Components.** Buttons, tags, forms, stats, charts, notices, photo galleries and more, each one a class name you add to normal HTML.
+- **33 components and 5 patterns.** Navigation, forms, tabs, menus, dialogs, tables, charts, a chat shell and more, each one a class name you add to normal HTML.
 - **Accessibility built in.** Every colour pair is checked for contrast. Everything works with a keyboard and respects "reduce motion".
 - **No tooling.** It's plain files. It even works when you open the page straight from a folder on your computer.
 - **Easy to change.** Colours, spacing, corners and motion are all *tokens* (named settings) that you can override in one place.
@@ -104,24 +104,53 @@ A *component* is a ready-made piece of interface. You use one by adding its clas
 
 | Component | What it's for | Class to use | Script | See it |
 |---|---|---|---|---|
-| Panel | The glass card everything sits on | `.panel`, `.panel--pad` | | [live](https://willchambers.github.io/jewel-design-system/#type) |
-| Section head | A numbered label with a rule across the panel | `.section-head` | | [live](https://willchambers.github.io/jewel-design-system/#type) |
-| Button | Actions and links | `.btn`, `.btn--ghost`, `.btn--text` | | [live](https://willchambers.github.io/jewel-design-system/#components) |
-| Tag | Categories and filter buttons | `.tag`, `.tag--solid`, `.tag--button` | | [live](https://willchambers.github.io/jewel-design-system/#components) |
-| Notice | Info, update and error messages | `.notice`, `.notice--accent`, `.notice--error` | | [live](https://willchambers.github.io/jewel-design-system/#components) |
-| Index list | A numbered list of linked rows | `.index`, `.index__row` | | [live](https://willchambers.github.io/jewel-design-system/#components) |
-| Meta list | Label/value rows | `.meta` | | [live](https://willchambers.github.io/jewel-design-system/#components) |
-| Filter | Tag buttons that show and hide items | `.filter`, `.filter--scroll` | `filter.js` | [live](https://willchambers.github.io/jewel-design-system/#components) |
-| Figure | An image with a caption | `.figure`, `.figure__media` | | [live](https://willchambers.github.io/jewel-design-system/#media) |
-| Video | A looping clip with play/pause | `.figure.video` | `video.js` | [live](https://willchambers.github.io/jewel-design-system/#media) |
-| Badge | A status or count on a photo | `.badge` | | [live](https://willchambers.github.io/jewel-design-system/#media) |
-| Lightbox | Full-screen photo viewer | `data-component="lightbox"` | `lightbox.js` | [live](https://willchambers.github.io/jewel-design-system/#media) |
-| Form fields | Inputs, checkboxes, tags, photo upload | `.form`, `.field`, `.input`, `.choice` | `form.js` (+ `tag-input.js`, `dropzone.js`) | [live](https://willchambers.github.io/jewel-design-system/#forms) |
-| Sheet and + button | A panel that slides up, opened by a floating button | `.sheet`, `.fab` | `sheet.js` | [live](https://willchambers.github.io/jewel-design-system/#forms) |
-| Stat | A label with a big number | `.stats`, `.stat` | | [live](https://willchambers.github.io/jewel-design-system/#data) |
-| Chart | Line, area, bar, pie, donut, sparkline | `.chart` | `chart.js` | [live](https://willchambers.github.io/jewel-design-system/#charts) |
+| Button | Actions and links, plus a two-state toggle | `.btn`, `.btn--ghost`, `.btn--text`, `.btn--icon`, `.toggle` |  | [page](https://willchambers.github.io/jewel-design-system/components/button.html) |
+| Floating action button | The page's one main action, fixed bottom right | `.fab`, `.fab--extended` | `sheet.js` to open a sheet | [page](https://willchambers.github.io/jewel-design-system/components/fab.html) |
+| Tag | Categories, linked tags and filter buttons | `.tag`, `.tag--solid`, `.tag--button` |  | [page](https://willchambers.github.io/jewel-design-system/components/tag.html) |
+| Badge | A status or count, often over a photo | `.badge`, `data-place` |  | [page](https://willchambers.github.io/jewel-design-system/components/badge.html) |
+| Header | The sticky bar with links, search or a menu | `.site-header`, `.nav`, `.nav__menu`, `.nav--drawer` | `sheet.js`, `side-nav.js` (phone menu) | [page](https://willchambers.github.io/jewel-design-system/components/header.html) |
+| Side nav | Grouped page links: a column on wide screens, a drawer on phones | `.side-nav`, `.with-side-nav` | `side-nav.js`, `sheet.js` | [page](https://willchambers.github.io/jewel-design-system/components/side-nav.html) |
+| Breadcrumbs | Where this page sits | `.breadcrumbs` |  | [page](https://willchambers.github.io/jewel-design-system/components/breadcrumbs.html) |
+| Tabs | Switch between views in place | `.tabs` | `tabs.js` | [page](https://willchambers.github.io/jewel-design-system/components/tabs.html) |
+| Footer | Small print at the foot of the page | `.site-footer` |  | [page](https://willchambers.github.io/jewel-design-system/components/footer.html) |
+| Accordion | Sections that open in place | `.accordion` | `accordion.js` (optional) | [page](https://willchambers.github.io/jewel-design-system/components/accordion.html) |
+| Dropdown | A short menu of actions or choices | `.dropdown` | `dropdown.js` | [page](https://willchambers.github.io/jewel-design-system/components/dropdown.html) |
+| Sheet | Tearsheet, modal or drawer dialog | `.sheet--bottom`, `.sheet--center`, `.sheet--start` | `sheet.js` | [page](https://willchambers.github.io/jewel-design-system/components/sheet.html) |
+| Lightbox | Full-screen photo viewer | `data-component="lightbox"` | `lightbox.js` | [page](https://willchambers.github.io/jewel-design-system/components/lightbox.html) |
+| Text field | Inputs, text areas and selects with labels and errors | `.field`, `.input`, `.select` | `form.js` | [page](https://willchambers.github.io/jewel-design-system/components/text-field.html) |
+| Checkbox, radio, switch | Choices | `.choice` |  | [page](https://willchambers.github.io/jewel-design-system/components/choice.html) |
+| Tag input | Type words to make tags | `.tag-input` | `form.js`, `tag-input.js` | [page](https://willchambers.github.io/jewel-design-system/components/tag-input.html) |
+| Drop zone | Pick one photo, with a preview | `.dropzone` | `form.js`, `dropzone.js` | [page](https://willchambers.github.io/jewel-design-system/components/dropzone.html) |
+| Date picker | Type a date or pick from a calendar | `.datepicker` | `form.js`, `datepicker.js` | [page](https://willchambers.github.io/jewel-design-system/components/date-picker.html) |
+| Search | A search box with suggestions | `.search`, `.search--quiet` | `search.js` | [page](https://willchambers.github.io/jewel-design-system/components/search.html) |
+| Filter | Tag buttons that show and hide items | `.filter`, `.filter--scroll` | `filter.js` | [page](https://willchambers.github.io/jewel-design-system/components/filter.html) |
+| Notice | Info, update and error messages | `.notice`, `.notice--accent`, `.notice--error` |  | [page](https://willchambers.github.io/jewel-design-system/components/notice.html) |
+| Progress | How far along a task is | `.progress` |  | [page](https://willchambers.github.io/jewel-design-system/components/progress.html) |
+| Empty state | What to show when there's nothing yet | `.empty-state` |  | [page](https://willchambers.github.io/jewel-design-system/components/empty-state.html) |
+| Figure | An image with a caption | `.figure`, `.figure__media` |  | [page](https://willchambers.github.io/jewel-design-system/components/figure.html) |
+| Video | A looping clip with play and pause | `.figure.video` | `video.js` | [page](https://willchambers.github.io/jewel-design-system/components/video.html) |
+| Index list | Numbered rows of linked items | `.index`, `.index__row` |  | [page](https://willchambers.github.io/jewel-design-system/components/index-list.html) |
+| Meta list | Label and value rows | `.meta` |  | [page](https://willchambers.github.io/jewel-design-system/components/meta-list.html) |
+| Quote | A pull quote | `.quote` |  | [page](https://willchambers.github.io/jewel-design-system/components/quote.html) |
+| Code snippet | Code with a Copy button | `.code` | `code.js` | [page](https://willchambers.github.io/jewel-design-system/components/code.html) |
+| Stat | A label with a big number | `.stats`, `.stat` |  | [page](https://willchambers.github.io/jewel-design-system/components/stat.html) |
+| Data table | Sortable, selectable rows of records | `.table`, `.table-wrap` | `table.js` (optional) | [page](https://willchambers.github.io/jewel-design-system/components/table.html) |
+| Chart | Line, area, bar, pie, donut, sparkline | `.chart`, `.sparkline` | `chart.js` | [page](https://willchambers.github.io/jewel-design-system/components/chart.html) |
+| Chat | The shell for an AI assistant | `.chat` | `chat.js` | [page](https://willchambers.github.io/jewel-design-system/components/chat.html) |
 
-Every component's full markup and options are in [docs/components.md](docs/components.md).
+Every component's full markup and options are in [docs/components.md](docs/components.md). Panels, the grid, section heads and the type scale are covered under [Foundations](https://willchambers.github.io/jewel-design-system/foundations/index.html).
+
+### Patterns
+
+Patterns show components working together. Each has a working example you can copy.
+
+| Pattern | What it shows |
+|---|---|
+| [Forms](https://willchambers.github.io/jewel-design-system/patterns/forms.html) | A complete form: groups, validation, messages and a busy state |
+| [Posting a photo](https://willchambers.github.io/jewel-design-system/patterns/posting-a-photo.html) | Floating button, sheet and post form, end to end |
+| [Tags and photos](https://willchambers.github.io/jewel-design-system/patterns/tags-and-photos.html) | A photo wall with a tag filter, badges and a lightbox |
+| [Data](https://willchambers.github.io/jewel-design-system/patterns/data.html) | A report page: a hero number, stats, a chart and a table |
+| [Media](https://willchambers.github.io/jewel-design-system/patterns/media.html) | An editorial layout of figures, video, facts and a quote |
 
 ### Example: a row of stats
 
@@ -195,6 +224,27 @@ Change `data-type` to `area`, `bar`, `pie` or `donut` for other charts. The tabl
 
 Leave out `notice--error` for general information, or use `notice--accent` for good news.
 
+## Using Jewel in a web app
+
+Jewel is plain HTML and CSS, so it works with any framework (React, Vue, Svelte) or none. Link `css/jewel.css` once, then use the class names in your templates.
+
+Components with behaviour (tabs, dropdowns, forms, charts…) are wired up when the page loads. If your app adds markup later, call `Jewel.mount()` on the new part:
+
+```js
+container.innerHTML = renderPhotos(photos);   // your code
+Jewel.mount(container);                       // wires up any data-component inside it
+```
+
+Components tell your code what happened with events, so you never edit Jewel's scripts:
+
+```js
+document.querySelector('#post-form').addEventListener('jewel:post', (e) => {
+  e.detail.waitUntil(upload(e.detail.formData));   // the form stays busy until this settles
+});
+```
+
+Each component's page lists its events, and [docs/components.md](docs/components.md) has the full list.
+
 ## Customising
 
 Jewel's settings are *tokens*: named values like `--bg-speed` or `--panel-radius-bottom`. Every component reads its colours, sizes and timings from them, so changing a token changes everything that uses it.
@@ -227,6 +277,7 @@ Your stylesheet always wins over Jewel's, because Jewel puts its own styles in *
    @import url("components/your-name.css") layer(components);
    ```
 3. If it needs behaviour, copy `js/components/_template.js` the same way and load it after `jewel.js`.
+4. Show it on the specimen: copy a page in `components/`, and add one line to the `NAV` list in `specimen/specimen.js`.
 
 Use tokens, not raw colours or pixel values, so your component fits in automatically. The full rules are in [docs/components.md](docs/components.md#adding-a-component).
 
@@ -273,4 +324,18 @@ Details and the contrast measurements are in [docs/accessibility.md](docs/access
 - [docs/charts.md](docs/charts.md): chart types, options, behaviour and the colour palette
 - [docs/tokens.md](docs/tokens.md): every token, what it does, and performance notes
 - [docs/accessibility.md](docs/accessibility.md): what's built in, keyboard behaviour and all contrast measurements
-- [The live specimen](https://willchambers.github.io/jewel-design-system/): every component on one page, with its source in [index.html](index.html)
+- [The live specimen](https://willchambers.github.io/jewel-design-system/): a page for every foundation, component and pattern, with live examples and copy-paste code. Open `index.html` from the download to browse it offline.
+
+## What's in the folder
+
+```
+css/            the system: link css/jewel.css
+js/             jewel.js and one script per component that needs one
+docs/           the full reference
+index.html      the specimen site's home page
+foundations/    specimen pages: type, colour, spacing, layout, surfaces, motion
+components/     specimen pages: one per component
+patterns/       specimen pages: components working together
+specimen/       styles and scripts for the specimen site only (not part of the system)
+media/          artwork used on the specimen
+```

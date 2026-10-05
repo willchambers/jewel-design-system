@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Data · Jewel Design System</title>
+  <meta name="description" content="A report page: one headline number, the figures that explain it, a chart of the trend and a table of the detail. Numbers stay plain; the charts carry the colour.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../js/components/chart.js" defer></script>
+  <script src="../js/components/table.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="patterns/data">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html">Components</a>
+            <a href="../patterns/index.html" aria-current="page">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../patterns/index.html">Patterns</a></li><li><span aria-current="page">Data</span></li></ol>
+          </nav>
+          <h1>Data</h1>
+          <p class="lede">A report page: one headline number, the figures that explain it, a chart of the trend and a table of the detail. Numbers stay plain; the charts carry the colour.</p>
+          <dl class="spec-files"><div><dt>JS</dt><dd><code>chart.js, table.js</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="example">
+          <header class="section-head"><p class="label">01 — Example</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>City bike-share, 2026</h3>
+              <p>Sample figures. Hover or tap the chart; sort the table.</p>
+              <div class="spec-example">
+                <div class="stack spec-data-report">
+                  <dl class="stats">
+                    <div class="stat stat--hero">
+                      <dt class="stat__label">Rides this year</dt>
+                      <dd class="stat__value">2.1<span class="stat__unit">M</span></dd>
+                      <dd class="stat__note">Across 148 stations, January to September 2026</dd>
+                    </div>
+                  </dl>
+                  <dl class="stats">
+                    <div class="stat"><dt class="stat__label">Stations</dt><dd class="stat__value">148</dd></div>
+                    <div class="stat"><dt class="stat__label">Bikes in the fleet</dt><dd class="stat__value">1,000</dd></div>
+                    <div class="stat">
+                      <dt class="stat__label">Members</dt>
+                      <dd class="stat__value">12.4<span class="stat__unit">K</span></dd>
+                      <dd><span class="sparkline" data-component="chart" data-type="sparkline" data-name="Members" data-values="9100,9400,9900,10400,10900,11300,11800,12100,12400" data-labels="Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep" aria-label="Members, January to September 2026: up from 9,100 to 12,400"></span></dd>
+                    </div>
+                    <div class="stat"><dt class="stat__label">Average trip</dt><dd class="stat__value">14<span class="stat__unit">min</span></dd></div>
+                  </dl>
+                  <figure class="chart" data-component="chart" data-type="line">
+                    <figcaption>
+                      <span class="chart__title">Monthly rides</span>
+                      <span class="chart__subtitle">By bike type, January to September 2026</span>
+                    </figcaption>
+                    <table>
+                      <thead><tr><th>Month</th><th>Classic</th><th>Electric</th><th>Cargo</th></tr></thead>
+                      <tbody>
+                        <tr><th>Jan</th><td>120,400</td><td>61,200</td><td>3,100</td></tr>
+                        <tr><th>Feb</th><td>118,200</td><td>63,900</td><td>3,300</td></tr>
+                        <tr><th>Mar</th><td>141,900</td><td>78,400</td><td>4,200</td></tr>
+                        <tr><th>Apr</th><td>152,300</td><td>92,100</td><td>5,600</td></tr>
+                        <tr><th>May</th><td>168,700</td><td>108,600</td><td>6,900</td></tr>
+                        <tr><th>Jun</th><td>171,200</td><td>117,300</td><td>7,400</td></tr>
+                        <tr><th>Jul</th><td>176,500</td><td>124,900</td><td>7,900</td></tr>
+                        <tr><th>Aug</th><td>169,800</td><td>121,400</td><td>7,600</td></tr>
+                        <tr><th>Sep</th><td>158,300</td><td>116,800</td><td>7,100</td></tr>
+                      </tbody>
+                    </table>
+                  </figure>
+                  <div class="table-wrap" data-component="table">
+                    <table class="table table--stack">
+                      <caption class="table__caption">Busiest stations, September</caption>
+                      <thead>
+                        <tr>
+                          <th scope="col" data-sort>Station</th>
+                          <th scope="col" data-sort>Area</th>
+                          <th scope="col" class="is-num" data-sort="number">Rides</th>
+                          <th scope="col" class="is-num" data-sort="number">Change</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><th scope="row">Courthouse Square</th><td>Downtown</td><td class="is-num">4,812</td><td class="is-num" data-value="12">+12%</td></tr>
+                        <tr><th scope="row">RiverScape</th><td>Waterfront</td><td class="is-num">4,105</td><td class="is-num" data-value="31">+31%</td></tr>
+                        <tr><th scope="row">Oregon District</th><td>East</td><td class="is-num">3,640</td><td class="is-num" data-value="-4">−4%</td></tr>
+                        <tr><th scope="row">University Circle</th><td>South</td><td class="is-num">3,377</td><td class="is-num" data-value="8">+8%</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="built-from">
+          <header class="section-head"><p class="label">02 — Built from</p></header>
+          <div class="span-12 spec-body">
+            <ul class="spec-cards">
+              <li><a class="spec-card" href="../components/stat.html"><span class="spec-card__title">Stat</span><span class="spec-card__text">The hero figure and the row of key numbers.</span></a></li>
+              <li><a class="spec-card" href="../components/chart.html"><span class="spec-card__title">Chart</span><span class="spec-card__text">The trend, and the sparkline in a stat.</span></a></li>
+              <li><a class="spec-card" href="../components/table.html"><span class="spec-card__title">Data table</span><span class="spec-card__text">The detail, sortable.</span></a></li>
+            </ul>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="guidelines">
+          <header class="section-head"><p class="label">03 — Guidelines</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>Lead with the one number people came for.</li>
+                  <li>Say what each number covers: the period, the place.</li>
+                  <li>A chart for the shape of the data, a table for the exact values.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Colour on numbers to mean good or bad. Use words: “up a third”.</li>
+                  <li>A chart for one or two numbers. Use stats.</li>
+                  <li>Dashboards where every panel shouts. One hero per page.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,220 @@
+/* ==========================================================================
+   Jewel specimen site — styles for these pages only. Not part of the
+   system: nothing here ships in css/jewel.css, and an app never links it.
+
+   It sits outside the cascade layers, so it wins over the system without
+   !important. It uses the system's tokens like any page CSS should.
+   ========================================================================== */
+
+/* Screenshot mode (?static): no load animations. */
+.jewel-static [data-anim] { transition: none !important; }
+
+/* ---- Shell ---------------------------------------------------------------- */
+.spec-skip {
+  position: fixed;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: var(--z-toast);
+  padding: var(--space-2) var(--space-4);
+  background: var(--surface-solid);
+  border: var(--hairline) solid var(--field-border);
+  transform: translateY(-200%);
+}
+.spec-skip:focus { transform: none; }
+
+.spec-layout { margin-top: var(--space-4); }
+.spec-layout > .panel-stack { margin-top: 0; }
+.spec-layout .with-side-nav__aside:empty { min-height: 60vh; }
+
+/* Page head: breadcrumbs, a large title and a description (Carbon-style). */
+.spec-head { display: grid; gap: var(--space-5); }
+.spec-head h1 { margin-top: var(--space-6); max-width: 18ch; }
+.spec-head .lede { max-width: 52ch; }
+.spec-files { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); font-size: var(--text-sm); color: var(--text-muted); }
+.spec-files dt { font-size: var(--text-xs); font-weight: var(--weight-medium); letter-spacing: var(--tracking-label); text-transform: uppercase; align-self: center; }
+.spec-files div { display: flex; gap: var(--space-2); align-items: baseline; }
+
+/* ---- Sections and blocks ------------------------------------------------- */
+.spec-body { display: grid; gap: var(--space-8); min-width: 0; }
+/* A block: an H3 lead-in with a rule under it, a line of description, then
+   the example and its code. */
+.spec-block { display: grid; gap: var(--space-4); min-width: 0; }
+.spec-block > h3 {
+  padding-bottom: var(--space-3);
+  border-bottom: var(--hairline) solid var(--panel-border);
+}
+.spec-block > p { color: var(--text-muted); }
+
+/* The example canvas: a hairline frame with room around the component. */
+.spec-example {
+  min-width: 0;
+  padding: var(--space-6) var(--space-5);
+  border: var(--hairline) solid var(--panel-border);
+}
+.spec-example--bare { padding: 0; border: 0; }
+.spec-example--tight { padding: var(--space-4); }
+.spec-example > .stack, .spec-source.stack { --stack-gap: var(--space-5); }
+.spec-row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+.spec-row--tags { gap: var(--space-3) var(--space-2); }
+.spec-cols { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr)); align-items: start; }
+.spec-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3); align-items: start; }
+
+/* Headers inside an example don't stick to the top of the page. */
+.spec-example .site-header { position: static; margin-top: 0; }
+.spec-example .site-header + .site-header { margin-top: var(--space-4); }
+.spec-example .site-footer { padding-top: var(--space-5); }
+
+/* Code under an example. */
+.spec-code > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--control-h);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  cursor: pointer;
+  list-style: none;
+}
+.spec-code > summary::-webkit-details-marker { display: none; }
+.spec-code > summary::before {
+  content: "";
+  width: var(--space-2);
+  height: var(--space-2);
+  border-right: var(--hairline) solid currentColor;
+  border-bottom: var(--hairline) solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+.spec-code[open] > summary::before { transform: rotate(45deg); }
+.spec-code > summary:hover { color: var(--text-default); }
+.spec-code > .code { margin-top: var(--space-2); }
+.spec-example + .spec-code { margin-top: calc(-1 * var(--space-3)); }
+
+/* Usage: "Use it for" and "Avoid" columns. */
+.spec-guide { display: grid; gap: var(--space-6) var(--grid-gutter); grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr)); }
+.spec-guide__col > h3 {
+  padding-top: var(--space-3);
+  border-top: var(--rule-strong) solid var(--text-accent);
+  font-size: var(--text-lg);
+}
+.spec-guide__col--avoid > h3 { border-top-color: var(--field-error); }
+.spec-list { margin: var(--space-3) 0 0; padding: 0; list-style: none; }
+.spec-list > li { padding-block: var(--space-3); border-bottom: var(--hairline) solid var(--panel-border); max-width: var(--measure); }
+.spec-list > li:last-child { border-bottom: 0; }
+
+/* ---- Overview cards ----------------------------------------------------- */
+.spec-cards { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr)); margin: 0; padding: 0; list-style: none; }
+.spec-card {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  height: 100%;
+  min-height: 8rem;
+  padding: var(--space-5);
+  text-decoration: none;
+  border: var(--hairline) solid var(--panel-border);
+  transition: background-color var(--duration-fast) var(--ease-standard), border-color var(--duration-fast) var(--ease-standard);
+}
+.spec-card:hover { color: inherit; background: var(--state-hover-fill); border-color: var(--field-border); }
+.spec-card:active { background: var(--state-pressed-fill); }
+.spec-card__title { font-size: var(--text-lg); font-weight: var(--weight-semibold); letter-spacing: var(--tracking-subheading); }
+.spec-card__text { font-size: var(--text-sm); line-height: var(--leading-compact); color: var(--text-muted); }
+.spec-card__label { order: -1; }
+
+/* ---- Prev / next ----------------------------------------------------------- */
+.spec-pager { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.spec-pager:empty { display: none; }
+.spec-pager__link { display: grid; gap: var(--space-1); text-decoration: none; font-size: var(--text-lg); }
+.spec-pager__link--next { text-align: right; }
+
+/* ---- Foundations visuals --------------------------------------------------- */
+/* Type rows: a description, then a pangram sample, a rule between each. */
+.spec-type { display: grid; gap: var(--space-3); padding-block: var(--space-6); border-bottom: var(--hairline) solid var(--panel-border); }
+.spec-type:first-child { padding-top: 0; }
+.spec-type:last-child { border-bottom: 0; padding-bottom: 0; }
+.spec-type__meta { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); }
+.spec-type p { max-width: none; }
+.spec-typeface { font-size: clamp(4rem, 2rem + 10vw, 10rem); font-weight: var(--weight-bold); line-height: var(--leading-display); letter-spacing: var(--tracking-display); }
+.spec-weights { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr)); }
+.spec-weights p { font-size: var(--text-2xl); line-height: var(--leading-heading); letter-spacing: var(--tracking-heading); }
+
+/* Swatches read the tokens, so they always show the real colour. */
+.spec-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(9rem, 100%), 1fr)); gap: var(--space-5) var(--space-4); }
+.spec-swatch { display: grid; gap: var(--space-2); font-size: var(--text-sm); line-height: var(--leading-compact); }
+.spec-swatch__chip { aspect-ratio: 3 / 2; border: var(--hairline) solid var(--panel-border); background: var(--chip); }
+.spec-swatch__chip--check { background: var(--chip), repeating-conic-gradient(var(--surface-solid) 0 25%, var(--media-bg) 0 50%) 0 0 / 1rem 1rem; }
+.spec-swatch code, .spec-swatch span { font-size: var(--text-xs); color: var(--text-muted); }
+.spec-swatch code { justify-self: start; }
+
+/* Scales: spacing bars, control heights, icons, radii. */
+.spec-scale { display: grid; gap: var(--space-3); }
+.spec-scale__row { display: grid; grid-template-columns: minmax(7rem, 10rem) 4.5rem minmax(0, 1fr); gap: var(--space-4); align-items: center; font-size: var(--text-sm); }
+.spec-scale__row > span:nth-child(2) { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.spec-bar { display: block; height: var(--space-3); width: var(--w); max-width: 100%; background: var(--text-accent); }
+.spec-box { width: var(--control-h-lg); height: var(--h); border: var(--hairline) solid var(--field-border); }
+.spec-icon { width: var(--s); height: var(--s); fill: none; stroke: currentColor; stroke-width: var(--icon-stroke); }
+.spec-radii { display: flex; flex-wrap: wrap; gap: var(--space-5); }
+.spec-radius { display: grid; gap: var(--space-2); justify-items: start; font-size: var(--text-xs); color: var(--text-muted); }
+.spec-radius > div { width: 4rem; height: 4rem; border: var(--hairline) solid var(--field-border); border-radius: var(--r); }
+.spec-rules { display: grid; gap: var(--space-5); }
+.spec-rules > div { display: grid; gap: var(--space-2); font-size: var(--text-sm); }
+
+/* Grid explainer: numbered columns, then example rows. */
+.spec-grid-demo { row-gap: var(--space-3); }
+.spec-col {
+  display: grid;
+  place-items: center;
+  min-height: var(--control-h);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  background: var(--state-selected-fill);
+  border: var(--hairline) solid var(--panel-border);
+}
+.spec-col--muted { background: var(--state-hover-fill); }
+.spec-grid-ruler > .spec-col { grid-column: auto; }   /* twelve cells at every width */
+
+/* Motion: a dot that travels when you press Play. */
+.spec-motion { display: grid; gap: var(--space-3); }
+.spec-motion__track { position: relative; height: var(--space-5); border-bottom: var(--hairline) solid var(--panel-border); }
+.spec-motion__dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--space-5);
+  height: var(--space-5);
+  background: var(--text-accent);
+  transition: left var(--d, var(--duration-base)) var(--e, var(--ease-standard));
+}
+.is-playing .spec-motion__dot { left: calc(100% - var(--space-5)); }
+
+/* Surfaces: a strip of vivid colour so glass and solid differ visibly. */
+.spec-backdrop { padding: var(--space-6); background:
+  repeating-linear-gradient(90deg, var(--jewel-purple) 0 1.5rem, var(--jewel-orange) 1.5rem 3rem, var(--jewel-teal) 3rem 4.5rem, var(--jewel-magenta) 4.5rem 6rem); }
+.spec-backdrop .panel { min-height: 8rem; }
+
+/* ---- CSS "artwork" standing in for photos (the specimen's own) ---------- */
+.art { position: absolute; inset: 0; }
+.art--a { background:
+  radial-gradient(ellipse 60% 80% at 30% 40%, var(--jewel-purple), transparent 70%),
+  radial-gradient(ellipse 50% 60% at 80% 70%, var(--jewel-teal), transparent 70%), #18181B; }
+.art--b { background: linear-gradient(160deg, #F4F4F5 0 55%, #E4E4E7 55% 100%); }
+.art--b::after { content: ""; position: absolute; left: 22%; top: 18%; width: 38%; aspect-ratio: 1; border-radius: 50%; background: var(--jewel-red); }
+.art--c { background:
+  radial-gradient(circle at 70% 30%, var(--jewel-orange), transparent 45%),
+  radial-gradient(circle at 20% 80%, var(--jewel-magenta), transparent 50%), #111114; }
+
+.post-log { margin: 0; padding: var(--space-4); max-height: 18rem; overflow: auto; font-size: var(--text-sm); line-height: var(--leading-compact); color: var(--text-muted); border: var(--hairline) solid var(--panel-border); white-space: pre-wrap; }
+
+/* Home */
+.spec-hero { row-gap: var(--space-6); }
+.spec-hero .display { margin-top: var(--space-7); }
+.spec-hero__actions { align-self: end; justify-content: flex-end; }
+@media (width < 48rem) { .spec-hero__actions { justify-content: flex-start; } }
+
+/* Demos shown in place: the floating button and a side nav column. */
+.spec-example .fab { position: static; }
+.spec-side-nav-demo { max-width: var(--side-nav-w); padding: var(--space-4) var(--space-3); }

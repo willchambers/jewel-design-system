@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Empty state · Jewel Design System</title>
+  <meta name="description" content="What to show when there’s nothing here yet: a fresh account, an empty album, a search with no results. A quiet icon, a short title, one line of help and one way forward.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="components/empty-state">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html" aria-current="page">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Empty state</span></li></ol>
+          </nav>
+          <h1>Empty state</h1>
+          <p class="lede">What to show when there’s nothing here yet: a fresh account, an empty album, a search with no results. A quiet icon, a short title, one line of help and one way forward.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/empty-state.css</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="variants">
+          <header class="section-head"><p class="label">01 — Variants</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>First use</h3>
+              <p>A new page with nothing in it. Offer the one action that fills it.</p>
+              <div class="spec-example">
+                <div class="empty-state">
+                  <svg class="empty-state__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v13H3zM3 15l5-5 4 4 3-3 6 6"/></svg>
+                  <h3 class="empty-state__title">No photos yet</h3>
+                  <p class="empty-state__text">Post your first photo and it shows up here.</p>
+                  <div class="empty-state__actions"><button class="btn" type="button">New post</button></div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Boxed</h3>
+              <p><code>.empty-state--boxed</code> frames an empty region inside a page. Add <code>.knockout</code> for the corner.</p>
+              <div class="spec-example">
+                <div class="empty-state empty-state--boxed knockout">
+                  <svg class="empty-state__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v13H3zM3 15l5-5 4 4 3-3 6 6"/></svg>
+                  <h3 class="empty-state__title">This album is empty</h3>
+                  <p class="empty-state__text">Add photos from your library, or import a folder.</p>
+                  <div class="empty-state__actions"><button class="btn" type="button">Add photos</button><button class="btn btn--ghost" type="button">Import</button></div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>No results</h3>
+              <p>Say what was searched, and offer to clear it.</p>
+              <div class="spec-example">
+                <div class="empty-state empty-state--compact">
+                  <h3 class="empty-state__title">No photos match “harbour at noon”</h3>
+                  <p class="empty-state__text">Check the spelling or try fewer words.</p>
+                  <div class="empty-state__actions"><button class="btn btn--ghost" type="button">Clear search</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">02 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>Every list, table and gallery that can be empty.</li>
+                  <li>One or two actions at most.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>A bare “Nothing here”.</li>
+                  <li>Illustrations. Keep to one hairline icon.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">03 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>The title is a real heading at the right level for its place in the page.</li>
+                <li>The icon is decorative (<code>aria-hidden="true"</code>).</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 # Components
 
-Every Jewel component: its markup, options, events and scripting. For a quick introduction, start with the [README](../README.md). To see them all working, open the [live specimen](https://willchambers.github.io/jewel-design-system/) (its source is [index.html](../index.html)).
+Every Jewel component: its markup, options, events and scripting. For a quick introduction, start with the [README](../README.md). To see them all working, open the [live specimen](https://willchambers.github.io/jewel-design-system/): one page per foundation, component and pattern, each with live examples and copy-paste code.
 
 - [What's in the folders](#whats-in-the-folders)
 - [Page structure and panel shapes](#page-structure-and-panel-shapes)
@@ -29,6 +29,11 @@ css/
     badge.css  button.css  chart.css  figure.css  footer.css  header.css
     index-list.css  knockout.css  meta-list.css  notice.css  panel.css
     quote.css  section-head.css  stat.css  tag.css  video.css
+    side-nav.css  breadcrumbs.css  tabs.css                             navigation
+    accordion.css  dropdown.css                                         disclosure
+    search.css  datepicker.css                                          inputs
+    progress.css  empty-state.css                                       feedback
+    table.css  code.css  chat.css                                       data, code, chat
     field.css  input.css  choice.css  tag-input.css  dropzone.css      forms
     fab.css  sheet.css                                                 posting flow
     lightbox.css  filter.css                                           photos and filtering
@@ -40,7 +45,11 @@ js/
     video.js  chart.js  lightbox.js  filter.js
     form.js             validation, counters, busy state, Jewel.field helpers (load first)
     tag-input.js  dropzone.js  sheet.js  post-form.js
-index.html              the specimen page
+    side-nav.js  tabs.js  accordion.js  dropdown.js  search.js
+    datepicker.js  code.js  chat.js  table.js
+index.html              the specimen's home page
+foundations/ components/ patterns/   one specimen page each
+specimen/               specimen-only CSS and JS (nav, code under examples); not part of the system
 media/                  small SVG artworks for the specimen's lightbox
 docs/                   this reference, and the README's images
 ```
@@ -71,8 +80,8 @@ These live in `css/base.css`.
 |---|---|
 | `.page` | Centres the page at up to 80rem, with side margins that clear an iPhone notch in landscape. |
 | `.grid` | A 12-column grid. Children are full width on phones. |
-| `.span-3` … `.span-9`, `.span-12` | How many columns a grid child spans (from 48rem up). |
-| `.start-2`, `.start-4`, `.start-5`, `.start-7`, `.start-8` | Which column a grid child starts in. Combine with a span: `span-9 start-4`. |
+| `.span-1` … `.span-12` | How many columns a grid child spans (from 48rem up). |
+| `.start-1` … `.start-12` | Which column a grid child starts in. Combine with a span: `span-9 start-4`. |
 | `.stack` | Vertical spacing between children (`--stack-gap`, default 16px). Don't set margins on the children. |
 | `.cluster` | A row that wraps, with a gap (`--cluster-gap`). |
 | `.section` | Large vertical padding for a section. |
@@ -85,6 +94,23 @@ These live in `css/base.css`.
 | `.visually-hidden` | Hidden on screen, still read by screen readers (in `utilities.css`). |
 
 ## Components A–Z
+
+### Accordion
+
+Stacked sections that open in place, built on native `<details>`, so it works without a script and find-in-page opens the right section.
+
+```html
+<div class="accordion" data-component="accordion">
+  <details class="accordion__item" name="faq" open>
+    <summary class="accordion__head">What sizes can I upload? <span class="accordion__meta">Uploads</span></summary>
+    <div class="accordion__body"><p>…</p></div>
+  </details>
+</div>
+```
+
+- Give every item the same `name` to allow only one open at a time.
+- `aria-disabled="true"` on a summary keeps that item shut (needs `accordion.js`, which also adds `el.jewelAccordion.openAll()` / `.closeAll()`).
+- `.accordion--flush` drops the outer rules.
 
 ### Badge
 
@@ -107,6 +133,22 @@ A small uppercase label on its own glass pill, for a status ("Private", "Publish
 - The parent must be positioned (`.figure__media` is). Badges ignore taps, so the photo or link underneath still works.
 - Hide a count with `aria-hidden="true"` if it repeats a label. Wrap a status that changes while the page is open in `role="status"`.
 
+### Breadcrumbs
+
+Where this page sits. The last crumb is the current page, not a link.
+
+```html
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol class="breadcrumbs__list">
+    <li><a href="/">Home</a></li>
+    <li><a href="/components/">Components</a></li>
+    <li><span aria-current="page">Tabs</span></li>
+  </ol>
+</nav>
+```
+
+On phones only the parent shows, as a "‹ Components" back link. `.breadcrumbs--full` keeps the whole trail (it wraps).
+
 ### Button
 
 ```html
@@ -123,6 +165,94 @@ A small uppercase label on its own glass pill, for a status ("Private", "Publish
 ### Chart
 
 Line, area, bar, pie, donut and sparkline charts, drawn from an HTML table. See [charts.md](charts.md).
+
+### Chat
+
+The shell for a chatbot or assistant: a header, a scrolling conversation (`role="log"`), suggested prompts, a composer and a note. There's no backend; your code answers an event. The full markup is at the top of `css/components/chat.css`.
+
+```js
+chat.addEventListener('jewel:chatsend', (e) => {
+  e.detail.respond(fetch('/ask', { method: 'POST', body: e.detail.text }).then((r) => r.text()));
+});
+```
+
+- `respond()` takes a string, `{ html }`, or a promise of either. A rejected promise shows the error with a Retry button.
+- Enter sends, Shift+Enter is a new line (on touch screens Enter is always a new line). `[data-chat-prompt]` buttons send their own text and hide once the chat starts.
+- `data-chat-demo` answers with a canned reply, for showing the shell on its own.
+- `.chat--floating` fixes it in the bottom-right corner (full screen on phones). It also fits in a `.sheet`.
+- API: `el.jewelChat.add('user' | 'bot', text)`, `.typing(true)`, `.clear()`.
+
+### Code snippet
+
+A block of code with its language and a copy button.
+
+```html
+<figure class="code" data-component="code">
+  <figcaption class="code__head">
+    <span class="code__lang">HTML</span>
+    <button class="code__copy" type="button">Copy</button>
+  </figcaption>
+  <pre class="code__body" tabindex="0"><code>&lt;link rel="stylesheet" href="css/jewel.css"&gt;</code></pre>
+</figure>
+```
+
+- `code.js` copies the text, shows "Copied" for two seconds and announces it. It falls back to a selection copy on plain-http pages. Event: `jewel:copy`.
+- `.code--wrap` wraps long lines; `.code--tall` scrolls past `--region-h`.
+- No syntax colours by default. If you add a highlighter, map its classes to `--text-default`, `--text-muted` and `--text-accent` only.
+- Inline `<code>` and `<kbd>` are styled in `base.css`.
+
+### Date picker
+
+A text field you can type a date into, with a calendar button. The full markup is at the top of `css/components/datepicker.css`.
+
+```html
+<div class="datepicker" data-component="datepicker" data-min="2020-01-01" data-max="today">
+  <input class="input datepicker__input" id="taken" type="text" inputmode="numeric" autocomplete="off">
+  <button class="datepicker__toggle" type="button" aria-label="Choose date">…calendar icon…</button>
+  <input type="hidden" name="taken">
+</div>
+```
+
+- Typing follows the page's language (`<html lang="en-GB">` → DD/MM/YYYY) and accepts ISO dates. An unreadable or out-of-range date sets a validity message that `form.js` shows like any other field error.
+- The calendar: arrows move a day or a week, Home/End the week's ends, PageUp/PageDown a month (Shift: a year), Enter picks, Esc closes. Today has an accent rule; dates outside `data-min` / `data-max` are struck through.
+- The hidden input carries `YYYY-MM-DD` for the form. Options: `data-week-start` (1 = Monday, the default), `data-value`.
+- Event: `jewel:datechange`, detail `{ date, value }`. API: `el.jewelDatepicker.value`, `.open()`, `.close()`.
+
+### Dropdown
+
+A button that opens a short menu of actions or choices. For picking a value inside a form, use the native `.select` instead.
+
+```html
+<div class="dropdown" data-component="dropdown" data-label-from-choice>
+  <button class="btn btn--ghost dropdown__trigger" type="button">Sort</button>
+  <div class="dropdown__menu" role="menu" aria-label="Sort by" hidden>
+    <button class="dropdown__item" role="menuitemradio" aria-checked="true" type="button" data-value="new">Newest</button>
+    <button class="dropdown__item" role="menuitemradio" aria-checked="false" type="button" data-value="old">Oldest</button>
+    <hr class="dropdown__divider">
+    <button class="dropdown__item dropdown__item--danger" role="menuitem" type="button">Delete</button>
+  </div>
+</div>
+```
+
+- Items: `menuitem`, `menuitemradio` (one checked) or `menuitemcheckbox` (toggles). `aria-disabled="true"` disables one. `.dropdown__label` and `.dropdown__divider` group them; `<kbd class="dropdown__hint">` shows a shortcut.
+- `data-align="end"` lines it up with the trigger's right edge. It flips above the trigger when there's no room below.
+- Keyboard: Enter, Space or ↓ opens; ↑ ↓ Home End move; letters jump; Esc closes and returns focus.
+- Event: `jewel:select`, detail `{ item, value }`. `data-label-from-choice` shows the choice in the button ("Sort: Newest").
+
+### Empty state
+
+What to show when there's nothing here yet, with one way forward.
+
+```html
+<div class="empty-state">
+  <svg class="empty-state__icon" viewBox="0 0 24 24" aria-hidden="true">…</svg>
+  <h3 class="empty-state__title">No photos yet</h3>
+  <p class="empty-state__text">Post your first photo and it shows up here.</p>
+  <div class="empty-state__actions"><button class="btn" type="button">New post</button></div>
+</div>
+```
+
+`.empty-state--boxed` (add `.knockout` for the corner) frames an empty region; `.empty-state--compact` is small and left-aligned for inside a table or list. For "no results", say what was searched and offer to clear it.
 
 ### Figure
 
@@ -165,7 +295,9 @@ A row of small print. In a `.panel-stack` it gets the content-panel shape.
 </header>
 ```
 
-A sticky glass bar. `.nav__links` hide on narrow screens. Pair it with `<div class="jewel-cap">` right after `<div class="jewel-bg">`.
+A sticky glass bar. Below `--bp-md` (48rem) the links hide and a menu button (`.nav__menu`, with `data-sheet-open`) opens the [side nav](#side-nav) as a drawer. Without a menu button, add `.nav--keep` so the links wrap instead. Pair it with `<div class="jewel-cap">` right after `<div class="jewel-bg">`.
+
+Layouts: links (the default); links and an action (a `.btn` after `.nav__links`); search (`.search.nav__search` inside `.nav`, hidden below 48rem); menu only (`.nav--drawer`, the menu button at every width). See the specimen's [Header](https://willchambers.github.io/jewel-design-system/components/header.html) page.
 
 ### Index list
 
@@ -225,6 +357,23 @@ A short message in the page's flow: info, updates or success, and errors.
 
 Glass by default. `.panel--pad` adds the standard padding. Content panels get the signature shape (see [above](#page-structure-and-panel-shapes)).
 
+### Progress
+
+How far along a task is, on a native `<progress>`.
+
+```html
+<div class="progress">
+  <div class="progress__meta">
+    <label class="progress__label" for="up">Uploading 3 photos</label>
+    <span class="progress__value">64%</span>
+  </div>
+  <progress class="progress__bar" id="up" max="100" value="64">64%</progress>
+  <p class="progress__hint">About a minute left</p>
+</div>
+```
+
+Leave out `value` for an unknown length (a segment sweeps across; it holds still with reduced motion). Tones: `.progress--accent`, `.progress--error`. `.progress--thick` is a 6px bar.
+
 ### Quote
 
 ```html
@@ -233,6 +382,25 @@ Glass by default. `.panel--pad` adds the standard padding. Content panels get th
   <footer class="label">Source</footer>
 </blockquote>
 ```
+
+### Search
+
+A search box with a clear button, an optional "/" shortcut and optional suggestions. The full markup is at the top of `css/components/search.css`.
+
+```html
+<form class="search" role="search" data-component="search" data-suggestions='["Dayton","Night"]'>
+  <label class="visually-hidden" for="q">Search photos</label>
+  <svg class="search__icon" …></svg>
+  <input class="search__input" id="q" name="q" type="search" placeholder="Search photos" autocomplete="off">
+  <button class="search__clear" type="button" aria-label="Clear search" hidden>×</button>
+  <kbd class="search__key" aria-hidden="true">/</kbd>
+</form>
+```
+
+- Esc clears the box. With a `.search__key`, "/" anywhere on the page focuses it.
+- With suggestions it becomes a combobox: ↑ ↓ move, Enter picks. Set them later with `form.jewelSearch.setSuggestions([...])`.
+- Events: `jewel:searchinput` as the person types, `jewel:search` on Enter or a pick (detail `{ query }`). Without an `action`, the form doesn't navigate.
+- Variant: `.search--quiet`.
 
 ### Section head
 
@@ -244,6 +412,29 @@ Glass by default. `.panel--pad` adds the standard padding. Content panels get th
 ```
 
 The rule under the label runs the full width of the panel, edge to edge.
+
+### Side nav
+
+A vertical list of links in labelled groups, with collapsible groups. The same markup works as a sticky column on wide screens and as a drawer on phones. The full markup is at the top of `css/components/side-nav.css`.
+
+```html
+<nav class="side-nav" aria-label="Sections" data-component="side-nav">
+  <p class="side-nav__heading">Foundations</p>
+  <ul class="side-nav__list">
+    <li><a class="side-nav__link" href="/colour/" aria-current="page">Colour</a></li>
+    <li>
+      <details class="side-nav__group" open>
+        <summary class="side-nav__link">Components</summary>
+        <ul class="side-nav__list"><li><a class="side-nav__link" href="/tabs/">Tabs</a></li></ul>
+      </details>
+    </li>
+  </ul>
+</nav>
+```
+
+- **Wide screens:** wrap the page in `.with-side-nav`, with the nav in `<aside class="with-side-nav__aside panel">` and the content beside it. The column shows from `--bp-lg` (64rem) and sticks under the header.
+- **Phones:** put the same nav in `<dialog class="sheet sheet--start" id="site-nav" data-component="sheet">` and add the header's menu button ([Header](#header)). `side-nav.js` closes the drawer when a link is followed or the screen widens, and keeps the button's `aria-expanded` in step.
+- The current page gets `aria-current="page"`: an accent edge and the selected fill. A group holding it reads as current too.
 
 ### Stat
 
@@ -267,6 +458,45 @@ A property/value pair for key numbers: the property in small uppercase text, the
 - The `.stats` row wraps: four across on desktop and two on phones by default (`--stats-min`, 8rem), with a hairline above each stat. Values in the same row line up even when a label wraps (subgrid).
 - Write values as they should be read ("40+", "3.2M"); nothing is counted by script. Big numbers keep proportional figures.
 - A stat can hold a [sparkline](charts.md#sparkline).
+
+### Table
+
+A data table: hairline rows, small uppercase headers, numbers right-aligned in tabular figures. A plain `.table` needs no script; `table.js` adds sorting, selection and phone labels. (Charts keep their own table, styled by `chart.css`.)
+
+```html
+<div class="table-wrap" data-component="table" data-select>
+  <table class="table table--stack">
+    <caption class="table__caption">Recent uploads</caption>
+    <thead><tr><th scope="col" data-sort>Title</th><th scope="col" class="is-num" data-sort="number">Views</th></tr></thead>
+    <tbody><tr><th scope="row">Night bus</th><td class="is-num">1,204</td></tr></tbody>
+  </table>
+</div>
+```
+
+- Wide tables scroll sideways inside `.table-wrap`. `.table-wrap--tall` adds a fixed height with a sticky header. `.table--compact` makes 32px rows.
+- **Sorting:** `th[data-sort]` (`number`, `date`, or text). A cell's `data-value` (or a `<time datetime>`) overrides its text. Event: `jewel:sort`.
+- **Selection:** `data-select` adds checkboxes and a select-all with a mixed state. Selected rows get `aria-selected="true"`. Event: `jewel:selectionchange`; API `wrap.jewelTable.selected()`.
+- **Phones:** `.table--stack` turns each row into label/value pairs below `--bp-sm`.
+- `.table__link` on a row's main link makes the whole row clickable. No rows? Put an `.empty-state--compact` in one full-width cell.
+
+### Tabs
+
+Switch between views of the same thing, in place.
+
+```html
+<div class="tabs" data-component="tabs">
+  <div class="tabs__list" role="tablist" aria-label="Photo details">
+    <button class="tabs__tab" role="tab" type="button" aria-selected="true">Info</button>
+    <button class="tabs__tab" role="tab" type="button">Comments <span class="tabs__count">12</span></button>
+  </div>
+  <div class="tabs__panel" role="tabpanel">…</div>
+  <div class="tabs__panel" role="tabpanel" hidden>…</div>
+</div>
+```
+
+- `tabs.js` pairs tabs and panels in order and wires the ids. Arrow keys move and select, Home/End jump, disabled tabs are skipped.
+- `data-tabs-hash` keeps the open tab in the URL. Event: `jewel:tabchange`. API: `el.jewelTabs.select(i)`.
+- Tabs sit side by side in one hairline box; the open tab is filled with a 2px accent rule along its bottom. Too many tabs for the width scroll sideways.
 
 ### Tag
 
@@ -318,7 +548,7 @@ Style: **hairline box**. Each field is a 1px box with square corners in `--field
 | Sheet | `dialog.sheet.sheet--bottom` or `.sheet--center`, `[data-component="sheet"]` | Bottom tearsheet (full height on phones) or centred modal, same insides. Focus stays inside; Esc and backdrop clicks close; an unsaved draft asks first; focus returns to the opener; the page can't scroll behind it; it shrinks above the on-screen keyboard. Script: `sheet.js`. |
 | Post form | `form[data-component="form post-form"]` | Photo, title, description, location, alt, tags, publish. Dispatches `jewel:post`. Script: `post-form.js`. |
 
-`data-component` can list several names; they run in order. Buttons grow to 44px tall on touch screens. A complete working form, sheet and post flow is in the specimen's [Forms section](https://willchambers.github.io/jewel-design-system/#forms).
+`data-component` can list several names; they run in order. Buttons grow to 44px tall on touch screens. A complete working form, sheet and post flow is in the specimen's [Forms](https://willchambers.github.io/jewel-design-system/patterns/forms.html) and [Posting a photo](https://willchambers.github.io/jewel-design-system/patterns/posting-a-photo.html) patterns.
 
 ### Events
 
@@ -381,7 +611,7 @@ dialog.jewelSheet.open(opener)                // also .close({ force }), .reques
    @import url("components/<name>.css") layer(components);
    ```
 2. **Behaviour (only if CSS can't do it).** Copy `js/components/_template.js` to `js/components/<name>.js`. Put `data-component="<name>"` on the root element, and add `<script src="js/components/<name>.js" defer></script>` after `jewel.js`.
-3. **Show it.** Add an example to `index.html` so the specimen stays the reference.
+3. **Show it.** Copy a page in `components/`, and add it to the `NAV` list in `specimen/specimen.js`, so the specimen stays the reference.
 
 Rules that keep every component working with every theme and panel style:
 
@@ -390,6 +620,9 @@ Rules that keep every component working with every theme and panel style:
 - **Naming:** block `.name`, part `.name__part`, variant `.name--variant`.
 - **Variants:** give each variant local custom properties rather than new rules. `button.css` works this way: a variant only sets `--btn-bg`, `--btn-fg` and so on.
 - **Spacing:** don't reset margins on elements that might sit in a `.stack`; component styles outrank the stack's spacing.
+- **States:** give every interactive part a hover, a pressed (`:active`) and a disabled look from the `--state-*` tokens ([tokens.md](tokens.md#interaction-states)). Disabled controls also go dashed and show `cursor: not-allowed`.
+- **Sizes:** use `--control-h*` for heights, `--hit-min` for tap areas, `--icon-*` for icons, the `--z-*` scale for stacking, and the breakpoint values named in [tokens.md](tokens.md#breakpoints).
+- **Pop-ups:** open menus, calendars and lists with `Jewel.float(layer, anchor, { align, width })`. It puts them in the top layer next to their anchor, so a panel's knockout mask can't clip them, and returns a function that closes them.
 
 **Cascade layers.** `jewel.css` declares `tokens → base → background → components → utilities`, and a later layer always wins. Your own page CSS sits outside the layers, so it overrides the system without `!important` or specificity fights.
 
@@ -398,6 +631,7 @@ Rules that keep every component working with every theme and panel style:
 ```js
 Jewel.register('name', (el) => { … });  // runs for each [data-component="name"]
 Jewel.mount(container);                  // wire up markup inserted later
+const close = Jewel.float(menu, button, { align: 'end', width: 'min' });  // pop-up in the top layer
 Jewel.theme.get() / .set('dark') / .toggle();
 document.documentElement.addEventListener('jewel:themechange', e => e.detail);
 Jewel.reducedMotion.matches;

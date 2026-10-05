@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tag input · Jewel Design System</title>
+  <meta name="description" content="A field that turns what people type into tags. Enter or a comma adds one; Backspace removes the last. It can suggest tags and stop at a limit.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../js/components/form.js" defer></script>
+  <script src="../js/components/tag-input.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="components/tag-input">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html" aria-current="page">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Tag input</span></li></ol>
+          </nav>
+          <h1>Tag input</h1>
+          <p class="lede">A field that turns what people type into tags. Enter or a comma adds one; Backspace removes the last. It can suggest tags and stop at a limit.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/tag-input.css</code></dd></div><div><dt>JS</dt><dd><code>js/components/tag-input.js (after form.js)</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="example">
+          <header class="section-head"><p class="label">01 — Example</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>With suggestions and a limit</h3>
+              <p>Type “D” to see a suggestion. Duplicates are rejected, and the field stops at <code>data-max</code>.</p>
+              <div class="spec-example">
+                <div class="form" data-component="form">
+                  <div class="field">
+                    <label class="field__label" for="ti-tags">Tags</label>
+                    <div class="tag-input" data-component="tag-input" data-max="5" data-suggestions='["Dayton","Street","Graffiti","Night"]'>
+                      <ul class="tag-input__list" aria-label="Tags"></ul>
+                      <input class="tag-input__text" id="ti-tags" type="text" placeholder="Type and press Enter" aria-describedby="ti-tags-hint">
+                      <input type="hidden" name="tags">
+                    </div>
+                    <p class="field__hint" id="ti-tags-hint">Up to 5. Enter or comma adds; Backspace removes.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="behaviour">
+          <header class="section-head"><p class="label">02 — Behaviour</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Script</h3>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">Name</th><th scope="col">Detail</th></tr></thead>
+                  <tbody>
+                    <tr><td>Options</td><td><code>data-max</code>, <code>data-required</code>, <code>data-suggestions</code> (a JSON list).</td></tr>
+                    <tr><td>Value</td><td>The hidden input submits a JSON array of tags.</td></tr>
+                    <tr><td><code>jewel:tagschange</code></td><td>Detail <code>{ tags }</code>.</td></tr>
+                    <tr><td><code>el.jewelTags</code></td><td><code>.get()</code>, <code>.set([…])</code>, <code>.add(t)</code>, <code>.remove(t)</code>, <code>.setSuggestions([…])</code>.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">03 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>Free-form tags people make up as they go.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Picking from a fixed list. Use checkboxes or a <a href="filter.html">filter</a>.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">04 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>Each tag has a remove button labelled with its name. Adding and removing are announced.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

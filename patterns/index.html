@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Patterns · Jewel Design System</title>
+  <meta name="description" content="Components put together to do a job: fill in a form, post a photo, browse a photo wall, read a report, lay out a project.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="patterns/index">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html">Components</a>
+            <a href="../patterns/index.html" aria-current="page">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><span aria-current="page">Patterns</span></li></ol>
+          </nav>
+          <h1>Patterns</h1>
+          <p class="lede">Components put together to do a job: fill in a form, post a photo, browse a photo wall, read a report, lay out a project.</p>
+        </section>
+        <section class="panel panel--pad grid" id="all-patterns">
+          <header class="section-head"><p class="label">01 — All patterns</p></header>
+          <div class="span-12 spec-body">
+            <ul class="spec-cards">
+              <li><a class="spec-card" href="forms.html"><span class="spec-card__title">Forms</span><span class="spec-card__text">A complete form: groups, validation, messages and a busy state.</span></a></li>
+              <li><a class="spec-card" href="posting-a-photo.html"><span class="spec-card__title">Posting a photo</span><span class="spec-card__text">Floating button, sheet and post form, end to end.</span></a></li>
+              <li><a class="spec-card" href="tags-and-photos.html"><span class="spec-card__title">Tags and photos</span><span class="spec-card__text">A photo wall with a tag filter, badges and a lightbox.</span></a></li>
+              <li><a class="spec-card" href="data.html"><span class="spec-card__title">Data</span><span class="spec-card__text">A report page: hero number, stats, a chart and a table.</span></a></li>
+              <li><a class="spec-card" href="media.html"><span class="spec-card__title">Media</span><span class="spec-card__text">An editorial layout of figures, video, facts and a quote.</span></a></li>
+            </ul>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>
