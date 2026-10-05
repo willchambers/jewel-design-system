@@ -191,9 +191,10 @@
 }
 .is-playing .spec-motion__dot { left: calc(100% - var(--space-5)); }
 
-/* Surfaces: a strip of vivid colour so glass and solid differ visibly. */
+/* Surfaces: wide bands of vivid colour so glass (which lets them glow
+   through) and solid (which hides them) differ visibly. */
 .spec-backdrop { padding: var(--space-6); background:
-  repeating-linear-gradient(90deg, var(--jewel-purple) 0 1.5rem, var(--jewel-orange) 1.5rem 3rem, var(--jewel-teal) 3rem 4.5rem, var(--jewel-magenta) 4.5rem 6rem); }
+  repeating-linear-gradient(115deg, var(--jewel-purple) 0 6rem, var(--jewel-orange) 6rem 12rem, var(--jewel-teal) 12rem 18rem, var(--jewel-magenta) 18rem 24rem); }
 .spec-backdrop .panel { min-height: 8rem; }
 
 /* ---- CSS "artwork" standing in for photos (the specimen's own) ---------- */
