@@ -269,6 +269,27 @@ Your stylesheet always wins over Jewel's, because Jewel puts its own styles in *
 
 **Be careful with colors.** Every text and edge color has been checked for contrast against the glass, over every part of the gradient. If you change one, recheck it the way [docs/accessibility.md](docs/accessibility.md) describes. The full list of tokens is in [docs/tokens.md](docs/tokens.md).
 
+## How the animated background works
+
+The background is pure CSS, with no JavaScript. It lives in `css/background.css`.
+
+- **One fixed layer.** Each page has `<div class="jewel-bg" aria-hidden="true"></div>`. It is fixed to the viewport, sits behind everything (`--z-below`) and paints a purple base color (`--bg-base`).
+- **Stacked gradients.** On top of the base are four soft radial-gradient ellipses with deliberately uneven sizes, a wide orange glow rising from the bottom edge, and an optional dark scrim (`--bg-dim`, off by default).
+- **Animated custom properties.** Each ellipse's color (`--bg-c1` to `--bg-c4`) and position (`--bg-x1`, `--bg-y1` and so on) is a variable. `css/tokens.css` registers them with `@property` as colors and percentages, so the browser blends smoothly between values instead of jumping.
+- **Two kinds of keyframes.** `jewel-hue-1` to `jewel-hue-4` move each ellipse through purple, magenta, teal, red and orange, staggered so no two ever share a color. `jewel-drift-a` and `jewel-drift-b` drift the ellipse centers on two different timings (0.75× and 1.15× the cycle), so the loop never looks like it's playing in reverse.
+- **Header strip.** `<div class="jewel-cap">` is a second copy of the same gradient, cut down to the strip above the sticky header and kept in step with the main layer. Content scrolls under it, so it seems to disappear at the header's top edge.
+- **Performance.** Only the variables animate, so page layout is never recalculated. The layer is isolated (`contain: strict`) and on its own compositing layer, so the content above it never redraws because of it.
+- **Stopping it.** When someone turns on "reduce motion", the animation stops and leaves a still gradient. Adding `data-bg="paused"` to `<html>` pauses it.
+
+To tune it, set these tokens in your own stylesheet (see [Customizing](#customizing)):
+
+| Token | Default | What it does |
+| --- | --- | --- |
+| `--bg-speed` | `32s` | Length of one full color and position cycle |
+| `--bg-intensity` | `1` | 0 to 1: how strongly the colors show over the base |
+| `--bg-blur` | `0px` | Extra softening (0 is the cheapest) |
+| `--bg-dim` | `0` | 0 to 1: dark scrim over the whole background |
+
 ## Adding your own component
 
 1. Copy `css/components/_template.css` to `css/components/your-name.css`. It explains the rules inside.
