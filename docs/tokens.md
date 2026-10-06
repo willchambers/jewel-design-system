@@ -174,7 +174,7 @@ One scale, so layers never fight. Menus, the date picker and search suggestions 
 
 | Token | Value | What sits there |
 |---|---|---|
-| `--z-below` | -1 | The animated background |
+| `--z-below` | -1 | The lava lamp animation |
 | `--z-base` | 0 | Page content |
 | `--z-raised` | 1 | Badges over photos, a sticky table header |
 | `--z-overlay` | 3 | Hover cards inside a component (chart tooltips) |
@@ -210,6 +210,8 @@ Every component takes its hover, pressed, selected and disabled looks from these
 
 ## Background
 
+The animated background is called the *lava lamp animation*. These tokens tune it.
+
 ```css
 :root {
   --bg-speed: 32s;      /* one full cycle */
@@ -221,7 +223,7 @@ Every component takes its hover, pressed, selected and disabled looks from these
 
 - `--bg-base` (`#7A2E9E`) is the color under the gradient. It sits inside the Jewel colors' lightness range, so lowering `--bg-intensity` never makes a backdrop worse for contrast than the cases already tested.
 - `--bg-dim` exists for themes whose panels need a darker backdrop to stand out. The parked light theme uses 0.4.
-- With `prefers-reduced-motion: reduce`, the animation stops and the background holds a still composition.
+- With `prefers-reduced-motion: reduce`, the lava lamp animation stops and the background holds a still composition.
 - `data-bg="paused"` on `<html>` stops it on purpose.
 
 ## Performance notes

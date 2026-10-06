@@ -20,7 +20,7 @@ css/
   jewel.css             entry point — the only stylesheet you link
   tokens.css            primitives → theme colors → resolved tokens
   base.css              reset, type scale, links, rules, 12-col grid
-  background.css        animated Jewel gradient
+  background.css        lava lamp animation (animated Jewel gradient)
   utilities.css         data-text variants, [hidden], .visually-hidden
   parked/
     light-theme.css     light theme, set aside (not imported)
@@ -601,7 +601,7 @@ dialog.jewelSheet.open(opener)                // also .close({ force }), .reques
 | `data-panel` | `solid` | Any element. Panels are glass by default. This gives an opaque surface instead, for example over photography. |
 | `data-text` | `default`, `muted`, `accent`, `inverse` | Any element. |
 | `data-component` | a registered name | Wires up JS behavior (see below). |
-| `data-bg` | `paused` | `<html>`. Stops the background animation. |
+| `data-bg` | `paused` | `<html>`. Stops the lava lamp animation. |
 | `hidden` | | Any element. Always hides it, even on components that set their own `display` (`utilities.css` sits in the last layer). Unlayered page CSS that sets `display` on a hidden element still wins, so avoid that. `hidden="until-found"` is left to the browser. |
 
 ## Adding a component

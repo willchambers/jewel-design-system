@@ -8,7 +8,7 @@ A dark, editorial design system for websites and web apps, made from plain HTML,
 
 ## What you get
 
-- **A look, ready to use.** Glass panels float over a slowly moving jewel-tone gradient. The type is Inter, with clear sizes and thin rules.
+- **A look, ready to use.** Glass panels float over the lava lamp animation, a slowly moving jewel-tone gradient. The type is Inter, with clear sizes and thin rules.
 - **33 components and 5 patterns.** Navigation, forms, tabs, menus, dialogs, tables, charts, a chat shell and more, each one a class name you add to normal HTML.
 - **Accessibility built in.** Every color pair is checked for contrast. Everything works with a keyboard and respects "reduce motion".
 - **No tooling.** It's plain files. It even works when you open the page straight from a folder on your computer.
@@ -57,7 +57,7 @@ Create `index.html` in your project folder and paste this in. It's a complete, w
   <script src="js/jewel.js" defer></script>
 </head>
 <body>
-  <!-- The moving gradient, and the strip that keeps content out of the gap above the header -->
+  <!-- The lava lamp animation, and the strip that keeps content out of the gap above the header -->
   <div class="jewel-bg" aria-hidden="true"></div>
   <div class="jewel-cap" aria-hidden="true"></div>
 
@@ -259,7 +259,7 @@ To change one, don't edit Jewel's files. Add your own stylesheet *after* `jewel.
 ```css
 /* my-styles.css */
 :root {
-  --bg-speed: 60s;                /* slow the background down (default 32s) */
+  --bg-speed: 60s;                /* slow the lava lamp animation down (default 32s) */
   --panel-radius-bottom: 4px;     /* subtler rounded bottom corners (default 10px) */
   --knockout-offset: 12px;        /* move the corner lines further in (default 6px) */
 }
@@ -269,9 +269,9 @@ Your stylesheet always wins over Jewel's, because Jewel puts its own styles in *
 
 **Be careful with colors.** Every text and edge color has been checked for contrast against the glass, over every part of the gradient. If you change one, recheck it the way [docs/accessibility.md](docs/accessibility.md) describes. The full list of tokens is in [docs/tokens.md](docs/tokens.md).
 
-## How the animated background works
+## How the lava lamp animation works
 
-The background is pure CSS, with no JavaScript. It lives in `css/background.css`.
+Jewel's animated background is called the *lava lamp animation*. It's pure CSS, with no JavaScript. It lives in `css/background.css`.
 
 - **One fixed layer.** Each page has `<div class="jewel-bg" aria-hidden="true"></div>`. It is fixed to the viewport, sits behind everything (`--z-below`) and paints a purple base color (`--bg-base`).
 - **Stacked gradients.** On top of the base are four soft radial-gradient ellipses with deliberately uneven sizes, a wide orange glow rising from the bottom edge, and an optional dark scrim (`--bg-dim`, off by default).
@@ -337,7 +337,7 @@ Details and the contrast measurements are in [docs/accessibility.md](docs/access
 
 **Content scrolls into the gap above the header.** The `<div class="jewel-cap">` is missing. It goes right after `<div class="jewel-bg">`.
 
-**The background is slow on an old phone.** Add `data-bg="paused"` to `<html>` to stop the animation.
+**The lava lamp animation is slow on an old phone.** Add `data-bg="paused"` to `<html>` to stop it.
 
 ## Learn more
 
