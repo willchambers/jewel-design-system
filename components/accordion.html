@@ -147,6 +147,27 @@
           </div>
         </section>
 
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">05 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>What the script does</h3>
+              <p>Native <code>&lt;details&gt;</code> opens and closes each item, so the keyboard and find-in-page work without a script. The script only keeps a disabled item shut and, in browsers without native support, closes the others in a <code>name</code> group. The CSS reads only the markup below, so a framework can set it itself and leave out <code>accordion.js</code> and <code>data-component</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">State</th><th scope="col">Set this</th><th scope="col">Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Open</td><td><code>open</code> on <code>details.accordion__item</code></td><td>Turns the chevron. The browser toggles it on click; listen for <code>toggle</code> to keep your state in step.</td></tr>
+                    <tr><td>One open at a time</td><td>The same <code>name="…"</code> on each item</td><td>Native in current browsers. Where it isn’t, close the others when one opens.</td></tr>
+                    <tr><td>Disabled</td><td><code>aria-disabled="true"</code> on the <code>summary</code></td><td>Dims it. Call <code>preventDefault()</code> on its clicks to keep it shut.</td></tr>
+                    <tr><td>Open all, close all</td><td><code>open</code> on each item, skipping disabled ones</td><td>Replaces <code>el.jewelAccordion.openAll()</code> and <code>.closeAll()</code>.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
 
         <footer class="panel panel--pad site-footer">

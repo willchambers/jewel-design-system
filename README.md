@@ -9,24 +9,32 @@ A dark, editorial design system for websites and web apps, made from plain HTML,
 ## What you get
 
 - **A look, ready to use.** Glass panels float over the lava lamp animation, a slowly moving jewel-tone gradient. The type is Inter, with clear sizes and thin rules.
-- **33 components and 5 patterns.** Navigation, forms, tabs, menus, dialogs, tables, charts, a chat shell and more, each one a class name you add to normal HTML.
+- **38 components, 88 icons and 5 patterns.** Navigation, forms, tabs, menus, dialogs, tables, charts, status, tooltips, loading states, a chat shell and more, each one a class name you add to normal HTML.
 - **Accessibility built in.** Every color pair is checked for contrast. Everything works with a keyboard and respects "reduce motion".
 - **No tooling.** It's plain files. It even works when you open the page straight from a folder on your computer.
-- **Easy to change.** Colors, spacing, corners and motion are all *tokens* (named settings) that you can override in one place.
+- **Easy to change.** Colors, spacing, corners and motion are all *tokens* (named settings) that you can override in one place. A compact density and warm or cool background palettes are one attribute away.
+- **Free to use.** MIT license.
 
 ## Quick start (5 minutes)
 
 ### 1. Download the files
 
-[Download the ZIP](https://github.com/willchambers/jewel-design-system/archive/refs/heads/main.zip) and unzip it. If you use git, you can clone it instead:
+[Download the latest release](https://github.com/willchambers/jewel-design-system/releases/latest) (or the [ZIP of the main branch](https://github.com/willchambers/jewel-design-system/archive/refs/heads/main.zip)) and unzip it. If you use git, you can clone it instead:
 
 ```bash
 git clone https://github.com/willchambers/jewel-design-system.git
 ```
 
+**Or link it from a CDN** and skip steps 1 and 2. Each release is a git tag, so pin the version and it never changes under you:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/willchambers/jewel-design-system@1.0.0/css/jewel.css">
+<script src="https://cdn.jsdelivr.net/gh/willchambers/jewel-design-system@1.0.0/js/jewel.js" defer></script>
+```
+
 ### 2. Copy two folders into your project
 
-From the download, copy the `css` and `js` folders into your project folder, next to where your page will go:
+From the download, copy the `css` and `js` folders into your project folder, next to where your page will go. Copy `media` too if you'll use the icons, and `fonts` if you'll host Inter yourself:
 
 ```
 my-site/
@@ -104,7 +112,7 @@ A *component* is a ready-made piece of interface. You use one by adding its clas
 
 | Component | What it's for | Class to use | Script | See it |
 |---|---|---|---|---|
-| Button | Actions and links, plus a two-state toggle | `.btn`, `.btn--ghost`, `.btn--text`, `.btn--icon`, `.toggle` |  | [page](https://willchambers.github.io/jewel-design-system/components/button.html) |
+| Button | Actions and links, a destructive action, and a two-state toggle | `.btn`, `.btn--ghost`, `.btn--text`, `.btn--icon`, `.btn--danger`, `.toggle` |  | [page](https://willchambers.github.io/jewel-design-system/components/button.html) |
 | Floating action button | The page's one main action, fixed bottom right | `.fab`, `.fab--extended` | `sheet.js` to open a sheet | [page](https://willchambers.github.io/jewel-design-system/components/fab.html) |
 | Tag | Categories, linked tags and filter buttons | `.tag`, `.tag--solid`, `.tag--button` |  | [page](https://willchambers.github.io/jewel-design-system/components/tag.html) |
 | Badge | A status or count, often over a photo | `.badge`, `data-place` |  | [page](https://willchambers.github.io/jewel-design-system/components/badge.html) |
@@ -115,7 +123,7 @@ A *component* is a ready-made piece of interface. You use one by adding its clas
 | Footer | Small print at the foot of the page | `.site-footer` |  | [page](https://willchambers.github.io/jewel-design-system/components/footer.html) |
 | Accordion | Sections that open in place | `.accordion` | `accordion.js` (optional) | [page](https://willchambers.github.io/jewel-design-system/components/accordion.html) |
 | Dropdown | A short menu of actions or choices | `.dropdown` | `dropdown.js` | [page](https://willchambers.github.io/jewel-design-system/components/dropdown.html) |
-| Sheet | Tearsheet, modal or drawer dialog | `.sheet--bottom`, `.sheet--center`, `.sheet--start` | `sheet.js` | [page](https://willchambers.github.io/jewel-design-system/components/sheet.html) |
+| Sheet | Tearsheet, modal, or a drawer from either side | `.sheet--bottom`, `.sheet--center`, `.sheet--start`, `.sheet--end` | `sheet.js` | [page](https://willchambers.github.io/jewel-design-system/components/sheet.html) |
 | Lightbox | Full-screen photo viewer | `data-component="lightbox"` | `lightbox.js` | [page](https://willchambers.github.io/jewel-design-system/components/lightbox.html) |
 | Text field | Inputs, text areas and selects with labels and errors | `.field`, `.input`, `.select` | `form.js` | [page](https://willchambers.github.io/jewel-design-system/components/text-field.html) |
 | Checkbox, radio, switch | Choices | `.choice` |  | [page](https://willchambers.github.io/jewel-design-system/components/choice.html) |
@@ -124,19 +132,25 @@ A *component* is a ready-made piece of interface. You use one by adding its clas
 | Date picker | Type a date or pick from a calendar | `.datepicker` | `form.js`, `datepicker.js` | [page](https://willchambers.github.io/jewel-design-system/components/date-picker.html) |
 | Search | A search box with suggestions | `.search`, `.search--quiet` | `search.js` | [page](https://willchambers.github.io/jewel-design-system/components/search.html) |
 | Filter | Tag buttons that show and hide items | `.filter`, `.filter--scroll` | `filter.js` | [page](https://willchambers.github.io/jewel-design-system/components/filter.html) |
-| Notice | Info, update and error messages | `.notice`, `.notice--accent`, `.notice--error` |  | [page](https://willchambers.github.io/jewel-design-system/components/notice.html) |
+| Notice | Info, update, status and error messages | `.notice`, `.notice--accent`, `.notice--success`, `.notice--warning`, `.notice--info`, `.notice--error` |  | [page](https://willchambers.github.io/jewel-design-system/components/notice.html) |
 | Progress | How far along a task is | `.progress` |  | [page](https://willchambers.github.io/jewel-design-system/components/progress.html) |
 | Empty state | What to show when there's nothing yet | `.empty-state` |  | [page](https://willchambers.github.io/jewel-design-system/components/empty-state.html) |
 | Figure | An image with a caption | `.figure`, `.figure__media` |  | [page](https://willchambers.github.io/jewel-design-system/components/figure.html) |
 | Video | A looping clip with play and pause | `.figure.video` | `video.js` | [page](https://willchambers.github.io/jewel-design-system/components/video.html) |
 | Index list | Numbered rows of linked items | `.index`, `.index__row` |  | [page](https://willchambers.github.io/jewel-design-system/components/index-list.html) |
-| Meta list | Label and value rows | `.meta` |  | [page](https://willchambers.github.io/jewel-design-system/components/meta-list.html) |
+| Meta list | Label and value rows, side by side or stacked | `.meta`, `.meta--stacked` |  | [page](https://willchambers.github.io/jewel-design-system/components/meta-list.html) |
 | Quote | A pull quote | `.quote` |  | [page](https://willchambers.github.io/jewel-design-system/components/quote.html) |
 | Code snippet | Code with a Copy button | `.code` | `code.js` | [page](https://willchambers.github.io/jewel-design-system/components/code.html) |
 | Stat | A label with a big number | `.stats`, `.stat` |  | [page](https://willchambers.github.io/jewel-design-system/components/stat.html) |
 | Data table | Sortable, selectable rows of records | `.table`, `.table-wrap` | `table.js` (optional) | [page](https://willchambers.github.io/jewel-design-system/components/table.html) |
-| Chart | Line, area, bar, pie, donut, sparkline | `.chart`, `.sparkline` | `chart.js` | [page](https://willchambers.github.io/jewel-design-system/components/chart.html) |
+| Chart | Line, area, bar, pie, donut, sparkline, from a table or from data | `.chart`, `.sparkline`, `Jewel.chart.render()` | `chart.js` | [page](https://willchambers.github.io/jewel-design-system/components/chart.html) |
 | Chat | The shell for an AI assistant | `.chat` | `chat.js` | [page](https://willchambers.github.io/jewel-design-system/components/chat.html) |
+| Status | The state of a pod, job or deploy: a dot and a word | `.status`, `.status--success`, `--warning`, `--error`, `--info` |  | [page](https://willchambers.github.io/jewel-design-system/components/status.html) |
+| Tooltip | A short hint for a control | `.tooltip`, `.tooltip__bubble` | `tooltip.js` | [page](https://willchambers.github.io/jewel-design-system/components/tooltip.html) |
+| Spinner | Busy, with no progress to show | `.spinner`, `.loading` |  | [page](https://willchambers.github.io/jewel-design-system/components/spinner.html) |
+| Skeleton loader | Gray blocks while content loads | `.skeleton`, `.skeleton__line`, `.skeleton__block` |  | [page](https://willchambers.github.io/jewel-design-system/components/skeleton.html) |
+| Password field | Show and hide a password or token | `.password` | `password.js` | [page](https://willchambers.github.io/jewel-design-system/components/password.html) |
+| Icon | Hairline icons from the sprite | `.icon`, `media/icons.svg` |  | [page](https://willchambers.github.io/jewel-design-system/foundations/icons.html) |
 
 Every component's full markup and options are in [docs/components.md](docs/components.md). Panels, the grid, section heads and the type scale are covered under [Foundations](https://willchambers.github.io/jewel-design-system/foundations/index.html).
 
@@ -245,6 +259,31 @@ document.querySelector('#post-form').addEventListener('jewel:post', (e) => {
 
 Each component's page lists its events, and [docs/components.md](docs/components.md) has the full list.
 
+**When your framework owns the state** (a React dialog that opens from state, say), leave out the component's script and `data-component`, and set the classes and attributes yourself. Each interactive component's page has a "Without Jewel's JS" section that lists them.
+
+**Charts from data.** `Jewel.chart.render()` draws a chart from numbers you pass in, and `update()` redraws it when they change:
+
+```js
+const chart = Jewel.chart.render(document.querySelector('#pods'), {
+  type: 'donut', categoryLabel: 'State',
+  labels: ['Running', 'Pending', 'Failed'],
+  series: [{ name: 'Pods', values: [12, 5, 1] }],
+});
+chart.update({ series: [{ values: [14, 3, 1] }] });
+```
+
+**Dashboards.** Add `data-density="compact"` to `<html>` (or one panel) for less padding, tighter forms and 32px buttons and table rows. Touch screens keep 44px targets.
+
+**Icons.** `media/icons.svg` has 88 hairline icons (Lucide, redrawn to Jewel's stroke):
+
+```html
+<svg class="icon" aria-hidden="true"><use href="media/icons.svg#refresh-cw"></use></svg>
+```
+
+The sprite loads over http(s); opened straight from a file, most browsers block it.
+
+**Hosting the font yourself.** If a page can't load from Google Fonts (an intranet, a strict security policy, offline use), copy the `fonts` folder and link `css/fonts.css` before `jewel.css` instead of the three Google Fonts lines.
+
 ## Customizing
 
 Jewel's settings are *tokens*: named values like `--bg-speed` or `--panel-radius-bottom`. Every component reads its colors, sizes and timings from them, so changing a token changes everything that uses it.
@@ -276,7 +315,7 @@ Jewel's animated background is called the *lava lamp animation*. It's pure CSS, 
 - **One fixed layer.** Each page has `<div class="jewel-bg" aria-hidden="true"></div>`. It is fixed to the viewport, sits behind everything (`--z-below`) and paints a purple base color (`--bg-base`).
 - **Stacked gradients.** On top of the base are four soft radial-gradient ellipses with deliberately uneven sizes, a wide orange glow rising from the bottom edge, and an optional dark scrim (`--bg-dim`, off by default).
 - **Animated custom properties.** Each ellipse's color (`--bg-c1` to `--bg-c4`) and position (`--bg-x1`, `--bg-y1` and so on) is a variable. `css/tokens.css` registers them with `@property` as colors and percentages, so the browser blends smoothly between values instead of jumping.
-- **Two kinds of keyframes.** `jewel-hue-1` to `jewel-hue-4` move each ellipse through purple, magenta, teal, red and orange, staggered so no two ever share a color. `jewel-drift-a` and `jewel-drift-b` drift the ellipse centers on two different timings (0.75× and 1.15× the cycle), so the loop never looks like it's playing in reverse.
+- **Two kinds of keyframes.** `jewel-hue-1` to `jewel-hue-4` move each ellipse through the palette's five colors (`--bg-1` to `--bg-5`: purple, magenta, teal, red and orange by default), staggered so no two ever share a color. `jewel-drift-a` and `jewel-drift-b` drift the ellipse centers on two different timings (0.75× and 1.15× the cycle), so the loop never looks like it's playing in reverse.
 - **Header strip.** `<div class="jewel-cap">` is a second copy of the same gradient, cut down to the strip above the sticky header and kept in step with the main layer. Content scrolls under it, so it seems to disappear at the header's top edge.
 - **Performance.** Only the variables animate, so page layout is never recalculated. The layer is isolated (`contain: strict`) and on its own compositing layer, so the content above it never redraws because of it.
 - **Stopping it.** When someone turns on "reduce motion", the animation stops and leaves a still gradient. Adding `data-bg="paused"` to `<html>` pauses it.
@@ -289,6 +328,8 @@ To tune it, set these tokens in your own stylesheet (see [Customizing](#customiz
 | `--bg-intensity` | `1` | 0 to 1: how strongly the colors show over the base |
 | `--bg-blur` | `0px` | Extra softening (0 is the cheapest) |
 | `--bg-dim` | `0` | 0 to 1: dark scrim over the whole background |
+
+**Warm or cool.** `data-palette` on `<html>` swaps the animation's colors: `ember` is warm (reds, orange, amber), `lagoon` is cool (teal, blues, indigo), and `dusk` is violet and rose. Leave it off for Jewel's own mix. For your own palette, set `--bg-1` to `--bg-5` and `--bg-base`.
 
 ## Adding your own component
 
@@ -345,18 +386,26 @@ Details and the contrast measurements are in [docs/accessibility.md](docs/access
 - [docs/charts.md](docs/charts.md): chart types, options, behavior and the color palette
 - [docs/tokens.md](docs/tokens.md): every token, what it does, and performance notes
 - [docs/accessibility.md](docs/accessibility.md): what's built in, keyboard behavior and all contrast measurements
+- [CHANGELOG.md](CHANGELOG.md): what changed in each release
 - [The live specimen](https://willchambers.github.io/jewel-design-system/): a page for every foundation, component and pattern, with live examples and copy-paste code. Open `index.html` from the download to browse it offline.
 
 ## What's in the folder
 
 ```
-css/            the system: link css/jewel.css
+css/            the system: link css/jewel.css (css/fonts.css is the optional self-hosted Inter)
 js/             jewel.js and one script per component that needs one
+media/          icons.svg (the icon sprite), plus artwork used on the specimen
+fonts/          Inter, for self-hosting (SIL Open Font License)
 docs/           the full reference
 index.html      the specimen site's home page
-foundations/    specimen pages: type, color, spacing, layout, surfaces, motion
+foundations/    specimen pages: type, color, spacing, layout, surfaces, motion, icons
 components/     specimen pages: one per component
 patterns/       specimen pages: components working together
 specimen/       styles and scripts for the specimen site only (not part of the system)
-media/          artwork used on the specimen
+LICENSE         MIT, plus the notices for Inter and Lucide
+CHANGELOG.md    what changed in each release
 ```
+
+## License
+
+Jewel is free to use, change and ship under the [MIT license](LICENSE). The bundled Inter font is under the SIL Open Font License, and the icons come from Lucide under the ISC license; both notices are in `LICENSE`.

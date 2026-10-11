@@ -28,6 +28,30 @@ Each chart is drawn from a plain HTML table. The table stays on the page as the 
 - An empty cell leaves a gap in a line.
 - The table needs both a `<thead>` and a `<tbody>`.
 
+## From data
+
+For apps that hold the data themselves (React state, a live feed), `Jewel.chart.render()` writes the table and draws the chart, and `update()` redraws it in place. The table is still the chart's data view behind "Show data", so the keyboard and screen reader behavior is the same.
+
+```js
+const chart = Jewel.chart.render(document.querySelector('#pods'), {
+  type: 'donut',                  // line | area | bar | pie | donut | sparkline
+  title: 'Pods by state',         // optional caption, and subtitle
+  categoryLabel: 'State',         // the first column's header
+  labels: ['Running', 'Pending', 'Failed'],
+  series: [{ name: 'Pods', values: [12, 5, 1] }],
+  // stacked, prefix, suffix, height: same as the data-* attributes
+});
+
+chart.update({ series: [{ values: [14, 3, 1] }] });   // merges, then redraws
+chart.el;                                             // the <figure>
+```
+
+- The container can be an existing `figure.chart` or any element to put a new one in.
+- `update()` merges: leave out labels, names or options that haven't changed. The type is fixed once drawn.
+- Values are numbers, or `null` for a gap.
+- `Jewel.chart.update(figure, data)` works on any chart, including one written as an HTML table.
+- In React: render once in an effect, call `update()` when the data changes, and let Jewel own the element's contents. The Chart page on the specimen has an example.
+
 ## Options
 
 | Option | Values |

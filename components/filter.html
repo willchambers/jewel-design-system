@@ -153,6 +153,27 @@
           </div>
         </section>
 
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">05 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>What the script does</h3>
+              <p>The script hides items whose tags don’t match the pressed button, announces the count, and keeps the tag in the URL as <code>#tag=slug</code>. The CSS reads only the markup below, so a framework can filter its own list and leave out <code>filter.js</code> and <code>data-component</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">State</th><th scope="col">Set this</th><th scope="col">Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Pressed tag</td><td><code>aria-pressed="true"</code> on one <code>.tag--button</code>, <code>aria-pressed="false"</code> on the rest</td><td>Fills the pressed tag.</td></tr>
+                    <tr><td>Filtered out</td><td><code>hidden</code> on each item that doesn’t match</td><td>Or don’t render it. <code>data-filter</code>, <code>data-filter-target</code> and <code>data-tags</code> are only read by the script.</td></tr>
+                    <tr><td>Count</td><td>“Showing 2 of 3 projects” in <code>.filter__status</code></td><td>A polite live region, so screen readers hear each change.</td></tr>
+                    <tr><td>Disabled</td><td><code>aria-disabled="true"</code> on <code>.filter</code></td><td>Dims the row and stops presses.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
 
         <footer class="panel panel--pad site-footer">

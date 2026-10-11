@@ -58,19 +58,47 @@
           <header class="section-head"><p class="label">01 — Variants</p></header>
           <div class="span-12 spec-body">
             <div class="spec-block">
-              <h3>Tearsheet, modal and drawer</h3>
-              <p>Each button opens a real sheet. The drawer here is the site’s menu.</p>
+              <h3>Tearsheet, modal and drawers</h3>
+              <p>Each button opens a real sheet. The left drawer here is the site’s menu; the right one shows the details of one record.</p>
               <div class="spec-example" data-code="none">
                 <div class="spec-row">
                   <button class="btn btn--ghost" type="button" data-sheet-open="demo-bottom">Open tearsheet</button>
                   <button class="btn btn--ghost" type="button" data-sheet-open="demo-center">Open modal</button>
-                  <button class="btn btn--ghost" type="button" data-sheet-open="site-nav">Open drawer</button>
+                  <button class="btn btn--ghost" type="button" data-sheet-open="site-nav">Open left drawer</button>
+                  <button class="btn btn--ghost" type="button" data-sheet-open="demo-end">Open details drawer</button>
                 </div>
               </div>
             </div>
             <div class="spec-block">
+              <h3>Details drawer</h3>
+              <p><code>.sheet--end</code> slides in from the right, for the details of one thing: a pod, an order, a file. Its title is a heading, with a small label above it (<code>.sheet__eyebrow</code>) for the kind of thing or where it lives. A short form title such as “New post” can stay a label.</p>
+              <div class="spec-example spec-example--tight" data-code="none">
+                <div class="panel panel--content">
+                  <header class="sheet__head">
+                    <div class="sheet__titles"><p class="sheet__eyebrow label">Pod · default</p><h2 class="sheet__title">api-7f9c4d-x2k8q</h2></div>
+                    <button class="btn btn--ghost btn--icon" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+                  </header>
+                </div>
+              </div>
+              <figure class="code" data-component="code">
+                <figcaption class="code__head"><span class="code__lang">HTML</span><button class="code__copy" type="button">Copy</button></figcaption>
+                <pre class="code__body" tabindex="0"><code>&lt;dialog class="sheet sheet--end" id="pod-sheet" data-component="sheet" aria-labelledby="pod-title"&gt;
+  &lt;div class="sheet__panel panel panel--content"&gt;
+    &lt;header class="sheet__head"&gt;
+      &lt;div class="sheet__titles"&gt;
+        &lt;p class="sheet__eyebrow label"&gt;Pod · default&lt;/p&gt;
+        &lt;h2 class="sheet__title" id="pod-title"&gt;api-7f9c4d-x2k8q&lt;/h2&gt;
+      &lt;/div&gt;
+      &lt;button class="btn btn--ghost btn--icon" type="button" data-sheet-close aria-label="Close"&gt;…&lt;/button&gt;
+    &lt;/header&gt;
+    &lt;div class="sheet__body"&gt;…&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;</code></pre>
+              </figure>
+            </div>
+            <div class="spec-block">
               <h3>Markup</h3>
-              <p>Swap <code>.sheet--bottom</code> for <code>.sheet--center</code> or <code>.sheet--start</code>. Any element with <code>data-sheet-open="id"</code> opens it; <code>data-sheet-close</code> closes it.</p>
+              <p>Swap <code>.sheet--bottom</code> for <code>.sheet--center</code>, <code>.sheet--start</code> or <code>.sheet--end</code>. Any element with <code>data-sheet-open="id"</code> opens it; <code>data-sheet-close</code> closes it.</p>
               <div class="spec-example spec-example--bare" data-code="none">
                 <figure class="code" data-component="code">
                   <figcaption class="code__head"><span class="code__lang">HTML</span><button class="code__copy" type="button">Copy</button></figcaption>
@@ -148,6 +176,39 @@
           </div>
         </section>
 
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">05 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>What the script does</h3>
+              <p>The script opens and closes the <code>&lt;dialog&gt;</code>, asks before discarding a changed form, stops the page scrolling and returns focus. The CSS reads only the markup below, so a framework that owns open and closed can drive it and leave out <code>sheet.js</code> and <code>data-component</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">State</th><th scope="col">Set this</th><th scope="col">Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Open</td><td><code>dialog.showModal()</code></td><td>Not the <code>open</code> attribute alone: the backdrop, top layer and inert page come from the modal. In React, call it and <code>close()</code> from an effect when your state changes.</td></tr>
+                    <tr><td>Closed</td><td><code>dialog.close()</code></td><td>CSS slides it out once <code>[open]</code> goes.</td></tr>
+                    <tr><td>Page scroll</td><td><code>has-open-sheet</code> on <code>&lt;html&gt;</code> while it’s open</td><td>Stops the page scrolling behind it.</td></tr>
+                    <tr><td>Height on phones</td><td><code>--sheet-vh</code> on the dialog, in px</td><td>Optional. The script sets it to <code>visualViewport.height</code> so the sheet shrinks above the on-screen keyboard. Without it, <code>100dvh</code>.</td></tr>
+                    <tr><td>Discard bar</td><td><code>&lt;div class="sheet__confirm" role="alertdialog"&gt;</code> after <code>.sheet__head</code></td><td>Optional. The script adds one with Keep editing and Discard buttons, <code>hidden</code> until a changed form is closed.</td></tr>
+                    <tr><td>Openers</td><td>Your own click handlers</td><td><code>data-sheet-open</code> and <code>data-sheet-close</code> are only read by the script.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Events and keyboard</h3>
+              <ul class="spec-list">
+                <li>Esc fires the dialog’s <code>cancel</code> event. Call <code>preventDefault()</code> if you want to ask first; either way, update your state on the dialog’s <code>close</code> event.</li>
+                <li>A click on the backdrop lands on the dialog itself (<code>event.target === dialog</code>). The script also checks that the press started there, so a text selection dragged outside doesn’t close it.</li>
+                <li>On open, the script focuses <code>[autofocus]</code> or the first field in <code>.sheet__body</code>, except on touch screens. On close, return focus to the button that opened it.</li>
+                <li>While it’s open, keep the focused field in view once the on-screen keyboard is up.</li>
+                <li><code>jewel:sheetopen</code> and <code>jewel:sheetclose</code> don’t fire without the script.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
 
         <footer class="panel panel--pad site-footer">
@@ -177,7 +238,25 @@
       </header>
       <div class="sheet__body stack">
         <p>It’s removed from your library and from any albums. You can’t undo this.</p>
-        <div class="form__actions"><button class="btn btn--text" type="button" data-sheet-close>Cancel</button><button class="btn" type="button" data-sheet-close>Delete</button></div>
+        <div class="form__actions"><button class="btn btn--text" type="button" data-sheet-close>Cancel</button><button class="btn btn--danger" type="button" data-sheet-close>Delete</button></div>
+      </div>
+    </div>
+  </dialog>
+  <dialog class="sheet sheet--end" id="demo-end" data-component="sheet" aria-labelledby="demo-end-title">
+    <div class="sheet__panel panel panel--content">
+      <header class="sheet__head">
+        <div class="sheet__titles"><p class="sheet__eyebrow label">Pod · default</p><h2 class="sheet__title" id="demo-end-title">api-7f9c4d-x2k8q</h2></div>
+        <button class="btn btn--ghost btn--icon" type="button" data-sheet-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </header>
+      <div class="sheet__body stack">
+        <p><span class="status status--success">Running</span></p>
+        <dl class="meta meta--stacked">
+          <dt class="label">Node</dt><dd>aks-pool-1-38291746-vmss000002</dd>
+          <dt class="label">app.kubernetes.io/managed-by</dt><dd>Helm</dd>
+          <dt class="label">Started</dt><dd>11 Oct 2026, 14:02</dd>
+          <dt class="label">Restarts</dt><dd>0</dd>
+        </dl>
+        <div class="form__actions"><button class="btn btn--ghost" type="button">View logs</button><button class="btn btn--danger" type="button" data-sheet-close>Delete pod</button></div>
       </div>
     </div>
   </dialog>

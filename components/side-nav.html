@@ -162,6 +162,35 @@
           </div>
         </section>
 
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">05 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>What the script does</h3>
+              <p>The nav itself is links and native <code>&lt;details&gt;</code>. The script only matters in a <code>.sheet--start</code> drawer: it closes the drawer and keeps the menu button’s <code>aria-expanded</code> in step. The CSS reads only the markup below, so a framework can set it itself and leave out <code>side-nav.js</code> and <code>data-component</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">State</th><th scope="col">Set this</th><th scope="col">Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Current page</td><td><code>aria-current="page"</code> on the <code>.side-nav__link</code></td><td>Accent edge and selected fill. A group holding it reads as current too.</td></tr>
+                    <tr><td>Group open</td><td><code>open</code> on <code>details.side-nav__group</code></td><td>Native. Turns the chevron.</td></tr>
+                    <tr><td>Disabled</td><td><code>aria-disabled="true"</code> on a link</td><td>Dims it and stops clicks.</td></tr>
+                    <tr><td>Drawer</td><td>The sheet’s markup, with the nav in <code>.sheet__body</code></td><td>Open and close it as on the <a href="sheet.html">Sheet</a> page.</td></tr>
+                    <tr><td>Menu button</td><td><code>aria-expanded="true"</code> while the drawer is open, <code>"false"</code> when it’s closed</td><td>On each button that opens that drawer.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Events and keyboard</h3>
+              <ul class="spec-list">
+                <li>Close the drawer when a link in it is followed, same-page anchors included.</li>
+                <li>Close it when the screen grows past <code>--bp-md</code> (48rem), where the header shows its links again.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
 
         <footer class="panel panel--pad site-footer">

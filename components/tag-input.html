@@ -128,6 +128,39 @@
           </div>
         </section>
 
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">05 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>What the script does</h3>
+              <p>The script turns typed text into chips, rejects duplicates, stops at the limit and writes the tags into the hidden input. The CSS reads only the markup below, so a framework can render the tags from its own state and leave out <code>tag-input.js</code> and <code>data-component</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">State</th><th scope="col">Set this</th><th scope="col">Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Tag</td><td><code>&lt;li class="chip"&gt;&lt;span&gt;Street&lt;/span&gt;&lt;button class="chip__remove" type="button" aria-label="Remove tag Street"&gt;×&lt;/button&gt;&lt;/li&gt;</code></td><td>In <code>.tag-input__list</code>.</td></tr>
+                    <tr><td>Duplicate</td><td><code>is-duplicate</code> on the chip that’s already there, for about a second</td><td>Flashes its border.</td></tr>
+                    <tr><td>At the limit</td><td><code>readonly</code> on <code>.tag-input__text</code>, with a placeholder such as “Limit of 5 reached”</td><td>Typing stops until a tag is removed.</td></tr>
+                    <tr><td>Suggestions</td><td>After <code>.tag-input</code>, a <code>div.tag-input__suggest</code> holding <code>&lt;ul class="tag-input__suggestions" aria-label="Suggested tags"&gt;</code> of <code>&lt;button class="chip--suggest" type="button"&gt;+ Dayton&lt;/button&gt;</code></td><td><code>hidden</code> on the row when there are none, or at the limit. The script puts a “Recent” <code>.field__hint</code> before the list.</td></tr>
+                    <tr><td>Error</td><td><code>aria-invalid="true"</code> on <code>.tag-input__text</code></td><td>Turns the box red. Show the message as a field error (see <a href="text-field.html">Text field</a>).</td></tr>
+                    <tr><td>Value</td><td>A JSON array of the tags in the hidden input</td><td>Empty when there are none.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Events and keyboard</h3>
+              <ul class="spec-list">
+                <li>Enter or a comma adds what’s typed, and so does leaving the box. Backspace in an empty box removes the last tag. Pasting “a, b, c” adds all three.</li>
+                <li>Duplicates are matched without case, and extra spaces are tidied.</li>
+                <li>After a remove or a suggestion, put focus back in the text box. A click on the box’s empty space focuses it too.</li>
+                <li>Announce “Added Street, 3 of 5” and “Removed Street” in a visually hidden polite live region.</li>
+                <li><code>jewel:tagschange</code> doesn’t fire without the script.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
 
         <footer class="panel panel--pad site-footer">

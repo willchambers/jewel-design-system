@@ -137,6 +137,38 @@
           </div>
         </section>
 
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">05 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>What the script does</h3>
+              <p>The script shows the clear button, handles Esc and the “/” shortcut, and turns the box into a combobox when there are suggestions. The CSS reads only the markup below, so a framework can set it itself and leave out <code>search.js</code> and <code>data-component</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">State</th><th scope="col">Set this</th><th scope="col">Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Has text</td><td>Remove <code>hidden</code> from <code>.search__clear</code></td><td>Keep it <code>hidden</code> while the box is empty. Showing it also hides the “/” hint.</td></tr>
+                    <tr><td>Suggestions</td><td><code>&lt;ul class="search__suggestions" role="listbox"&gt;</code> in the form, <code>hidden</code> when closed</td><td>Each option is <code>&lt;li class="search__option" role="option" aria-selected="false"&gt;</code> with an id. Wrap the matching part in <code>&lt;mark&gt;</code>.</td></tr>
+                    <tr><td>Combobox</td><td><code>role="combobox"</code>, <code>aria-autocomplete="list"</code>, <code>aria-controls</code> (the list’s id) and <code>aria-expanded</code> on <code>.search__input</code></td><td>Only when there are suggestions.</td></tr>
+                    <tr><td>Highlighted option</td><td><code>aria-selected="true"</code> on the option, and its id in the input’s <code>aria-activedescendant</code></td><td>Focus stays in the box.</td></tr>
+                    <tr><td>Disabled</td><td><code>disabled</code> on <code>.search__input</code></td><td>Dashed and dimmed.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Events and keyboard</h3>
+              <ul class="spec-list">
+                <li>↓ opens the suggestions and moves down, ↑ moves up (both wrap), and Enter picks the highlighted one.</li>
+                <li>Esc closes the suggestions; with them closed, it clears the box; with the box empty, it leaves the field. The × clears the box and puts focus back in it.</li>
+                <li>“/” outside a text field focuses the box, when the form has a <code>.search__key</code>.</li>
+                <li>Call <code>preventDefault()</code> on <code>pointerdown</code> in the list so focus stays in the box, and close the list on blur.</li>
+                <li><code>jewel:searchinput</code> and <code>jewel:search</code> don’t fire without the script. A form without an <code>action</code> needs <code>preventDefault()</code> on submit.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
 
         <footer class="panel panel--pad site-footer">

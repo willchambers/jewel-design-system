@@ -51,7 +51,7 @@
             <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Meta list</span></li></ol>
           </nav>
           <h1>Meta list</h1>
-          <p class="lede">Label and value rows separated by hairlines, for the facts about a project or a photo.</p>
+          <p class="lede">Label and value rows separated by hairlines, for the facts about a project, a photo or a record. A stacked version handles long keys and values.</p>
           <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/meta-list.css</code></dd></div></dl>
         </section>
         <section class="panel panel--pad grid" id="example">
@@ -68,6 +68,18 @@
                 </dl>
               </div>
             </div>
+            <div class="spec-block">
+              <h3>Stacked</h3>
+              <p><code>.meta--stacked</code> puts each label above its value, for long keys and values such as Kubernetes labels, paths and IDs. Long strings wrap instead of widening the page. On phones every meta list stacks like this.</p>
+              <div class="spec-example">
+                <dl class="meta meta--stacked">
+                  <dt class="label">Namespace</dt><dd>default</dd>
+                  <dt class="label">Node</dt><dd>aks-pool-1-38291746-vmss000002</dd>
+                  <dt class="label">app.kubernetes.io/managed-by</dt><dd>Helm</dd>
+                  <dt class="label">Image</dt><dd><code>ghcr.io/example/api@sha256:9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08</code></dd>
+                </dl>
+              </div>
+            </div>
           </div>
         </section>
         <section class="panel panel--pad grid" id="usage">
@@ -78,6 +90,7 @@
                 <h3>Use it for</h3>
                 <ul class="spec-list">
                   <li>Short facts: role, client, year, camera, location.</li>
+                  <li>The details of a record in a drawer, stacked.</li>
                 </ul>
               </div>
               <div class="spec-guide__col spec-guide__col--avoid">

@@ -133,6 +133,36 @@
           </div>
         </section>
 
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">05 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>What the script does</h3>
+              <p>The script selects a tab on a click or an arrow key, shows its panel and wires the ids. The CSS reads only the markup below, so a framework can set it itself and leave out <code>tabs.js</code> and <code>data-component</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">State</th><th scope="col">Set this</th><th scope="col">Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Selected tab</td><td><code>aria-selected="true"</code> and <code>tabindex="0"</code> on the tab; <code>aria-selected="false"</code> and <code>tabindex="-1"</code> on the rest</td><td>Filled, with the accent rule.</td></tr>
+                    <tr><td>Panels</td><td><code>hidden</code> on every panel but the selected tab’s</td><td>Each panel has <code>role="tabpanel"</code>.</td></tr>
+                    <tr><td>Pairing</td><td>An id on each tab and panel; <code>aria-controls</code> on the tab, <code>aria-labelledby</code> on its panel</td><td>Tabs and panels pair up in order.</td></tr>
+                    <tr><td>Panel focus</td><td><code>tabindex="0"</code> on a panel with nothing focusable inside</td><td>So Tab moves into it.</td></tr>
+                    <tr><td>Disabled</td><td><code>disabled</code> on the tab</td><td>Dimmed. Skip it with the arrow keys.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Events and keyboard</h3>
+              <ul class="spec-list">
+                <li>← → move and select (↑ ↓ with <code>aria-orientation="vertical"</code> on the tablist), wrapping and skipping disabled tabs. Home and End jump to the ends. Focus follows the selection.</li>
+                <li>Scroll the selected tab into view when the row scrolls sideways.</li>
+                <li>Without the script, <code>jewel:tabchange</code> doesn’t fire and <code>data-tabs-hash</code> does nothing.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
 
         <footer class="panel panel--pad site-footer">

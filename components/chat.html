@@ -163,6 +163,38 @@
           </div>
         </section>
 
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">06 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>What the script does</h3>
+              <p>The script adds each message to the log, shows a typing indicator, clears the composer and fires <code>jewel:chatsend</code> for your code to answer. The CSS reads only the markup below, so a framework can render the conversation from its own state and leave out <code>chat.js</code> and <code>data-component</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">State</th><th scope="col">Set this</th><th scope="col">Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Message</td><td><code>&lt;li class="chat__msg chat__msg--user"&gt;</code> or <code>chat__msg--bot</code>, holding <code>p.chat__author</code> and <code>div.chat__text</code></td><td>In <code>ol.chat__log</code>. CSS hides the user’s author line (“You”) visually.</td></tr>
+                    <tr><td>Typing</td><td>A last <code>&lt;li class="chat__msg chat__msg--bot" aria-label="Assistant is typing"&gt;</code> holding <code>&lt;span class="chat__typing" aria-hidden="true"&gt;</code> with three empty <code>&lt;span&gt;</code>s</td><td>Use the bot’s name in the label. Remove it when the reply arrives.</td></tr>
+                    <tr><td>Waiting for a reply</td><td><code>aria-busy="true"</code> and <code>disabled</code> on <code>.chat__send</code></td><td>Clear both when the reply or the error is in.</td></tr>
+                    <tr><td>Failed reply</td><td><code>chat__msg--error</code> on the bot message</td><td>Shows its text in the error color. Put a Retry button inside.</td></tr>
+                    <tr><td>Started</td><td><code>is-started</code> on <code>.chat</code></td><td>Hides <code>.chat__prompts</code> after the first message.</td></tr>
+                    <tr><td>Scrollable log</td><td><code>tabindex="0"</code> on <code>.chat__log</code></td><td>So keyboard users can scroll it.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Events and keyboard</h3>
+              <ul class="spec-list">
+                <li>Enter sends and Shift+Enter is a new line. Skip this during IME composition (<code>isComposing</code>) and on touch screens (<code>pointer: coarse</code>), where Enter is always a new line.</li>
+                <li>After each message, scroll the log to the bottom, smoothly unless reduced motion is on.</li>
+                <li>Clear the composer after sending. The textarea grows with <code>field-sizing: content</code>; where that isn’t supported, the script sets its height from <code>scrollHeight</code> as people type.</li>
+                <li><code>jewel:chatsend</code> doesn’t fire without the script. Send the text to your backend yourself.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
 
         <footer class="panel panel--pad site-footer">

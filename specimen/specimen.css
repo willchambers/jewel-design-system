@@ -219,3 +219,23 @@
 /* Demos shown in place: the floating button and a side nav column. */
 .spec-example .fab { position: static; }
 .spec-side-nav-demo { max-width: var(--side-nav-w); padding: var(--space-4) var(--space-3); }
+
+/* ---- Icons page ------------------------------------------------------------ */
+.spec-icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(7.5rem, 100%), 1fr)); gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.spec-icon { display: grid; justify-items: center; gap: var(--space-2); padding: var(--space-4) var(--space-2) var(--space-3); border: var(--hairline) solid var(--panel-border); }
+.spec-icon code { font-size: var(--text-2xs); color: var(--text-muted); background: none; border: 0; padding: 0; overflow-wrap: anywhere; text-align: center; }
+
+/* ---- Palettes and density previews ---------------------------------------- */
+.spec-palettes { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(14rem, 100%), 1fr)); gap: var(--space-4); }
+.spec-palette { display: grid; gap: var(--space-2); }
+.spec-palette__swatch { aspect-ratio: 16 / 9; max-width: 100%; border: var(--hairline) solid var(--panel-border);
+  background:
+    radial-gradient(60% 80% at 18% 22%, var(--bg-1), transparent 70%),
+    radial-gradient(55% 75% at 82% 12%, var(--bg-2), transparent 70%),
+    radial-gradient(60% 80% at 70% 88%, var(--bg-3), transparent 70%),
+    radial-gradient(55% 70% at 8% 78%, var(--bg-4), transparent 70%),
+    radial-gradient(120% 90% at 50% 110%, var(--bg-5), transparent 60%),
+    var(--bg-base); }
+.spec-palette__chips { display: flex; gap: var(--space-1); }
+.spec-palette__chips i { flex: 1; height: var(--space-2); }
+.spec-density { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr)); align-items: start; }

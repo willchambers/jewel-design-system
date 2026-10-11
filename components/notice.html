@@ -74,11 +74,29 @@
             </div>
             <div class="spec-block">
               <h3>Accent</h3>
-              <p>Updates and good news.</p>
+              <p>Updates about the page itself, such as a new version.</p>
               <div class="spec-example">
                 <div class="notice notice--accent" role="status">
                   <p class="notice__text">Photostream has been updated.</p>
                   <div class="notice__actions"><button class="btn btn--ghost" type="button">Reload</button></div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Status</h3>
+              <p>Success, warning and info use the traffic light colors, for news about the state of a system.</p>
+              <div class="spec-example">
+                <div class="notices">
+                  <div class="notice notice--success" role="status">
+                    <div class="notice__body"><p class="notice__title">Cluster healthy</p><p class="notice__text">All 18 pods are running.</p></div>
+                  </div>
+                  <div class="notice notice--warning" role="status">
+                    <div class="notice__body"><p class="notice__title">Rolling update</p><p class="notice__text">3 of 6 replicas are on the new version.</p></div>
+                    <div class="notice__actions"><button class="btn btn--ghost" type="button">View rollout</button></div>
+                  </div>
+                  <div class="notice notice--info" role="status">
+                    <div class="notice__body"><p class="notice__title">Syncing</p><p class="notice__text">Fetching the latest state from prod-east.</p></div>
+                  </div>
                 </div>
               </div>
             </div>

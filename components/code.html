@@ -126,6 +126,34 @@
           </div>
         </section>
 
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">04 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>What the script does</h3>
+              <p>The script copies the code’s text when Copy is pressed and confirms it for two seconds, on screen and for screen readers. The CSS reads only the markup below, so a framework can do the copy itself and leave out <code>code.js</code> and <code>data-component</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">State</th><th scope="col">Set this</th><th scope="col">Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Copied</td><td><code>data-state="copied"</code> on <code>.code__copy</code>, with the label “Copied”</td><td>Accent color. After two seconds the script removes it and puts the old label back.</td></tr>
+                    <tr><td>Failed</td><td><code>data-state="failed"</code>, with the label “Press Ctrl+C to copy”</td><td>Error color.</td></tr>
+                    <tr><td>Announced</td><td>A visually hidden <code>&lt;span aria-live="polite"&gt;</code> in <code>.code</code>, set to the same text</td><td>Screen readers hear it. Empty it when the label goes back.</td></tr>
+                    <tr><td>What to copy</td><td>The text of the <code>&lt;code&gt;</code>, without its last line break</td><td>Use <code>navigator.clipboard.writeText()</code>.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Events and keyboard</h3>
+              <ul class="spec-list">
+                <li>Where the Clipboard API is blocked (plain http pages), the script copies from a hidden, selected textarea with <code>document.execCommand("copy")</code> instead.</li>
+                <li><code>jewel:copy</code> doesn’t fire without the script. Run your own code once the copy succeeds.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
 
         <footer class="panel panel--pad site-footer">

@@ -51,7 +51,7 @@
             <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Button</span></li></ol>
           </nav>
           <h1>Button</h1>
-          <p class="lede">Buttons start an action: send a form, open a sheet, follow a step. One filled button per view carries the main action; ghost and text buttons carry the rest.</p>
+          <p class="lede">Buttons start an action: send a form, open a sheet, follow a step. One filled button per view carries the main action; ghost and text buttons carry the rest, and a red one marks the action that can’t be undone.</p>
           <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/button.css</code></dd></div></dl>
         </section>
         <section class="panel panel--pad grid" id="variants">
@@ -65,6 +65,22 @@
                   <button class="btn" type="button">Primary</button>
                   <button class="btn btn--ghost" type="button">Ghost</button>
                   <button class="btn btn--text" type="button">Text</button>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Destructive</h3>
+              <p>Filled red, so it can’t be overlooked. Use it for the one action that deletes something or can’t be undone, usually in a confirm step with a plain way out beside it.</p>
+              <div class="spec-example">
+                <div class="notice">
+                  <div class="notice__body">
+                    <p class="notice__title">Remove prod-east?</p>
+                    <p class="notice__text">Its saved context is deleted from this app. The cluster itself isn’t touched.</p>
+                  </div>
+                  <div class="notice__actions">
+                    <button class="btn btn--text" type="button">Cancel</button>
+                    <button class="btn btn--danger" type="button">Remove cluster</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -134,6 +150,7 @@
                 <h3>Avoid</h3>
                 <ul class="spec-list">
                   <li>Two primary buttons side by side. Make one ghost.</li>
+                  <li>The destructive button for anything that can be undone, or more than once in a view.</li>
                   <li>Buttons for navigation between pages. Use a link.</li>
                   <li>Icon buttons without a label, or icons nobody will recognize.</li>
                 </ul>

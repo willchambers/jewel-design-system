@@ -10,7 +10,10 @@
    - The table moves into a "Show data" disclosure: the accessible view.
    - Colors come from CSS: data-series picks one of the --chart-1…5
      tokens, in a fixed order. Labels are inserted with textContent only.
-   - Redraws on resize; no library. */
+   - Redraws on resize; no library.
+   - From data (React, live updates): Jewel.chart.render(el, data) writes
+     the table and draws the chart; .update(data) redraws it. See the
+     "From data" section at the end of this file. */
 
 (() => {
   const SVG = 'http://www.w3.org/2000/svg';
@@ -478,7 +481,7 @@
     const table = fig.querySelector('table');
     if (!table?.tHead || !table.tBodies.length) return;
 
-    const data = readTable(table);
+    let data = readTable(table);
     if (data.series.length > MAX_SERIES) console.warn(`[jewel] chart: ${data.series.length} series; series after ${MAX_SERIES} share the context gray. Fold them into "Other" or split the chart.`);
     const round = type === 'pie' || type === 'donut';
     const fmt = formatter(fig);
@@ -604,6 +607,15 @@
 
     new ResizeObserver(() => render()).observe(plot);
     render();
+
+    // Jewel.chart.update() rewrites the table, then calls this.
+    fig._jewelChart = {
+      refresh() {
+        data = readTable(table);
+        lastW = 0;
+        render();
+      },
+    };
   });
 
   /* ---- Sparkline ---------------------------------------------------------- */
@@ -611,8 +623,13 @@
   //       data-values="9100,9400,9900,10400" data-labels="Jan,Feb,Mar,Apr"
   //       data-name="Members" aria-label="Members, January to April: up from 9,100 to 10,400"></span>
   function sparkline(el) {
-    const values = (el.dataset.values || '').split(',').map(num);
-    const labels = (el.dataset.labels || '').split(',').map((s) => s.trim());
+    let values = [];
+    let labels = [];
+    const read = () => {
+      values = (el.dataset.values || '').split(',').map(num);
+      labels = (el.dataset.labels || '').split(',').map((s) => s.trim());
+    };
+    read();
     if (!values.length) return;
     el.setAttribute('role', 'img');
     if (!el.getAttribute('aria-label')) {
@@ -663,5 +680,154 @@
     }
     new ResizeObserver(render).observe(el);
     render();
+
+    el._jewelChart = {
+      refresh() {
+        read();
+        lastW = 0;
+        if (values.some((v) => v != null)) render();
+      },
+    };
   }
+
+  /* ---- From data -----------------------------------------------------------
+     For apps that hold the data themselves (React state, a live feed). The
+     chart is still drawn from a real table, which these functions write, so
+     "Show data", the keyboard and the screen reader view all keep working.
+
+       const chart = Jewel.chart.render(container, {
+         type: 'donut',                       // line | area | bar | pie | donut | sparkline
+         title: 'Pods by state',              // optional caption
+         subtitle: 'prod-east',               // optional
+         categoryLabel: 'State',              // first column's header
+         labels: ['Running', 'Pending', 'Failed'],
+         series: [{ name: 'Pods', values: [12, 5, 1] }],
+         stacked: false, prefix: '', suffix: '', height: 260,   // all optional
+       });
+       chart.update({ series: [{ values: [11, 6, 1] }] });     // redraws in place
+       chart.el                                               // the <figure>
+
+     container: a figure.chart to reuse, or any element to put a new one in.
+     update() merges: leave out labels, names or options to keep them. The
+     type is fixed once drawn.
+     Jewel.chart.update(figure, data) does the same for any chart on the
+     page, including ones written as HTML tables. Values are numbers or null
+     (a gap). In React, render once in an effect, call update() when the
+     data changes, and let Jewel own the figure's contents. */
+  const OPTS = ['type', 'stacked', 'prefix', 'suffix', 'height'];
+  const state = new WeakMap(); // figure → last full data, so update() can merge
+
+  function merge(prev = {}, next = {}) {
+    const out = { ...prev, ...next };
+    out.series = (next.series || prev.series || []).map((s, i) => ({
+      ...(prev.series?.[i] || {}),
+      ...s,
+    }));
+    return out;
+  }
+
+  function writeChart(fig, d) {
+    const type = d.type || 'line';
+    const cellText = (v) => (v == null || Number.isNaN(v) ? '' : new Intl.NumberFormat(undefined, { maximumFractionDigits: 6 }).format(v));
+    if (type === 'sparkline') {
+      fig.classList.remove('chart');
+      fig.classList.add('sparkline');
+      fig.dataset.type = 'sparkline';
+      const s = d.series?.[0] || { values: [] };
+      fig.dataset.values = s.values.map((v) => (v == null ? '' : v)).join(',');
+      fig.dataset.labels = (d.labels || []).join(',');
+      if (s.name) fig.dataset.name = s.name;
+      if (d.title) fig.setAttribute('aria-label', d.title);
+      return;
+    }
+    fig.classList.add('chart');
+    for (const k of OPTS) {
+      const v = d[k];
+      if (v == null || v === false || v === '') delete fig.dataset[k];
+      else fig.dataset[k] = v === true ? '' : String(v);
+    }
+    // Caption
+    let cap = fig.querySelector(':scope > figcaption');
+    if (d.title || d.subtitle) {
+      if (!cap) { cap = document.createElement('figcaption'); fig.prepend(cap); }
+      cap.replaceChildren();
+      if (d.title) cap.append(htmlEl('span', 'chart__title', d.title));
+      if (d.subtitle) cap.append(htmlEl('span', 'chart__subtitle', d.subtitle));
+    }
+    // Table (inside "Show data" once the chart has been drawn)
+    let table = fig.querySelector('table');
+    if (!table) { table = document.createElement('table'); fig.append(table); }
+    const series = d.series || [];
+    const head = document.createElement('thead');
+    const hr = head.insertRow();
+    const th0 = document.createElement('th');
+    th0.scope = 'col';
+    th0.textContent = d.categoryLabel || '';
+    hr.append(th0);
+    series.forEach((s, i) => {
+      const th = document.createElement('th');
+      th.scope = 'col';
+      th.textContent = s.name || `Series ${i + 1}`;
+      hr.append(th);
+    });
+    const body = document.createElement('tbody');
+    (d.labels || []).forEach((label, r) => {
+      const tr = body.insertRow();
+      const th = document.createElement('th');
+      th.scope = 'row';
+      th.textContent = label;
+      tr.append(th);
+      series.forEach((s) => { tr.insertCell().textContent = cellText(s.values?.[r]); });
+    });
+    table.replaceChildren(head, body);
+  }
+
+  // A chart first written as an HTML table: start from what the table says.
+  function seed(fig) {
+    if (fig.dataset.type === 'sparkline') {
+      return {
+        type: 'sparkline',
+        labels: (fig.dataset.labels || '').split(',').map((x) => x.trim()),
+        series: [{ name: fig.dataset.name, values: (fig.dataset.values || '').split(',').map(num) }],
+      };
+    }
+    const t = fig.querySelector('table');
+    if (!t?.tHead || !t.tBodies.length) return {};
+    const r = readTable(t);
+    const d = { categoryLabel: r.categoryLabel, labels: r.categories, series: r.series.map((x) => ({ name: x.name, values: x.values })) };
+    for (const k of OPTS) if (k in fig.dataset) d[k] = k === 'stacked' ? true : fig.dataset[k];
+    return d;
+  }
+
+  function update(fig, next) {
+    if (!state.has(fig)) state.set(fig, seed(fig));
+    if (fig._jewelChart && next.type && next.type !== (state.get(fig).type || 'line')) {
+      console.warn('[jewel] chart: the type is fixed once drawn; render a new chart to change it.');
+      next = { ...next, type: state.get(fig).type };
+    }
+    const d = merge(state.get(fig), next);
+    state.set(fig, d);
+    writeChart(fig, d);
+    if (fig._jewelChart) fig._jewelChart.refresh();
+    else {
+      fig.dataset.component = 'chart';
+      Jewel.mount(fig.parentElement || document);
+    }
+    return fig;
+  }
+
+  function render(container, data) {
+    let fig = container.matches?.('figure.chart, .sparkline') ? container : null;
+    if (!fig) {
+      fig = document.createElement(data.type === 'sparkline' ? 'span' : 'figure');
+      container.append(fig);
+    }
+    update(fig, data);
+    return {
+      el: fig,
+      update: (next) => update(fig, next),
+    };
+  }
+
+  window.Jewel.chart = { render, update: (fig, data) => update(fig, data) };
 })();

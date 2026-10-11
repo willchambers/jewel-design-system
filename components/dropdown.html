@@ -144,6 +144,39 @@
           </div>
         </section>
 
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">05 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>What the script does</h3>
+              <p>The script opens and closes the menu, moves focus through it from the keyboard and keeps checked items in step. The CSS reads only the markup below, so a framework can set it itself and leave out <code>dropdown.js</code> and <code>data-component</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">State</th><th scope="col">Set this</th><th scope="col">Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Open</td><td>Remove <code>hidden</code> from <code>.dropdown__menu</code>; <code>aria-expanded="true"</code> on <code>.dropdown__trigger</code></td><td>Turns the chevron. The trigger also carries <code>aria-haspopup="menu"</code> and <code>aria-controls</code> with the menu’s id.</td></tr>
+                    <tr><td>Items</td><td><code>tabindex="-1"</code> on every <code>[role^="menuitem"]</code></td><td>Focus moves with the arrow keys, not Tab.</td></tr>
+                    <tr><td>Checked</td><td><code>aria-checked="true"</code> on a <code>menuitemradio</code> or <code>menuitemcheckbox</code></td><td>Draws the tick. Only one radio in a menu is checked.</td></tr>
+                    <tr><td>Disabled</td><td><code>aria-disabled="true"</code> on an item</td><td>Dims it. Ignore its clicks and skip it with the keys.</td></tr>
+                    <tr><td>Placement</td><td><code>data-align="end"</code> or <code>data-side="top"</code> on <code>.dropdown</code></td><td>CSS puts the menu under the trigger. The script lifts it into the top layer instead (<code>popover</code>, <code>.is-floating</code>, fixed <code>top</code> and <code>left</code>), so a panel can’t clip it.</td></tr>
+                    <tr><td>Choice in the label</td><td>The chosen radio’s text in the trigger: “Sort: Newest”</td><td>Replaces <code>data-label-from-choice</code>.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Events and keyboard</h3>
+              <ul class="spec-list">
+                <li>Enter, Space or ↓ on the trigger opens the menu with focus on the checked item, or the first; ↑ opens it on the last.</li>
+                <li>In the menu, ↑ ↓ move and wrap, Home and End jump, and typed letters jump to the first item that starts with them.</li>
+                <li>Enter or Space chooses. A <code>menuitemcheckbox</code> keeps the menu open; anything else closes it and returns focus to the trigger.</li>
+                <li>Esc closes and returns focus to the trigger. Tab, or a press outside, closes it without moving focus.</li>
+                <li><code>jewel:select</code> doesn’t fire without the script.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
 
         <footer class="panel panel--pad site-footer">

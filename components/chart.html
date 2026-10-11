@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Chart · Jewel Design System</title>
-  <meta name="description" content="Line, area, bar, pie, donut and sparkline charts, drawn from a plain HTML table with no chart library. The table stays as the chart’s data view, so every number is readable without the chart.">
+  <meta name="description" content="Line, area, bar, pie, donut and sparkline charts, drawn from a plain HTML table, or from data in JavaScript, with no chart library. The table stays as the chart’s data view, so every number is readable without the chart.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +20,20 @@
   <script src="../js/components/code.js" defer></script>
   <script src="../js/components/chart.js" defer></script>
   <script src="../specimen/specimen.js" defer></script>
+  <script>
+    // From data demo: a live donut that gets new numbers on each press.
+    document.addEventListener('DOMContentLoaded', () => {
+      const chart = Jewel.chart.render(document.getElementById('live-chart'), {
+        type: 'donut', title: 'Pods by state', subtitle: 'prod-east', categoryLabel: 'State',
+        labels: ['Running', 'Pending', 'Failed'],
+        series: [{ name: 'Pods', values: [12, 5, 1] }],
+      });
+      document.getElementById('live-chart-next').addEventListener('click', () => {
+        const r = (lo, hi) => lo + Math.floor(Math.random() * (hi - lo + 1));
+        chart.update({ series: [{ values: [r(8, 16), r(0, 6), r(0, 3)] }] });
+      });
+    });
+  </script>
 </head>
 <body data-page="components/chart">
   <a class="spec-skip" href="#main">Skip to content</a>
@@ -52,7 +66,7 @@
             <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Chart</span></li></ol>
           </nav>
           <h1>Chart</h1>
-          <p class="lede">Line, area, bar, pie, donut and sparkline charts, drawn from a plain HTML table with no chart library. The table stays as the chart’s data view, so every number is readable without the chart.</p>
+          <p class="lede">Line, area, bar, pie, donut and sparkline charts, drawn from a plain HTML table, or from data in JavaScript, with no chart library. The table stays as the chart’s data view, so every number is readable without the chart.</p>
           <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/chart.css</code></dd></div><div><dt>JS</dt><dd><code>js/components/chart.js</code></dd></div><div><dt>Docs</dt><dd><code>docs/charts.md</code></dd></div></dl>
         </section>
         <section class="panel panel--pad grid" id="chart-types">
@@ -235,8 +249,71 @@
             </div>
           </div>
         </section>
+        <section class="panel panel--pad grid" id="from-data">
+          <header class="section-head"><p class="label">03 — From data</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Live data</h3>
+              <p>For apps that hold the numbers themselves, such as React state or a live feed. <code>Jewel.chart.render()</code> writes the table and draws the chart; <code>update()</code> redraws it in place. The table is still there behind “Show data”, so the keyboard and screen reader view keep working. Press the button to send new numbers.</p>
+              <div class="spec-example" data-code="none">
+                <div id="live-chart"></div>
+                <div class="spec-row"><button class="btn btn--ghost" type="button" id="live-chart-next">New numbers</button></div>
+              </div>
+              <figure class="code" data-component="code">
+                <figcaption class="code__head"><span class="code__lang">JS</span><button class="code__copy" type="button">Copy</button></figcaption>
+                <pre class="code__body" tabindex="0"><code>const chart = Jewel.chart.render(document.querySelector('#pods'), {
+  type: 'donut',
+  title: 'Pods by state',
+  categoryLabel: 'State',
+  labels: ['Running', 'Pending', 'Failed'],
+  series: [{ name: 'Pods', values: [12, 5, 1] }],
+});
+
+// Later, when the data changes:
+chart.update({ series: [{ values: [14, 3, 1] }] });</code></pre>
+              </figure>
+            </div>
+            <div class="spec-block">
+              <h3>In React</h3>
+              <p>Render once in an effect, call <code>update()</code> when the data changes, and let Jewel own the element’s contents.</p>
+              <figure class="code" data-component="code">
+                <figcaption class="code__head"><span class="code__lang">JSX</span><button class="code__copy" type="button">Copy</button></figcaption>
+                <pre class="code__body" tabindex="0"><code>function PodsChart({ counts }) {
+  const ref = useRef(null);
+  const chart = useRef(null);
+  useEffect(() => {
+    chart.current = Jewel.chart.render(ref.current, {
+      type: 'bar', categoryLabel: 'State',
+      labels: ['Running', 'Pending', 'Failed'],
+      series: [{ name: 'Pods', values: counts }],
+    });
+  }, []);
+  useEffect(() => { chart.current?.update({ series: [{ values: counts }] }); }, [counts]);
+  return &lt;div ref={ref} /&gt;;
+}</code></pre>
+              </figure>
+            </div>
+            <div class="spec-block">
+              <h3>Data shape</h3>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">Field</th><th scope="col">What it is</th></tr></thead>
+                  <tbody>
+                    <tr><td><code>type</code></td><td><code>line</code>, <code>area</code>, <code>bar</code>, <code>pie</code>, <code>donut</code> or <code>sparkline</code>. Fixed once drawn.</td></tr>
+                    <tr><td><code>labels</code></td><td>The categories: x axis points, bars or slices.</td></tr>
+                    <tr><td><code>series</code></td><td><code>[{ name, values }]</code>, one per line or bar group. Values are numbers, or <code>null</code> for a gap.</td></tr>
+                    <tr><td><code>title</code>, <code>subtitle</code></td><td>The caption. Optional.</td></tr>
+                    <tr><td><code>categoryLabel</code></td><td>The first column’s header in the table view.</td></tr>
+                    <tr><td><code>stacked</code>, <code>prefix</code>, <code>suffix</code>, <code>height</code></td><td>The same options as the <code>data-*</code> attributes.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p><code>update()</code> merges, so leave out anything that hasn’t changed. <code>Jewel.chart.update(figure, data)</code> works on any chart, including ones written as an HTML table.</p>
+            </div>
+          </div>
+        </section>
         <section class="panel panel--pad grid" id="usage">
-          <header class="section-head"><p class="label">03 — Usage</p></header>
+          <header class="section-head"><p class="label">04 — Usage</p></header>
           <div class="span-12 spec-body">
             <div class="spec-guide">
               <div class="spec-guide__col">
@@ -259,7 +336,7 @@
           </div>
         </section>
         <section class="panel panel--pad grid" id="accessibility">
-          <header class="section-head"><p class="label">04 — Accessibility</p></header>
+          <header class="section-head"><p class="label">05 — Accessibility</p></header>
           <div class="span-12 spec-body">
             <div class="spec-block">
               <h3>Notes</h3>
