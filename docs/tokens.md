@@ -60,6 +60,8 @@ Use these resolved tokens in components and page CSS.
 | `--field-focus` | Field focus rings (the accent). |
 | `--field-error` | Error text and edges. |
 | `--field-placeholder` | Placeholder text (the muted color). |
+| `--status-success`, `--status-warning`, `--status-error`, `--status-info`, `--status-neutral` | Status text, notice titles and edges: the traffic light. |
+| `--status-*-mark` | The stronger tone of each status, for dots, bars and fills. |
 | `--chart-1` … `--chart-5` | Chart series, in a fixed order. See [charts.md](charts.md#colors). |
 | `--chart-accent`, `--chart-context` | The sparkline's end dot and line; the gray for a 6th series or more. |
 | `--chart-grid`, `--chart-ring` | Chart gridlines; the gap color between marks. |
@@ -79,6 +81,12 @@ The values behind them, in the dark theme:
 | `--glass-border` | `rgb(244 244 245 / 0.10)` |
 | `--color-field-border` / `-hover` | `rgb(244 244 245 / 0.40)` / `0.60` |
 | `--color-error` | `#FCA5A5` |
+| `--color-success` / `-mark` | `#86EFAC` / `#22C55E` |
+| `--color-warning` / `-mark` | `#FCD34D` / `#FBBF24` |
+| `--color-info` / `-mark` | `#93C5FD` / `#60A5FA` |
+| `--color-error-mark` | `#EF4444` |
+
+**Status colors always mean something** (running, pending, failed); chart colors never do. Don't use one for the other: a pod's state gets `.status`, not `--chart-1`. Each status has a text tone (at least 4.5:1, also used for notice titles and edges) and a mark tone for dots and bars (at least 3:1). `--status-neutral` is the muted text color with the chart's context gray as its mark, for unknown states.
 
 Why glass text is a little lighter than solid text, and every contrast measurement, is in [accessibility.md](accessibility.md#contrast).
 
@@ -143,6 +151,20 @@ The larger sizes are fluid: they scale between the two values as the screen goes
 | `--duration-fast` / `-base` / `-slow` | 120 / 200 / 400ms |
 | `--duration-spin` / `--duration-pulse` | 800ms (one turn of a busy spinner) / 1.4s (a busy dot, the chat's typing dots) |
 | `--glass-blur` / `--glass-saturate` | 24px / 140% |
+
+## Density
+
+`data-density="compact"` on `<html>`, a region or one panel tightens the layout for dashboards and dense tools. It only changes tokens, so every component follows.
+
+| Token | Default | Compact |
+|---|---|---|
+| `--panel-padding` | 24–48px (fluid) | 16px |
+| `--panel-stack-gap` | 16px | 12px |
+| `--density-gap` | 24px (between fields in a form) | 12px |
+| `--control-h` | 40px | 32px |
+| `--control-h-touch` | 44px | 36px with a mouse; 44px on touch screens |
+
+Tables inside a compact region get 32px rows, like `.table--compact`.
 
 ## Breakpoints
 
@@ -225,6 +247,19 @@ The animated background is called the *lava lamp animation*. These tokens tune i
 - `--bg-dim` exists for themes whose panels need a darker backdrop to stand out. The parked light theme uses 0.4.
 - With `prefers-reduced-motion: reduce`, the lava lamp animation stops and the background holds a still composition.
 - `data-bg="paused"` on `<html>` stops it on purpose.
+
+### Palettes
+
+The animation cycles through five colors, `--bg-1` to `--bg-5`, over `--bg-base`. They default to the Jewel palette. `data-palette` on `<html>` swaps in another set:
+
+| `data-palette` | Colors | Feel |
+|---|---|---|
+| (none) | Purple, magenta, teal, red, orange over `#7A2E9E` | Jewel: warm and cool together |
+| `ember` | `#DC2626` `#EA580C` `#D97706` `#BE185D` `#C026D3` over `#9A3412` | Warm |
+| `lagoon` | `#0F9488` `#0369A1` `#4338CA` `#0E7490` `#2563EB` over `#155E75` | Cool |
+| `dusk` | `#6D28D9` `#BE185D` `#1D4ED8` `#7E22CE` `#DB2777` over `#4C1D95` | Violet and rose |
+
+For your own palette, set `--bg-1` … `--bg-5` and `--bg-base` in your stylesheet. Text contrast is safe as long as no color is lighter than `#F4F4F5`, the near-white backdrop glass is tested over.
 
 ## Performance notes
 

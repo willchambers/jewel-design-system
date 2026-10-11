@@ -73,7 +73,7 @@
      placed next to their anchor with position: fixed. They flip above the
      anchor when there's no room below. Without popover support they fall
      back to their CSS position (absolute, under the anchor).
-     options: align 'start' | 'end', width 'min' (at least the anchor's) |
+     options: align 'start' | 'end' | 'center', width 'min' (at least the anchor's) |
      'match' (exactly the anchor's) | null.
      Returns close(), which hides the layer and stops tracking. */
   function float(layer, anchor, { align = 'start', width = null } = {}) {
@@ -94,7 +94,9 @@
       let y = below ? a.bottom + gap : a.top - gap - r.height;
       // Taller than the space on either side (a calendar on a phone): keep it on screen.
       y = Math.max(edge, Math.min(y, innerHeight - r.height - edge));
-      let x = align === 'end' ? a.right - r.width : a.left;
+      let x = align === 'end' ? a.right - r.width
+        : align === 'center' ? a.left + (a.width - r.width) / 2
+        : a.left;
       x = Math.max(edge, Math.min(x, innerWidth - r.width - edge));
       layer.style.top = `${Math.round(y)}px`;
       layer.style.left = `${Math.round(x)}px`;

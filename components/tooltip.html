@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tooltip · Jewel Design System</title>
+  <meta name="description" content="A short hint for a control, shown on hover and keyboard focus. A light box with dark text and a small pointer, so it stands out against the dark panels.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../js/components/tooltip.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="components/tooltip">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html" aria-current="page">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Tooltip</span></li></ol>
+          </nav>
+          <h1>Tooltip</h1>
+          <p class="lede">A short hint for a control, shown on hover and keyboard focus. A light box with dark text and a small pointer, so it stands out against the dark panels.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/tooltip.css</code></dd></div><div><dt>JS</dt><dd><code>js/components/tooltip.js</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="variants">
+          <header class="section-head"><p class="label">01 — Examples</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Icon buttons</h3>
+              <p>Hover a button, or tab to it. The bubble opens below and flips above when there’s no room. Esc hides it.</p>
+              <div class="spec-example">
+                <div class="spec-row">
+                  <span class="tooltip" data-component="tooltip">
+                    <button class="btn btn--ghost btn--icon" type="button" aria-label="Refresh" aria-describedby="tip-refresh"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg></button>
+                    <span class="tooltip__bubble" role="tooltip" id="tip-refresh" hidden>Refresh pods</span>
+                  </span>
+                  <span class="tooltip" data-component="tooltip">
+                    <button class="btn btn--ghost btn--icon" type="button" aria-label="Logs" aria-describedby="tip-logs"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h12a2 2 0 0 0 2-2v-2H10v2a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v3h4"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M15 8h-5"/><path d="M15 12h-5"/></svg></button>
+                    <span class="tooltip__bubble" role="tooltip" id="tip-logs" hidden>Open logs</span>
+                  </span>
+                  <span class="tooltip" data-component="tooltip">
+                    <button class="btn btn--ghost btn--icon" type="button" aria-label="Delete" aria-describedby="tip-delete"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg></button>
+                    <span class="tooltip__bubble" role="tooltip" id="tip-delete" hidden>Delete cluster</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>On text</h3>
+              <p>For a shortened value, the tooltip can carry the full text. Keep the trigger focusable.</p>
+              <div class="spec-example">
+                <span class="tooltip" data-component="tooltip">
+                  <button class="btn btn--text" type="button" aria-describedby="tip-node">aks-pool-1…0002</button>
+                  <span class="tooltip__bubble" role="tooltip" id="tip-node" hidden>aks-pool-1-38291746-vmss000002</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">02 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>Naming an icon button’s action.</li>
+                  <li>Showing the full text of a shortened value.</li>
+                  <li>A keyboard shortcut next to an action.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Anything important. Touch screens have no hover, so it may never be seen.</li>
+                  <li>Links, buttons or anything else to click inside it.</li>
+                  <li>More than a few words. Put longer help in the page.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">03 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>The bubble is linked with <code>aria-describedby</code>, so screen readers read it with the control even while it’s hidden.</li>
+                <li>It opens on keyboard focus as well as hover, stays open while the pointer is over it, and Esc closes it (WCAG 1.4.13).</li>
+                <li>It’s a hint, not a label: an icon button still needs <code>aria-label</code>.</li>
+                <li>Dark text on the light box is 16.12:1.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

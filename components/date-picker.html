@@ -136,6 +136,37 @@
           </div>
         </section>
 
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">05 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>What the script does</h3>
+              <p>The script reads typed dates, builds the calendar, moves through it from the keyboard and writes the ISO date into the hidden input. The CSS reads only the markup below, so a framework can render the calendar from its own state and leave out <code>datepicker.js</code> and <code>data-component</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">State</th><th scope="col">Set this</th><th scope="col">Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Calendar</td><td><code>&lt;div class="datepicker__panel" role="dialog" aria-label="Choose date"&gt;</code> inside <code>.datepicker</code></td><td>Inside it: <code>.datepicker__head</code> (<code>.datepicker__nav--prev</code>, <code>.datepicker__month</code>, <code>.datepicker__nav--next</code>), a <code>table.datepicker__grid</code> of <code>.datepicker__day</code> buttons, and <code>.datepicker__foot</code>.</td></tr>
+                    <tr><td>Open</td><td>Remove <code>hidden</code> from the panel; <code>aria-expanded="true"</code> on <code>.datepicker__toggle</code></td><td>The toggle turns accent. It also carries <code>aria-haspopup="dialog"</code> and <code>aria-controls</code>.</td></tr>
+                    <tr><td>Days</td><td>On <code>.datepicker__day</code>: <code>aria-pressed="true"</code> (chosen), <code>aria-current="date"</code> (today), <code>disabled</code> (out of range), <code>.is-outside</code> (another month)</td><td>Give the focused day <code>tabindex="0"</code> and the rest <code>tabindex="-1"</code>.</td></tr>
+                    <tr><td>Placement</td><td><code>data-align="end"</code> or <code>data-side="top"</code> on <code>.datepicker</code></td><td>CSS puts the panel under the field. The script lifts it into the top layer instead (<code>popover</code>, <code>.is-floating</code>, fixed <code>top</code> and <code>left</code>), so a content panel can’t clip it.</td></tr>
+                    <tr><td>Value and errors</td><td>The ISO date (<code>YYYY-MM-DD</code>) in the hidden input; <code>setCustomValidity()</code> on <code>.datepicker__input</code> for a date that can’t be read or is out of range</td><td>Show it as a field error (see <a href="text-field.html">Text field</a>).</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Events and keyboard</h3>
+              <ul class="spec-list">
+                <li>The toggle, or Alt+↓ in the field, opens the calendar with focus on the chosen day, or today.</li>
+                <li>In the grid, ← → move a day, ↑ ↓ a week, Home and End to the week’s ends, Page Up and Page Down a month (with Shift, a year). Move focus and <code>tabindex="0"</code> together.</li>
+                <li>Picking a day, Today, or Esc closes it and returns focus to the toggle. A press outside, or focus leaving, closes it without moving focus. Clear closes it and focuses the field.</li>
+                <li>The script reads typed dates in the page language’s order (<code>lang="en"</code> month/day/year, <code>lang="en-GB"</code> day/month/year) or ISO, and tidies them on blur. <code>jewel:datechange</code> doesn’t fire without it.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
 
         <footer class="panel panel--pad site-footer">

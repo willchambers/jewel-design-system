@@ -1,0 +1,15 @@
+{
+  "name": "jewel-design-system",
+  "version": "1.0.0",
+  "description": "A dark, editorial design system for websites and web apps: plain HTML, CSS and a little JavaScript, with no build step.",
+  "license": "MIT",
+  "author": "Will Chambers",
+  "homepage": "https://willchambers.github.io/jewel-design-system/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willchambers/jewel-design-system.git"
+  },
+  "style": "css/jewel.css",
+  "files": ["css", "js", "media/icons.svg", "media/LICENSE-lucide.txt", "fonts", "LICENSE", "README.md", "CHANGELOG.md"],
+  "private": true
+}

@@ -10,6 +10,9 @@ Every Jewel component: its markup, options, events and scripting. For a quick in
 - [Photos and filtering](#photos-and-filtering)
 - [Attributes](#attributes)
 - [Adding a component](#adding-a-component)
+- [Using Jewel with React and other frameworks](#using-jewel-with-react-and-other-frameworks)
+- [Icons](#icons)
+- [Density](#density)
 - [Themes](#themes)
 - [iPhone home-screen apps](#iphone-home-screen-apps)
 
@@ -19,6 +22,7 @@ Every Jewel component: its markup, options, events and scripting. For a quick in
 css/
   jewel.css             entry point — the only stylesheet you link
   tokens.css            primitives → theme colors → resolved tokens
+  fonts.css             optional: self-hosted Inter (link it before jewel.css)
   base.css              reset, type scale, links, rules, 12-col grid
   background.css        lava lamp animation (animated Jewel gradient)
   utilities.css         data-text variants, [hidden], .visually-hidden
@@ -32,9 +36,11 @@ css/
     side-nav.css  breadcrumbs.css  tabs.css                             navigation
     accordion.css  dropdown.css                                         disclosure
     search.css  datepicker.css                                          inputs
-    progress.css  empty-state.css                                       feedback
+    progress.css  empty-state.css  status.css  spinner.css  skeleton.css  feedback
+    tooltip.css  icon.css                                               hints and icons
     table.css  code.css  chat.css                                       data, code, chat
     field.css  input.css  choice.css  tag-input.css  dropzone.css      forms
+    password.css
     fab.css  sheet.css                                                 posting flow
     lightbox.css  filter.css                                           photos and filtering
 js/
@@ -46,11 +52,12 @@ js/
     form.js             validation, counters, busy state, Jewel.field helpers (load first)
     tag-input.js  dropzone.js  sheet.js  post-form.js
     side-nav.js  tabs.js  accordion.js  dropdown.js  search.js
-    datepicker.js  code.js  chat.js  table.js
+    datepicker.js  code.js  chat.js  table.js  tooltip.js  password.js
 index.html              the specimen's home page
 foundations/ components/ patterns/   one specimen page each
 specimen/               specimen-only CSS and JS (nav, code under examples); not part of the system
-media/                  small SVG artworks for the specimen's lightbox
+media/                  icons.svg (the icon sprite) and small SVG artworks for the specimen's lightbox
+fonts/                  Inter woff2 files for css/fonts.css, and their license
 docs/                   this reference, and the README's images
 ```
 
@@ -121,6 +128,7 @@ A small uppercase label on its own glass pill, for a status ("Private", "Publish
 <span class="badge badge--accent badge--busy"><span class="badge__dot"></span>Publishing…</span>
 <span class="badge badge--error">Failed</span>
 <span class="badge badge--solid">New</span>
+<span class="badge badge--success"><span class="badge__dot"></span>Healthy</span>   <!-- also --warning, --info -->
 
 <div class="figure__media">
   <img src="…" alt="…">
@@ -129,6 +137,7 @@ A small uppercase label on its own glass pill, for a status ("Private", "Publish
 </div>
 ```
 
+- Status tones `.badge--success`, `--warning`, `--info` and `--error` use the traffic light colors; the dot takes the stronger mark tone.
 - Place it over media with `data-place="top-left|top-right|bottom-left|bottom-right"`. Put `data-place` on a `.badges` group when one corner needs several.
 - The parent must be positioned (`.figure__media` is). Badges ignore taps, so the photo or link underneath still works.
 - Hide a count with `aria-hidden="true"` if it repeats a label. Wrap a status that changes while the page is open in `role="status"`.
@@ -156,15 +165,17 @@ On phones only the parent shows, as a "‹ Components" back link. `.breadcrumbs-
 <button class="btn btn--ghost" type="button">Ghost</button>
 <button class="btn btn--text" type="button">Text link</button>
 <button class="btn btn--ghost btn--icon" type="button" aria-label="Close"><svg …></svg></button>
+<button class="btn btn--danger" type="button">Delete cluster</button>
 ```
 
+- `.btn--danger` is filled red with dark text, so it's never overlooked. Use it for the one action in a view that deletes something or can't be undone, with a plain way out (Cancel) beside it.
 - Each variant only sets `--btn-bg`, `--btn-fg` and `--btn-border`, so a new variant is three lines.
 - `aria-busy="true"` shows a hairline spinner (the form sets this while submitting).
 - Buttons grow to 44px tall on touch screens.
 
 ### Chart
 
-Line, area, bar, pie, donut and sparkline charts, drawn from an HTML table. See [charts.md](charts.md).
+Line, area, bar, pie, donut and sparkline charts, drawn from an HTML table, or from data with `Jewel.chart.render()` and `update()`. See [charts.md](charts.md).
 
 ### Chat
 
@@ -321,11 +332,17 @@ Label/value rows separated by hairlines.
 <dl class="meta">
   <dt class="label">Role</dt><dd>Art direction</dd>
 </dl>
+<dl class="meta meta--stacked">
+  <dt class="label">app.kubernetes.io/managed-by</dt><dd>Helm</dd>
+</dl>
 ```
+
+- `.meta--stacked` puts each label above its value, for long keys and values (labels, paths, IDs). Every meta list stacks this way on phones.
+- Long unbroken strings wrap rather than widen the page.
 
 ### Notice
 
-A short message in the page's flow: info, updates or success, and errors.
+A short message in the page's flow: info, updates, status and errors.
 
 ```html
 <div class="notice" role="status">
@@ -341,7 +358,7 @@ A short message in the page's flow: info, updates or success, and errors.
 </div>
 ```
 
-- A hairline box whose 2px left edge carries the tone: default (info), `.notice--accent` (updates, success), `.notice--error`.
+- A hairline box whose 2px left edge carries the tone: default (neutral), `.notice--accent` (updates to the page), the status tones `.notice--success`, `.notice--warning`, `.notice--info`, and `.notice--error`.
 - Actions sit to the right and wrap below on narrow screens. Group several in `.notices`, which takes no space when empty.
 - Use `role="alert"` for an error caused by something the person did, and `role="status"` for background news. A notice that's there when the page loads needs no role.
 - To dismiss one, set `[hidden]` and move focus somewhere sensible.
@@ -372,7 +389,24 @@ How far along a task is, on a native `<progress>`.
 </div>
 ```
 
-Leave out `value` for an unknown length (a segment sweeps across; it holds still with reduced motion). Tones: `.progress--accent`, `.progress--error`. `.progress--thick` is a 6px bar.
+Leave out `value` for an unknown length (a segment sweeps across; it holds still with reduced motion). Tones: `.progress--accent`, `.progress--success`, `.progress--warning`, `.progress--error`. `.progress--thick` is a 6px bar.
+
+### Password field
+
+A field with an eye button that shows and hides what was typed. Script: `password.js`.
+
+```html
+<div class="password" data-component="password">
+  <input class="input" id="token" type="password" autocomplete="current-password">
+  <button class="password__toggle" type="button" aria-pressed="false" aria-label="Show cluster token">
+    <svg class="icon password__show" viewBox="0 0 24 24" aria-hidden="true">…eye…</svg>
+    <svg class="icon password__hide" viewBox="0 0 24 24" aria-hidden="true">…eye-off…</svg>
+  </button>
+</div>
+```
+
+- The script switches the input's type, `aria-pressed` and the button's label ("Show …" / "Hide …"), and hides the value again when the form submits.
+- The eye icons are inline so it works from `file://`; they're also `eye` and `eye-off` in the sprite.
 
 ### Quote
 
@@ -436,6 +470,32 @@ A vertical list of links in labeled groups, with collapsible groups. The same ma
 - **Phones:** put the same nav in `<dialog class="sheet sheet--start" id="site-nav" data-component="sheet">` and add the header's menu button ([Header](#header)). `side-nav.js` closes the drawer when a link is followed or the screen widens, and keeps the button's `aria-expanded` in step.
 - The current page gets `aria-current="page"`: an accent edge and the selected fill. A group holding it reads as current too.
 
+### Skeleton loader
+
+Gray blocks in the shape of content that's on its way, with a slow pulse.
+
+```html
+<div class="skeleton" aria-busy="true" aria-label="Loading pod details">
+  <span class="skeleton__line skeleton__line--title"></span>
+  <span class="skeleton__line"></span>
+  <span class="skeleton__line skeleton__line--short"></span>
+</div>
+<span class="skeleton__block" style="--skeleton-h: 12rem"></span>
+```
+
+Replace the whole skeleton when the content arrives, and drop `aria-busy` then. The pulse stops with reduced motion.
+
+### Spinner
+
+A hairline ring for short waits of unknown length.
+
+```html
+<span class="spinner" role="status" aria-label="Loading pods"></span>
+<p class="loading" role="status"><span class="spinner" aria-hidden="true"></span>Loading pods…</p>
+```
+
+Sizes: `.spinner--sm` (14px), default (16px), `.spinner--lg` (28px). It takes the text color. For a known amount of work use `.progress`; for a known layout, `.skeleton`.
+
 ### Stat
 
 A property/value pair for key numbers: the property in small uppercase text, the value large and semibold.
@@ -458,6 +518,22 @@ A property/value pair for key numbers: the property in small uppercase text, the
 - The `.stats` row wraps: four across on desktop and two on phones by default (`--stats-min`, 8rem), with a hairline above each stat. Values in the same row line up even when a label wraps (subgrid).
 - Write values as they should be read ("40+", "3.2M"); nothing is counted by script. Big numbers keep proportional figures.
 - A stat can hold a [sparkline](charts.md#sparkline).
+
+### Status
+
+A dot and a word for the state of one thing: the traffic light.
+
+```html
+<span class="status status--success">Running</span>
+<span class="status status--warning">Pending</span>
+<span class="status status--error">Failed</span>
+<span class="status status--info status--busy">Updating</span>
+<span class="status">Unknown</span>
+```
+
+- The word always says the state, so color is never the only signal.
+- `.status--busy` pulses the dot. Put a status that changes while the page is open inside `role="status"` or `aria-live="polite"`.
+- Status colors always mean something; never use them, or chart colors in their place, for decoration.
 
 ### Table
 
@@ -514,6 +590,20 @@ Switch between views of the same thing, in place.
 | `a.tag` | No underline; the pill is the affordance. Hover brightens the text and edge. `aria-current="page"` fills it, for the tag page you're on. A `#tag=<slug>` link also drives a [filter](#photos-and-filtering) on the same page. |
 | Touch size | `a.tag` and `button.tag` grow to a 32px pill on touch screens, with an invisible 44px tap area and at least 44px wide. `.tag--touch` forces it on any screen. Wrapped rows need a 12px row gap (`--cluster-gap: var(--space-3) var(--space-2)`) so the tap areas don't overlap; the filter does this itself. Tune one instance with `--tag-height`, `--tag-pad` or `--tag-hit`. |
 
+### Tooltip
+
+A short hint for a control, on hover and keyboard focus. Script: `tooltip.js`.
+
+```html
+<span class="tooltip" data-component="tooltip">
+  <button class="btn btn--ghost btn--icon" type="button" aria-label="Refresh" aria-describedby="tip-refresh">…</button>
+  <span class="tooltip__bubble" role="tooltip" id="tip-refresh" hidden>Refresh pods</span>
+</span>
+```
+
+- Light box, dark text and a pointer. It opens in the top layer next to the trigger, flips above when there's no room, stays open while the pointer is on it, and Esc hides it.
+- It's a hint: an icon button still needs `aria-label`, and touch screens never see it.
+
 ### Video
 
 A figure whose media is a muted, looping clip with a play/pause control. Script: `js/components/video.js`.
@@ -545,7 +635,7 @@ Style: **hairline box**. Each field is a 1px box with square corners in `--field
 | Tag input | `.tag-input[data-component="tag-input"]` | Enter or comma adds; Backspace removes; duplicates are rejected. `data-max`, `data-required`, `data-suggestions` (JSON). Submits a JSON array in its hidden input. Script: `tag-input.js`. |
 | Drop zone | `.dropzone.knockout[data-component="dropzone"]` | One image. Drag-and-drop or the native picker (no `capture`, so phones offer the library and the camera). Preview with name, size and dimensions; Replace and Remove. `data-max-size` in MB. Script: `dropzone.js`. |
 | Floating button | `button.fab[data-sheet-open="<id>"]` | Fixed bottom-right, clear of iPhone safe areas (needs `viewport-fit=cover`). `.fab--extended` + `.fab__label` for text. Put `.has-fab` on `<body>` so it never covers the last content. |
-| Sheet | `dialog.sheet.sheet--bottom` or `.sheet--center`, `[data-component="sheet"]` | Bottom tearsheet (full height on phones) or centered modal, same insides. Focus stays inside; Esc and backdrop clicks close; an unsaved draft asks first; focus returns to the opener; the page can't scroll behind it; it shrinks above the on-screen keyboard. Script: `sheet.js`. |
+| Sheet | `dialog.sheet.sheet--bottom`, `.sheet--center`, `.sheet--start` or `.sheet--end`, `[data-component="sheet"]` | Bottom tearsheet (full height on phones), centered modal, or a drawer from the left (the menu) or right (record details), same insides. `.sheet__title` is a heading; put a `.sheet__eyebrow` label above it inside `.sheet__titles`, or keep a short form title as a label with `class="sheet__title label"`. Focus stays inside; Esc and backdrop clicks close; an unsaved draft asks first; focus returns to the opener; the page can't scroll behind it; it shrinks above the on-screen keyboard. Script: `sheet.js`. |
 | Post form | `form[data-component="form post-form"]` | Photo, title, description, location, alt, tags, publish. Dispatches `jewel:post`. Script: `post-form.js`. |
 
 `data-component` can list several names; they run in order. Buttons grow to 44px tall on touch screens. A complete working form, sheet and post flow is in the specimen's [Forms](https://willchambers.github.io/jewel-design-system/patterns/forms.html) and [Posting a photo](https://willchambers.github.io/jewel-design-system/patterns/posting-a-photo.html) patterns.
@@ -636,6 +726,29 @@ Jewel.theme.get() / .set('dark') / .toggle();
 document.documentElement.addEventListener('jewel:themechange', e => e.detail);
 Jewel.reducedMotion.matches;
 ```
+
+## Using Jewel with React and other frameworks
+
+Jewel's CSS reads only markup: class names, attributes such as `aria-expanded`, `aria-selected` and `hidden`, and native states such as a dialog's `[open]`. The scripts in `js/components/` are one way to set them. When your framework owns the state (a React app that decides when a sheet is open, for example), leave out `data-component` and that component's script, and render the same markup yourself.
+
+Each interactive component's page in the [specimen](https://willchambers.github.io/jewel-design-system/) has a "Without Jewel's JS" section. It lists what to set for each state, and the events, keyboard and focus handling your code takes over from the script. Charts are the exception: they're drawn with `Jewel.chart.render`, so see the specimen's [Chart](https://willchambers.github.io/jewel-design-system/components/chart.html) page.
+
+## Icons
+
+`media/icons.svg` is a sprite of 88 Lucide icons (ISC license). `.icon` gives them Jewel's 1.25 stroke and square ends, so they match.
+
+```html
+<svg class="icon" aria-hidden="true"><use href="media/icons.svg#refresh-cw"></use></svg>
+<svg class="icon icon--md" role="img" aria-label="Warning"><use href="media/icons.svg#alert-triangle"></use></svg>
+```
+
+- Sizes: `.icon--xs` (14px), default (16px), `.icon--md` (22px), `.icon--lg` (28px). It takes the text color.
+- The sprite loads over http(s). From `file://` most browsers block it, so paste the icon's paths inline there.
+- To add one, copy the elements inside a Lucide SVG into a new `<symbol id="name" viewBox="0 0 24 24">`, without its stroke attributes. Every icon is on the specimen's Icons page.
+
+## Density
+
+`data-density="compact"` on `<html>`, a region or one panel tightens panel padding, form gaps, buttons and table rows for dashboards. Touch screens keep 44px targets. The tokens it changes are in [tokens.md](tokens.md#density).
 
 ## Themes
 

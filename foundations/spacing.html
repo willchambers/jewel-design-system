@@ -166,8 +166,61 @@
             </div>
           </div>
         </section>
+        <section class="panel panel--pad grid" id="density">
+          <header class="section-head"><p class="label">06 — Density</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Compact</h3>
+              <p>Jewel’s spacing is editorial. For dashboards and dense tools, <code>data-density="compact"</code> on <code>&lt;html&gt;</code>, a region or one panel steps down panel padding, form gaps, buttons and table rows together. Touch screens keep 44px targets.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-density">
+                <section class="panel panel--content panel--pad" id="density-default">
+                  <header class="section-head"><p class="label">prod-east</p></header>
+                  <div class="stack">
+                    <dl class="stats"><div class="stat"><dt class="stat__label">Pods</dt><dd class="stat__value">18</dd></div><div class="stat"><dt class="stat__label">Nodes</dt><dd class="stat__value">3</dd></div></dl>
+                    <div class="table-wrap"><table class="table"><thead><tr><th scope="col">Pod</th><th scope="col">State</th><th scope="col" class="is-num">CPU</th></tr></thead>
+                      <tbody><tr><td>api-7f9c</td><td><span class="status status--success">Running</span></td><td class="is-num">120m</td></tr><tr><td>worker-5b8d</td><td><span class="status status--warning">Pending</span></td><td class="is-num">340m</td></tr><tr><td>web-66c9</td><td><span class="status status--success">Running</span></td><td class="is-num">80m</td></tr></tbody></table></div>
+                    <div class="spec-row"><button class="btn btn--ghost" type="button">Describe</button><button class="btn" type="button">Logs</button></div>
+                  </div>
+                </section>
+                <section class="panel panel--content panel--pad" id="density-compact" data-density="compact">
+                  <header class="section-head"><p class="label">prod-east</p></header>
+                  <div class="stack">
+                    <dl class="stats"><div class="stat"><dt class="stat__label">Pods</dt><dd class="stat__value">18</dd></div><div class="stat"><dt class="stat__label">Nodes</dt><dd class="stat__value">3</dd></div></dl>
+                    <div class="table-wrap"><table class="table"><thead><tr><th scope="col">Pod</th><th scope="col">State</th><th scope="col" class="is-num">CPU</th></tr></thead>
+                      <tbody><tr><td>api-7f9c</td><td><span class="status status--success">Running</span></td><td class="is-num">120m</td></tr><tr><td>worker-5b8d</td><td><span class="status status--warning">Pending</span></td><td class="is-num">340m</td></tr><tr><td>web-66c9</td><td><span class="status status--success">Running</span></td><td class="is-num">80m</td></tr></tbody></table></div>
+                    <div class="spec-row"><button class="btn btn--ghost" type="button">Describe</button><button class="btn" type="button">Logs</button></div>
+                  </div>
+                </section>
+                </div>
+              </div>
+              <div class="spec-row">
+                <button class="btn btn--ghost toggle" type="button" data-spec-density="density-default" aria-pressed="false">Make the first one compact too</button>
+              </div>
+              <div class="spec-example">
+                <code>&lt;html lang="en" data-theme="dark" data-density="compact"&gt;</code>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>What changes</h3>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">Token</th><th scope="col">Default</th><th scope="col">Compact</th></tr></thead>
+                  <tbody>
+                    <tr><td><code>--panel-padding</code></td><td>24–48px</td><td>16px</td></tr>
+                    <tr><td><code>--panel-stack-gap</code></td><td>16px</td><td>12px</td></tr>
+                    <tr><td><code>--density-gap</code></td><td>24px</td><td>12px</td></tr>
+                    <tr><td><code>--control-h</code></td><td>40px</td><td>32px</td></tr>
+                    <tr><td><code>--control-h-touch</code></td><td>44px</td><td>36px with a mouse, 44px on touch</td></tr>
+                    <tr><td>Table rows</td><td>44px</td><td>32px, like <code>.table--compact</code></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
         <section class="panel panel--pad grid" id="usage">
-          <header class="section-head"><p class="label">06 — Usage</p></header>
+          <header class="section-head"><p class="label">07 — Usage</p></header>
           <div class="span-12 spec-body">
             <div class="spec-guide">
               <div class="spec-guide__col">
@@ -190,7 +243,7 @@
           </div>
         </section>
         <section class="panel panel--pad grid" id="tokens">
-          <header class="section-head"><p class="label">07 — Tokens</p></header>
+          <header class="section-head"><p class="label">08 — Tokens</p></header>
           <div class="span-12 spec-body">
             <div class="table-wrap">
               <table class="table table--compact">
@@ -212,6 +265,7 @@
                   <tr><td><code>--control-h</code></td><td><span class="table__muted" data-token="--control-h"></span></td><td>Buttons, tabs, menu items</td></tr>
                   <tr><td><code>--control-h-touch</code></td><td><span class="table__muted" data-token="--control-h-touch"></span></td><td>Fields, and every control on touch screens</td></tr>
                   <tr><td><code>--control-h-lg</code></td><td><span class="table__muted" data-token="--control-h-lg"></span></td><td>Floating button, chat composer</td></tr>
+                  <tr><td><code>--density-gap</code></td><td><span class="table__muted" data-token="--density-gap"></span></td><td>Between fields in a form</td></tr>
                   <tr><td><code>--hit-min</code></td><td><span class="table__muted" data-token="--hit-min"></span></td><td>Minimum tap area</td></tr>
                   <tr><td><code>--icon-xs</code></td><td><span class="table__muted" data-token="--icon-xs"></span></td><td>Spinners, chevrons</td></tr>
                   <tr><td><code>--icon-sm</code></td><td><span class="table__muted" data-token="--icon-sm"></span></td><td>Icons in buttons and fields</td></tr>

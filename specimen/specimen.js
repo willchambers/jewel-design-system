@@ -13,9 +13,9 @@
       data-code="none" to skip one.
    4. Fills [data-token="--name"] with that token's current value.
    5. Screenshot mode: ?static shows charts finished, with no load animation.
-   It also flips aria-pressed on toggle buttons in examples, and runs two
-   demo buttons: [data-spec-play] (Motion) and
-   [data-spec-bg] (pause the background).
+   It also flips aria-pressed on toggle buttons in examples, and runs four
+   demo buttons: [data-spec-play] (Motion), [data-spec-bg] (pause the
+   background), [data-spec-palette] (Color) and [data-spec-density] (Spacing).
 
    The page says where it is with <body data-page="components/button">. */
 
@@ -32,6 +32,7 @@
       ['foundations/layout', 'Layout and grid'],
       ['foundations/surfaces', 'Panels and surfaces'],
       ['foundations/motion', 'Motion'],
+      ['foundations/icons', 'Icons'],
     ] },
     { heading: 'Components', items: [
       ['components/index', 'All components'],
@@ -57,16 +58,21 @@
       ['components/lightbox', 'Lightbox'],
       ['components/meta-list', 'Meta list'],
       ['components/notice', 'Notice'],
+      ['components/password', 'Password field'],
       ['components/progress', 'Progress'],
       ['components/quote', 'Quote'],
       ['components/search', 'Search'],
       ['components/sheet', 'Sheet'],
       ['components/side-nav', 'Side nav'],
+      ['components/skeleton', 'Skeleton loader'],
+      ['components/spinner', 'Spinner'],
       ['components/stat', 'Stat'],
+      ['components/status', 'Status'],
       ['components/tabs', 'Tabs'],
       ['components/tag', 'Tag'],
       ['components/tag-input', 'Tag input'],
       ['components/text-field', 'Text field'],
+      ['components/tooltip', 'Tooltip'],
       ['components/video', 'Video'],
     ] },
     { heading: 'Patterns', items: [
@@ -175,7 +181,7 @@
   /* Toggle demos: a button with aria-pressed in an example flips it, unless
      a component (filter, dropdown…) already looks after it. */
   document.addEventListener('click', (e) => {
-    const button = e.target.closest('.spec-example button[aria-pressed]:not([data-filter]):not([data-spec-bg]):not([data-spec-play])');
+    const button = e.target.closest('.spec-example button[aria-pressed]:not([data-filter]):not([data-spec-bg]):not([data-spec-play]):not([data-spec-palette]):not([data-spec-density]):not(.password__toggle)');
     if (!button || button.disabled) return;
     button.setAttribute('aria-pressed', String(button.getAttribute('aria-pressed') !== 'true'));
   });
@@ -188,5 +194,25 @@
     const paused = html.dataset.bg === 'paused';
     if (paused) delete html.dataset.bg; else html.dataset.bg = 'paused';
     button.setAttribute('aria-pressed', String(!paused));
+  });
+
+  /* Palette demo: [data-spec-palette="ember"] switches the page's palette. */
+  document.addEventListener('click', (e) => {
+    const button = e.target.closest('[data-spec-palette]');
+    if (!button) return;
+    const value = button.dataset.specPalette;
+    if (value) document.documentElement.dataset.palette = value;
+    else delete document.documentElement.dataset.palette;
+    document.querySelectorAll('[data-spec-palette]').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+  });
+
+  /* Density demo: [data-spec-density] toggles compact density on its target. */
+  document.addEventListener('click', (e) => {
+    const button = e.target.closest('[data-spec-density]');
+    if (!button) return;
+    const target = document.getElementById(button.dataset.specDensity);
+    const compact = target.dataset.density !== 'compact';
+    if (compact) target.dataset.density = 'compact'; else delete target.dataset.density;
+    button.setAttribute('aria-pressed', String(compact));
   });
 })();

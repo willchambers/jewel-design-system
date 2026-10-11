@@ -112,6 +112,35 @@
           </div>
         </section>
 
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">04 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>What the script does</h3>
+              <p>The script plays the muted clip while it’s on screen, pauses it out of view, never autoplays under reduced motion, and keeps the button in step. The CSS reads only the markup below, so a framework can set it itself and leave out <code>video.js</code> and <code>data-component</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">State</th><th scope="col">Set this</th><th scope="col">Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Playing</td><td><code>data-state="playing"</code> on <code>.video</code></td><td>Hides <code>.icon-play</code>, so the pause icon shows.</td></tr>
+                    <tr><td>Paused</td><td><code>data-state="paused"</code> on <code>.video</code></td><td>Hides <code>.icon-pause</code>. Always set one of the two, or both icons show.</td></tr>
+                    <tr><td>Button label</td><td><code>aria-label="Pause video"</code> while playing, <code>"Play video"</code> while paused</td><td>On <code>.video__control</code>.</td></tr>
+                    <tr><td>Clip</td><td><code>muted</code>, <code>playsinline</code> and <code>loop</code> on the <code>&lt;video&gt;</code>, and no <code>autoplay</code></td><td>The script sets <code>muted</code> and <code>playsinline</code> and removes <code>autoplay</code>. <code>loop</code> comes from the markup.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Events and keyboard</h3>
+              <ul class="spec-list">
+                <li>Set <code>data-state</code> from the video’s <code>play</code> and <code>pause</code> events, so it stays right however playback changes.</li>
+                <li>Play when at least 40% of it is in view and pause when it leaves (the script uses an <code>IntersectionObserver</code>). Don’t autoplay under <code>prefers-reduced-motion</code>, and pause if it turns on.</li>
+                <li>Once someone pauses it by hand, don’t start it again on scroll.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
 
         <footer class="panel panel--pad site-footer">

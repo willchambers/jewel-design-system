@@ -192,6 +192,37 @@
           </div>
         </section>
 
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">05 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>What the script does</h3>
+              <p><code>form.js</code> validates fields, shows errors, counts characters, grows text areas where CSS can’t, and sets the busy state on submit. The CSS reads only the markup below, so a framework can set it itself and leave out <code>form.js</code> and <code>data-component</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">State</th><th scope="col">Set this</th><th scope="col">Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Error</td><td><code>aria-invalid="true"</code> on the control; the message in <code>.field__error</code> without <code>hidden</code>, and its id in <code>aria-describedby</code></td><td>Red box and red message. Undo all three when it’s fixed.</td></tr>
+                    <tr><td>Counter</td><td>“12 / 60” in <code>.field__counter</code></td><td><code>is-over</code> turns it red past the limit.</td></tr>
+                    <tr><td>Suggested</td><td><code>data-suggested</code> on the <code>.input</code>; the label’s <code>.field__badge</code> without <code>hidden</code></td><td>Muted italic until someone edits it. Then remove both.</td></tr>
+                    <tr><td>Busy</td><td><code>aria-busy="true"</code> and <code>disabled</code> on the submit button</td><td>Shows a spinner. The script also sets <code>aria-busy</code> on the form.</td></tr>
+                    <tr><td>Form messages</td><td>Text in <code>.form__error</code> (<code>role="alert"</code>) or <code>.form__status</code> (<code>role="status"</code>)</td><td>Each hides while it’s empty.</td></tr>
+                    <tr><td>Text area height</td><td>Nothing, where <code>field-sizing: content</code> works</td><td>Elsewhere the script sets the height from <code>scrollHeight</code> as people type.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Events and keyboard</h3>
+              <ul class="spec-list">
+                <li>Set <code>noValidate</code> on the form so the browser’s own error bubbles don’t show.</li>
+                <li>The script checks a field when it loses focus after its first edit, rechecks an invalid field as people type, and checks every field on submit. Then it focuses the first error and scrolls it into view.</li>
+                <li><code>jewel:submit</code> doesn’t fire without the script.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
 
         <footer class="panel panel--pad site-footer">

@@ -136,6 +136,38 @@
           </div>
         </section>
 
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">05 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>What the script does</h3>
+              <p>The script takes a dropped or picked image, checks its type and size, puts it in the file input and shows a preview. The CSS reads only the markup below, so a framework can set it itself and leave out <code>dropzone.js</code> and <code>data-component</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">State</th><th scope="col">Set this</th><th scope="col">Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Empty</td><td><code>hidden</code> on <code>.dropzone__preview</code> and <code>.dropzone__actions</code></td><td><code>.dropzone__empty</code> shows.</td></tr>
+                    <tr><td>Dragging over</td><td><code>data-state="dragover"</code> on <code>.dropzone</code></td><td>Accent border and tint. Remove it on <code>dragleave</code> and <code>drop</code>.</td></tr>
+                    <tr><td>Filled</td><td><code>hidden</code> on <code>.dropzone__empty</code>, not on the preview and actions; <code>src</code> and <code>alt</code> on the <code>&lt;img&gt;</code></td><td>The script uses an object URL and <code>alt="Preview of photo.jpg"</code>, and puts “name · size · width × height” in <code>.dropzone__meta</code>.</td></tr>
+                    <tr><td>Error</td><td><code>aria-invalid="true"</code> on <code>.dropzone__input</code></td><td>Turns the box red. Show the message as a field error (see <a href="text-field.html">Text field</a>).</td></tr>
+                    <tr><td>Disabled</td><td><code>disabled</code> on <code>.dropzone__input</code></td><td>Dashed and dimmed.</td></tr>
+                    <tr><td>Submitting</td><td>The file in <code>.dropzone__input</code></td><td>For a dropped file, set <code>input.files</code> from a <code>DataTransfer</code>, or send the file yourself.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Events and keyboard</h3>
+              <ul class="spec-list">
+                <li>Call <code>preventDefault()</code> on <code>dragenter</code>, <code>dragover</code> and <code>drop</code>, or the browser opens the file. The script counts <code>dragenter</code> and <code>dragleave</code> so moving over children doesn’t flicker the state.</li>
+                <li>Replace opens the picker with <code>input.click()</code>. Remove clears the file and moves focus to the input.</li>
+                <li>The script rejects files that don’t match <code>accept</code> or are over <code>data-max-size</code> MB, and keeps only the first of several dropped files.</li>
+                <li><code>jewel:filechange</code> doesn’t fire without the script.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
 
         <footer class="panel panel--pad site-footer">

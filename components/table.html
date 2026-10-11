@@ -175,6 +175,36 @@
           </div>
         </section>
 
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">05 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>What the script does</h3>
+              <p>A plain table needs no script. The script sorts rows, adds selection checkboxes and phone labels, and announces changes. The CSS reads only the markup below, so a framework can sort and select its own rows and leave out <code>table.js</code> and <code>data-component</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">State</th><th scope="col">Set this</th><th scope="col">Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Sortable header</td><td><code>&lt;button class="table__sort" type="button"&gt;</code> inside the <code>th</code>, holding its text</td><td>Sort the rows yourself.</td></tr>
+                    <tr><td>Sorted</td><td><code>aria-sort="ascending"</code> or <code>"descending"</code> on that <code>th</code></td><td>Shows the arrow. Remove it from the other headers.</td></tr>
+                    <tr><td>Selection column</td><td>A first <code>th.table__select</code> and <code>td.table__select</code>, each holding <code>&lt;label class="choice"&gt;&lt;input type="checkbox"&gt;</code> and a visually hidden name</td><td>“Select all rows” in the header, “Select Night bus” in a row.</td></tr>
+                    <tr><td>Selected row</td><td><code>aria-selected="true"</code> on the <code>tr</code>, <code>"false"</code> otherwise</td><td>Selected fill. Set the select-all box’s <code>indeterminate</code> property when only some rows are selected.</td></tr>
+                    <tr><td>Phone labels</td><td><code>data-label="Posted"</code> on each cell of a <code>.table--stack</code></td><td>The column’s header text, shown beside the value on phones.</td></tr>
+                    <tr><td>Scrolling</td><td><code>tabindex="0"</code>, <code>role="region"</code> and <code>aria-labelledby</code> (the caption’s id) on <code>.table-wrap</code></td><td>Only when it scrolls, so keyboard users can reach it.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Events and keyboard</h3>
+              <ul class="spec-list">
+                <li>The script announces “Sorted by Title, ascending” and “All rows selected” in a visually hidden polite live region.</li>
+                <li><code>jewel:sort</code> and <code>jewel:selectionchange</code> don’t fire without the script.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
 
         <footer class="panel panel--pad site-footer">

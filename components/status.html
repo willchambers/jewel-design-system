@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Status · Jewel Design System</title>
+  <meta name="description" content="A dot and a word for the state of one thing: a pod, a job, a deploy. The traffic light colors everyone already reads as status, with the word always saying the state, so color is never the only signal.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="components/status">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html" aria-current="page">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Status</span></li></ol>
+          </nav>
+          <h1>Status</h1>
+          <p class="lede">A dot and a word for the state of one thing: a pod, a job, a deploy. The traffic light colors everyone already reads as status, with the word always saying the state, so color is never the only signal.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/status.css</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="variants">
+          <header class="section-head"><p class="label">01 — Variants</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Tones</h3>
+              <p>Success, warning and error, plus info for “in progress” and the neutral gray for unknown. The text is in the status’s text tone and the dot in its stronger mark tone.</p>
+              <div class="spec-example">
+                <div class="spec-row">
+                  <span class="status status--success">Running</span>
+                  <span class="status status--warning">Pending</span>
+                  <span class="status status--error">Failed</span>
+                  <span class="status status--info">Updating</span>
+                  <span class="status">Unknown</span>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Busy</h3>
+              <p><code>.status--busy</code> pulses the dot while the state is still changing. It stops with reduced motion.</p>
+              <div class="spec-example">
+                <div class="spec-row">
+                  <span class="status status--info status--busy">Rolling out</span>
+                  <span class="status status--warning status--busy">Restarting</span>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>In a table</h3>
+              <p>The status column of a list of records. Put the table (or just the column) in a live region if it updates while the page is open.</p>
+              <div class="spec-example">
+                <div class="table-wrap" data-component="table">
+                  <table class="table table--compact">
+                    <thead><tr><th scope="col">Pod</th><th scope="col">State</th><th scope="col" class="is-num">Restarts</th></tr></thead>
+                    <tbody>
+                      <tr><th scope="row"><code>api-7f9c4d-x2k8q</code></th><td><span class="status status--success">Running</span></td><td class="is-num">0</td></tr>
+                      <tr><th scope="row"><code>worker-5b8d-q7m2p</code></th><td><span class="status status--info status--busy">Updating</span></td><td class="is-num">0</td></tr>
+                      <tr><th scope="row"><code>web-66c9-hh41z</code></th><td><span class="status status--warning">Pending</span></td><td class="is-num">2</td></tr>
+                      <tr><th scope="row"><code>cron-1a2b-zz90k</code></th><td><span class="status status--error">CrashLoopBackOff</span></td><td class="is-num">14</td></tr>
+                      <tr><th scope="row"><code>job-9e7f-pp03c</code></th><td><span class="status">Unknown</span></td><td class="is-num">0</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>With badges, notices and progress</h3>
+              <p>The same five tones run through <code>.badge</code>, <code>.notice</code> and <code>.progress</code>.</p>
+              <div class="spec-example">
+                <div class="stack">
+                  <div class="spec-row">
+                    <span class="badge badge--success"><span class="badge__dot"></span>Healthy</span>
+                    <span class="badge badge--warning"><span class="badge__dot"></span>Degraded</span>
+                    <span class="badge badge--error"><span class="badge__dot"></span>Down</span>
+                    <span class="badge badge--info"><span class="badge__dot"></span>Syncing</span>
+                  </div>
+                  <div class="notice notice--warning">
+                    <div class="notice__body"><p class="notice__title">Rolling update</p><p class="notice__text">3 of 6 replicas are on the new version.</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">02 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>The state of a thing: running, pending, failed, unknown.</li>
+                  <li>Status columns in tables and lists.</li>
+                  <li>Small status next to a title, such as a cluster’s health.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Status colors for decoration or for chart series. They always mean something; chart colors never do.</li>
+                  <li>A dot with no word. Color alone fails people who can’t tell the hues apart.</li>
+                  <li>Long messages. Use a <code>.notice</code> with the matching tone.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">03 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>The word carries the meaning; the dot only reinforces it.</li>
+                <li>Every status text tone is at least 7.19:1 on glass and every mark at least 3.05:1. The numbers are in <code>docs/accessibility.md</code>.</li>
+                <li>When a status changes while the page is open, put it inside <code>role="status"</code> or <code>aria-live="polite"</code> so screen readers hear it.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

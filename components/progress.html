@@ -82,6 +82,23 @@
               </div>
             </div>
             <div class="spec-block">
+              <h3>Success and warning</h3>
+              <p><code>.progress--success</code> and <code>.progress--warning</code> use the status colors, for a quota or a rollout.</p>
+              <div class="spec-example">
+                <div class="stack">
+                  <div class="progress progress--success">
+                    <div class="progress__meta"><label class="progress__label" for="pg-ok">Replicas updated</label><span class="progress__value">6 of 6</span></div>
+                    <progress class="progress__bar" id="pg-ok" max="6" value="6">6 of 6</progress>
+                  </div>
+                  <div class="progress progress--warning">
+                    <div class="progress__meta"><label class="progress__label" for="pg-warn">Memory</label><span class="progress__value">86%</span></div>
+                    <progress class="progress__bar" id="pg-warn" max="100" value="86">86%</progress>
+                    <p class="progress__hint">Close to the limit of 4 GiB.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
               <h3>Error and thick</h3>
               <p><code>.progress--error</code> for a task that stopped; <code>.progress--thick</code> for a 6px bar.</p>
               <div class="spec-example">

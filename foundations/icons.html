@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Icons · Jewel Design System</title>
+  <meta name="description" content="Hairline icons that match Jewel’s type and rules: Lucide icons drawn at a 1.25 stroke with square ends, in one sprite file. 88 to start with; any Lucide icon can be added.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="foundations/icons">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html" aria-current="page">Foundations</a>
+            <a href="../components/index.html">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../foundations/index.html">Foundations</a></li><li><span aria-current="page">Icons</span></li></ol>
+          </nav>
+          <h1>Icons</h1>
+          <p class="lede">Hairline icons that match Jewel’s type and rules: Lucide icons drawn at a 1.25 stroke with square ends, in one sprite file. 88 to start with; any Lucide icon can be added.</p>
+          <dl class="spec-files"><div><dt>Sprite</dt><dd><code>media/icons.svg</code></dd></div><div><dt>CSS</dt><dd><code>css/components/icon.css</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="set">
+          <header class="section-head"><p class="label">01 — The set</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>All icons</h3>
+              <p>Each name is the Lucide name. Use it after the <code>#</code> in the sprite link.</p>
+              <div class="spec-example" data-code="none">
+                <ul class="spec-icons">
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#menu"></use></svg><code>menu</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#x"></use></svg><code>x</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#search"></use></svg><code>search</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#plus"></use></svg><code>plus</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#minus"></use></svg><code>minus</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#check"></use></svg><code>check</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#chevron-down"></use></svg><code>chevron-down</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#chevron-up"></use></svg><code>chevron-up</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#chevron-left"></use></svg><code>chevron-left</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#chevron-right"></use></svg><code>chevron-right</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#arrow-left"></use></svg><code>arrow-left</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#arrow-right"></use></svg><code>arrow-right</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#arrow-up"></use></svg><code>arrow-up</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#arrow-down"></use></svg><code>arrow-down</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#arrow-up-right"></use></svg><code>arrow-up-right</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#more-horizontal"></use></svg><code>more-horizontal</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#more-vertical"></use></svg><code>more-vertical</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#refresh-cw"></use></svg><code>refresh-cw</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#rotate-ccw"></use></svg><code>rotate-ccw</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#trash-2"></use></svg><code>trash-2</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#pencil"></use></svg><code>pencil</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#copy"></use></svg><code>copy</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#clipboard"></use></svg><code>clipboard</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#link"></use></svg><code>link</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#external-link"></use></svg><code>external-link</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#download"></use></svg><code>download</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#upload"></use></svg><code>upload</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#share"></use></svg><code>share</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#filter"></use></svg><code>filter</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#sliders-horizontal"></use></svg><code>sliders-horizontal</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#settings"></use></svg><code>settings</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#eye"></use></svg><code>eye</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#eye-off"></use></svg><code>eye-off</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#lock"></use></svg><code>lock</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#unlock"></use></svg><code>unlock</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#key-round"></use></svg><code>key-round</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#info"></use></svg><code>info</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#alert-triangle"></use></svg><code>alert-triangle</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#alert-circle"></use></svg><code>alert-circle</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#check-circle"></use></svg><code>check-circle</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#x-circle"></use></svg><code>x-circle</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#help-circle"></use></svg><code>help-circle</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#circle-dot"></use></svg><code>circle-dot</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#bell"></use></svg><code>bell</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#hexagon"></use></svg><code>hexagon</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#box"></use></svg><code>box</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#boxes"></use></svg><code>boxes</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#server"></use></svg><code>server</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#cpu"></use></svg><code>cpu</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#hard-drive"></use></svg><code>hard-drive</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#database"></use></svg><code>database</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#network"></use></svg><code>network</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#container"></use></svg><code>container</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#cloud"></use></svg><code>cloud</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#activity"></use></svg><code>activity</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#gauge"></use></svg><code>gauge</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#scroll-text"></use></svg><code>scroll-text</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#terminal"></use></svg><code>terminal</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#code"></use></svg><code>code</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#file"></use></svg><code>file</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#file-text"></use></svg><code>file-text</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#folder"></use></svg><code>folder</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#home"></use></svg><code>home</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#layout-grid"></use></svg><code>layout-grid</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#list"></use></svg><code>list</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#calendar"></use></svg><code>calendar</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#clock"></use></svg><code>clock</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#user"></use></svg><code>user</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#users"></use></svg><code>users</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#log-in"></use></svg><code>log-in</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#log-out"></use></svg><code>log-out</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#globe"></use></svg><code>globe</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#image"></use></svg><code>image</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#camera"></use></svg><code>camera</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#video"></use></svg><code>video</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#play"></use></svg><code>play</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#pause"></use></svg><code>pause</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#heart"></use></svg><code>heart</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#star"></use></svg><code>star</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#bookmark"></use></svg><code>bookmark</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#tag"></use></svg><code>tag</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#message-square"></use></svg><code>message-square</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#send"></use></svg><code>send</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#zoom-in"></use></svg><code>zoom-in</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#zoom-out"></use></svg><code>zoom-out</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#maximize-2"></use></svg><code>maximize-2</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#minimize-2"></use></svg><code>minimize-2</code></li>
+                  <li class="spec-icon"><svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#grip-vertical"></use></svg><code>grip-vertical</code></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="using">
+          <header class="section-head"><p class="label">02 — Using them</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Markup</h3>
+              <p>Link to an icon in the sprite. It takes the text color, and the stroke comes from <code>.icon</code>.</p>
+              <div class="spec-example">
+                <div class="spec-row">
+                  <svg class="icon" aria-hidden="true"><use href="../media/icons.svg#search"></use></svg>
+                  <svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#server"></use></svg>
+                  <svg class="icon icon--lg" aria-hidden="true"><use href="../media/icons.svg#box"></use></svg>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Sizes</h3>
+              <p><code>.icon--xs</code> 14px, the default 16px for buttons and fields, <code>.icon--md</code> 22px for header actions, <code>.icon--lg</code> 28px for empty states.</p>
+              <div class="spec-example">
+                <div class="spec-row">
+                  <svg class="icon icon--xs" aria-hidden="true"><use href="../media/icons.svg#activity"></use></svg>
+                  <svg class="icon" aria-hidden="true"><use href="../media/icons.svg#activity"></use></svg>
+                  <svg class="icon icon--md" aria-hidden="true"><use href="../media/icons.svg#activity"></use></svg>
+                  <svg class="icon icon--lg" aria-hidden="true"><use href="../media/icons.svg#activity"></use></svg>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>In buttons</h3>
+              <p>An icon button names its action with <code>aria-label</code>; the icon is hidden from screen readers.</p>
+              <div class="spec-example">
+                <div class="spec-row">
+                  <button class="btn btn--ghost btn--icon" type="button" aria-label="Refresh"><svg class="icon" aria-hidden="true"><use href="../media/icons.svg#refresh-cw"></use></svg></button>
+                  <button class="btn btn--ghost" type="button"><svg class="icon" aria-hidden="true"><use href="../media/icons.svg#download"></use></svg>Download logs</button>
+                  <button class="btn btn--danger" type="button"><svg class="icon" aria-hidden="true"><use href="../media/icons.svg#trash-2"></use></svg>Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="adding">
+          <header class="section-head"><p class="label">03 — Adding an icon</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>Find the icon on <a href="https://lucide.dev/icons/">lucide.dev</a> and open its SVG.</li>
+                <li>Copy the elements inside the <code>&lt;svg&gt;</code> into a new <code>&lt;symbol id="name" viewBox="0 0 24 24"&gt;</code> in <code>media/icons.svg</code>. Leave the stroke attributes off; <code>.icon</code> sets them.</li>
+                <li>Lucide is under the ISC license, kept in <code>media/LICENSE-lucide.txt</code>.</li>
+                <li>The sprite loads over http. Opened straight from a file (<code>file://</code>), most browsers block it, so serve the folder or paste the icon’s paths inline.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">04 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>Decorative icons, and icons next to a word, get <code>aria-hidden="true"</code>.</li>
+                <li>An icon that is the only label of a button: put <code>aria-label</code> on the button.</li>
+                <li>A standalone icon that means something (a warning): give the <code>&lt;svg&gt;</code> <code>role="img"</code> and an <code>aria-label</code>.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

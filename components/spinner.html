@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Spinner · Jewel Design System</title>
+  <meta name="description" content="A hairline ring that turns while something is busy and there’s no progress to show: a tab loading, a refresh in flight. The same ring the busy button uses.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="components/spinner">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <div class="jewel-cap" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html" aria-current="page">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Spinner</span></li></ol>
+          </nav>
+          <h1>Spinner</h1>
+          <p class="lede">A hairline ring that turns while something is busy and there’s no progress to show: a tab loading, a refresh in flight. The same ring the busy button uses.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/spinner.css</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="variants">
+          <header class="section-head"><p class="label">01 — Variants</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Sizes</h3>
+              <p>Small (14px) sits in a tab or a label, the default (16px) beside a line of text, large (28px) in an empty panel.</p>
+              <div class="spec-example">
+                <div class="spec-row">
+                  <span class="spinner spinner--sm" role="status" aria-label="Loading"></span>
+                  <span class="spinner" role="status" aria-label="Loading"></span>
+                  <span class="spinner spinner--lg" role="status" aria-label="Loading"></span>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>With text</h3>
+              <p><code>.loading</code> pairs a spinner with a line of muted text. Hide the spinner from screen readers; the text says it.</p>
+              <div class="spec-example">
+                <p class="loading" role="status"><span class="spinner" aria-hidden="true"></span>Loading pods…</p>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>In a tab</h3>
+              <p>A small spinner inside a tab label while its panel loads.</p>
+              <div class="spec-example">
+                <div class="spec-row">
+                  <span class="label">Pods</span><span class="spinner spinner--sm" role="status" aria-label="Loading pods"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">02 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>Short waits of unknown length.</li>
+                  <li>Refreshing data that’s already on screen.</li>
+                  <li>A tab or panel loading its content.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>Work with a known length, such as an upload. Use <code>.progress</code>.</li>
+                  <li>Content whose shape you know. Use <code>.skeleton</code>.</li>
+                  <li>Several spinners at once. Show one for the region that’s loading.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">03 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>A spinner on its own gets <code>role="status"</code> and an <code>aria-label</code> that says what’s loading.</li>
+                <li>Next to text that says it, hide the spinner with <code>aria-hidden="true"</code>.</li>
+                <li>With reduced motion it stops turning and shows as a faint full ring.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

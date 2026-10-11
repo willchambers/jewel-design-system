@@ -70,6 +70,43 @@
                 </div>
               </div>
             </div>
+            <div class="spec-block">
+              <h3>Lava lamp palettes</h3>
+              <p>The animation can use a warm or a cool set instead of Jewel’s own. Put <code>data-palette</code> on <code>&lt;html&gt;</code>. Text contrast doesn’t change: every palette color is darker than the near-white backdrop that glass is already tested over.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-palettes">
+                  <div class="spec-palette">
+                    <div class="spec-palette__swatch"></div>
+                    <div class="spec-palette__chips"><i style="background: var(--bg-1)"></i><i style="background: var(--bg-2)"></i><i style="background: var(--bg-3)"></i><i style="background: var(--bg-4)"></i><i style="background: var(--bg-5)"></i></div>
+                    <strong>Jewel</strong><code>default</code><span class="caption">Warm and cool together. The default.</span>
+                  </div>
+                  <div class="spec-palette" data-palette="ember">
+                    <div class="spec-palette__swatch"></div>
+                    <div class="spec-palette__chips"><i style="background: var(--bg-1)"></i><i style="background: var(--bg-2)"></i><i style="background: var(--bg-3)"></i><i style="background: var(--bg-4)"></i><i style="background: var(--bg-5)"></i></div>
+                    <strong>Ember</strong><code>data-palette="ember"</code><span class="caption">Warm: reds, orange, amber and rose.</span>
+                  </div>
+                  <div class="spec-palette" data-palette="lagoon">
+                    <div class="spec-palette__swatch"></div>
+                    <div class="spec-palette__chips"><i style="background: var(--bg-1)"></i><i style="background: var(--bg-2)"></i><i style="background: var(--bg-3)"></i><i style="background: var(--bg-4)"></i><i style="background: var(--bg-5)"></i></div>
+                    <strong>Lagoon</strong><code>data-palette="lagoon"</code><span class="caption">Cool: teal, sky, cyan, blue and indigo.</span>
+                  </div>
+                  <div class="spec-palette" data-palette="dusk">
+                    <div class="spec-palette__swatch"></div>
+                    <div class="spec-palette__chips"><i style="background: var(--bg-1)"></i><i style="background: var(--bg-2)"></i><i style="background: var(--bg-3)"></i><i style="background: var(--bg-4)"></i><i style="background: var(--bg-5)"></i></div>
+                    <strong>Dusk</strong><code>data-palette="dusk"</code><span class="caption">Violet and rose over deep blue.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="spec-row" role="group" aria-label="Try a palette on this page">
+                <button class="btn btn--ghost toggle" type="button" data-spec-palette="" aria-pressed="true">Jewel</button>
+                <button class="btn btn--ghost toggle" type="button" data-spec-palette="ember" aria-pressed="false">Ember</button>
+                <button class="btn btn--ghost toggle" type="button" data-spec-palette="lagoon" aria-pressed="false">Lagoon</button>
+                <button class="btn btn--ghost toggle" type="button" data-spec-palette="dusk" aria-pressed="false">Dusk</button>
+              </div>
+              <div class="spec-example">
+                <code>&lt;html lang="en" data-theme="dark" data-palette="ember"&gt;</code>
+              </div>
+            </div>
           </div>
         </section>
         <section class="panel panel--pad grid" id="color-tokens">
@@ -111,6 +148,24 @@
                   <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--field-focus)"></div><strong>Focus</strong><code>--field-focus</code><span data-token="--field-focus"></span></div>
                   <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--field-error)"></div><strong>Error</strong><code>--field-error</code><span data-token="--field-error"></span></div>
                   <div class="spec-swatch"><div class="spec-swatch__chip spec-swatch__chip--check" style="--chip: var(--field-placeholder)"></div><strong>Placeholder</strong><code>--field-placeholder</code><span data-token="--field-placeholder"></span></div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Status</h3>
+              <p>The traffic light, for the state of things: success, warning, error, info and unknown. Each has a text tone (at least 4.5:1) and a stronger mark tone for dots and bars (at least 3:1). Status colors always mean something, so they never stand in for chart colors, or the other way round.</p>
+              <div class="spec-example" data-code="none">
+                <div class="spec-swatches">
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--status-success)"></div><strong>Success</strong><code>--status-success</code><span data-token="--status-success"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--status-success-mark)"></div><strong>Success mark</strong><code>--status-success-mark</code><span data-token="--status-success-mark"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--status-warning)"></div><strong>Warning</strong><code>--status-warning</code><span data-token="--status-warning"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--status-warning-mark)"></div><strong>Warning mark</strong><code>--status-warning-mark</code><span data-token="--status-warning-mark"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--status-error)"></div><strong>Error</strong><code>--status-error</code><span data-token="--status-error"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--status-error-mark)"></div><strong>Error mark</strong><code>--status-error-mark</code><span data-token="--status-error-mark"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--status-info)"></div><strong>Info</strong><code>--status-info</code><span data-token="--status-info"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--status-info-mark)"></div><strong>Info mark</strong><code>--status-info-mark</code><span data-token="--status-info-mark"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--status-neutral)"></div><strong>Unknown</strong><code>--status-neutral</code><span data-token="--status-neutral"></span></div>
+                  <div class="spec-swatch"><div class="spec-swatch__chip" style="--chip: var(--status-neutral-mark)"></div><strong>Unknown mark</strong><code>--status-neutral-mark</code><span data-token="--status-neutral-mark"></span></div>
                 </div>
               </div>
             </div>
@@ -168,9 +223,10 @@
               <div class="spec-guide__col">
                 <h3>Use it for</h3>
                 <ul class="spec-list">
-                  <li>Resolved tokens only, in components and page CSS: <code>--text-*</code>, <code>--panel-*</code>, <code>--field-*</code>, <code>--state-*</code>, <code>--chart-*</code>.</li>
+                  <li>Resolved tokens only, in components and page CSS: <code>--text-*</code>, <code>--panel-*</code>, <code>--field-*</code>, <code>--state-*</code>, <code>--status-*</code>, <code>--chart-*</code>.</li>
                   <li>The accent for links on hover, focus rings, the current item and selected states.</li>
-                  <li>The error red for errors only, on text and edges.</li>
+                  <li>The error red for errors only, on text and edges, and to fill the one destructive button.</li>
+                  <li>Status colors for the state of things, always with a word beside them.</li>
                   <li>Overriding a token in your own stylesheet, loaded after <code>jewel.css</code>.</li>
                 </ul>
               </div>
@@ -178,7 +234,8 @@
                 <h3>Avoid</h3>
                 <ul class="spec-list">
                   <li>Hex values or <code>--color-*</code> primitives in a component. They skip the glass and solid adjustments.</li>
-                  <li>Colored backgrounds on notices, tags or buttons. Tone lives in a 2px edge.</li>
+                  <li>Colored backgrounds on notices and tags. Tone lives in a 2px edge. The destructive button is the one filled color.</li>
+                  <li>Status colors as decoration, or for chart series.</li>
                   <li>A second accent color.</li>
                   <li>Changing a color without rechecking contrast in <code>docs/accessibility.md</code>.</li>
                 </ul>

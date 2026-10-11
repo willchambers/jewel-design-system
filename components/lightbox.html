@@ -122,6 +122,37 @@
           </div>
         </section>
 
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">05 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>What the script does</h3>
+              <p>The script builds a full-screen <code>&lt;dialog&gt;</code>, fills it with the photo that was clicked and steps through the gallery. The CSS reads only the markup below, so a framework can render the viewer itself and leave out <code>lightbox.js</code> and <code>data-component</code>.</p>
+              <div class="table-wrap">
+                <table class="table table--compact">
+                  <thead><tr><th scope="col">State</th><th scope="col">Set this</th><th scope="col">Notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Viewer</td><td><code>&lt;dialog class="lightbox" aria-label="Photo viewer"&gt;</code> holding <code>.lightbox__bar</code>, <code>figure.lightbox__figure</code> and <code>.lightbox__footer</code></td><td>The bar holds <code>.lightbox__count</code> and the close button. The footer holds the previous and next buttons around <code>p.caption.lightbox__caption</code>, which has <code>aria-live="polite"</code>.</td></tr>
+                    <tr><td>Open</td><td><code>dialog.showModal()</code></td><td><code>[open]</code> lays it out, and CSS stops the page scrolling behind it.</td></tr>
+                    <tr><td>Photo</td><td><code>src</code> (the full image) and <code>alt</code> (the thumbnail’s) on <code>img.lightbox__img</code></td><td>Preload the next and previous photos, as the script does.</td></tr>
+                    <tr><td>Caption</td><td>Text in <code>.lightbox__caption</code>, plus an optional <code>&lt;span class="lightbox__description"&gt;</code></td><td>The description is a quieter second line.</td></tr>
+                    <tr><td>Count</td><td>“2 / 5” in <code>.lightbox__count</code>; <code>hidden</code> on the previous and next buttons when there’s one photo</td><td>Leave out photos that are hidden, such as ones a filter hid.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Events and keyboard</h3>
+              <ul class="spec-list">
+                <li>Esc fires the dialog’s <code>cancel</code> event; the script calls <code>preventDefault()</code> and closes it itself. A click on the dialog, or on <code>.lightbox__figure</code> around the photo, closes it too.</li>
+                <li>← → move between photos and wrap around. A swipe of more than 50px does the same.</li>
+                <li>On close, return focus to the thumbnail that opened it.</li>
+                <li>Let Cmd, Ctrl, Shift and Alt clicks on a thumbnail open the image link as usual.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
 
         <footer class="panel panel--pad site-footer">

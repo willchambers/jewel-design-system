@@ -94,6 +94,24 @@ The 10% panel hairline (`--panel-border`) measures only 1.27:1. That is fine for
 
 **Badges over photos.** A badge sits on its own 86% `--panel-bg`, not on the panel, so it was checked over a pure-white photo, the worst case: default text 11.58:1, accent 6.89:1, error 6.70:1, and `.badge--solid` 16.12:1. Over darker photos the numbers only go up. Badges aren't interactive, so their pill edge needs no minimum contrast.
 
+**Status colors.** Checked the same way: on dark glass over every Jewel color, near-white and near-black, on solid panels, on a badge over a white photo, and on a notice's extra fill. Text tones need 4.5:1; mark tones (dots, bars) need 3:1.
+
+| Token | Value | Worst on glass | Solid | Badge over white | In a notice |
+|---|---|---|---|---|---|
+| `--status-success` | `#86EFAC` | 9.23 | 13.42 | 9.10 | 8.45 |
+| `--status-success-mark` | `#22C55E` | 5.69 | 8.27 | 5.61 | 5.21 |
+| `--status-warning` | `#FCD34D` | 8.99 | 13.07 | 8.86 | 8.23 |
+| `--status-warning-mark` | `#FBBF24` | 7.77 | 11.29 | 7.66 | 7.11 |
+| `--status-info` | `#93C5FD` | 7.19 | 10.45 | 7.09 | 6.58 |
+| `--status-info-mark` | `#60A5FA` | 5.10 | 7.41 | 5.03 | 4.67 |
+| `--status-error` | `#FCA5A5` | 6.83 | 9.93 | 6.73 | 6.25 |
+| `--status-error-mark` | `#EF4444` | 3.45 | 5.01 | 3.40 | 3.15 |
+| `--status-neutral-mark` | `#7A7A84` | 3.05 | 4.44 | 3.01 | (not used) |
+
+`.btn--danger` puts the inverse text on the error red: 9.33:1. The tooltip puts the inverse text on the default text color: 16.12:1.
+
+**Background palettes.** Glass text is worst over the lightest backdrop, the near-white `#F4F4F5` already in the tests. Every color in the `ember`, `lagoon` and `dusk` palettes is darker than that, so they leave every number above unchanged.
+
 **Notices.** A notice adds a 3% white fill on top of the panel. Worst case, on glass over near-white: text 10.86:1, accent title 6.46:1, error title 6.29:1.
 
 **Charts.** Series colors were checked for color-blind and normal-vision separation as well as contrast. See [charts.md](charts.md#colors).
