@@ -1,8 +1,8 @@
 # Changelog
 
-Jewel uses [semantic versions](https://semver.org). Each release is a git tag (`v1.0.0`), so you can pin it, for example from jsDelivr: `https://cdn.jsdelivr.net/gh/willchambers/jewel-design-system@1.0.0/css/jewel.css`.
+Jewel uses [semantic versions](https://semver.org). Each release is a git tag (`v1.0.0`), so you can pin it by that exact tag name, for example from jsDelivr: `https://cdn.jsdelivr.net/gh/willchambers/jewel-design-system@v1.0.0/css/jewel.css`.
 
-## 1.0.0 — 2026-10-11
+## 1.0.0 — 2026-10-13
 
 The first tagged release. It fills the gaps found when [kubestoplight](https://github.com/cchamp-msft/kubestoplight/pull/1) moved from IBM Carbon to Jewel.
 
