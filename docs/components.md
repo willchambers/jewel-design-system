@@ -601,7 +601,7 @@ A short hint for a control, on hover and keyboard focus. Script: `tooltip.js`.
 </span>
 ```
 
-- Light box, dark text and a pointer. It opens in the top layer next to the trigger, flips above when there's no room, stays open while the pointer is on it, and Esc hides it.
+- Light box, dark text and a pointer. It opens in the top layer next to the trigger, flips above when there's no room, stays open while the pointer is on it, and Esc hides it. In a dialog, the first Esc closes the tooltip and the next closes the dialog.
 - It's a hint: an icon button still needs `aria-label`, and touch screens never see it.
 
 ### Video
@@ -743,6 +743,7 @@ Each interactive component's page in the [specimen](https://willchambers.github.
 ```
 
 - Sizes: `.icon--xs` (14px), default (16px), `.icon--md` (22px), `.icon--lg` (28px). It takes the text color.
+- A component's own icon class wins over `.icon` on the same element, so `<svg class="icon empty-state__icon">` keeps the empty state's size and color.
 - The sprite loads over http(s). From `file://` most browsers block it, so paste the icon's paths inline there.
 - To add one, copy the elements inside a Lucide SVG into a new `<symbol id="name" viewBox="0 0 24 24">`, without its stroke attributes. Every icon is on the specimen's Icons page.
 

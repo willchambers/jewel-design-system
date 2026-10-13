@@ -28,8 +28,8 @@ git clone https://github.com/willchambers/jewel-design-system.git
 **Or link it from a CDN** and skip steps 1 and 2. Each release is a git tag, so pin the version and it never changes under you:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/willchambers/jewel-design-system@1.0.0/css/jewel.css">
-<script src="https://cdn.jsdelivr.net/gh/willchambers/jewel-design-system@1.0.0/js/jewel.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/willchambers/jewel-design-system@v1.0.0/css/jewel.css">
+<script src="https://cdn.jsdelivr.net/gh/willchambers/jewel-design-system@v1.0.0/js/jewel.js" defer></script>
 ```
 
 ### 2. Copy two folders into your project

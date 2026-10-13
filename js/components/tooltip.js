@@ -2,8 +2,9 @@
    keyboard focus. The bubble opens in the top layer (Jewel.float), so a
    panel can't clip it; it flips above when there's no room below, and its
    pointer follows the trigger even when the bubble is nudged on screen.
-   Esc hides it. Moving the pointer onto the bubble keeps it open (WCAG
-   1.4.13). The text stays linked by aria-describedby while hidden, so
+   Esc hides it, and only it: inside a modal dialog the first Esc closes
+   the tooltip and the next closes the dialog. Moving the pointer onto the
+   bubble keeps it open (WCAG 1.4.13). The text stays linked by aria-describedby while hidden, so
    screen readers read it with the control. */
 
 Jewel.register('tooltip', (el) => {
@@ -46,5 +47,9 @@ Jewel.register('tooltip', (el) => {
   trigger.addEventListener('focus', () => { if (trigger.matches(':focus-visible')) show(); });
   trigger.addEventListener('blur', hide);
   trigger.addEventListener('click', hide);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && unfloat) hide(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || !unfloat) return;
+    e.preventDefault(); // keep a <dialog> around the trigger open
+    hide();
+  });
 });
