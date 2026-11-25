@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Background picker · Jewel Design System</title>
+  <meta name="description" content="Lets the viewer choose the lava lamp’s palette and motion, and remembers the choice. A settings control for apps that stay open all day.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap">
+
+  <link rel="stylesheet" href="../css/jewel.css">
+  <!-- Specimen-only styles: not part of the system. -->
+  <link rel="stylesheet" href="../specimen/specimen.css">
+
+  <script src="../js/jewel.js" defer></script>
+  <script src="../js/components/sheet.js" defer></script>
+  <script src="../js/components/side-nav.js" defer></script>
+  <script src="../js/components/code.js" defer></script>
+  <script src="../js/components/bg-picker.js" defer></script>
+  <script src="../specimen/specimen.js" defer></script>
+</head>
+<body data-page="components/background-picker">
+  <a class="spec-skip" href="#main">Skip to content</a>
+  <div class="jewel-bg" aria-hidden="true"></div>
+  <!-- Wax blobs: shown with data-bg-motion="wax" on <html>. -->
+  <div class="jewel-wax" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="jewel-cap" aria-hidden="true"><div class="jewel-wax"><i></i><i></i><i></i><i></i><i></i></div></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="panel site-header__inner">
+        <a class="wordmark link-quiet" href="../index.html">Jewel</a>
+        <nav class="nav" aria-label="Primary">
+          <span class="nav__links">
+            <a href="../foundations/index.html">Foundations</a>
+            <a href="../components/index.html" aria-current="page">Components</a>
+            <a href="../patterns/index.html">Patterns</a>
+          </span>
+          <button class="btn btn--ghost btn--icon nav__menu" type="button" data-sheet-open="site-nav" aria-label="Menu" aria-controls="site-nav">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="with-side-nav spec-layout">
+      <!-- The side nav is filled in by specimen/specimen.js from one list. -->
+      <aside class="with-side-nav__aside panel"></aside>
+
+      <main class="panel-stack" id="main" tabindex="-1">
+        <section class="panel panel--pad spec-head">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs__list"><li><a href="../index.html">Jewel</a></li><li><a href="../components/index.html">Components</a></li><li><span aria-current="page">Background picker</span></li></ol>
+          </nav>
+          <h1>Background picker</h1>
+          <p class="lede">Lets the viewer choose the lava lamp’s palette and motion, and remembers the choice. A settings control for apps that stay open all day.</p>
+          <dl class="spec-files"><div><dt>CSS</dt><dd><code>css/components/bg-picker.css</code></dd></div><div><dt>JS</dt><dd><code>js/components/bg-picker.js</code></dd></div></dl>
+        </section>
+        <section class="panel panel--pad grid" id="variants">
+          <header class="section-head"><p class="label">01 — Variants</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Palette and motion</h3>
+              <p>Each option is a pressable tag that carries the attribute it sets on <code>&lt;html&gt;</code>. Try it: this page changes. <code>data-bg-store</code> remembers the choice on this device.</p>
+              <div class="spec-example">
+                <div class="bg-picker" data-component="bg-picker" data-bg-store>
+                  <div class="bg-picker__group" role="group" aria-labelledby="bgp-palette">
+                    <p class="label" id="bgp-palette">Palette</p>
+                    <div class="cluster bg-picker__options">
+                      <button class="tag tag--button" type="button" data-palette="jewel" aria-pressed="true"><span class="bg-picker__swatch" aria-hidden="true"></span>Jewel</button>
+                      <button class="tag tag--button" type="button" data-palette="ember" aria-pressed="false"><span class="bg-picker__swatch" aria-hidden="true"></span>Ember</button>
+                      <button class="tag tag--button" type="button" data-palette="lagoon" aria-pressed="false"><span class="bg-picker__swatch" aria-hidden="true"></span>Lagoon</button>
+                      <button class="tag tag--button" type="button" data-palette="dusk" aria-pressed="false"><span class="bg-picker__swatch" aria-hidden="true"></span>Dusk</button>
+                      <button class="tag tag--button" type="button" data-palette="glacier" aria-pressed="false"><span class="bg-picker__swatch" aria-hidden="true"></span>Glacier</button>
+                      <button class="tag tag--button" type="button" data-palette="aurora" aria-pressed="false"><span class="bg-picker__swatch" aria-hidden="true"></span>Aurora</button>
+                      <button class="tag tag--button" type="button" data-palette="deepsea" aria-pressed="false"><span class="bg-picker__swatch" aria-hidden="true"></span>Deep sea</button>
+                      <button class="tag tag--button" type="button" data-palette="polar" aria-pressed="false"><span class="bg-picker__swatch" aria-hidden="true"></span>Polar</button>
+                    </div>
+                  </div>
+                  <div class="bg-picker__group" role="group" aria-labelledby="bgp-motion">
+                    <p class="label" id="bgp-motion">Motion</p>
+                    <div class="cluster bg-picker__options">
+                      <button class="tag tag--button" type="button" data-bg-motion="lava" aria-pressed="true">Lava lamp</button>
+                      <button class="tag tag--button" type="button" data-bg-motion="wax" aria-pressed="false">Wax blobs</button>
+                    </div>
+                  </div>
+                  <p class="bg-picker__note">Saved on this device.</p>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Palettes only</h3>
+              <p>Offer just the options that suit the product. The groups are optional, and so is the label when there’s one group.</p>
+              <div class="spec-example">
+                <div class="bg-picker" data-component="bg-picker">
+                  <div class="cluster bg-picker__options" role="group" aria-label="Background palette">
+                    <button class="tag tag--button" type="button" data-palette="jewel" aria-pressed="true"><span class="bg-picker__swatch" aria-hidden="true"></span>Jewel</button>
+                    <button class="tag tag--button" type="button" data-palette="lagoon" aria-pressed="false"><span class="bg-picker__swatch" aria-hidden="true"></span>Lagoon</button>
+                    <button class="tag tag--button" type="button" data-palette="polar" aria-pressed="false"><span class="bg-picker__swatch" aria-hidden="true"></span>Polar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Your own palette</h3>
+              <p>Write a palette as a <code>data-palette</code> rule and add a button for it. The swatch reads the same tokens, so it needs no color of its own.</p>
+              <div class="spec-example">
+                <code>[data-palette="harbor"] { --bg-1: …; --bg-2: …; --bg-3: …; --bg-4: …; --bg-5: …; --bg-base: …; }</code>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="layers">
+          <header class="section-head"><p class="label">02 — What it switches</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Wax blobs</h3>
+              <p>The Motion group needs the wax layer in the page: one after <code>.jewel-bg</code> and a copy inside <code>.jewel-cap</code>, so the strip above the header matches. It shows only with <code>data-bg-motion="wax"</code> on <code>&lt;html&gt;</code>.</p>
+              <div class="spec-example">
+                <code>&lt;div class="jewel-wax" aria-hidden="true"&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;</code>
+              </div>
+            </div>
+            <div class="spec-block">
+              <h3>Your own image or video</h3>
+              <p>A product can also offer its own backgrounds: a photo, a render or a looping clip in <code>.jewel-media</code>, right after <code>.jewel-bg</code>. The picker doesn’t insert media for you, because where the files come from is the product’s business. Add your own buttons beside it, insert or remove the layer, and set a palette close to the media’s colors so the gradient that shows while it loads matches.</p>
+              <div class="spec-example">
+                <code>&lt;div class="jewel-media" aria-hidden="true"&gt;&lt;img class="jewel-media__still" src="night-sky.webp" alt=""&gt;&lt;/div&gt;</code>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="usage">
+          <header class="section-head"><p class="label">03 — Usage</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-guide">
+              <div class="spec-guide__col">
+                <h3>Use it for</h3>
+                <ul class="spec-list">
+                  <li>Dashboards and tools that stay open for hours, where a calmer or cooler backdrop is a comfort.</li>
+                  <li>A settings sheet or page, reached from a menu.</li>
+                  <li>A short list: the palettes that suit the product, not every one.</li>
+                </ul>
+              </div>
+              <div class="spec-guide__col spec-guide__col--avoid">
+                <h3>Avoid</h3>
+                <ul class="spec-list">
+                  <li>The header or a floating button. The background is a setting, not navigation.</li>
+                  <li>Using a palette to mean something. Status has its own colors.</li>
+                  <li>A light option. Jewel is dark-only; every palette sits under the same glass.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="accessibility">
+          <header class="section-head"><p class="label">04 — Accessibility</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>Notes</h3>
+              <ul class="spec-list">
+                <li>Options are buttons with <code>aria-pressed</code>; each group has <code>role="group"</code> and a name.</li>
+                <li>The swatch is decoration (<code>aria-hidden</code>); the option’s name is its text.</li>
+                <li>Text contrast doesn’t change with the palette: glass is tested over near-white and near-black, and every palette color sits between them.</li>
+                <li>With reduced motion the lava lamp, the wax blobs and the drift of a still all stop. The palette still changes.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="panel panel--pad grid" id="without-js">
+          <header class="section-head"><p class="label">05 — Without Jewel’s JS</p></header>
+          <div class="span-12 spec-body">
+            <div class="spec-block">
+              <h3>In React and other frameworks</h3>
+              <ul class="spec-list">
+                <li>Keep the palette and motion in your own state. Set <code>data-palette</code> and <code>data-bg-motion</code> on <code>&lt;html&gt;</code> from it, and remove each for its default (<code>jewel</code>, <code>lava</code>).</li>
+                <li>Render the same markup and set each button’s <code>aria-pressed</code>.</li>
+                <li>To avoid a flash of the default on load, restore a saved choice from a small inline script in <code>&lt;head&gt;</code>.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-pager panel panel--pad" aria-label="Previous and next"></nav>
+
+        <footer class="panel panel--pad site-footer">
+          <span class="caption">© 2026 Jewel Design System. Built with Jewel.</span>
+          <a class="caption" href="#main">Back to top</a>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

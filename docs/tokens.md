@@ -258,8 +258,51 @@ The animation cycles through five colors, `--bg-1` to `--bg-5`, over `--bg-base`
 | `ember` | `#DC2626` `#EA580C` `#D97706` `#BE185D` `#C026D3` over `#9A3412` | Warm |
 | `lagoon` | `#0F9488` `#0369A1` `#4338CA` `#0E7490` `#2563EB` over `#155E75` | Cool |
 | `dusk` | `#6D28D9` `#BE185D` `#1D4ED8` `#7E22CE` `#DB2777` over `#4C1D95` | Violet and rose |
+| `glacier` | `#0EA5E9` `#22D3EE` `#4F46E5` `#0F766E` `#38BDF8` over `#1E3A5F` | Cool: crisp and bright |
+| `aurora` | `#10B981` `#8B5CF6` `#06B6D4` `#6366F1` `#14B8A6` over `#123A4A` | Cool: emerald and violet |
+| `deepsea` | `#0369A1` `#0E7490` `#1D4ED8` `#0F766E` `#155E75` over `#0B2A4A` | Cool: the calmest. Also sets `--bg-speed: 48s` |
+| `polar` | `#4338CA` `#6D28D9` `#0284C7` `#334155` `#64748B` over `#1E1B4B` | Cool: indigo and steel |
+| `jewel` | The default colors | Names the default, for an element inside a page that uses another palette |
 
-For your own palette, set `--bg-1` … `--bg-5` and `--bg-base` in your stylesheet. Text contrast is safe as long as no color is lighter than `#F4F4F5`, the near-white backdrop glass is tested over.
+For your own palette, set `--bg-1` … `--bg-5` and `--bg-base` in your stylesheet. Text contrast is safe as long as no color is lighter than `#F4F4F5`, the near-white backdrop glass is tested over. Write it as a `[data-palette="your-name"]` rule and the [background picker](components.md#background-picker) can offer it, swatch included.
+
+### Wax blobs
+
+A second, optional motion on top of the lava lamp animation: five blobs of wax in the palette's colors that rise, sink and squash on long, out-of-step loops. Add the layer after `.jewel-bg`, and a copy inside `.jewel-cap` so the strip above the header matches:
+
+```html
+<div class="jewel-bg" aria-hidden="true"></div>
+<div class="jewel-wax" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+<div class="jewel-cap" aria-hidden="true">
+  <div class="jewel-wax"><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+```
+
+It shows only with `data-bg-motion="wax"` on `<html>`, so the markup can stay in the page and a setting can turn it on. `--bg-wax-speed` (default `1`) scales its timing: above 1 is slower. Each blob is one gradient moved with `translate` and `scale` only, so nothing repaints. It stops with reduced motion and with `data-bg="paused"`.
+
+### Your own image or video
+
+A photo, a render or a looping clip can sit in place of the gradient:
+
+```html
+<div class="jewel-bg" aria-hidden="true"></div>
+<div class="jewel-media" aria-hidden="true">
+  <img class="jewel-media__still" src="night-sky.webp" alt="">
+</div>
+```
+
+```html
+<div class="jewel-media" aria-hidden="true">
+  <video src="night-sky.mp4" poster="night-sky.jpg" autoplay muted loop playsinline></video>
+</div>
+```
+
+- `.jewel-bg` stays underneath and shows while the media loads, so set a palette close to the media's colors.
+- `.jewel-media__still` drifts very slowly (a 6% zoom over 70s), so the glass has something to refract. Leave the class off for a fixed picture.
+- A fine static grain over the media hides the banding that dark gradients get in 8-bit video and webp.
+- `.jewel-cap` is hidden while `.jewel-media` is on the page: the cap can only paint the gradient.
+- With reduced motion the still stops drifting. Don't autoplay the video then: leave `autoplay` off and show the poster (`Jewel.reducedMotion.matches` tells a script which).
+- Pick dark, low-contrast media. Text on glass stays readable over anything (it is tested over near-white and near-black), but a busy picture competes with the content.
 
 ## Performance notes
 

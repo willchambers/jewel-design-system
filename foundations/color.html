@@ -72,7 +72,7 @@
             </div>
             <div class="spec-block">
               <h3>Lava lamp palettes</h3>
-              <p>The animation can use a warm or a cool set instead of Jewel’s own. Put <code>data-palette</code> on <code>&lt;html&gt;</code>. Text contrast doesn’t change: every palette color is darker than the near-white backdrop that glass is already tested over.</p>
+              <p>The animation can use a warm or a cool set instead of Jewel’s own. Put <code>data-palette</code> on <code>&lt;html&gt;</code>. To let the viewer choose, use the <a href="../components/background-picker.html">background picker</a>. Text contrast doesn’t change: every palette color is darker than the near-white backdrop that glass is already tested over.</p>
               <div class="spec-example" data-code="none">
                 <div class="spec-palettes">
                   <div class="spec-palette">
@@ -95,6 +95,26 @@
                     <div class="spec-palette__chips"><i style="background: var(--bg-1)"></i><i style="background: var(--bg-2)"></i><i style="background: var(--bg-3)"></i><i style="background: var(--bg-4)"></i><i style="background: var(--bg-5)"></i></div>
                     <strong>Dusk</strong><code>data-palette="dusk"</code><span class="caption">Violet and rose over deep blue.</span>
                   </div>
+                  <div class="spec-palette" data-palette="glacier">
+                    <div class="spec-palette__swatch"></div>
+                    <div class="spec-palette__chips"><i style="background: var(--bg-1)"></i><i style="background: var(--bg-2)"></i><i style="background: var(--bg-3)"></i><i style="background: var(--bg-4)"></i><i style="background: var(--bg-5)"></i></div>
+                    <strong>Glacier</strong><code>data-palette="glacier"</code><span class="caption">Meltwater cyan, sky and deep indigo. Crisp and bright.</span>
+                  </div>
+                  <div class="spec-palette" data-palette="aurora">
+                    <div class="spec-palette__swatch"></div>
+                    <div class="spec-palette__chips"><i style="background: var(--bg-1)"></i><i style="background: var(--bg-2)"></i><i style="background: var(--bg-3)"></i><i style="background: var(--bg-4)"></i><i style="background: var(--bg-5)"></i></div>
+                    <strong>Aurora</strong><code>data-palette="aurora"</code><span class="caption">Emerald and violet over a teal night.</span>
+                  </div>
+                  <div class="spec-palette" data-palette="deepsea">
+                    <div class="spec-palette__swatch"></div>
+                    <div class="spec-palette__chips"><i style="background: var(--bg-1)"></i><i style="background: var(--bg-2)"></i><i style="background: var(--bg-3)"></i><i style="background: var(--bg-4)"></i><i style="background: var(--bg-5)"></i></div>
+                    <strong>Deep sea</strong><code>data-palette="deepsea"</code><span class="caption">Low light and slow blues. The calmest; it also runs slower.</span>
+                  </div>
+                  <div class="spec-palette" data-palette="polar">
+                    <div class="spec-palette__swatch"></div>
+                    <div class="spec-palette__chips"><i style="background: var(--bg-1)"></i><i style="background: var(--bg-2)"></i><i style="background: var(--bg-3)"></i><i style="background: var(--bg-4)"></i><i style="background: var(--bg-5)"></i></div>
+                    <strong>Polar</strong><code>data-palette="polar"</code><span class="caption">Indigo, violet and steel, with a cold blue glint.</span>
+                  </div>
                 </div>
               </div>
               <div class="spec-row" role="group" aria-label="Try a palette on this page">
@@ -102,6 +122,10 @@
                 <button class="btn btn--ghost toggle" type="button" data-spec-palette="ember" aria-pressed="false">Ember</button>
                 <button class="btn btn--ghost toggle" type="button" data-spec-palette="lagoon" aria-pressed="false">Lagoon</button>
                 <button class="btn btn--ghost toggle" type="button" data-spec-palette="dusk" aria-pressed="false">Dusk</button>
+                <button class="btn btn--ghost toggle" type="button" data-spec-palette="glacier" aria-pressed="false">Glacier</button>
+                <button class="btn btn--ghost toggle" type="button" data-spec-palette="aurora" aria-pressed="false">Aurora</button>
+                <button class="btn btn--ghost toggle" type="button" data-spec-palette="deepsea" aria-pressed="false">Deep sea</button>
+                <button class="btn btn--ghost toggle" type="button" data-spec-palette="polar" aria-pressed="false">Polar</button>
               </div>
               <div class="spec-example">
                 <code>&lt;html lang="en" data-theme="dark" data-palette="ember"&gt;</code>

@@ -18,6 +18,7 @@
 /* ---- Components (alphabetical; order doesn't matter within the layer) --- */
 @import url("components/accordion.css") layer(components);
 @import url("components/badge.css") layer(components);
+@import url("components/bg-picker.css") layer(components);
 @import url("components/breadcrumbs.css") layer(components);
 @import url("components/button.css") layer(components);
 @import url("components/chart.css") layer(components);

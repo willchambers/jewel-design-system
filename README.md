@@ -147,6 +147,7 @@ A *component* is a ready-made piece of interface. You use one by adding its clas
 | Chat | The shell for an AI assistant | `.chat` | `chat.js` | [page](https://willchambers.github.io/jewel-design-system/components/chat.html) |
 | Status | The state of a pod, job or deploy: a dot and a word | `.status`, `.status--success`, `--warning`, `--error`, `--info` |  | [page](https://willchambers.github.io/jewel-design-system/components/status.html) |
 | Tooltip | A short hint for a control | `.tooltip`, `.tooltip__bubble` | `tooltip.js` | [page](https://willchambers.github.io/jewel-design-system/components/tooltip.html) |
+| Background picker | Lets the viewer choose the palette and motion | `.bg-picker` | `bg-picker.js` | [page](https://willchambers.github.io/jewel-design-system/components/background-picker.html) |
 | Spinner | Busy, with no progress to show | `.spinner`, `.loading` |  | [page](https://willchambers.github.io/jewel-design-system/components/spinner.html) |
 | Skeleton loader | Gray blocks while content loads | `.skeleton`, `.skeleton__line`, `.skeleton__block` |  | [page](https://willchambers.github.io/jewel-design-system/components/skeleton.html) |
 | Password field | Show and hide a password or token | `.password` | `password.js` | [page](https://willchambers.github.io/jewel-design-system/components/password.html) |
@@ -329,7 +330,9 @@ To tune it, set these tokens in your own stylesheet (see [Customizing](#customiz
 | `--bg-blur` | `0px` | Extra softening (0 is the cheapest) |
 | `--bg-dim` | `0` | 0 to 1: dark scrim over the whole background |
 
-**Warm or cool.** `data-palette` on `<html>` swaps the animation's colors: `ember` is warm (reds, orange, amber), `lagoon` is cool (teal, blues, indigo), and `dusk` is violet and rose. Leave it off for Jewel's own mix. For your own palette, set `--bg-1` to `--bg-5` and `--bg-base`.
+**Warm or cool.** `data-palette` on `<html>` swaps the animation's colors: `ember` is warm (reds, orange, amber), `lagoon` is cool (teal, blues, indigo), and `dusk` is violet and rose. Four more cool sets suit screens that stay open all day: `glacier`, `aurora`, `deepsea` and `polar`. Leave it off for Jewel's own mix. For your own palette, set `--bg-1` to `--bg-5` and `--bg-base`.
+
+**More than the gradient.** Two optional layers go right after `.jewel-bg` ([docs/tokens.md](docs/tokens.md#wax-blobs) has the markup): `.jewel-wax` adds slow blobs of wax in the palette's colors, shown with `data-bg-motion="wax"` on `<html>`, and `.jewel-media` puts your own image or looping video behind the glass. To let people choose a palette and motion themselves, use the [background picker](https://willchambers.github.io/jewel-design-system/components/background-picker.html).
 
 ## Adding your own component
 

@@ -1,0 +1,64 @@
+/* Background picker — lets the viewer choose the lava lamp's palette and
+   motion. A settings control: put it in a sheet or a settings page, not in
+   the header.
+   <div class="bg-picker" data-component="bg-picker" data-bg-store>
+     <div class="bg-picker__group" role="group" aria-labelledby="bgp-palette">
+       <p class="label" id="bgp-palette">Palette</p>
+       <div class="cluster bg-picker__options">
+         <button class="tag tag--button" type="button" data-palette="jewel" aria-pressed="true">
+           <span class="bg-picker__swatch" aria-hidden="true"></span>Jewel</button>
+         <button class="tag tag--button" type="button" data-palette="ember" aria-pressed="false">
+           <span class="bg-picker__swatch" aria-hidden="true"></span>Ember</button>
+       </div>
+     </div>
+     <div class="bg-picker__group" role="group" aria-labelledby="bgp-motion">
+       <p class="label" id="bgp-motion">Motion</p>
+       <div class="cluster bg-picker__options">
+         <button class="tag tag--button" type="button" data-bg-motion="lava" aria-pressed="true">Lava lamp</button>
+         <button class="tag tag--button" type="button" data-bg-motion="wax" aria-pressed="false">Wax blobs</button>
+       </div>
+     </div>
+   </div>
+
+   Each option carries the attribute it sets on <html>. data-palette on the
+   button also scopes that palette's colors to it, so the swatch needs no
+   color of its own, and a palette you add yourself gets a swatch for free.
+   bg-picker.js does the switching; without it, set the attributes yourself
+   and keep aria-pressed in step. */
+
+.bg-picker {
+  display: grid;
+  gap: var(--space-4);
+}
+.bg-picker__group {
+  display: grid;
+  gap: var(--space-2);
+}
+.bg-picker__group > .label { margin: 0; }
+
+/* Touch tags are 32px with a 44px tap area: rows need the 12px gap. */
+.bg-picker__options { --cluster-gap: var(--space-2); }
+@media (pointer: coarse) {
+  .bg-picker__options { --cluster-gap: var(--space-3) var(--space-2); }
+}
+
+.bg-picker .tag { gap: var(--space-2); }
+
+/* Swatch: the option's own palette, read from the --bg-* tokens that its
+   data-palette sets. The hairline ring keeps it visible on the pressed
+   (filled) tag. */
+.bg-picker__swatch {
+  flex: none;
+  width: var(--space-3);
+  height: var(--space-3);
+  border-radius: var(--radius-round);
+  background: conic-gradient(from 210deg, var(--bg-1), var(--bg-2), var(--bg-3), var(--bg-4), var(--bg-5), var(--bg-1));
+  box-shadow: 0 0 0 var(--hairline) var(--panel-border);
+}
+
+/* A note under the options, such as "Saved on this device". */
+.bg-picker__note {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}

@@ -37,6 +37,7 @@
     { heading: 'Components', items: [
       ['components/index', 'All components'],
       ['components/accordion', 'Accordion'],
+      ['components/background-picker', 'Background picker'],
       ['components/badge', 'Badge'],
       ['components/breadcrumbs', 'Breadcrumbs'],
       ['components/button', 'Button'],
@@ -179,9 +180,9 @@
   });
 
   /* Toggle demos: a button with aria-pressed in an example flips it, unless
-     a component (filter, dropdown…) already looks after it. */
+     a component (filter, dropdown, background picker…) already looks after it. */
   document.addEventListener('click', (e) => {
-    const button = e.target.closest('.spec-example button[aria-pressed]:not([data-filter]):not([data-spec-bg]):not([data-spec-play]):not([data-spec-palette]):not([data-spec-density]):not(.password__toggle)');
+    const button = e.target.closest('.spec-example button[aria-pressed]:not([data-filter]):not([data-spec-bg]):not([data-spec-play]):not([data-spec-palette]):not([data-spec-density]):not([data-palette]):not([data-bg-motion]):not(.password__toggle)');
     if (!button || button.disabled) return;
     button.setAttribute('aria-pressed', String(button.getAttribute('aria-pressed') !== 'true'));
   });

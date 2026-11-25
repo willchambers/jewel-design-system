@@ -125,3 +125,143 @@
     --bg-c1: var(--bg-1); --bg-c2: var(--bg-2); --bg-c3: var(--bg-3); --bg-c4: var(--bg-4);
   }
 }
+
+/* ==========================================================================
+   Wax blobs (optional second motion)
+   The lava lamp animation is a slow hue cycle with a little drift. This adds
+   blobs of wax on top of it that rise, sink and squash on long, out-of-step
+   loops, in the palette's own --bg-1…5. Put the layer right after .jewel-bg,
+   and a second copy inside .jewel-cap so the strip above the header matches:
+
+   <div class="jewel-bg" aria-hidden="true"></div>
+   <div class="jewel-wax" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+   <div class="jewel-cap" aria-hidden="true">
+     <div class="jewel-wax"><i></i><i></i><i></i><i></i><i></i></div>
+   </div>
+
+   It shows only with data-bg-motion="wax" on <html>, so the markup can stay
+   in the page and a setting can turn it on (see the background picker).
+
+   Performance notes:
+   - Each blob is one radial gradient moved with translate and scale only,
+     so the compositor animates it: no repaint, no filter.
+   - Positions and sizes use viewport units, so the copy in the cap lines up.
+   ========================================================================== */
+
+.jewel-wax {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-below);
+  overflow: hidden;
+  pointer-events: none;
+}
+[data-bg-motion="wax"] .jewel-wax { display: block; }
+.jewel-cap > .jewel-wax { position: absolute; }
+
+.jewel-wax > i {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s);
+  height: var(--s);
+  margin: calc(var(--s) / -2) 0 0 calc(var(--s) / -2);
+  border-radius: var(--radius-round);
+  /* Solid body, short soft rim: reads as wax, not as a glow. */
+  background: radial-gradient(closest-side,
+    var(--c) 0%,
+    color-mix(in oklab, var(--c) 92%, transparent) 50%,
+    color-mix(in oklab, var(--c) 55%, transparent) 64%,
+    transparent 76%);
+  will-change: translate, scale;
+  animation:
+    jewel-wax-rise calc(var(--t) * var(--bg-wax-speed)) var(--ease-standard) var(--d) infinite alternate,
+    jewel-wax-wobble calc(var(--t) * var(--bg-wax-speed) * 0.41) var(--ease-standard) var(--d) infinite alternate;
+}
+/* Five blobs: place, size, sideways travel, period and phase. The periods
+   share no common factor, so the lamp never visibly repeats. */
+.jewel-wax > i:nth-child(1) { --x: 18vw; --y: 62vh; --s: 62vmax; --dx: 14vw;  --t: 34s; --d: -6s;  --c: var(--bg-1); }
+.jewel-wax > i:nth-child(2) { --x: 78vw; --y: 70vh; --s: 54vmax; --dx: -18vw; --t: 28s; --d: -19s; --c: var(--bg-2); }
+.jewel-wax > i:nth-child(3) { --x: 42vw; --y: 88vh; --s: 46vmax; --dx: 22vw;  --t: 41s; --d: -31s; --c: var(--bg-3); }
+.jewel-wax > i:nth-child(4) { --x: 88vw; --y: 22vh; --s: 40vmax; --dx: -24vw; --t: 25s; --d: -11s; --c: var(--bg-4); }
+.jewel-wax > i:nth-child(5) { --x: 6vw;  --y: 18vh; --s: 36vmax; --dx: 18vw;  --t: 47s; --d: -38s; --c: var(--bg-5); }
+
+@keyframes jewel-wax-rise {
+  from { translate: 0 35vh; }
+  to   { translate: var(--dx) -40vh; }
+}
+/* Wax squashes as it rises and stretches as it falls. */
+@keyframes jewel-wax-wobble {
+  0%   { scale: 1 1; }
+  35%  { scale: 1.18 0.84; }
+  70%  { scale: 0.86 1.2; }
+  100% { scale: 1.06 0.95; }
+}
+
+[data-bg="paused"] .jewel-wax > i { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .jewel-wax > i { animation: none; }
+}
+
+/* ==========================================================================
+   Your own image or video behind the glass
+   A photo, a render or a looping clip in place of the gradient. Put it
+   right after .jewel-bg, which stays underneath and shows while it loads:
+
+   <div class="jewel-bg" aria-hidden="true"></div>
+   <div class="jewel-media" aria-hidden="true">
+     <img class="jewel-media__still" src="night-sky.webp" alt="">
+   </div>
+
+   or, for a clip (muted and looping; give it a poster):
+     <video src="night-sky.mp4" poster="night-sky.jpg" autoplay muted loop playsinline></video>
+
+   - Pick dark, low-contrast media. Glass text is tested over near-white and
+     near-black, so it stays readable over anything, but a busy picture
+     still competes with the content.
+   - Set a palette close to the media's colors, so the gradient that shows
+     before it loads (and the swatch in a picker) matches.
+   - .jewel-cap is hidden while media is on the page: it can only paint the
+     gradient, and a strip of gradient above the header would not match.
+   ========================================================================== */
+
+.jewel-media {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-below);
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--bg-base);
+}
+/* Slightly oversized, so the slow drift below never shows an edge. */
+.jewel-media > * {
+  position: absolute;
+  inset: -4%;
+  width: 108%;
+  height: 108%;
+  max-width: none; /* base.css caps media at 100% */
+  object-fit: cover;
+}
+/* Fine static grain. Smooth dark gradients band in 8-bit video and webp; a
+   few percent of noise dithers that away and costs nothing per frame. */
+.jewel-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+/* A still drifts slowly, so the glass has something to refract. */
+.jewel-media__still {
+  animation: jewel-media-drift 70s var(--ease-standard) infinite alternate;
+}
+@keyframes jewel-media-drift {
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to   { transform: scale(1.06) translate3d(-2%, -1.5%, 0); }
+}
+[data-bg="paused"] .jewel-media__still { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .jewel-media__still { animation: none; }
+}
+:root:has(.jewel-media) .jewel-cap { display: none; }
