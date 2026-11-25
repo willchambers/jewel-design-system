@@ -2,6 +2,21 @@
 
 Jewel uses [semantic versions](https://semver.org). Each release is a git tag (`v1.0.0`), so you can pin it by that exact tag name, for example from jsDelivr: `https://cdn.jsdelivr.net/gh/willchambers/jewel-design-system@v1.0.0/css/jewel.css`.
 
+## Unreleased
+
+Background options that [kubestoplight](https://github.com/cchamp-msft/kubestoplight) built on top of 1.0 and now hands back.
+
+### Added
+
+- **Cool palettes:** `data-palette="glacier"`, `"aurora"`, `"deepsea"` and `"polar"`. `"jewel"` names the default, for an element inside a page that uses another palette.
+- **Wax blobs:** `.jewel-wax`, an optional second motion over the lava lamp animation, shown with `data-bg-motion="wax"` on `<html>` and tuned with `--bg-wax-speed`.
+- **Your own image or video:** `.jewel-media`, a layer for a photo, render or looping clip behind the glass, with a slow drift for stills and a grain that hides banding.
+- **Background picker:** `.bg-picker` and `bg-picker.js`, which let the viewer choose the palette and motion and can remember the choice. Adds `Jewel.background` and the `jewel:backgroundchange` event.
+
+### Changed
+
+- `data-bg="paused"` also stops the wax blobs and the drift of a still.
+
 ## 1.0.0 — 2026-10-13
 
 The first tagged release. It fills the gaps found when [kubestoplight](https://github.com/cchamp-msft/kubestoplight/pull/1) moved from IBM Carbon to Jewel.

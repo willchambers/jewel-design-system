@@ -110,7 +110,7 @@ The 10% panel hairline (`--panel-border`) measures only 1.27:1. That is fine for
 
 `.btn--danger` puts the inverse text on the error red: 9.33:1. The tooltip puts the inverse text on the default text color: 16.12:1.
 
-**Background palettes.** Glass text is worst over the lightest backdrop, the near-white `#F4F4F5` already in the tests. Every color in the `ember`, `lagoon` and `dusk` palettes is darker than that, so they leave every number above unchanged.
+**Background palettes.** Glass text is worst over the lightest backdrop, the near-white `#F4F4F5` already in the tests. Every color in the `ember`, `lagoon`, `dusk`, `glacier`, `aurora`, `deepsea` and `polar` palettes is darker than that (the lightest is glacier's `#22D3EE`), so they leave every number above unchanged.
 
 **Notices.** A notice adds a 3% white fill on top of the panel. Worst case, on glass over near-white: text 10.86:1, accent title 6.46:1, error title 6.29:1.
 

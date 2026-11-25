@@ -51,6 +51,7 @@
   --bg-speed: 32s;          /* one full color/position cycle; 20–40s reads as "slow" */
   --bg-intensity: 1;        /* 0–1: opacity of the gradient layers over the base */
   --bg-blur: 0px;           /* optional extra softening; 0 keeps it cheapest */
+  --bg-wax-speed: 1;        /* wax blobs (.jewel-wax): above 1 is slower, below 1 faster */
   /* The base sits inside the jewel luminance range so glass contrast holds. */
   --bg-base: #7A2E9E;
 
@@ -222,9 +223,19 @@
 /* ---- Lava lamp palettes ----------------------------------------------
    Put data-palette on <html> (or any element that holds .jewel-bg) to
    change the animation's colors. Jewel (no attribute) mixes warm and cool;
-   ember is warm, lagoon is cool, dusk is violet and rose. Text contrast
-   doesn't change: the worst case on glass is a near-white backdrop, and
-   every palette color is darker than that (docs/accessibility.md). */
+   ember is warm, lagoon is cool, dusk is violet and rose. Four more cool
+   sets suit dashboards that stay open all day: glacier, aurora, deepsea
+   and polar. Text contrast doesn't change: the worst case on glass is a
+   near-white backdrop, and every palette color is darker than that
+   (docs/accessibility.md).
+
+   "jewel" names the default, for an element inside a page that uses
+   another palette (a swatch in the background picker, say). */
+[data-palette="jewel"] {
+  --bg-1: var(--jewel-purple); --bg-2: var(--jewel-magenta); --bg-3: var(--jewel-teal);
+  --bg-4: var(--jewel-red); --bg-5: var(--jewel-orange);
+  --bg-base: #7A2E9E;
+}
 [data-palette="ember"] {
   --bg-1: #DC2626; --bg-2: #EA580C; --bg-3: #D97706; --bg-4: #BE185D; --bg-5: #C026D3;
   --bg-base: #9A3412;
@@ -236,6 +247,27 @@
 [data-palette="dusk"] {
   --bg-1: #6D28D9; --bg-2: #BE185D; --bg-3: #1D4ED8; --bg-4: #7E22CE; --bg-5: #DB2777;
   --bg-base: #4C1D95;
+}
+/* Glacier: meltwater cyan, sky and deep indigo. Crisp and bright. */
+[data-palette="glacier"] {
+  --bg-1: #0EA5E9; --bg-2: #22D3EE; --bg-3: #4F46E5; --bg-4: #0F766E; --bg-5: #38BDF8;
+  --bg-base: #1E3A5F;
+}
+/* Aurora: emerald and violet curtains over a teal night. */
+[data-palette="aurora"] {
+  --bg-1: #10B981; --bg-2: #8B5CF6; --bg-3: #06B6D4; --bg-4: #6366F1; --bg-5: #14B8A6;
+  --bg-base: #123A4A;
+}
+/* Deep sea: low light and slow blues. The calmest, so it also runs slower. */
+[data-palette="deepsea"] {
+  --bg-1: #0369A1; --bg-2: #0E7490; --bg-3: #1D4ED8; --bg-4: #0F766E; --bg-5: #155E75;
+  --bg-base: #0B2A4A;
+  --bg-speed: 48s;
+}
+/* Polar: indigo, violet and steel, with a cold blue glint. */
+[data-palette="polar"] {
+  --bg-1: #4338CA; --bg-2: #6D28D9; --bg-3: #0284C7; --bg-4: #334155; --bg-5: #64748B;
+  --bg-base: #1E1B4B;
 }
 
 /* ==========================================================================

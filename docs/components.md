@@ -24,7 +24,7 @@ css/
   tokens.css            primitives → theme colors → resolved tokens
   fonts.css             optional: self-hosted Inter (link it before jewel.css)
   base.css              reset, type scale, links, rules, 12-col grid
-  background.css        lava lamp animation (animated Jewel gradient)
+  background.css        lava lamp animation (animated Jewel gradient), wax blobs, own image or video
   utilities.css         data-text variants, [hidden], .visually-hidden
   parked/
     light-theme.css     light theme, set aside (not imported)
@@ -43,6 +43,7 @@ css/
     password.css
     fab.css  sheet.css                                                 posting flow
     lightbox.css  filter.css                                           photos and filtering
+    bg-picker.css                                                      background settings
 js/
   jewel.js              core: Jewel.theme + component registry
   components/
@@ -53,6 +54,7 @@ js/
     tag-input.js  dropzone.js  sheet.js  post-form.js
     side-nav.js  tabs.js  accordion.js  dropdown.js  search.js
     datepicker.js  code.js  chat.js  table.js  tooltip.js  password.js
+    bg-picker.js
 index.html              the specimen's home page
 foundations/ components/ patterns/   one specimen page each
 specimen/               specimen-only CSS and JS (nav, code under examples); not part of the system
@@ -118,6 +120,37 @@ Stacked sections that open in place, built on native `<details>`, so it works wi
 - Give every item the same `name` to allow only one open at a time.
 - `aria-disabled="true"` on a summary keeps that item shut (needs `accordion.js`, which also adds `el.jewelAccordion.openAll()` / `.closeAll()`).
 - `.accordion--flush` drops the outer rules.
+
+### Background picker
+
+Lets the viewer choose the lava lamp's palette and motion. It is a settings control: put it in a sheet or on a settings page.
+
+```html
+<div class="bg-picker" data-component="bg-picker" data-bg-store>
+  <div class="bg-picker__group" role="group" aria-labelledby="bgp-palette">
+    <p class="label" id="bgp-palette">Palette</p>
+    <div class="cluster bg-picker__options">
+      <button class="tag tag--button" type="button" data-palette="jewel" aria-pressed="true"><span class="bg-picker__swatch" aria-hidden="true"></span>Jewel</button>
+      <button class="tag tag--button" type="button" data-palette="lagoon" aria-pressed="false"><span class="bg-picker__swatch" aria-hidden="true"></span>Lagoon</button>
+    </div>
+  </div>
+  <div class="bg-picker__group" role="group" aria-labelledby="bgp-motion">
+    <p class="label" id="bgp-motion">Motion</p>
+    <div class="cluster bg-picker__options">
+      <button class="tag tag--button" type="button" data-bg-motion="lava" aria-pressed="true">Lava lamp</button>
+      <button class="tag tag--button" type="button" data-bg-motion="wax" aria-pressed="false">Wax blobs</button>
+    </div>
+  </div>
+</div>
+```
+
+- Each option carries the attribute it sets on `<html>`: `data-palette` or `data-bg-motion`. `jewel` and `lava` are the defaults and remove the attribute.
+- `data-palette` on the button also scopes that palette's colors to it, so `.bg-picker__swatch` needs no color of its own. A palette you write as `[data-palette="your-name"]` gets a swatch for free.
+- Offer only the options you want; the groups are optional. The motion group needs the [`.jewel-wax` layer](tokens.md#wax-blobs) in the page.
+- `data-bg-store` saves the choices in `localStorage` (`jewel-palette`, `jewel-bg-motion`) and restores them when the picker mounts. To restore before first paint on pages without a picker, set the attributes from a small inline script in `<head>`.
+- `bg-picker.js` fires `jewel:backgroundchange` on `<html>` with `detail: { palette, motion }`, and adds `Jewel.background.get()` and `.set({ palette, motion }, { save })`.
+- `.bg-picker__note` is a small line under the options ("Saved on this device").
+- Without the script: set the attributes on `<html>` yourself and keep each button's `aria-pressed` in step.
 
 ### Badge
 
@@ -691,7 +724,9 @@ dialog.jewelSheet.open(opener)                // also .close({ force }), .reques
 | `data-panel` | `solid` | Any element. Panels are glass by default. This gives an opaque surface instead, for example over photography. |
 | `data-text` | `default`, `muted`, `accent`, `inverse` | Any element. |
 | `data-component` | a registered name | Wires up JS behavior (see below). |
-| `data-bg` | `paused` | `<html>`. Stops the lava lamp animation. |
+| `data-bg` | `paused` | `<html>`. Stops the lava lamp animation, the wax blobs and the drift of a still. |
+| `data-palette` | `ember`, `lagoon`, `dusk`, `glacier`, `aurora`, `deepsea`, `polar`, `jewel` | `<html>`, or any element. The lava lamp's colors ([tokens](tokens.md#palettes)). |
+| `data-bg-motion` | `wax` | `<html>`. Shows the wax blobs (`.jewel-wax`) over the lava lamp animation. |
 | `hidden` | | Any element. Always hides it, even on components that set their own `display` (`utilities.css` sits in the last layer). Unlayered page CSS that sets `display` on a hidden element still wins, so avoid that. `hidden="until-found"` is left to the browser. |
 
 ## Adding a component
